@@ -6,16 +6,48 @@
 //
 
 import SwiftUI
+import SceneKit
+import RealityKit
 
 struct ContentView: View {
+    @ObservedObject var viewModel = GustavViewModel()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        ZStack {
+            Text("\(viewModel.count)")
+            
+            VStack {
+                ProgressView(viewModel: viewModel)
+                HStack {
+                    Spacer()
+                    Button("edit") {
+                        print("button edit")
+                        viewModel.toggleSheet()
+                    }
+                    .padding()
+                    .sheet(isPresented: $viewModel.showingSheet) { EditSheetView(viewModel: viewModel) }
+                }
+                
+                Spacer()
+                
+                VStack {
+                    Button(action: viewModel.startStopTimer) {
+                        Text(viewModel.isTimerRunning ? "Stop Timer" : "Start timer")
+                            .padding()
+                            .frame(width: UIScreen.main.bounds.width - 30)
+                            .foregroundColor(.white)
+                            .background(.blue)
+                            .cornerRadius(10)
+                    }
+                    .padding()
+                    
+                    Button("Reset Timer") {
+                        viewModel.resetTimer()
+                    }
+                }
+            }
+            .padding()
         }
-        .padding()
     }
 }
 
