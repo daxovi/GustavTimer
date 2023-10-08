@@ -10,9 +10,12 @@ import Combine
 import SwiftUI
 
 class GustavViewModel: ObservableObject {
+    var maxTimers = 5
+    var isTimerFull: Bool {return !(timers.count < maxTimers)}
+    
     @Published var count: Int = 0
     @Published var showingSheet = false
-    @Published var timers: [Int] = [20, 5, 0]
+    @Published var timers: [Int] = [20, 5]
     @Published var isTimerRunning = false
     @Published var progress: Double = 0.0
 
@@ -94,22 +97,13 @@ class GustavViewModel: ObservableObject {
     }
     
     func addTimer() {
-        for index in 0..<timers.count {
-            if timers[index] == 0 {
-                timers.remove(at: index)
-            }
+        if !isTimerFull {
+            timers.append(5)
         }
-        timers.append(5)
-        timers.append(0)
     }
     
-    func removeTimer(index: Int) {
-        if (index < timers.count) {
-            timers.remove(at: index)
-            if timers.last != 0 {
-                timers.append(0)
-            }
-        }
+    func removeTimer(at offsets: IndexSet) {
+            timers.remove(atOffsets: offsets)
     }
     
     func toggleSheet() {

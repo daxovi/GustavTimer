@@ -12,34 +12,32 @@ struct EditSheetView: View {
     
     var body: some View {
         VStack {
-            ForEach((0..<viewModel.timers.count), id: \.self) { index in
-                HStack {
-                    if (viewModel.timers[index] > 0) {
-                        
-                        Stepper(value: $viewModel.timers[index],
-                                in: (1...100),
-                                step: 1) {
-                            Text("Lap \(index + 1): \(viewModel.timers[index])")
-                        }
-                        if viewModel.timers.count > 2 {
-                            Button(action: {
-                                viewModel.removeTimer(index: index)
-                            }, label: {
-                                Image(systemName: "minus.circle.fill")
-                            })
-                        }
-                    } else {
+            NavigationView {
+                List {
+                    ForEach((0..<viewModel.timers.count), id: \.self) { index in
                         HStack {
-                            Spacer()
-                            Button(action: {
-                                viewModel.addTimer()
-                            }, label: {
-                                Image(systemName: "plus.circle.fill")
-                            })
+                                Stepper(value: $viewModel.timers[index],
+                                        in: (1...100),
+                                        step: 1) {
+                                    Text("Lap \(index + 1): \(viewModel.timers[index])")
+                                }
                         }
+                        .padding(5)
                     }
+                    .onMove(perform: { indices, newOffset in
+                        viewModel.timers.move(fromOffsets: indices, toOffset: newOffset)
+                    })
+                    .onDelete(perform: viewModel.timers.count > 1 ? viewModel.removeTimer : nil)
                 }
-                .padding()
+                .navigationTitle("Settings")
+                .navigationBarTitleDisplayMode(.inline)
+                .listStyle(.plain)
+                .toolbar {
+                    if !viewModel.isTimerFull {
+                        Button("Add") {viewModel.addTimer()}
+                    }
+                    EditButton()
+                }
             }
             Button("save") {
                 viewModel.resetTimer()
