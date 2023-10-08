@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProgressBarView: View {
     @Binding var progress: Double
-    var cornerRadius: CGFloat = 10
+    var cornerRadius: CGFloat = 0
     
     var body: some View {
         GeometryReader { proxy in

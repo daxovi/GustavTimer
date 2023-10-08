@@ -10,7 +10,8 @@ import Combine
 import SwiftUI
 
 class GustavViewModel: ObservableObject {
-    var maxTimers = 5
+    let maxTimers = 5
+    let progressBarHeight = 15
     var isTimerFull: Bool {return !(timers.count < maxTimers)}
     
     @Published var count: Int = 0
@@ -55,7 +56,8 @@ class GustavViewModel: ObservableObject {
                 .autoconnect()
                 .sink { [weak self] _ in
                     self?.switchTimer()
-                    self?.count -= 1
+                        self?.count -= 1
+                    
                     self?.progress = (Double(self?.timers[self?.activeTimerIndex ?? 0] ?? 0) - Double(self?.count ?? 0)) / Double(self?.timers[self?.activeTimerIndex ?? 0] ?? 0)
                 }
         } else {
@@ -104,6 +106,12 @@ class GustavViewModel: ObservableObject {
     
     func removeTimer(at offsets: IndexSet) {
             timers.remove(atOffsets: offsets)
+    }
+    
+    func removeTimer(index: Int) {
+        if index < timers.count {
+            timers.remove(at: index)
+        }
     }
     
     func toggleSheet() {

@@ -12,7 +12,9 @@
 		CF21843829F0525E0060706C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF21843729F0525E0060706C /* Assets.xcassets */; };
 		CF21843B29F0525E0060706C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF21843A29F0525E0060706C /* Preview Assets.xcassets */; };
 		CF21844229F0528C0060706C /* GustavViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF21844129F0528C0060706C /* GustavViewModel.swift */; };
-		CF5B110B2AD29CA300F42131 /* ProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5B110A2AD29CA300F42131 /* ProgressViewModel.swift */; };
+		CF5B110F2AD31C3000F42131 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5B110E2AD31C3000F42131 /* DotView.swift */; };
+		CF5B11142AD33D8900F42131 /* MartianMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF5B11132AD33D8900F42131 /* MartianMono-Bold.ttf */; };
+		CF5B11162AD33DE200F42131 /* MartianMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF5B11152AD33DE200F42131 /* MartianMono-Regular.ttf */; };
 		CFADBCF22AC9C8AE00AE27D8 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADBCF12AC9C8AE00AE27D8 /* ProgressView.swift */; };
 		CFADBCF42AC9DC7B00AE27D8 /* EditSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADBCF32AC9DC7B00AE27D8 /* EditSheetView.swift */; };
 		CFC3A7722AAF8B1B00BB8CC2 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC3A7712AAF8B1B00BB8CC2 /* ProgressBarView.swift */; };
@@ -25,7 +27,10 @@
 		CF21843729F0525E0060706C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF21843A29F0525E0060706C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CF21844129F0528C0060706C /* GustavViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavViewModel.swift; sourceTree = "<group>"; };
-		CF5B110A2AD29CA300F42131 /* ProgressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewModel.swift; sourceTree = "<group>"; };
+		CF5B110E2AD31C3000F42131 /* DotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
+		CF5B11122AD33CE500F42131 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CF5B11132AD33D8900F42131 /* MartianMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Bold.ttf"; sourceTree = "<group>"; };
+		CF5B11152AD33DE200F42131 /* MartianMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Regular.ttf"; sourceTree = "<group>"; };
 		CFADBCF12AC9C8AE00AE27D8 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		CFADBCF32AC9DC7B00AE27D8 /* EditSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSheetView.swift; sourceTree = "<group>"; };
 		CFC3A7712AAF8B1B00BB8CC2 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
@@ -61,13 +66,16 @@
 		CF21843229F052590060706C /* GustavTimer */ = {
 			isa = PBXGroup;
 			children = (
+				CF5B11122AD33CE500F42131 /* Info.plist */,
 				CF21843329F052590060706C /* GustavTimerApp.swift */,
 				CF21843529F052590060706C /* ContentView.swift */,
 				CFADBCF32AC9DC7B00AE27D8 /* EditSheetView.swift */,
 				CFADBCF12AC9C8AE00AE27D8 /* ProgressView.swift */,
-				CF5B110A2AD29CA300F42131 /* ProgressViewModel.swift */,
+				CF5B11152AD33DE200F42131 /* MartianMono-Regular.ttf */,
+				CF5B11132AD33D8900F42131 /* MartianMono-Bold.ttf */,
 				CFC3A7712AAF8B1B00BB8CC2 /* ProgressBarView.swift */,
 				CF21844129F0528C0060706C /* GustavViewModel.swift */,
+				CF5B110E2AD31C3000F42131 /* DotView.swift */,
 				CF21843729F0525E0060706C /* Assets.xcassets */,
 				CF21843929F0525E0060706C /* Preview Content */,
 			);
@@ -142,6 +150,8 @@
 			files = (
 				CF21843B29F0525E0060706C /* Preview Assets.xcassets in Resources */,
 				CF21843829F0525E0060706C /* Assets.xcassets in Resources */,
+				CF5B11142AD33D8900F42131 /* MartianMono-Bold.ttf in Resources */,
+				CF5B11162AD33DE200F42131 /* MartianMono-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,8 +162,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF5B110B2AD29CA300F42131 /* ProgressViewModel.swift in Sources */,
 				CF21843629F052590060706C /* ContentView.swift in Sources */,
+				CF5B110F2AD31C3000F42131 /* DotView.swift in Sources */,
 				CFC3A7722AAF8B1B00BB8CC2 /* ProgressBarView.swift in Sources */,
 				CFADBCF42AC9DC7B00AE27D8 /* EditSheetView.swift in Sources */,
 				CFADBCF22AC9C8AE00AE27D8 /* ProgressView.swift in Sources */,
@@ -292,6 +302,7 @@
 				DEVELOPMENT_TEAM = BY8G7HDNPV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GustavTimer/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -322,6 +333,7 @@
 				DEVELOPMENT_TEAM = BY8G7HDNPV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GustavTimer/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

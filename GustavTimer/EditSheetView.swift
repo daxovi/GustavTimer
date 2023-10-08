@@ -17,7 +17,7 @@ struct EditSheetView: View {
                     ForEach((0..<viewModel.timers.count), id: \.self) { index in
                         HStack {
                                 Stepper(value: $viewModel.timers[index],
-                                        in: (1...100),
+                                        in: (1...300),
                                         step: 1) {
                                     Text("Lap \(index + 1): \(viewModel.timers[index])")
                                 }
@@ -29,7 +29,6 @@ struct EditSheetView: View {
                     })
                     .onDelete(perform: viewModel.timers.count > 1 ? viewModel.removeTimer : nil)
                 }
-                .navigationTitle("Settings")
                 .navigationBarTitleDisplayMode(.inline)
                 .listStyle(.plain)
                 .toolbar {
@@ -39,10 +38,22 @@ struct EditSheetView: View {
                     EditButton()
                 }
             }
-            Button("save") {
+            Button(action: {
                 viewModel.resetTimer()
                 viewModel.toggleSheet()
-            }
-        }
+            }, label: {
+                Color.green
+                    .overlay {
+                        Text("SAVE")
+                            .foregroundStyle(.white)
+                    }
+                    .frame(height: 100)
+                    
+            })
+            
     }
+        .ignoresSafeArea()
+    }
+
+
 }

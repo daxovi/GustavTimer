@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import SceneKit
-import RealityKit
 
 struct ContentView: View {
     @ObservedObject var viewModel = GustavViewModel.shared
@@ -15,12 +13,18 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             Text("\(viewModel.count)")
+                .font(Font.custom("MartianMono-Bold", size: 500))
+                .minimumScaleFactor(0.01)
+            /*
+            DotView()
+                .frame(width: UIScreen.main.bounds.width)
+             */
             
             VStack {
-                ProgressView(gustavViewModel: viewModel)
+                ProgressView(viewModel: viewModel)
                 HStack {
                     Spacer()
-                    Button("edit") {
+                    Button("EDIT") {
                         print("button edit")
                         viewModel.toggleSheet()
                     }
@@ -30,25 +34,48 @@ struct ContentView: View {
                 
                 Spacer()
                 
-                VStack {
-                    Button(action: viewModel.startStopTimer) {
-                        Text(viewModel.isTimerRunning ? "Stop Timer" : "Start timer")
-                            .padding()
-                            .frame(width: UIScreen.main.bounds.width - 30)
-                            .foregroundColor(.white)
-                            .background(.blue)
-                            .cornerRadius(10)
-                    }
-                    .padding()
-                    
-                    Button("Reset Timer") {
-                        viewModel.resetTimer()
-                    }
-                }
+                
             }
             .padding()
+            .font(Font.custom("MartianMono-Regular", size: 15))
+            
+            VStack {
+                Spacer()
+                
+                HStack(spacing: 0) {
+                    Button(action: viewModel.startStopTimer) {
+                        if viewModel.isTimerRunning {
+                            Color.red
+                                .overlay {
+                                    Text(viewModel.isTimerRunning ? "STOP" : "START")
+                                        .font(Font.custom("MartianMono-Regular", size: 15))
+                                }
+                                .frame(height: 100)
+                        } else {
+                            Color.green
+                                .overlay {
+                                    Text(viewModel.isTimerRunning ? "STOP" : "START")
+                                        .font(Font.custom("MartianMono-Regular", size: 15))
+                                }
+                                .frame(height: 100)
+                        }
+                       
+                    }
+                    Button(action: viewModel.resetTimer, label: {
+                        Color.gray
+                            .overlay {
+                                Text("RESET")
+                                    .font(Font.custom("MartianMono-Regular", size: 15))
+                            }
+                            .frame(height: 100)
+                    })
+                }
+            }
+            .foregroundStyle(.white)
+            .ignoresSafeArea()
         }
     }
+        
 }
 
 struct ContentView_Previews: PreviewProvider {
