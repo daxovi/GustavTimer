@@ -10,14 +10,14 @@ import SceneKit
 import RealityKit
 
 struct ContentView: View {
-    @ObservedObject var viewModel = GustavViewModel()
+    @ObservedObject var viewModel = GustavViewModel.shared
     
     var body: some View {
         ZStack {
             Text("\(viewModel.count)")
             
             VStack {
-                ProgressView(viewModel: viewModel)
+                ProgressView(gustavViewModel: viewModel)
                 HStack {
                     Spacer()
                     Button("edit") {

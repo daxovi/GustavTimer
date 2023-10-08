@@ -12,6 +12,7 @@
 		CF21843829F0525E0060706C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF21843729F0525E0060706C /* Assets.xcassets */; };
 		CF21843B29F0525E0060706C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF21843A29F0525E0060706C /* Preview Assets.xcassets */; };
 		CF21844229F0528C0060706C /* GustavViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF21844129F0528C0060706C /* GustavViewModel.swift */; };
+		CF5B110B2AD29CA300F42131 /* ProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5B110A2AD29CA300F42131 /* ProgressViewModel.swift */; };
 		CFADBCF22AC9C8AE00AE27D8 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADBCF12AC9C8AE00AE27D8 /* ProgressView.swift */; };
 		CFADBCF42AC9DC7B00AE27D8 /* EditSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADBCF32AC9DC7B00AE27D8 /* EditSheetView.swift */; };
 		CFC3A7722AAF8B1B00BB8CC2 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC3A7712AAF8B1B00BB8CC2 /* ProgressBarView.swift */; };
@@ -24,6 +25,7 @@
 		CF21843729F0525E0060706C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF21843A29F0525E0060706C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CF21844129F0528C0060706C /* GustavViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavViewModel.swift; sourceTree = "<group>"; };
+		CF5B110A2AD29CA300F42131 /* ProgressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewModel.swift; sourceTree = "<group>"; };
 		CFADBCF12AC9C8AE00AE27D8 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		CFADBCF32AC9DC7B00AE27D8 /* EditSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSheetView.swift; sourceTree = "<group>"; };
 		CFC3A7712AAF8B1B00BB8CC2 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				CF21843529F052590060706C /* ContentView.swift */,
 				CFADBCF32AC9DC7B00AE27D8 /* EditSheetView.swift */,
 				CFADBCF12AC9C8AE00AE27D8 /* ProgressView.swift */,
+				CF5B110A2AD29CA300F42131 /* ProgressViewModel.swift */,
 				CFC3A7712AAF8B1B00BB8CC2 /* ProgressBarView.swift */,
 				CF21844129F0528C0060706C /* GustavViewModel.swift */,
 				CF21843729F0525E0060706C /* Assets.xcassets */,
@@ -107,7 +110,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					CF21842F29F052590060706C = {
 						CreatedOnToolsVersion = 14.3;
@@ -149,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF5B110B2AD29CA300F42131 /* ProgressViewModel.swift in Sources */,
 				CF21843629F052590060706C /* ContentView.swift in Sources */,
 				CFC3A7722AAF8B1B00BB8CC2 /* ProgressBarView.swift in Sources */,
 				CFADBCF42AC9DC7B00AE27D8 /* EditSheetView.swift in Sources */,
@@ -197,6 +201,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -257,6 +262,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

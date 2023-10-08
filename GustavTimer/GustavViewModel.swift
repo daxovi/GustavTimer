@@ -19,8 +19,11 @@ class GustavViewModel: ObservableObject {
     var activeTimerIndex: Int = 0
     var timer: AnyCancellable?
     
+    static let shared = GustavViewModel()
+    
     init() {
         self.count = timers[0]
+        
     }
     
     private func countProgressRatio(timerIndex: Int) -> Double {
