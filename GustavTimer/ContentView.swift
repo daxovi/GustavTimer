@@ -8,74 +8,91 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var viewModel = GustavViewModel.shared
+    @StateObject var viewModel = GustavViewModel.shared
     
     var body: some View {
-        ZStack {
-            Text("\(viewModel.count)")
-                .font(Font.custom("MartianMono-Bold", size: 500))
-                .minimumScaleFactor(0.01)
-            /*
-            DotView()
-                .frame(width: UIScreen.main.bounds.width)
-             */
-            
-            VStack {
-                ProgressView(viewModel: viewModel)
-                HStack {
+        GeometryReader(content: { geometry in
+            ZStack {
+                BGImageView(image: viewModel.bgImages[viewModel.bgIndex].getImage())
+                
+                VStack {
+                    ProgressView(viewModel: viewModel)
+                        .padding(.top)
+                    HStack {
+                        Spacer()
+                        
+                        editButton
+                    }
                     Spacer()
-                    Button("EDIT") {
-                        print("button edit")
-                        viewModel.toggleSheet()
-                    }
-                    .padding()
-                    .sheet(isPresented: $viewModel.showingSheet) { EditSheetView(viewModel: viewModel) }
+                    
+                    counter
+                    
+                    Spacer()
+                    Spacer()
+                    
+                    controlButtons
                 }
-                
-                Spacer()
-                
-                
+                .font(Font.custom("MartianMono-Regular", size: 15))
+                .ignoresSafeArea(edges: .bottom)
+                .statusBar(hidden: true)
             }
-            .padding()
-            .font(Font.custom("MartianMono-Regular", size: 15))
-            
-            VStack {
-                Spacer()
-                
-                HStack(spacing: 0) {
-                    Button(action: viewModel.startStopTimer) {
-                        if viewModel.isTimerRunning {
-                            Color.red
-                                .overlay {
-                                    Text(viewModel.isTimerRunning ? "STOP" : "START")
-                                        .font(Font.custom("MartianMono-Regular", size: 15))
-                                }
-                                .frame(height: 100)
-                        } else {
-                            Color.green
-                                .overlay {
-                                    Text(viewModel.isTimerRunning ? "STOP" : "START")
-                                        .font(Font.custom("MartianMono-Regular", size: 15))
-                                }
-                                .frame(height: 100)
+        })
+    }
+    
+    var counter: some View {
+        Text("\(viewModel.count)")
+            .font(Font.custom("MartianMono-Bold", size: 500))
+            .minimumScaleFactor(0.01)
+            .padding((viewModel.count < 10) ? 30 : 0)
+            .foregroundColor(Color("StartColor"))
+    }
+    
+    var controlButtons: some View {
+        HStack(spacing: 0) {
+            Button(action: viewModel.startStopTimer) {
+                if viewModel.isTimerRunning {
+                    Color("StopColor")
+                        .overlay {
+                            Text("STOP")
                         }
-                       
-                    }
-                    Button(action: viewModel.resetTimer, label: {
-                        Color.gray
-                            .overlay {
-                                Text("RESET")
-                                    .font(Font.custom("MartianMono-Regular", size: 15))
-                            }
-                            .frame(height: 100)
-                    })
+                        .frame(height: viewModel.buttonHeight)
+                } else {
+                    Color("StartColor")
+                        .overlay {
+                            Text("START")
+                        }
+                        .frame(height: viewModel.buttonHeight)
                 }
             }
-            .foregroundStyle(.white)
-            .ignoresSafeArea()
+            
+            if viewModel.isTimerRunning {
+                Button(action: viewModel.skipLap, label: {
+                    Color("ResetColor")
+                        .overlay {
+                            Text("SKIP")
+                        }
+                        .frame(height: viewModel.buttonHeight)
+                })
+            } else {
+                Button(action: viewModel.resetTimer, label: {
+                    Color("ResetColor")
+                        .overlay {
+                            Text("RESET")
+                        }
+                        .frame(height: viewModel.buttonHeight)
+                })
+            }
         }
     }
-        
+    
+    var editButton: some View {
+        Button("EDIT") {
+            print("button edit")
+            viewModel.toggleSheet()
+        }
+        .safeAreaPadding(.horizontal)
+        .sheet(isPresented: $viewModel.showingSheet) { EditSheetView(viewModel: viewModel) }
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {

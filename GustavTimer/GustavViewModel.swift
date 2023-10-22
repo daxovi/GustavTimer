@@ -11,14 +11,28 @@ import SwiftUI
 
 class GustavViewModel: ObservableObject {
     let maxTimers = 5
-    let progressBarHeight = 15
+    let progressBarHeight = 5
+    let buttonHeight = 80.0
+    let bgImages: [BGImageModel] = [
+        BGImageModel(image: "Boxer", author: "", source: "www.unsplash.com"),
+        BGImageModel(image: "Lanes", author: "", source: "www.unsplash.com"),
+        BGImageModel(image: "Benchpress", author: "", source: "www.unsplash.com"),
+        BGImageModel(image: "Rope", author: "", source: "www.unsplash.com")
+    ]
     var isTimerFull: Bool {return !(timers.count < maxTimers)}
     
     @Published var count: Int = 0
     @Published var showingSheet = false
-    @Published var timers: [Int] = [20, 5]
+    @Published var timers: [Int] = [20, 5] { didSet {
+        UserDefaults.standard.setValue(timers, forKey: "timers")
+    }}
     @Published var isTimerRunning = false
     @Published var progress: Double = 0.0
+    @AppStorage("alwaysOnDisplay") var isAlwaysOnDisplay = false {didSet {
+        UIApplication.shared.isIdleTimerDisabled = isAlwaysOnDisplay
+    }}
+    @Published var isSoundOn = true
+    @AppStorage("bgIndex") var bgIndex = 0
 
     var activeTimerIndex: Int = 0
     var timer: AnyCancellable?
@@ -26,8 +40,10 @@ class GustavViewModel: ObservableObject {
     static let shared = GustavViewModel()
     
     init() {
+        UIApplication.shared.isIdleTimerDisabled = isAlwaysOnDisplay
+        let savedArray = UserDefaults.standard.array(forKey: "timers") as? [Int]
+        self.timers = savedArray ?? [20, 5]
         self.count = timers[0]
-        
     }
     
     private func countProgressRatio(timerIndex: Int) -> Double {
@@ -55,9 +71,8 @@ class GustavViewModel: ObservableObject {
                 .publish(every: 1.0, on: .main, in: .common)
                 .autoconnect()
                 .sink { [weak self] _ in
+                    self?.count -= 1
                     self?.switchTimer()
-                        self?.count -= 1
-                    
                     self?.progress = (Double(self?.timers[self?.activeTimerIndex ?? 0] ?? 0) - Double(self?.count ?? 0)) / Double(self?.timers[self?.activeTimerIndex ?? 0] ?? 0)
                 }
         } else {
@@ -116,5 +131,13 @@ class GustavViewModel: ObservableObject {
     
     func toggleSheet() {
         self.showingSheet.toggle()
+    }
+    
+    func skipLap() {
+        self.count = 0
+    }
+    
+    func setBG(index: Int) {
+        self.bgIndex = index
     }
 }

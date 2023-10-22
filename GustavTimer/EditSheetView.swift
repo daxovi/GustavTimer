@@ -8,52 +8,106 @@
 import SwiftUI
 
 struct EditSheetView: View {
-    @ObservedObject var viewModel: GustavViewModel
+    @StateObject var viewModel: GustavViewModel
     
     var body: some View {
         VStack {
             NavigationView {
                 List {
-                    ForEach((0..<viewModel.timers.count), id: \.self) { index in
-                        HStack {
-                                Stepper(value: $viewModel.timers[index],
-                                        in: (1...300),
-                                        step: 1) {
-                                    Text("Lap \(index + 1): \(viewModel.timers[index])")
-                                }
-                        }
-                        .padding(5)
-                    }
-                    .onMove(perform: { indices, newOffset in
-                        viewModel.timers.move(fromOffsets: indices, toOffset: newOffset)
-                    })
-                    .onDelete(perform: viewModel.timers.count > 1 ? viewModel.removeTimer : nil)
+                    Text("Laps")
+                        .fontWeight(.bold)
+                    laps
+                    //  Spacer()
+                    settingsToggle
+                    // Spacer()
+                    bgSelector
                 }
                 .navigationBarTitleDisplayMode(.inline)
                 .listStyle(.plain)
-                .toolbar {
-                    if !viewModel.isTimerFull {
-                        Button("Add") {viewModel.addTimer()}
-                    }
-                    EditButton()
-                }
+                .toolbar { toolbarButtons }
             }
-            Button(action: {
-                viewModel.resetTimer()
-                viewModel.toggleSheet()
-            }, label: {
-                Color.green
-                    .overlay {
-                        Text("SAVE")
-                            .foregroundStyle(.white)
-                    }
-                    .frame(height: 100)
-                    
-            })
-            
-    }
+            saveButton
+        }
         .ignoresSafeArea()
     }
 
-
+    
+    var laps: some View {
+        ForEach((0..<viewModel.timers.count), id: \.self) { index in
+            HStack {
+                Stepper(value: $viewModel.timers[index],
+                        in: (1...300),
+                        step: 1) {
+                    Text("Lap \(index + 1): \(viewModel.timers[index])")
+                }
+            }
+            .padding(5)
+        }
+        .onMove(perform: { indices, newOffset in
+            viewModel.timers.move(fromOffsets: indices, toOffset: newOffset)
+        })
+        .onDelete(perform: viewModel.timers.count > 1 ? viewModel.removeTimer : nil)
+    }
+    
+    var toolbarButtons: some View {
+        Group {
+            if !viewModel.isTimerFull {
+                Button("Add") {viewModel.addTimer()}
+            }
+            EditButton()
+        }
+    }
+    
+    var saveButton: some View {
+        Button(action: {
+            viewModel.resetTimer()
+            viewModel.toggleSheet()
+        }, label: {
+            Color("StartColor")
+                .overlay {
+                    Text("SAVE")
+                        .foregroundStyle(.white)
+                }
+                .frame(height: viewModel.buttonHeight)
+        })
+    }
+    
+    var settingsToggle: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            Text("Settings")
+                .fontWeight(.bold)
+            Toggle("Always on display", isOn: $viewModel.isAlwaysOnDisplay)
+                .tint(Color("StartColor"))
+            Toggle("Sound", isOn: $viewModel.isSoundOn)
+                .tint(Color("StartColor"))
+        }
+        .padding(.vertical)
+    }
+    
+    var bgSelector: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            Text("Background")
+                .fontWeight(.bold)
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], content: {
+                ForEach(0..<viewModel.bgImages.count, id: \.self) { index in
+                    viewModel.bgImages[index].getImage()
+                        .resizable()
+                        .scaledToFit()
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .onTapGesture {
+                            print("set image: \(index)")
+                            viewModel.setBG(index: index)
+                        }
+                        .overlay {
+                            if viewModel.bgIndex == index {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(style: .init(lineWidth: 4))
+                                    .fill(Color("StartColor"))
+                            }
+                        }
+                }
+            })
+        }
+        .padding(.vertical)
+    }
 }

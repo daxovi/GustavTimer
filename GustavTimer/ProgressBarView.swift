@@ -14,9 +14,9 @@ struct ProgressBarView: View {
     var body: some View {
         GeometryReader { proxy in
             ZStack(alignment: .leading) {
-                Color.blue
+                Color("ResetColor")
                     .cornerRadius(cornerRadius)
-                Color.red
+                Color("StartColor")
                     .frame(width: proxy.size.width * progress)
                     .cornerRadius(cornerRadius)
                     .animation(.linear(duration: 1.0), value: progress)
