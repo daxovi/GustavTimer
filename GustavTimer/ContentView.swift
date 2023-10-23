@@ -60,6 +60,7 @@ struct ContentView: View {
                     Color("StartColor")
                         .overlay {
                             Text("START")
+                                .foregroundStyle(Color("ResetColor"))
                         }
                         .frame(height: viewModel.buttonHeight)
                 }

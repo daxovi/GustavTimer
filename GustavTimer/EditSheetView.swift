@@ -12,19 +12,22 @@ struct EditSheetView: View {
     
     var body: some View {
         VStack {
-            NavigationView {
+            NavigationStack {
                 List {
-                    Text("Laps")
-                        .fontWeight(.bold)
+                    HStack {
+                        Text("Laps")
+                            .fontWeight(.bold)
+                        Spacer()
+                    }
+                    
                     laps
-                    //  Spacer()
                     settingsToggle
-                    // Spacer()
                     bgSelector
                 }
                 .navigationBarTitleDisplayMode(.inline)
                 .listStyle(.plain)
                 .toolbar { toolbarButtons }
+                .environment(\.editMode, $viewModel.editMode)
             }
             saveButton
         }
@@ -50,12 +53,13 @@ struct EditSheetView: View {
     }
     
     var toolbarButtons: some View {
-        Group {
+        HStack {
             if !viewModel.isTimerFull {
-                Button("Add") {viewModel.addTimer()}
+                Button("Add lap") {viewModel.addTimer()}
             }
             EditButton()
         }
+        .foregroundStyle(Color("ResetColor"))
     }
     
     var saveButton: some View {
@@ -66,7 +70,7 @@ struct EditSheetView: View {
             Color("StartColor")
                 .overlay {
                     Text("SAVE")
-                        .foregroundStyle(.white)
+                        .foregroundStyle(Color("ResetColor"))
                 }
                 .frame(height: viewModel.buttonHeight)
         })

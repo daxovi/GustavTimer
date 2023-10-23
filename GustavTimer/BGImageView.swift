@@ -16,6 +16,9 @@ struct BGImageView: View {
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
+                .overlay(content: {
+                    Color.black.opacity(0.3)
+                })
                 .frame(width: geometry.size.width, height: geometry.size.height)
         })
     }

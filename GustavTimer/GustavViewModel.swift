@@ -8,16 +8,23 @@
 import Foundation
 import Combine
 import SwiftUI
+import AVFoundation
 
 class GustavViewModel: ObservableObject {
     let maxTimers = 5
     let progressBarHeight = 5
     let buttonHeight = 80.0
     let bgImages: [BGImageModel] = [
-        BGImageModel(image: "Boxer", author: "", source: "www.unsplash.com"),
-        BGImageModel(image: "Lanes", author: "", source: "www.unsplash.com"),
         BGImageModel(image: "Benchpress", author: "", source: "www.unsplash.com"),
-        BGImageModel(image: "Rope", author: "", source: "www.unsplash.com")
+        BGImageModel(image: "Boxer", author: "", source: "www.unsplash.com"),
+        BGImageModel(image: "Ground", author: "", source: "www.unsplash.com"),
+        BGImageModel(image: "Lanes", author: "", source: "www.unsplash.com"),
+        BGImageModel(image: "Poster", author: "", source: "www.unsplash.com"),
+        BGImageModel(image: "Pullup", author: "", source: "www.unsplash.com"),
+        BGImageModel(image: "Rope", author: "", source: "www.unsplash.com"),
+        BGImageModel(image: "Squat", author: "", source: "www.unsplash.com"),
+        BGImageModel(image: "Stone", author: "", source: "www.unsplash.com"),
+        BGImageModel(image: "Weights", author: "", source: "www.unsplash.com")
     ]
     var isTimerFull: Bool {return !(timers.count < maxTimers)}
     
@@ -32,6 +39,7 @@ class GustavViewModel: ObservableObject {
         UIApplication.shared.isIdleTimerDisabled = isAlwaysOnDisplay
     }}
     @Published var isSoundOn = true
+    @Published var editMode = EditMode.inactive
     @AppStorage("bgIndex") var bgIndex = 0
 
     var activeTimerIndex: Int = 0
@@ -83,6 +91,7 @@ class GustavViewModel: ObservableObject {
     
     func switchTimer() {
         if self.count <= 0 {
+            playSound()
             activeTimerIndex += 1
             if activeTimerIndex >= timers.count {
                 activeTimerIndex = 0
@@ -139,5 +148,12 @@ class GustavViewModel: ObservableObject {
     
     func setBG(index: Int) {
         self.bgIndex = index
+    }
+    
+    func playSound() {
+        if isSoundOn {
+            let systemSoundID: SystemSoundID = 1016
+            AudioServicesPlaySystemSound(systemSoundID)
+        }
     }
 }

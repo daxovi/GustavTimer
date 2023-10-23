@@ -15,6 +15,7 @@ struct ProgressBarView: View {
         GeometryReader { proxy in
             ZStack(alignment: .leading) {
                 Color("ResetColor")
+                //    .opacity(0.5)
                     .cornerRadius(cornerRadius)
                 Color("StartColor")
                     .frame(width: proxy.size.width * progress)
