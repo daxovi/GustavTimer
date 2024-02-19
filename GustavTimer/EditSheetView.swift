@@ -11,7 +11,7 @@ struct EditSheetView: View {
     @StateObject var viewModel: GustavViewModel
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             NavigationStack {
                 List {
                     HStack {

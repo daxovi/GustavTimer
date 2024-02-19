@@ -15,10 +15,10 @@ struct BGImageView: View {
             image
                 .resizable()
                 .scaledToFill()
-                .ignoresSafeArea()
                 .overlay(content: {
                     Color.black.opacity(0.3)
                 })
+                .ignoresSafeArea()
                 .frame(width: geometry.size.width, height: geometry.size.height)
         })
     }
