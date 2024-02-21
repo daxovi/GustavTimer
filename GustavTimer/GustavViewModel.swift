@@ -152,7 +152,7 @@ class GustavViewModel: ObservableObject {
     
     func playSound() {
         if isSoundOn {
-            let systemSoundID: SystemSoundID = 1016
+            let systemSoundID: SystemSoundID = 1304 // 1016
             AudioServicesPlaySystemSound(systemSoundID)
         }
     }
