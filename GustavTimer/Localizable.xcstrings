@@ -20,7 +20,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Přidat kolo"
+            "value" : "Přidat interval"
           }
         },
         "en" : {
@@ -71,7 +71,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@. kolo: %@"
+            "value" : "%@. interval: %@"
           }
         },
         "en" : {
@@ -88,7 +88,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kola"
+            "value" : "Intervaly"
           }
         },
         "en" : {

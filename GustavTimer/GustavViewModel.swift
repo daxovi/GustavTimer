@@ -157,6 +157,7 @@ class GustavViewModel: ObservableObject {
     
     func toggleSheet() {
         self.showingSheet.toggle()
+        resetTimer()
     }
     
     func skipLap() {
