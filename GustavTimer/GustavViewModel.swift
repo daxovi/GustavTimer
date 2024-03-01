@@ -30,15 +30,16 @@ class GustavViewModel: ObservableObject {
     
     @Published var count: Int = 0
     @Published var showingSheet = false
-    @Published var timers: [Int] = [20, 5] { didSet {
+    @Published var timers: [Int] { didSet {
         UserDefaults.standard.setValue(timers, forKey: "timers")
+    }}
+    @Published var recentTimers: [[Int]] { didSet {
+        UserDefaults.standard.setValue(recentTimers, forKey: "recent-timers")
     }}
     @Published var isTimerRunning = false
     @Published var progress: Double = 0.0
-    @AppStorage("alwaysOnDisplay") var isAlwaysOnDisplay = false {didSet {
-        UIApplication.shared.isIdleTimerDisabled = isAlwaysOnDisplay
-    }}
-    @Published var isSoundOn = true
+    @AppStorage("isLooping") var isLooping: Bool = true
+    @AppStorage("isSoundOn") var isSoundOn = true
     @Published var editMode = EditMode.inactive
     @AppStorage("bgIndex") var bgIndex = 0
 
@@ -48,9 +49,12 @@ class GustavViewModel: ObservableObject {
     static let shared = GustavViewModel()
     
     init() {
-        UIApplication.shared.isIdleTimerDisabled = isAlwaysOnDisplay
-        let savedArray = UserDefaults.standard.array(forKey: "timers") as? [Int]
-        self.timers = savedArray ?? [20, 5]
+        UIApplication.shared.isIdleTimerDisabled = false
+        let savedTimers = UserDefaults.standard.array(forKey: "timers") as? [Int]
+        self.timers = savedTimers ?? [20, 5]
+        
+        let savedRecentTimers = UserDefaults.standard.array(forKey: "recent-timers") as? [[Int]]
+        self.recentTimers = savedRecentTimers ?? [[30, 5], [60], [60, 5, 30, 5], [300, 10], [60, 30]]
         self.count = timers[0]
     }
     
@@ -72,29 +76,42 @@ class GustavViewModel: ObservableObject {
         }
     }
     
-    func startStopTimer() {
-        if timer == nil {
-            isTimerRunning = true
-            timer = Timer
-                .publish(every: 1.0, on: .main, in: .common)
-                .autoconnect()
-                .sink { [weak self] _ in
-                    self?.count -= 1
-                    self?.switchTimer()
-                    self?.progress = (Double(self?.timers[self?.activeTimerIndex ?? 0] ?? 0) - Double(self?.count ?? 0)) / Double(self?.timers[self?.activeTimerIndex ?? 0] ?? 0)
-                }
-        } else {
-            isTimerRunning = false
-            timer = nil
-        }
+    func stopTimer() {
+        UIApplication.shared.isIdleTimerDisabled = false
+        isTimerRunning = false
+        timer = nil
     }
     
+    func startTimer() {
+        UIApplication.shared.isIdleTimerDisabled = true
+        isTimerRunning = true
+        timer = Timer
+            .publish(every: 1.0, on: .main, in: .common)
+            .autoconnect()
+            .sink { [weak self] _ in
+                self?.count -= 1
+                self?.switchTimer()
+                self?.progress = (Double(self?.timers[self?.activeTimerIndex ?? 0] ?? 0) - Double(self?.count ?? 0)) / Double(self?.timers[self?.activeTimerIndex ?? 0] ?? 0)
+            }
+    }
+    
+    func startStopTimer() {
+        if timer == nil {
+            startTimer()
+        } else {
+            stopTimer()
+        }
+    }
+        
     func switchTimer() {
-        if self.count <= 0 {
+        if self.count <= 0 && isTimerRunning {
             playSound()
             activeTimerIndex += 1
             if activeTimerIndex >= timers.count {
                 activeTimerIndex = 0
+                if !isLooping {
+                    stopTimer()
+                }
             }
             self.count = timers[activeTimerIndex]
             if self.count <= 0 {
@@ -156,4 +173,23 @@ class GustavViewModel: ObservableObject {
             AudioServicesPlaySystemSound(systemSoundID)
         }
     }
+    
+    func saveSettings() {
+        if let index = recentTimers.firstIndex(where: { $0 == timers }) {
+            recentTimers.remove(at: index)
+        } else {
+            recentTimers.remove(at: recentTimers.count - 1)
+        }
+        recentTimers.insert(timers, at: 0)
+        resetTimer()
+        toggleSheet()
+    }
+    
+    func getImage() -> Image {
+            if bgImages.indices.contains(bgIndex) {
+                return bgImages[bgIndex].getImage()
+            } else {
+                return bgImages[0].getImage()
+            }
+        }
 }

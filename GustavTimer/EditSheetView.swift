@@ -15,14 +15,15 @@ struct EditSheetView: View {
             NavigationStack {
                 List {
                     HStack {
-                        Text("Laps")
+                        Text("LAPS")
                             .fontWeight(.bold)
                         Spacer()
                     }
                     
                     laps
-                    settingsToggle
-                    bgSelector
+                    recentTimers
+                    settingsToggle.padding(.top, 8)
+                    bgSelector.padding(.top, 8)
                 }
                 .navigationBarTitleDisplayMode(.inline)
                 .listStyle(.plain)
@@ -33,7 +34,26 @@ struct EditSheetView: View {
         }
         .ignoresSafeArea()
     }
-
+    
+    var recentTimers: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack {
+                ForEach(viewModel.recentTimers, id: \.self) { array in
+                    Text(array.map { String($0) }.joined(separator: ":"))
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 8)
+                        .background(content: {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(Color.gray.opacity(0.2))
+                        })
+                        .fixedSize(horizontal: true, vertical: false)
+                        .onTapGesture {
+                            viewModel.timers = array
+                        }
+                }
+            }
+        }
+    }
     
     var laps: some View {
         ForEach((0..<viewModel.timers.count), id: \.self) { index in
@@ -41,10 +61,10 @@ struct EditSheetView: View {
                 Stepper(value: $viewModel.timers[index],
                         in: (1...300),
                         step: 1) {
-                    Text("Lap \(index + 1): \(viewModel.timers[index])")
+                    Text(String(format: NSLocalizedString("LAP", comment: ""), "\(index + 1)", "\(viewModel.timers[index])"))
                 }
             }
-            .padding(5)
+            .padding(2)
         }
         .onMove(perform: { indices, newOffset in
             viewModel.timers.move(fromOffsets: indices, toOffset: newOffset)
@@ -55,18 +75,16 @@ struct EditSheetView: View {
     var toolbarButtons: some View {
         HStack {
             if !viewModel.isTimerFull {
-                Button("Add lap") {viewModel.addTimer()}
+                Button("ADD_LAP") {viewModel.addTimer()}
             }
+            Text(" ")
             EditButton()
         }
         .foregroundStyle(Color("ResetColor"))
     }
     
     var saveButton: some View {
-        Button(action: {
-            viewModel.resetTimer()
-            viewModel.toggleSheet()
-        }, label: {
+        Button(action: viewModel.saveSettings, label: {
             Color("StartColor")
                 .overlay {
                     Text("SAVE")
@@ -77,41 +95,43 @@ struct EditSheetView: View {
     }
     
     var settingsToggle: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            Text("Settings")
+        VStack(alignment: .leading, spacing: 15) {
+            Text("SETTINGS")
                 .fontWeight(.bold)
-            Toggle("Always on display", isOn: $viewModel.isAlwaysOnDisplay)
+            Toggle("LOOP", isOn: $viewModel.isLooping)
                 .tint(Color("StartColor"))
-            Toggle("Sound", isOn: $viewModel.isSoundOn)
+            Toggle("SOUND", isOn: $viewModel.isSoundOn)
                 .tint(Color("StartColor"))
         }
-        .padding(.vertical)
     }
     
     var bgSelector: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            Text("Background")
+        VStack(alignment: .leading, spacing: 15) {
+            Text("BACKGROUND")
                 .fontWeight(.bold)
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], content: {
-                ForEach(0..<viewModel.bgImages.count, id: \.self) { index in
-                    viewModel.bgImages[index].getImage()
-                        .resizable()
-                        .scaledToFit()
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .onTapGesture {
-                            print("set image: \(index)")
-                            viewModel.setBG(index: index)
-                        }
-                        .overlay {
-                            if viewModel.bgIndex == index {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(style: .init(lineWidth: 4))
-                                    .fill(Color("StartColor"))
+            ScrollView(.horizontal) {
+                HStack {
+                    ForEach(0..<viewModel.bgImages.count, id: \.self) { index in
+                        viewModel.bgImages[index].getImage()
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: UIScreen.main.bounds.width / 3)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .onTapGesture {
+                                print("set image: \(index)")
+                                viewModel.setBG(index: index)
                             }
-                        }
+                            .overlay {
+                                if viewModel.bgIndex == index {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(style: .init(lineWidth: 4))
+                                        .fill(Color("StartColor"))
+                                }
+                            }
+                            .padding(1)
+                    }
                 }
-            })
+            }
         }
-        .padding(.vertical)
     }
 }

@@ -19,6 +19,7 @@
 		CFB1394D2AE572D300EE8B2C /* BGImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1394C2AE572D300EE8B2C /* BGImageView.swift */; };
 		CFB1394F2AE59ED900EE8B2C /* BGImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1394E2AE59ED900EE8B2C /* BGImageModel.swift */; };
 		CFC3A7722AAF8B1B00BB8CC2 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC3A7712AAF8B1B00BB8CC2 /* ProgressBarView.swift */; };
+		CFF71ACC2B8B99BC00884E82 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		CFB1394C2AE572D300EE8B2C /* BGImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGImageView.swift; sourceTree = "<group>"; };
 		CFB1394E2AE59ED900EE8B2C /* BGImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGImageModel.swift; sourceTree = "<group>"; };
 		CFC3A7712AAF8B1B00BB8CC2 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				CF21844129F0528C0060706C /* GustavViewModel.swift */,
 				CF21843729F0525E0060706C /* Assets.xcassets */,
 				CF21843929F0525E0060706C /* Preview Content */,
+				CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */,
 			);
 			path = GustavTimer;
 			sourceTree = "<group>";
@@ -135,6 +138,7 @@
 			knownRegions = (
 				en,
 				Base,
+				cs,
 			);
 			mainGroup = CF21842729F052590060706C;
 			productRefGroup = CF21843129F052590060706C /* Products */;
@@ -152,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF21843B29F0525E0060706C /* Preview Assets.xcassets in Resources */,
+				CFF71ACC2B8B99BC00884E82 /* Localizable.xcstrings in Resources */,
 				CF21843829F0525E0060706C /* Assets.xcassets in Resources */,
 				CF5B11142AD33D8900F42131 /* MartianMono-Bold.ttf in Resources */,
 				CF5B11162AD33DE200F42131 /* MartianMono-Regular.ttf in Resources */,
@@ -321,7 +326,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = cz.daliborjanecek.GustavTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -358,7 +363,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = cz.daliborjanecek.GustavTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

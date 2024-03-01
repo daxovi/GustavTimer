@@ -13,7 +13,7 @@ struct ContentView: View {
     var body: some View {
         GeometryReader(content: { geometry in
             ZStack {
-                BGImageView(image: viewModel.bgImages[viewModel.bgIndex].getImage())
+                BGImageView(image: viewModel.getImage())
                 
                 VStack {
                     ProgressView(viewModel: viewModel)
@@ -92,7 +92,7 @@ struct ContentView: View {
             viewModel.toggleSheet()
         }
         .safeAreaPadding(.horizontal)
-        .sheet(isPresented: $viewModel.showingSheet) { EditSheetView(viewModel: viewModel) }
+        .sheet(isPresented: $viewModel.showingSheet) { EditSheetView(viewModel: viewModel).interactiveDismissDisabled() }
     }
 }
 
