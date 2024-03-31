@@ -1,18 +1,19 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    " " : {
+    "%lld" : {
+
+    },
+    "add image" : {
+      "extractionState" : "stale",
       "localizations" : {
-        "en" : {
+        "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : " "
+            "value" : "přidat fotku"
           }
         }
       }
-    },
-    "%lld" : {
-
     },
     "ADD_LAP" : {
       "extractionState" : "manual",
@@ -20,13 +21,13 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Přidat interval"
+            "value" : "+ přidat interval"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Add lap"
+            "value" : "+ add lap"
           }
         }
       }
@@ -116,6 +117,22 @@
         }
       }
     },
+    "RATE" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ohodnoť Gustav Timer"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "rate Gustav Timer"
+          }
+        }
+      }
+    },
     "RESET" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -129,6 +146,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "RESET"
+          }
+        }
+      }
+    },
+    "ROUND " : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@. KOLO"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ROUND %@"
           }
         }
       }

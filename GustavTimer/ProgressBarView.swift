@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ProgressBarView: View {
     @Binding var progress: Double
+    @Binding var duration: Double
+    
     var cornerRadius: CGFloat = 0
     
     var body: some View {
@@ -20,7 +22,7 @@ struct ProgressBarView: View {
                 Color("StartColor")
                     .frame(width: proxy.size.width * progress)
                     .cornerRadius(cornerRadius)
-                    .animation(.linear(duration: 1.0), value: progress)
+                    .animation(.linear(duration: duration), value: progress)
             }
         }
     }

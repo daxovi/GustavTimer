@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct GustavTimerApp: App {
@@ -13,5 +14,6 @@ struct GustavTimerApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: [CustomImageModel.self])
     }
 }

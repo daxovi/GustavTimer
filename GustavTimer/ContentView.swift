@@ -6,21 +6,33 @@
 //
 
 import SwiftUI
+import StoreKit
+import SwiftData
 
 struct ContentView: View {
     @StateObject var viewModel = GustavViewModel.shared
+    @Environment(\.requestReview) var requestReview
+    @Query var customImage: [CustomImageModel]
     
     var body: some View {
         GeometryReader(content: { geometry in
             ZStack {
-                BGImageView(image: viewModel.getImage())
+                if viewModel.bgIndex == -1 {
+                    if let uiImage = UIImage(data: customImage.last!.image) {
+                        BGImageView(image: Image(uiImage: uiImage))
+                    } else {
+                        BGImageView(image: viewModel.getImage())
+                    }
+                } else {
+                    BGImageView(image: viewModel.getImage())
+                }
                 
                 VStack {
                     ProgressView(viewModel: viewModel)
                         .padding(.top)
                     HStack {
+                        rounds
                         Spacer()
-                        
                         editButton
                     }
                     Spacer()
@@ -39,6 +51,13 @@ struct ContentView: View {
         })
     }
     
+    var rounds: some View {
+            Text(String(format: NSLocalizedString("ROUND ", comment: ""), "\(viewModel.round)"))
+                .safeAreaPadding(.horizontal)
+                .foregroundColor(Color("StartColor").opacity((viewModel.round == 0) ? 0.0 : 1.0))
+                .animation(.easeInOut(duration: 0.2), value: viewModel.round)
+    }
+    
     var counter: some View {
         Text("\(viewModel.count)")
             .font(Font.custom("MartianMono-Bold", size: 500))
@@ -49,7 +68,15 @@ struct ContentView: View {
     
     var controlButtons: some View {
         HStack(spacing: 0) {
-            Button(action: viewModel.startStopTimer) {
+            Button(action: {
+                viewModel.startStopTimer()
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.0) {
+                    if viewModel.stopCounter > 20 && !viewModel.isTimerRunning {
+                        viewModel.stopCounter = 0
+                        requestReview()
+                    }
+                }
+            }) {
                 if viewModel.isTimerRunning {
                     Color("StopColor")
                         .overlay {

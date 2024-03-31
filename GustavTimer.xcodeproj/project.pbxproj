@@ -14,6 +14,7 @@
 		CF21844229F0528C0060706C /* GustavViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF21844129F0528C0060706C /* GustavViewModel.swift */; };
 		CF5B11142AD33D8900F42131 /* MartianMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF5B11132AD33D8900F42131 /* MartianMono-Bold.ttf */; };
 		CF5B11162AD33DE200F42131 /* MartianMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF5B11152AD33DE200F42131 /* MartianMono-Regular.ttf */; };
+		CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */; };
 		CFADBCF22AC9C8AE00AE27D8 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADBCF12AC9C8AE00AE27D8 /* ProgressView.swift */; };
 		CFADBCF42AC9DC7B00AE27D8 /* EditSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADBCF32AC9DC7B00AE27D8 /* EditSheetView.swift */; };
 		CFB1394D2AE572D300EE8B2C /* BGImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1394C2AE572D300EE8B2C /* BGImageView.swift */; };
@@ -32,6 +33,7 @@
 		CF5B11122AD33CE500F42131 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CF5B11132AD33D8900F42131 /* MartianMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Bold.ttf"; sourceTree = "<group>"; };
 		CF5B11152AD33DE200F42131 /* MartianMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Regular.ttf"; sourceTree = "<group>"; };
+		CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageModel.swift; sourceTree = "<group>"; };
 		CFADBCF12AC9C8AE00AE27D8 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		CFADBCF32AC9DC7B00AE27D8 /* EditSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSheetView.swift; sourceTree = "<group>"; };
 		CFB1394C2AE572D300EE8B2C /* BGImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGImageView.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				CFB1394C2AE572D300EE8B2C /* BGImageView.swift */,
 				CFADBCF32AC9DC7B00AE27D8 /* EditSheetView.swift */,
 				CFADBCF12AC9C8AE00AE27D8 /* ProgressView.swift */,
+				CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */,
 				CF5B11152AD33DE200F42131 /* MartianMono-Regular.ttf */,
 				CF5B11132AD33D8900F42131 /* MartianMono-Bold.ttf */,
 				CFC3A7712AAF8B1B00BB8CC2 /* ProgressBarView.swift */,
@@ -124,7 +127,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					CF21842F29F052590060706C = {
 						CreatedOnToolsVersion = 14.3;
@@ -178,6 +181,7 @@
 				CFADBCF22AC9C8AE00AE27D8 /* ProgressView.swift in Sources */,
 				CF21844229F0528C0060706C /* GustavViewModel.swift in Sources */,
 				CF21843429F052590060706C /* GustavTimerApp.swift in Sources */,
+				CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,6 +193,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -251,6 +256,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

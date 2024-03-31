@@ -18,8 +18,9 @@ struct BGImageView: View {
                 .overlay(content: {
                     Color.black.opacity(0.3)
                 })
+                .grayscale(1.0)
                 .ignoresSafeArea()
-                .frame(width: geometry.size.width, height: geometry.size.height)
+                .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
         })
     }
 }

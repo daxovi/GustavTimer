@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import SwiftUI
 import AVFoundation
+import PhotosUI
 
 class GustavViewModel: ObservableObject {
     let maxTimers = 5
@@ -28,6 +29,7 @@ class GustavViewModel: ObservableObject {
     ]
     var isTimerFull: Bool {return !(timers.count < maxTimers)}
     
+    @Published var round: Int = 0
     @Published var count: Int = 0
     @Published var showingSheet = false
     @Published var timers: [Int] { didSet {
@@ -41,7 +43,10 @@ class GustavViewModel: ObservableObject {
     @AppStorage("isLooping") var isLooping: Bool = true
     @AppStorage("isSoundOn") var isSoundOn = true
     @Published var editMode = EditMode.inactive
+    @Published var duration: Double = 1.0    
     @AppStorage("bgIndex") var bgIndex = 0
+    @AppStorage("stopCounter") var stopCounter: Int = 0
+    
 
     var activeTimerIndex: Int = 0
     var timer: AnyCancellable?
@@ -80,9 +85,13 @@ class GustavViewModel: ObservableObject {
         UIApplication.shared.isIdleTimerDisabled = false
         isTimerRunning = false
         timer = nil
+        stopCounter += 1
     }
     
     func startTimer() {
+        if round == 0 {
+                round = 1
+        }
         UIApplication.shared.isIdleTimerDisabled = true
         isTimerRunning = true
         timer = Timer
@@ -91,7 +100,11 @@ class GustavViewModel: ObservableObject {
             .sink { [weak self] _ in
                 self?.count -= 1
                 self?.switchTimer()
-                self?.progress = (Double(self?.timers[self?.activeTimerIndex ?? 0] ?? 0) - Double(self?.count ?? 0)) / Double(self?.timers[self?.activeTimerIndex ?? 0] ?? 0)
+                
+                let activeTimerCount = Double(self?.timers[self?.activeTimerIndex ?? 0] ?? 0)
+                let count = Double(self?.count ?? 0)
+                let countDifference = activeTimerCount - count
+                self?.progress = (countDifference + 1) / activeTimerCount
             }
     }
     
@@ -108,19 +121,27 @@ class GustavViewModel: ObservableObject {
             playSound()
             activeTimerIndex += 1
             if activeTimerIndex >= timers.count {
+                duration = 0.0
                 activeTimerIndex = 0
+                progress = 0.0
                 if !isLooping {
                     stopTimer()
+                } else {
+                    round += 1
                 }
             }
             self.count = timers[activeTimerIndex]
             if self.count <= 0 {
                 switchTimer()
             }
+        } else {
+            duration = 1.0
         }
     }
     
     func resetTimer() {
+        duration = 0.01
+        round = 0
         timer = nil
         self.activeTimerIndex = 0
         self.progress = 0.0
@@ -161,6 +182,8 @@ class GustavViewModel: ObservableObject {
     }
     
     func skipLap() {
+        duration = 0.0
+        progress = 1.0
         self.count = 0
     }
     

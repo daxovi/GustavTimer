@@ -6,9 +6,16 @@
 //
 
 import SwiftUI
+import PhotosUI
+import SwiftData
 
 struct EditSheetView: View {
     @StateObject var viewModel: GustavViewModel
+    @Environment(\.modelContext) var context
+    @Query var customImage: [CustomImageModel]
+    
+    @State var selectedPhoto: PhotosPickerItem?
+    @State var selectedPhotoData: Data?
     
     var body: some View {
         VStack(spacing: 0) {
@@ -21,9 +28,16 @@ struct EditSheetView: View {
                     }
                     
                     laps
+                    if !viewModel.isTimerFull {
+                        Button(action: viewModel.addTimer, label: {
+                            Text("ADD_LAP")
+                                .foregroundStyle(Color("ResetColor"))
+                        })
+                    }
                     recentTimers
                     settingsToggle.padding(.top, 8)
                     bgSelector.padding(.top, 8)
+                    rateButton
                 }
                 .navigationBarTitleDisplayMode(.inline)
                 .listStyle(.plain)
@@ -33,6 +47,15 @@ struct EditSheetView: View {
             saveButton
         }
         .ignoresSafeArea()
+    }
+    
+    var rateButton: some View {
+        Button("RATE") {
+            let url = "https://apps.apple.com/app/id6478176431?action=write-review"
+             guard let writeReviewURL = URL(string: url)
+                 else { fatalError("Expected a valid URL") }
+             UIApplication.shared.open(writeReviewURL, options: [:], completionHandler: nil)
+        }
     }
     
     var recentTimers: some View {
@@ -74,10 +97,6 @@ struct EditSheetView: View {
     
     var toolbarButtons: some View {
         HStack {
-            if !viewModel.isTimerFull {
-                Button("ADD_LAP") {viewModel.addTimer()}
-            }
-            Text(" ")
             EditButton()
         }
         .foregroundStyle(Color("ResetColor"))
@@ -129,6 +148,60 @@ struct EditSheetView: View {
                                 }
                             }
                             .padding(1)
+                    }
+                    ForEach(customImage, id: \.id) { imageData in
+                        if let uiImage = UIImage(data: imageData.image) {
+                            HStack(spacing: 0) {
+                                Image(uiImage: uiImage)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .grayscale(1.0)
+                                    .frame(width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.width / 3 * 1.635)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                    .onTapGesture {
+                                        viewModel.setBG(index: -1)
+                                    }
+                                    .overlay {
+                                        if viewModel.bgIndex == -1 {
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .stroke(style: .init(lineWidth: 4))
+                                                .fill(Color("StartColor"))
+                                        }
+                                    }
+                                    .padding(1)
+                                PhotosPicker(selection: $selectedPhoto, matching: .images) {
+                                    Image(systemName: "photo")
+                                        .foregroundStyle(Color((viewModel.bgIndex == -1) ? "ResetColor" : "StartColor"))
+                                        .font(.title)
+                                        .padding()
+                                }
+                            }
+                            .background {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color((viewModel.bgIndex == -1) ? "StartColor" : "ResetColor"))
+                            }
+                        } else {
+                            PhotosPicker(selection: $selectedPhoto) {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color((viewModel.bgIndex == -1) ? "StartColor" : "ResetColor"))
+                                    .frame(width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.width / 3 * 1.635)
+                                    .overlay(alignment: .center) {
+                                        Image(systemName: "photo")
+                                            .foregroundStyle(Color((viewModel.bgIndex == -1) ? "ResetColor" : "StartColor"))
+                                            .font(.title)
+                                            .padding()
+                                    }
+                            }
+                        }
+                    }
+                    .task(id: selectedPhoto) {
+                        if let data = try? await selectedPhoto?.loadTransferable(type: Data.self) {
+                            try? context.delete(model: CustomImageModel.self)
+                            selectedPhotoData = data
+                            let customPhoto = CustomImageModel(image: data)
+                            context.insert(customPhoto)
+                            viewModel.setBG(index: -1)
+                        }
                     }
                 }
             }
