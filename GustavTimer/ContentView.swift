@@ -72,8 +72,10 @@ struct ContentView: View {
                 viewModel.startStopTimer()
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.0) {
                     if viewModel.stopCounter > 20 && !viewModel.isTimerRunning {
-                        viewModel.stopCounter = 0
-                        requestReview()
+                        if !viewModel.isTimerRunning {
+                            viewModel.stopCounter = 0
+                            requestReview()
+                        }
                     }
                 }
             }) {

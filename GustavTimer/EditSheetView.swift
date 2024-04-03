@@ -132,41 +132,49 @@ struct EditSheetView: View {
                 HStack {
                     ForEach(0..<viewModel.bgImages.count, id: \.self) { index in
                         viewModel.bgImages[index].getImage()
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: UIScreen.main.bounds.width / 3)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .onTapGesture {
-                                print("set image: \(index)")
-                                viewModel.setBG(index: index)
-                            }
+                            .backgroundThumbnail()
+                            .onTapGesture { viewModel.setBG(index: index) }
                             .overlay {
-                                if viewModel.bgIndex == index {
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(style: .init(lineWidth: 4))
-                                        .fill(Color("StartColor"))
-                                }
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(style: .init(lineWidth: (viewModel.bgIndex == index) ? 4 : 0))
+                                    .fill(Color("StartColor"))
+                                    .animation(.easeInOut, value: viewModel.bgIndex)
                             }
                             .padding(1)
                     }
-                    ForEach(customImage, id: \.id) { imageData in
+                    if customImage.isEmpty {
+                        PhotosPicker(selection: $selectedPhoto) {
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color((viewModel.bgIndex == -1) ? "StartColor" : "ResetColor"))
+                                .frame(width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.width / 3 * 1.635)
+                                .overlay(alignment: .center) {
+                                    Image(systemName: "photo")
+                                        .foregroundStyle(Color((viewModel.bgIndex == -1) ? "ResetColor" : "StartColor"))
+                                        .font(.title)
+                                        .padding()
+                                }
+                        }
+                        .task(id: selectedPhoto) {
+                            if let data = try? await selectedPhoto?.loadTransferable(type: Data.self) {
+                                try? context.delete(model: CustomImageModel.self)
+                                selectedPhotoData = data
+                                let customPhoto = CustomImageModel(image: data)
+                                context.insert(customPhoto)
+                                viewModel.setBG(index: -1)
+                            }
+                        }
+                    } else {
+                        ForEach(customImage, id: \.id) { imageData in
                         if let uiImage = UIImage(data: imageData.image) {
                             HStack(spacing: 0) {
                                 Image(uiImage: uiImage)
-                                    .resizable()
-                                    .scaledToFill()
-                                    .grayscale(1.0)
-                                    .frame(width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.width / 3 * 1.635)
-                                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                                    .onTapGesture {
-                                        viewModel.setBG(index: -1)
-                                    }
+                                    .backgroundThumbnail()
+                                    .onTapGesture { viewModel.setBG(index: -1) }
                                     .overlay {
-                                        if viewModel.bgIndex == -1 {
-                                            RoundedRectangle(cornerRadius: 10)
-                                                .stroke(style: .init(lineWidth: 4))
-                                                .fill(Color("StartColor"))
-                                        }
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(style: .init(lineWidth: (viewModel.bgIndex == -1) ? 4 : 0))
+                                            .fill(Color("StartColor"))
+                                            .animation(.easeInOut, value: viewModel.bgIndex)
                                     }
                                     .padding(1)
                                 PhotosPicker(selection: $selectedPhoto, matching: .images) {
@@ -174,23 +182,13 @@ struct EditSheetView: View {
                                         .foregroundStyle(Color((viewModel.bgIndex == -1) ? "ResetColor" : "StartColor"))
                                         .font(.title)
                                         .padding()
+                                        .animation(.easeInOut, value: viewModel.bgIndex)
                                 }
                             }
                             .background {
                                 RoundedRectangle(cornerRadius: 10)
                                     .fill(Color((viewModel.bgIndex == -1) ? "StartColor" : "ResetColor"))
-                            }
-                        } else {
-                            PhotosPicker(selection: $selectedPhoto) {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color((viewModel.bgIndex == -1) ? "StartColor" : "ResetColor"))
-                                    .frame(width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.width / 3 * 1.635)
-                                    .overlay(alignment: .center) {
-                                        Image(systemName: "photo")
-                                            .foregroundStyle(Color((viewModel.bgIndex == -1) ? "ResetColor" : "StartColor"))
-                                            .font(.title)
-                                            .padding()
-                                    }
+                                    .animation(.easeInOut, value: viewModel.bgIndex)
                             }
                         }
                     }
@@ -204,7 +202,19 @@ struct EditSheetView: View {
                         }
                     }
                 }
+                }
             }
         }
+    }
+}
+
+extension Image {
+    func backgroundThumbnail() -> some View {
+        self
+            .resizable()
+            .scaledToFill()
+            .grayscale(1.0)
+            .frame(width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.width / 3 * 1.635)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
