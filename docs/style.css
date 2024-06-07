@@ -15,12 +15,7 @@ h3 {
     text-decoration-thickness: 3px;
 }
 
-h3 a {
-    color: black;
-    text-decoration: underline;
-    text-decoration-color: #BDFF58;
-    text-decoration-thickness: 3px;
-}
+
 
 h1,
 h3 {
@@ -45,6 +40,13 @@ section {
 
 a {
     color: #62872b;
+}
+
+h3 a {
+    color: black;
+    text-decoration: underline;
+    text-decoration-color: #BDFF58;
+    text-decoration-thickness: 3px;
 }
 
 p {
