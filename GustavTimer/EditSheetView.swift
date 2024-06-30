@@ -77,6 +77,27 @@ struct EditSheetView: View {
             }
         }
     }
+    // MARK: soundThemes
+    var soundThemes: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack {
+                ForEach(viewModel.soundThemeArray, id: \.self) { theme in
+                    Text(theme.uppercased())
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 8)
+                        .background(content: {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(viewModel.activeSoundTheme == theme ? Color("StartColor") : Color.gray.opacity(0.2))
+                        })
+                        .fixedSize(horizontal: true, vertical: false)
+                        .onTapGesture {
+                            viewModel.activeSoundTheme = theme
+                            SoundManager.instance.playSound(sound: .final, theme: theme)
+                        }
+                }
+            }
+        }
+    }
     
     var laps: some View {
         ForEach((0..<viewModel.timers.count), id: \.self) { index in
@@ -121,9 +142,12 @@ struct EditSheetView: View {
                 .tint(Color("StartColor"))
             Toggle("SOUND", isOn: $viewModel.isSoundOn)
                 .tint(Color("StartColor"))
+            if viewModel.isSoundOn {
+                soundThemes
+            }
         }
     }
-    
+    // MARK: bgSelector
     var bgSelector: some View {
         VStack(alignment: .leading, spacing: 15) {
             Text("BACKGROUND")

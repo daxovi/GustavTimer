@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 import SwiftUI
-import AVFoundation
+import AVKit
 import PhotosUI
 
 class GustavViewModel: ObservableObject {
@@ -42,12 +42,13 @@ class GustavViewModel: ObservableObject {
     @Published var progress: Double = 0.0
     @AppStorage("isLooping") var isLooping: Bool = true
     @AppStorage("isSoundOn") var isSoundOn = true
+    @Published var soundThemeArray = ["gustav", "8bit", "beeps"]
+    @AppStorage("soundTheme") var activeSoundTheme = "gustav"
     @Published var editMode = EditMode.inactive
-    @Published var duration: Double = 1.0    
+    @Published var duration: Double = 1.0
     @AppStorage("bgIndex") var bgIndex = 0
     @AppStorage("stopCounter") var stopCounter: Int = 0
     
-
     var activeTimerIndex: Int = 0
     var timer: AnyCancellable?
     
@@ -90,7 +91,7 @@ class GustavViewModel: ObservableObject {
     
     func startTimer() {
         if round == 0 {
-                round = 1
+            round = 1
         }
         UIApplication.shared.isIdleTimerDisabled = true
         isTimerRunning = true
@@ -115,10 +116,10 @@ class GustavViewModel: ObservableObject {
             stopTimer()
         }
     }
-        
+    
     func switchTimer() {
+        playSound()
         if self.count <= 0 && isTimerRunning {
-            playSound()
             activeTimerIndex += 1
             if activeTimerIndex >= timers.count {
                 duration = 0.0
@@ -167,7 +168,7 @@ class GustavViewModel: ObservableObject {
     }
     
     func removeTimer(at offsets: IndexSet) {
-            timers.remove(atOffsets: offsets)
+        timers.remove(atOffsets: offsets)
     }
     
     func removeTimer(index: Int) {
@@ -192,9 +193,12 @@ class GustavViewModel: ObservableObject {
     }
     
     func playSound() {
-        if isSoundOn {
-            let systemSoundID: SystemSoundID = 1304 // 1016
-            AudioServicesPlaySystemSound(systemSoundID)
+        if isSoundOn && isTimerRunning {
+            if self.count == 1 && timers[activeTimerIndex] > 3 {
+                SoundManager.instance.playSound(sound: .final, theme: activeSoundTheme)
+            } else if self.count == 4 && timers[activeTimerIndex] > 9 {
+                SoundManager.instance.playSound(sound: .countdown, theme: activeSoundTheme)
+            }
         }
     }
     
@@ -210,10 +214,10 @@ class GustavViewModel: ObservableObject {
     }
     
     func getImage() -> Image {
-            if bgImages.indices.contains(bgIndex) {
-                return bgImages[bgIndex].getImage()
-            } else {
-                return bgImages[0].getImage()
-            }
+        if bgImages.indices.contains(bgIndex) {
+            return bgImages[bgIndex].getImage()
+        } else {
+            return bgImages[0].getImage()
         }
+    }
 }

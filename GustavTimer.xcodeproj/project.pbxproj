@@ -12,6 +12,13 @@
 		CF21843829F0525E0060706C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF21843729F0525E0060706C /* Assets.xcassets */; };
 		CF21843B29F0525E0060706C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF21843A29F0525E0060706C /* Preview Assets.xcassets */; };
 		CF21844229F0528C0060706C /* GustavViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF21844129F0528C0060706C /* GustavViewModel.swift */; };
+		CF279C4C2C31A8940084C43F /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF279C4B2C31A8940084C43F /* SoundManager.swift */; };
+		CF279C4F2C31AA4B0084C43F /* 8bit-final.wav in Resources */ = {isa = PBXBuildFile; fileRef = CF279C4D2C31AA4B0084C43F /* 8bit-final.wav */; };
+		CF279C502C31AA4B0084C43F /* 8bit-countdown.wav in Resources */ = {isa = PBXBuildFile; fileRef = CF279C4E2C31AA4B0084C43F /* 8bit-countdown.wav */; };
+		CF279C532C31C3170084C43F /* beeps-countdown.wav in Resources */ = {isa = PBXBuildFile; fileRef = CF279C512C31C3170084C43F /* beeps-countdown.wav */; };
+		CF279C562C31C45D0084C43F /* beeps-final.wav in Resources */ = {isa = PBXBuildFile; fileRef = CF279C552C31C45D0084C43F /* beeps-final.wav */; };
+		CF279C592C31C6FD0084C43F /* gustav-countdown.wav in Resources */ = {isa = PBXBuildFile; fileRef = CF279C572C31C6FD0084C43F /* gustav-countdown.wav */; };
+		CF279C5A2C31C6FD0084C43F /* gustav-final.wav in Resources */ = {isa = PBXBuildFile; fileRef = CF279C582C31C6FD0084C43F /* gustav-final.wav */; };
 		CF5B11142AD33D8900F42131 /* MartianMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF5B11132AD33D8900F42131 /* MartianMono-Bold.ttf */; };
 		CF5B11162AD33DE200F42131 /* MartianMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF5B11152AD33DE200F42131 /* MartianMono-Regular.ttf */; };
 		CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */; };
@@ -30,6 +37,13 @@
 		CF21843729F0525E0060706C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF21843A29F0525E0060706C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CF21844129F0528C0060706C /* GustavViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavViewModel.swift; sourceTree = "<group>"; };
+		CF279C4B2C31A8940084C43F /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		CF279C4D2C31AA4B0084C43F /* 8bit-final.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "8bit-final.wav"; sourceTree = "<group>"; };
+		CF279C4E2C31AA4B0084C43F /* 8bit-countdown.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "8bit-countdown.wav"; sourceTree = "<group>"; };
+		CF279C512C31C3170084C43F /* beeps-countdown.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "beeps-countdown.wav"; sourceTree = "<group>"; };
+		CF279C552C31C45D0084C43F /* beeps-final.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "beeps-final.wav"; path = "../../../../Documents/beeps-final.wav"; sourceTree = "<group>"; };
+		CF279C572C31C6FD0084C43F /* gustav-countdown.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "gustav-countdown.wav"; sourceTree = "<group>"; };
+		CF279C582C31C6FD0084C43F /* gustav-final.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "gustav-final.wav"; sourceTree = "<group>"; };
 		CF5B11122AD33CE500F42131 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CF5B11132AD33D8900F42131 /* MartianMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Bold.ttf"; sourceTree = "<group>"; };
 		CF5B11152AD33DE200F42131 /* MartianMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Regular.ttf"; sourceTree = "<group>"; };
@@ -72,6 +86,7 @@
 		CF21843229F052590060706C /* GustavTimer */ = {
 			isa = PBXGroup;
 			children = (
+				CF279C462C31A0CF0084C43F /* Sound */,
 				CF5B11122AD33CE500F42131 /* Info.plist */,
 				CF21843329F052590060706C /* GustavTimerApp.swift */,
 				CFB1394E2AE59ED900EE8B2C /* BGImageModel.swift */,
@@ -87,6 +102,7 @@
 				CF21843729F0525E0060706C /* Assets.xcassets */,
 				CF21843929F0525E0060706C /* Preview Content */,
 				CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */,
+				CF279C4B2C31A8940084C43F /* SoundManager.swift */,
 			);
 			path = GustavTimer;
 			sourceTree = "<group>";
@@ -97,6 +113,19 @@
 				CF21843A29F0525E0060706C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CF279C462C31A0CF0084C43F /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				CF279C572C31C6FD0084C43F /* gustav-countdown.wav */,
+				CF279C582C31C6FD0084C43F /* gustav-final.wav */,
+				CF279C512C31C3170084C43F /* beeps-countdown.wav */,
+				CF279C552C31C45D0084C43F /* beeps-final.wav */,
+				CF279C4E2C31AA4B0084C43F /* 8bit-countdown.wav */,
+				CF279C4D2C31AA4B0084C43F /* 8bit-final.wav */,
+			);
+			path = Sound;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,11 +187,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF279C562C31C45D0084C43F /* beeps-final.wav in Resources */,
+				CF279C5A2C31C6FD0084C43F /* gustav-final.wav in Resources */,
 				CF21843B29F0525E0060706C /* Preview Assets.xcassets in Resources */,
 				CFF71ACC2B8B99BC00884E82 /* Localizable.xcstrings in Resources */,
 				CF21843829F0525E0060706C /* Assets.xcassets in Resources */,
+				CF279C4F2C31AA4B0084C43F /* 8bit-final.wav in Resources */,
+				CF279C532C31C3170084C43F /* beeps-countdown.wav in Resources */,
+				CF279C592C31C6FD0084C43F /* gustav-countdown.wav in Resources */,
 				CF5B11142AD33D8900F42131 /* MartianMono-Bold.ttf in Resources */,
 				CF5B11162AD33DE200F42131 /* MartianMono-Regular.ttf in Resources */,
+				CF279C502C31AA4B0084C43F /* 8bit-countdown.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +217,7 @@
 				CF21844229F0528C0060706C /* GustavViewModel.swift in Sources */,
 				CF21843429F052590060706C /* GustavTimerApp.swift in Sources */,
 				CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */,
+				CF279C4C2C31A8940084C43F /* SoundManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
