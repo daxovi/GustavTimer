@@ -27,7 +27,7 @@ struct EditSheetView: View {
                         Spacer()
                     }
                     
-                    laps
+                    Laps(viewModel: viewModel)
                     if !viewModel.isTimerFull {
                         Button(action: viewModel.addTimer, label: {
                             Text("ADD_LAP")
@@ -44,6 +44,9 @@ struct EditSheetView: View {
                 .toolbar { toolbarButtons }
                 .environment(\.editMode, $viewModel.editMode)
             }
+            .onTapGesture {
+                self.hideKeyboard()
+            }
             saveButton
         }
         .ignoresSafeArea()
@@ -52,9 +55,9 @@ struct EditSheetView: View {
     var rateButton: some View {
         Button("RATE") {
             let url = "https://apps.apple.com/app/id6478176431?action=write-review"
-             guard let writeReviewURL = URL(string: url)
-                 else { fatalError("Expected a valid URL") }
-             UIApplication.shared.open(writeReviewURL, options: [:], completionHandler: nil)
+            guard let writeReviewURL = URL(string: url)
+            else { fatalError("Expected a valid URL") }
+            UIApplication.shared.open(writeReviewURL, options: [:], completionHandler: nil)
         }
     }
     
@@ -99,28 +102,11 @@ struct EditSheetView: View {
         }
     }
     
-    var laps: some View {
-        ForEach((0..<viewModel.timers.count), id: \.self) { index in
-            HStack {
-                Stepper(value: $viewModel.timers[index],
-                        in: (1...300),
-                        step: 1) {
-                    Text(String(format: NSLocalizedString("LAP", comment: ""), "\(index + 1)", "\(viewModel.timers[index])"))
-                }
-            }
-            .padding(2)
-        }
-        .onMove(perform: { indices, newOffset in
-            viewModel.timers.move(fromOffsets: indices, toOffset: newOffset)
-        })
-        .onDelete(perform: viewModel.timers.count > 1 ? viewModel.removeTimer : nil)
-    }
-    
     var toolbarButtons: some View {
         HStack {
             EditButton()
         }
-        .foregroundStyle(Color("ResetColor"))
+        .foregroundStyle(Color("StopColor"))
     }
     
     var saveButton: some View {
@@ -189,43 +175,43 @@ struct EditSheetView: View {
                         }
                     } else {
                         ForEach(customImage, id: \.id) { imageData in
-                        if let uiImage = UIImage(data: imageData.image) {
-                            HStack(spacing: 0) {
-                                Image(uiImage: uiImage)
-                                    .backgroundThumbnail()
-                                    .onTapGesture { viewModel.setBG(index: -1) }
-                                    .overlay {
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .stroke(style: .init(lineWidth: (viewModel.bgIndex == -1) ? 4 : 0))
-                                            .fill(Color("StartColor"))
+                            if let uiImage = UIImage(data: imageData.image) {
+                                HStack(spacing: 0) {
+                                    Image(uiImage: uiImage)
+                                        .backgroundThumbnail()
+                                        .onTapGesture { viewModel.setBG(index: -1) }
+                                        .overlay {
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .stroke(style: .init(lineWidth: (viewModel.bgIndex == -1) ? 4 : 0))
+                                                .fill(Color("StartColor"))
+                                                .animation(.easeInOut, value: viewModel.bgIndex)
+                                        }
+                                        .padding(1)
+                                    PhotosPicker(selection: $selectedPhoto, matching: .images) {
+                                        Image(systemName: "photo")
+                                            .foregroundStyle(Color((viewModel.bgIndex == -1) ? "ResetColor" : "StartColor"))
+                                            .font(.title)
+                                            .padding()
                                             .animation(.easeInOut, value: viewModel.bgIndex)
                                     }
-                                    .padding(1)
-                                PhotosPicker(selection: $selectedPhoto, matching: .images) {
-                                    Image(systemName: "photo")
-                                        .foregroundStyle(Color((viewModel.bgIndex == -1) ? "ResetColor" : "StartColor"))
-                                        .font(.title)
-                                        .padding()
+                                }
+                                .background {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(Color((viewModel.bgIndex == -1) ? "StartColor" : "ResetColor"))
                                         .animation(.easeInOut, value: viewModel.bgIndex)
                                 }
                             }
-                            .background {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color((viewModel.bgIndex == -1) ? "StartColor" : "ResetColor"))
-                                    .animation(.easeInOut, value: viewModel.bgIndex)
+                        }
+                        .task(id: selectedPhoto) {
+                            if let data = try? await selectedPhoto?.loadTransferable(type: Data.self) {
+                                try? context.delete(model: CustomImageModel.self)
+                                selectedPhotoData = data
+                                let customPhoto = CustomImageModel(image: data)
+                                context.insert(customPhoto)
+                                viewModel.setBG(index: -1)
                             }
                         }
                     }
-                    .task(id: selectedPhoto) {
-                        if let data = try? await selectedPhoto?.loadTransferable(type: Data.self) {
-                            try? context.delete(model: CustomImageModel.self)
-                            selectedPhotoData = data
-                            let customPhoto = CustomImageModel(image: data)
-                            context.insert(customPhoto)
-                            viewModel.setBG(index: -1)
-                        }
-                    }
-                }
                 }
             }
         }

@@ -121,7 +121,9 @@ struct ContentView: View {
             viewModel.toggleSheet()
         }
         .safeAreaPadding(.horizontal)
-        .sheet(isPresented: $viewModel.showingSheet) { EditSheetView(viewModel: viewModel).interactiveDismissDisabled() }
+        .sheet(isPresented: $viewModel.showingSheet, onDismiss: {
+            viewModel.saveSettings()
+        }) { EditSheetView(viewModel: viewModel) }
     }
 }
 

@@ -33,6 +33,11 @@ class GustavViewModel: ObservableObject {
     @Published var count: Int = 0
     @Published var showingSheet = false
     @Published var timers: [Int] { didSet {
+        for index in 0..<timers.count {
+            if timers[index] > 300 {
+                timers[index] = 300
+            }
+        }
         UserDefaults.standard.setValue(timers, forKey: "timers")
     }}
     @Published var recentTimers: [[Int]] { didSet {
@@ -42,7 +47,7 @@ class GustavViewModel: ObservableObject {
     @Published var progress: Double = 0.0
     @AppStorage("isLooping") var isLooping: Bool = true
     @AppStorage("isSoundOn") var isSoundOn = true
-    @Published var soundThemeArray = ["gustav", "8bit", "beeps"]
+    @Published var soundThemeArray = ["gustav", "8bit", "beeps", "yay", "tick"]
     @AppStorage("soundTheme") var activeSoundTheme = "gustav"
     @Published var editMode = EditMode.inactive
     @Published var duration: Double = 1.0
@@ -210,7 +215,7 @@ class GustavViewModel: ObservableObject {
         }
         recentTimers.insert(timers, at: 0)
         resetTimer()
-        toggleSheet()
+        self.showingSheet = false
     }
     
     func getImage() -> Image {

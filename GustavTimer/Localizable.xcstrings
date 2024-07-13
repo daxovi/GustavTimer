@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "%lld" : {
 
     },
@@ -72,13 +75,13 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@. interval: %@"
+            "value" : "%@. interval: "
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lap %@: %@"
+            "value" : "Lap %@: "
           }
         }
       }

@@ -19,6 +19,10 @@
 		CF279C562C31C45D0084C43F /* beeps-final.wav in Resources */ = {isa = PBXBuildFile; fileRef = CF279C552C31C45D0084C43F /* beeps-final.wav */; };
 		CF279C592C31C6FD0084C43F /* gustav-countdown.wav in Resources */ = {isa = PBXBuildFile; fileRef = CF279C572C31C6FD0084C43F /* gustav-countdown.wav */; };
 		CF279C5A2C31C6FD0084C43F /* gustav-final.wav in Resources */ = {isa = PBXBuildFile; fileRef = CF279C582C31C6FD0084C43F /* gustav-final.wav */; };
+		CF279C5D2C31E8FC0084C43F /* yay-countdown.wav in Resources */ = {isa = PBXBuildFile; fileRef = CF279C5B2C31E8FC0084C43F /* yay-countdown.wav */; };
+		CF279C602C31E9D20084C43F /* yay-final.wav in Resources */ = {isa = PBXBuildFile; fileRef = CF279C5F2C31E9D20084C43F /* yay-final.wav */; };
+		CF279C642C31EACC0084C43F /* tick-final.wav in Resources */ = {isa = PBXBuildFile; fileRef = CF279C622C31EACC0084C43F /* tick-final.wav */; };
+		CF279C662C31EB3C0084C43F /* tick-countdown.wav in Resources */ = {isa = PBXBuildFile; fileRef = CF279C652C31EB3C0084C43F /* tick-countdown.wav */; };
 		CF5B11142AD33D8900F42131 /* MartianMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF5B11132AD33D8900F42131 /* MartianMono-Bold.ttf */; };
 		CF5B11162AD33DE200F42131 /* MartianMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF5B11152AD33DE200F42131 /* MartianMono-Regular.ttf */; };
 		CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */; };
@@ -27,6 +31,9 @@
 		CFB1394D2AE572D300EE8B2C /* BGImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1394C2AE572D300EE8B2C /* BGImageView.swift */; };
 		CFB1394F2AE59ED900EE8B2C /* BGImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1394E2AE59ED900EE8B2C /* BGImageModel.swift */; };
 		CFC3A7722AAF8B1B00BB8CC2 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC3A7712AAF8B1B00BB8CC2 /* ProgressBarView.swift */; };
+		CFCE3C722C43105800D33AE3 /* TimerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE3C712C43105800D33AE3 /* TimerRow.swift */; };
+		CFCE3C742C43129B00D33AE3 /* Laps.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE3C732C43129B00D33AE3 /* Laps.swift */; };
+		CFCE3C762C431EC900D33AE3 /* HideKeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE3C752C431EC900D33AE3 /* HideKeyboardExtension.swift */; };
 		CFF71ACC2B8B99BC00884E82 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +51,10 @@
 		CF279C552C31C45D0084C43F /* beeps-final.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "beeps-final.wav"; path = "../../../../Documents/beeps-final.wav"; sourceTree = "<group>"; };
 		CF279C572C31C6FD0084C43F /* gustav-countdown.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "gustav-countdown.wav"; sourceTree = "<group>"; };
 		CF279C582C31C6FD0084C43F /* gustav-final.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "gustav-final.wav"; sourceTree = "<group>"; };
+		CF279C5B2C31E8FC0084C43F /* yay-countdown.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "yay-countdown.wav"; sourceTree = "<group>"; };
+		CF279C5F2C31E9D20084C43F /* yay-final.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "yay-final.wav"; path = "../../../../Documents/yay-final.wav"; sourceTree = "<group>"; };
+		CF279C622C31EACC0084C43F /* tick-final.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "tick-final.wav"; sourceTree = "<group>"; };
+		CF279C652C31EB3C0084C43F /* tick-countdown.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "tick-countdown.wav"; path = "../../../../Documents/tick-countdown.wav"; sourceTree = "<group>"; };
 		CF5B11122AD33CE500F42131 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CF5B11132AD33D8900F42131 /* MartianMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Bold.ttf"; sourceTree = "<group>"; };
 		CF5B11152AD33DE200F42131 /* MartianMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Regular.ttf"; sourceTree = "<group>"; };
@@ -53,6 +64,9 @@
 		CFB1394C2AE572D300EE8B2C /* BGImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGImageView.swift; sourceTree = "<group>"; };
 		CFB1394E2AE59ED900EE8B2C /* BGImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGImageModel.swift; sourceTree = "<group>"; };
 		CFC3A7712AAF8B1B00BB8CC2 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		CFCE3C712C43105800D33AE3 /* TimerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRow.swift; sourceTree = "<group>"; };
+		CFCE3C732C43129B00D33AE3 /* Laps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Laps.swift; sourceTree = "<group>"; };
+		CFCE3C752C431EC900D33AE3 /* HideKeyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboardExtension.swift; sourceTree = "<group>"; };
 		CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,6 +100,8 @@
 		CF21843229F052590060706C /* GustavTimer */ = {
 			isa = PBXGroup;
 			children = (
+				CFCE3C772C431EF400D33AE3 /* Extensions */,
+				CFCE3C702C43104100D33AE3 /* SubViews */,
 				CF279C462C31A0CF0084C43F /* Sound */,
 				CF5B11122AD33CE500F42131 /* Info.plist */,
 				CF21843329F052590060706C /* GustavTimerApp.swift */,
@@ -118,6 +134,10 @@
 		CF279C462C31A0CF0084C43F /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				CF279C622C31EACC0084C43F /* tick-final.wav */,
+				CF279C652C31EB3C0084C43F /* tick-countdown.wav */,
+				CF279C5B2C31E8FC0084C43F /* yay-countdown.wav */,
+				CF279C5F2C31E9D20084C43F /* yay-final.wav */,
 				CF279C572C31C6FD0084C43F /* gustav-countdown.wav */,
 				CF279C582C31C6FD0084C43F /* gustav-final.wav */,
 				CF279C512C31C3170084C43F /* beeps-countdown.wav */,
@@ -126,6 +146,23 @@
 				CF279C4D2C31AA4B0084C43F /* 8bit-final.wav */,
 			);
 			path = Sound;
+			sourceTree = "<group>";
+		};
+		CFCE3C702C43104100D33AE3 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				CFCE3C712C43105800D33AE3 /* TimerRow.swift */,
+				CFCE3C732C43129B00D33AE3 /* Laps.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		CFCE3C772C431EF400D33AE3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CFCE3C752C431EC900D33AE3 /* HideKeyboardExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,17 +224,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF279C642C31EACC0084C43F /* tick-final.wav in Resources */,
 				CF279C562C31C45D0084C43F /* beeps-final.wav in Resources */,
 				CF279C5A2C31C6FD0084C43F /* gustav-final.wav in Resources */,
 				CF21843B29F0525E0060706C /* Preview Assets.xcassets in Resources */,
 				CFF71ACC2B8B99BC00884E82 /* Localizable.xcstrings in Resources */,
 				CF21843829F0525E0060706C /* Assets.xcassets in Resources */,
+				CF279C662C31EB3C0084C43F /* tick-countdown.wav in Resources */,
 				CF279C4F2C31AA4B0084C43F /* 8bit-final.wav in Resources */,
+				CF279C5D2C31E8FC0084C43F /* yay-countdown.wav in Resources */,
 				CF279C532C31C3170084C43F /* beeps-countdown.wav in Resources */,
 				CF279C592C31C6FD0084C43F /* gustav-countdown.wav in Resources */,
 				CF5B11142AD33D8900F42131 /* MartianMono-Bold.ttf in Resources */,
 				CF5B11162AD33DE200F42131 /* MartianMono-Regular.ttf in Resources */,
 				CF279C502C31AA4B0084C43F /* 8bit-countdown.wav in Resources */,
+				CF279C602C31E9D20084C43F /* yay-final.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,12 +250,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFB1394D2AE572D300EE8B2C /* BGImageView.swift in Sources */,
+				CFCE3C742C43129B00D33AE3 /* Laps.swift in Sources */,
 				CF21843629F052590060706C /* ContentView.swift in Sources */,
 				CFB1394F2AE59ED900EE8B2C /* BGImageModel.swift in Sources */,
 				CFC3A7722AAF8B1B00BB8CC2 /* ProgressBarView.swift in Sources */,
+				CFCE3C722C43105800D33AE3 /* TimerRow.swift in Sources */,
 				CFADBCF42AC9DC7B00AE27D8 /* EditSheetView.swift in Sources */,
 				CFADBCF22AC9C8AE00AE27D8 /* ProgressView.swift in Sources */,
 				CF21844229F0528C0060706C /* GustavViewModel.swift in Sources */,
+				CFCE3C762C431EC900D33AE3 /* HideKeyboardExtension.swift in Sources */,
 				CF21843429F052590060706C /* GustavTimerApp.swift in Sources */,
 				CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */,
 				CF279C4C2C31A8940084C43F /* SoundManager.swift in Sources */,
