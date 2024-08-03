@@ -31,9 +31,13 @@ struct EditSheetView: View {
                     if !viewModel.isTimerFull {
                         Button(action: viewModel.addTimer, label: {
                             Text("ADD_LAP")
+                                .onTapGesture {
+                                    viewModel.addTimer()
+                                }
                                 .foregroundStyle(Color("ResetColor"))
                         })
                     }
+                    
                     recentTimers
                     settingsToggle.padding(.top, 8)
                     bgSelector.padding(.top, 8)
@@ -43,9 +47,6 @@ struct EditSheetView: View {
                 .listStyle(.plain)
                 .toolbar { toolbarButtons }
                 .environment(\.editMode, $viewModel.editMode)
-            }
-            .onTapGesture {
-                self.hideKeyboard()
             }
             saveButton
         }

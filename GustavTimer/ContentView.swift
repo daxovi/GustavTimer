@@ -28,7 +28,7 @@ struct ContentView: View {
                 }
                 
                 VStack {
-                    ProgressView(viewModel: viewModel)
+                    Progress(viewModel: viewModel)
                         .padding(.top)
                     HStack {
                         rounds

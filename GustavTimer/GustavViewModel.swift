@@ -9,24 +9,15 @@ import Foundation
 import Combine
 import SwiftUI
 import AVKit
+import AVFoundation
 import PhotosUI
 
 class GustavViewModel: ObservableObject {
     let maxTimers = 5
     let progressBarHeight = 5
     let buttonHeight = 80.0
-    let bgImages: [BGImageModel] = [
-        BGImageModel(image: "Benchpress", author: "", source: "www.unsplash.com"),
-        BGImageModel(image: "Boxer", author: "", source: "www.unsplash.com"),
-        BGImageModel(image: "Ground", author: "", source: "www.unsplash.com"),
-        BGImageModel(image: "Lanes", author: "", source: "www.unsplash.com"),
-        BGImageModel(image: "Poster", author: "", source: "www.unsplash.com"),
-        BGImageModel(image: "Pullup", author: "", source: "www.unsplash.com"),
-        BGImageModel(image: "Rope", author: "", source: "www.unsplash.com"),
-        BGImageModel(image: "Squat", author: "", source: "www.unsplash.com"),
-        BGImageModel(image: "Stone", author: "", source: "www.unsplash.com"),
-        BGImageModel(image: "Weights", author: "", source: "www.unsplash.com")
-    ]
+    let maxCountdownValue = 600
+
     var isTimerFull: Bool {return !(timers.count < maxTimers)}
     
     @Published var round: Int = 0
@@ -34,8 +25,8 @@ class GustavViewModel: ObservableObject {
     @Published var showingSheet = false
     @Published var timers: [Int] { didSet {
         for index in 0..<timers.count {
-            if timers[index] > 300 {
-                timers[index] = 300
+            if timers[index] > maxCountdownValue {
+                timers[index] = maxCountdownValue
             }
         }
         UserDefaults.standard.setValue(timers, forKey: "timers")
@@ -47,8 +38,6 @@ class GustavViewModel: ObservableObject {
     @Published var progress: Double = 0.0
     @AppStorage("isLooping") var isLooping: Bool = true
     @AppStorage("isSoundOn") var isSoundOn = true
-    @Published var soundThemeArray = ["gustav", "8bit", "beeps", "yay", "tick"]
-    @AppStorage("soundTheme") var activeSoundTheme = "gustav"
     @Published var editMode = EditMode.inactive
     @Published var duration: Double = 1.0
     @AppStorage("bgIndex") var bgIndex = 0
@@ -193,17 +182,19 @@ class GustavViewModel: ObservableObject {
         self.count = 0
     }
     
-    func setBG(index: Int) {
-        self.bgIndex = index
-    }
+
+    
+    //MARK: SOUND
+    @Published var soundThemeArray = ["beep", "90s", "bell", "trumpet", "game"]
+    @AppStorage("soundTheme") var activeSoundTheme = "beep"
     
     func playSound() {
         if isSoundOn && isTimerRunning {
-            if self.count == 1 && timers[activeTimerIndex] > 3 {
-                SoundManager.instance.playSound(sound: .final, theme: activeSoundTheme)
-            } else if self.count == 4 && timers[activeTimerIndex] > 9 {
-                SoundManager.instance.playSound(sound: .countdown, theme: activeSoundTheme)
-            }
+                if self.count < 1 && timers[activeTimerIndex] > 3 {
+                    SoundManager.instance.playSound(sound: .final, theme: activeSoundTheme)
+                } else if self.count < 4 && self.count > 0 && timers[activeTimerIndex] > 9 {
+                    SoundManager.instance.playSound(sound: .countdown, theme: activeSoundTheme)
+                }
         }
     }
     
@@ -216,6 +207,26 @@ class GustavViewModel: ObservableObject {
         recentTimers.insert(timers, at: 0)
         resetTimer()
         self.showingSheet = false
+    }
+
+    
+    //MARK: BG
+    
+    let bgImages: [BGImageModel] = [
+        BGImageModel(image: "Benchpress", author: "", source: "www.unsplash.com"),
+        BGImageModel(image: "Boxer", author: "", source: "www.unsplash.com"),
+        BGImageModel(image: "Ground", author: "", source: "www.unsplash.com"),
+        BGImageModel(image: "Lanes", author: "", source: "www.unsplash.com"),
+        BGImageModel(image: "Poster", author: "", source: "www.unsplash.com"),
+        BGImageModel(image: "Pullup", author: "", source: "www.unsplash.com"),
+        BGImageModel(image: "Rope", author: "", source: "www.unsplash.com"),
+        BGImageModel(image: "Squat", author: "", source: "www.unsplash.com"),
+        BGImageModel(image: "Stone", author: "", source: "www.unsplash.com"),
+        BGImageModel(image: "Weights", author: "", source: "www.unsplash.com")
+    ]
+    
+    func setBG(index: Int) {
+        self.bgIndex = index
     }
     
     func getImage() -> Image {

@@ -22,7 +22,7 @@ struct Laps: View {
     
     var body: some View {
         ForEach(viewModel.timers.indices, id: \.self) { index in
-            TimerRow(timer: $viewModel.timers[index], index: index)
+            TimerRow(timer: $viewModel.timers[index], index: index, maxCountdownValue: viewModel.maxCountdownValue)
         }
         .onMove(perform: move)
         .onDelete(perform: delete)
