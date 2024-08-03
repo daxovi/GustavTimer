@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ProgressBarView: View {
+struct ProgressBar: View {
     @Binding var progress: Double
     @Binding var duration: Double
     
