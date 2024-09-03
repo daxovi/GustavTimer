@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Laps: View {
     @StateObject var viewModel: GustavViewModel
+    @Environment(\.presentationMode) var presentationMode
     
     private func move(from source: IndexSet, to destination: Int) {
         viewModel.timers.move(fromOffsets: source, toOffset: destination)
@@ -20,9 +21,21 @@ struct Laps: View {
         }
     }
     
+    private func isLastTimer() -> Bool {
+        return viewModel.timers.count <= 1
+    }
+    
     var body: some View {
         ForEach(viewModel.timers.indices, id: \.self) { index in
-            TimerRow(timer: $viewModel.timers[index], index: index, maxCountdownValue: viewModel.maxCountdownValue)
+            NavigationLink {
+                LapDetail(index: index, viewModel: viewModel)
+            } label: {
+                HStack {
+                    Text("Lap \(index + 1)")
+                    Spacer()
+                    Text("\(viewModel.timers[index])")
+                }
+            }
         }
         .onMove(perform: move)
         .onDelete(perform: delete)

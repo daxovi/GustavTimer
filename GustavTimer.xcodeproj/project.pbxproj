@@ -30,6 +30,7 @@
 		CFB1394D2AE572D300EE8B2C /* BGImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1394C2AE572D300EE8B2C /* BGImageView.swift */; };
 		CFB1394F2AE59ED900EE8B2C /* BGImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1394E2AE59ED900EE8B2C /* BGImageModel.swift */; };
 		CFC3A7722AAF8B1B00BB8CC2 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC3A7712AAF8B1B00BB8CC2 /* ProgressBar.swift */; };
+		CFC81B022C5FF6F700F98E36 /* LapDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC81B012C5FF6F700F98E36 /* LapDetail.swift */; };
 		CFCE3C722C43105800D33AE3 /* TimerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE3C712C43105800D33AE3 /* TimerRow.swift */; };
 		CFCE3C742C43129B00D33AE3 /* Laps.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE3C732C43129B00D33AE3 /* Laps.swift */; };
 		CFCE3C762C431EC900D33AE3 /* HideKeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE3C752C431EC900D33AE3 /* HideKeyboardExtension.swift */; };
@@ -62,6 +63,7 @@
 		CFB1394C2AE572D300EE8B2C /* BGImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGImageView.swift; sourceTree = "<group>"; };
 		CFB1394E2AE59ED900EE8B2C /* BGImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGImageModel.swift; sourceTree = "<group>"; };
 		CFC3A7712AAF8B1B00BB8CC2 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		CFC81B012C5FF6F700F98E36 /* LapDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapDetail.swift; sourceTree = "<group>"; };
 		CFCE3C712C43105800D33AE3 /* TimerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRow.swift; sourceTree = "<group>"; };
 		CFCE3C732C43129B00D33AE3 /* Laps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Laps.swift; sourceTree = "<group>"; };
 		CFCE3C752C431EC900D33AE3 /* HideKeyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboardExtension.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				CFADBCF12AC9C8AE00AE27D8 /* Progress.swift */,
 				CFC3A7712AAF8B1B00BB8CC2 /* ProgressBar.swift */,
 				CFCE3C732C43129B00D33AE3 /* Laps.swift */,
+				CFC81B012C5FF6F700F98E36 /* LapDetail.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				CFADBCF22AC9C8AE00AE27D8 /* Progress.swift in Sources */,
 				CF21844229F0528C0060706C /* GustavViewModel.swift in Sources */,
 				CFCE3C762C431EC900D33AE3 /* HideKeyboardExtension.swift in Sources */,
+				CFC81B022C5FF6F700F98E36 /* LapDetail.swift in Sources */,
 				CF21843429F052590060706C /* GustavTimerApp.swift in Sources */,
 				CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */,
 				CF279C4C2C31A8940084C43F /* SoundManager.swift in Sources */,

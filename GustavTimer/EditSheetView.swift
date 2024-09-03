@@ -21,6 +21,41 @@ struct EditSheetView: View {
         VStack(spacing: 0) {
             NavigationStack {
                 List {
+                    Section("LAPS", content: {
+                        Laps(viewModel: viewModel)
+                        if !viewModel.isTimerFull {
+                            Button(action: viewModel.addTimer, label: {
+                                Text("ADD_LAP")
+                                    .foregroundStyle(Color("ResetColor"))
+                            })
+                        }
+                    })
+                    
+                    Section("TIMER_SETTINGS") {
+                        Toggle("LOOP", isOn: $viewModel.isLooping)
+                            .tint(Color("StartColor"))
+                        Toggle("SOUND", isOn: $viewModel.isSoundOn)
+                            .tint(Color("StartColor"))
+                        if viewModel.isSoundOn {
+                            soundThemes
+                        }
+                    }
+                    
+                    Section("BACKGROUND") {
+                        bgSelector
+                    }
+                    
+                    Section("ABOUT") {
+                        rateButton
+                    }
+                }
+                .navigationTitle("EDIT_TITLE")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar { toolbarButtons }
+
+                
+                /*
+                List {
                     HStack {
                         Text("LAPS")
                             .fontWeight(.bold)
@@ -47,10 +82,11 @@ struct EditSheetView: View {
                 .listStyle(.plain)
                 .toolbar { toolbarButtons }
                 .environment(\.editMode, $viewModel.editMode)
+                */
             }
-            saveButton
+            .accentColor(Color("StopColor"))
+            .font(.none)
         }
-        .ignoresSafeArea()
     }
     
     var rateButton: some View {
@@ -104,36 +140,12 @@ struct EditSheetView: View {
     }
     
     var toolbarButtons: some View {
-        HStack {
-            EditButton()
-        }
+            Button(action: viewModel.saveSettings) {
+                Text("SAVE")
+            }
         .foregroundStyle(Color("StopColor"))
     }
-    
-    var saveButton: some View {
-        Button(action: viewModel.saveSettings, label: {
-            Color("StartColor")
-                .overlay {
-                    Text("SAVE")
-                        .foregroundStyle(Color("ResetColor"))
-                }
-                .frame(height: viewModel.buttonHeight)
-        })
-    }
-    
-    var settingsToggle: some View {
-        VStack(alignment: .leading, spacing: 15) {
-            Text("SETTINGS")
-                .fontWeight(.bold)
-            Toggle("LOOP", isOn: $viewModel.isLooping)
-                .tint(Color("StartColor"))
-            Toggle("SOUND", isOn: $viewModel.isSoundOn)
-                .tint(Color("StartColor"))
-            if viewModel.isSoundOn {
-                soundThemes
-            }
-        }
-    }
+
     // MARK: bgSelector
     var bgSelector: some View {
         VStack(alignment: .leading, spacing: 15) {

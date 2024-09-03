@@ -23,6 +23,7 @@ class GustavViewModel: ObservableObject {
     @Published var round: Int = 0
     @Published var count: Int = 0
     @Published var showingSheet = false
+    
     @Published var timers: [Int] { didSet {
         for index in 0..<timers.count {
             if timers[index] > maxCountdownValue {
@@ -31,6 +32,7 @@ class GustavViewModel: ObservableObject {
         }
         UserDefaults.standard.setValue(timers, forKey: "timers")
     }}
+    
     @Published var recentTimers: [[Int]] { didSet {
         UserDefaults.standard.setValue(recentTimers, forKey: "recent-timers")
     }}

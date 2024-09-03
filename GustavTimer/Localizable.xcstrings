@@ -7,13 +7,18 @@
     "%lld" : {
 
     },
-    "add image" : {
-      "extractionState" : "stale",
+    "ABOUT" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "přidat fotku"
+            "value" : "O aplikaci"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About"
           }
         }
       }
@@ -52,6 +57,22 @@
         }
       }
     },
+    "DELETE" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Smazat"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        }
+      }
+    },
     "EDIT" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -69,6 +90,23 @@
         }
       }
     },
+    "EDIT_TITLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upravit"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit"
+          }
+        }
+      }
+    },
     "LAP" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -82,6 +120,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lap %@: "
+          }
+        }
+      }
+    },
+    "Lap %lld" : {
+
+    },
+    "Lap Detail" : {
+
+    },
+    "LAP_TIME" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Čas intervalu"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lap time"
           }
         }
       }
@@ -109,7 +169,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "opakovat"
+            "value" : "Opakovat"
           }
         },
         "en" : {
@@ -125,13 +185,13 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ohodnoť Gustav Timer"
+            "value" : "Ohodnoť Gustav Timer"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "rate Gustav Timer"
+            "value" : "Rate Gustav Timer"
           }
         }
       }
@@ -175,13 +235,29 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ULOŽIT"
+            "value" : "Uložit"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "SAVE"
+            "value" : "Save"
+          }
+        }
+      }
+    },
+    "SECONDS" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "vteřin"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "seconds"
           }
         }
       }
@@ -226,7 +302,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "zvuk"
+            "value" : "Zvuk"
           }
         },
         "en" : {
@@ -267,6 +343,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "STOP"
+          }
+        }
+      }
+    },
+    "TIMER_SETTINGS" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nastavení časovače"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Timer settings"
           }
         }
       }
