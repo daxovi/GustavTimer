@@ -21,11 +21,11 @@ struct EditSheetView: View {
         VStack(spacing: 0) {
             NavigationStack {
                 List {
-                    Section("LAPS", content: {
+                    Section("INTERVALS", content: {
                         Laps(viewModel: viewModel)
                         if !viewModel.isTimerFull {
                             Button(action: viewModel.addTimer, label: {
-                                Text("ADD_LAP")
+                                Text("ADD_INTERVAL")
                                     .foregroundStyle(Color("ResetColor"))
                             })
                         }
@@ -52,37 +52,6 @@ struct EditSheetView: View {
                 .navigationTitle("EDIT_TITLE")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar { toolbarButtons }
-
-                
-                /*
-                List {
-                    HStack {
-                        Text("LAPS")
-                            .fontWeight(.bold)
-                        Spacer()
-                    }
-                    
-                    Laps(viewModel: viewModel)
-                    if !viewModel.isTimerFull {
-                        Button(action: viewModel.addTimer, label: {
-                            Text("ADD_LAP")
-                                .onTapGesture {
-                                    viewModel.addTimer()
-                                }
-                                .foregroundStyle(Color("ResetColor"))
-                        })
-                    }
-                    
-                    recentTimers
-                    settingsToggle.padding(.top, 8)
-                    bgSelector.padding(.top, 8)
-                    rateButton
-                }
-                .navigationBarTitleDisplayMode(.inline)
-                .listStyle(.plain)
-                .toolbar { toolbarButtons }
-                .environment(\.editMode, $viewModel.editMode)
-                */
             }
             .accentColor(Color("StopColor"))
             .font(.none)
@@ -98,25 +67,6 @@ struct EditSheetView: View {
         }
     }
     
-    var recentTimers: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack {
-                ForEach(viewModel.recentTimers, id: \.self) { array in
-                    Text(array.map { String($0) }.joined(separator: ":"))
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 8)
-                        .background(content: {
-                            RoundedRectangle(cornerRadius: 5)
-                                .fill(Color.gray.opacity(0.2))
-                        })
-                        .fixedSize(horizontal: true, vertical: false)
-                        .onTapGesture {
-                            viewModel.timers = array
-                        }
-                }
-            }
-        }
-    }
     // MARK: soundThemes
     var soundThemes: some View {
         ScrollView(.horizontal, showsIndicators: false) {

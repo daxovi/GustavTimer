@@ -52,7 +52,7 @@ struct ContentView: View {
     }
     
     var rounds: some View {
-            Text(String(format: NSLocalizedString("ROUND ", comment: ""), "\(viewModel.round)"))
+        Text( "\(viewModel.timers[viewModel.activeTimerIndex].name)")
                 .safeAreaPadding(.horizontal)
                 .foregroundColor(Color("StartColor").opacity((viewModel.round == 0) ? 0.0 : 1.0))
                 .animation(.easeInOut(duration: 0.2), value: viewModel.round)

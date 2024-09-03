@@ -12,30 +12,29 @@ import AVKit
 import AVFoundation
 import PhotosUI
 
+struct TimerData: Codable {
+    var value: Int
+    var name: String
+}
+
 class GustavViewModel: ObservableObject {
     let maxTimers = 5
     let progressBarHeight = 5
     let buttonHeight = 80.0
     let maxCountdownValue = 600
-
+    
     var isTimerFull: Bool {return !(timers.count < maxTimers)}
     
     @Published var round: Int = 0
     @Published var count: Int = 0
     @Published var showingSheet = false
     
-    @Published var timers: [Int] { didSet {
-        for index in 0..<timers.count {
-            if timers[index] > maxCountdownValue {
-                timers[index] = maxCountdownValue
-            }
+    @Published var timers: [TimerData] = [] {
+        didSet {
+            saveTimersToUserDefaults()
         }
-        UserDefaults.standard.setValue(timers, forKey: "timers")
-    }}
+    }
     
-    @Published var recentTimers: [[Int]] { didSet {
-        UserDefaults.standard.setValue(recentTimers, forKey: "recent-timers")
-    }}
     @Published var isTimerRunning = false
     @Published var progress: Double = 0.0
     @AppStorage("isLooping") var isLooping: Bool = true
@@ -52,18 +51,47 @@ class GustavViewModel: ObservableObject {
     
     init() {
         UIApplication.shared.isIdleTimerDisabled = false
-        let savedTimers = UserDefaults.standard.array(forKey: "timers") as? [Int]
-        self.timers = savedTimers ?? [20, 5]
-        
-        let savedRecentTimers = UserDefaults.standard.array(forKey: "recent-timers") as? [[Int]]
-        self.recentTimers = savedRecentTimers ?? [[30, 5], [60], [60, 5, 30, 5], [300, 10], [60, 30]]
-        self.count = timers[0]
+        loadTimersFromUserDefaults()
+        self.count = timers[0].value
     }
     
+    private func clearUserDefaults() {
+        let userDefaults = UserDefaults.standard
+        let dictionary = userDefaults.dictionaryRepresentation()
+        for (key, _) in dictionary {
+            userDefaults.removeObject(forKey: key)
+        }
+    }
+    
+    // Uložit pole `TimerData` do UserDefaults
+    private func saveTimersToUserDefaults() {
+        // Validace hodnoty `Int` a vytvoření nové instance `TimerData`
+        let validTimers = timers.map { timer -> TimerData in
+            let validValue = min(timer.value, maxCountdownValue)
+            return TimerData(value: validValue, name: timer.name)
+        }
+        
+        if let encodedData = try? JSONEncoder().encode(validTimers) {
+            UserDefaults.standard.setValue(encodedData, forKey: "timerData")
+        }
+    }
+    
+    // Načíst pole `TimerData` z UserDefaults
+    private func loadTimersFromUserDefaults() {
+        if let savedData = UserDefaults.standard.data(forKey: "timerData"),
+           let decodedTimers = try? JSONDecoder().decode([TimerData].self, from: savedData) {
+            self.timers = decodedTimers
+        } else {
+            clearUserDefaults()
+            self.timers = [TimerData(value: 60, name: "Work"), TimerData(value: 30, name: "Rest")]
+        }
+    }
+    
+    
     private func countProgressRatio(timerIndex: Int) -> Double {
-        let sum = Double(timers.reduce(0, +))
+        let sum = Double(timers.reduce(0) { $0 + $1.value })
         if timers.count > timerIndex {
-            return Double(timers[timerIndex])/sum
+            return Double(timers[timerIndex].value)/sum
         } else {
             return 0
         }
@@ -98,7 +126,7 @@ class GustavViewModel: ObservableObject {
                 self?.count -= 1
                 self?.switchTimer()
                 
-                let activeTimerCount = Double(self?.timers[self?.activeTimerIndex ?? 0] ?? 0)
+                let activeTimerCount = Double(self?.timers[self?.activeTimerIndex ?? 0].value ?? 0)
                 let count = Double(self?.count ?? 0)
                 let countDifference = activeTimerCount - count
                 self?.progress = (countDifference + 1) / activeTimerCount
@@ -127,7 +155,7 @@ class GustavViewModel: ObservableObject {
                     round += 1
                 }
             }
-            self.count = timers[activeTimerIndex]
+            self.count = timers[activeTimerIndex].value
             if self.count <= 0 {
                 switchTimer()
             }
@@ -143,14 +171,14 @@ class GustavViewModel: ObservableObject {
         self.activeTimerIndex = 0
         self.progress = 0.0
         self.isTimerRunning = false
-        self.count = timers[0]
+        self.count = timers[0].value
     }
     
     func setCount(count newCount: String) {
         if let number = Int(newCount) {
-            if self.timers[0] != number {
-                self.timers[0] = number
-                self.count = self.timers[0]
+            if self.timers[0].value != number {
+                self.timers[0].value = number
+                self.count = self.timers[0].value
             }
         } else {
             print("DEBUG: \(newCount) není číslo")
@@ -159,7 +187,7 @@ class GustavViewModel: ObservableObject {
     
     func addTimer() {
         if !isTimerFull {
-            timers.append(5)
+            timers.append(TimerData(value: 5, name: "Lap \(timers.count + 1)"))
         }
     }
     
@@ -184,7 +212,7 @@ class GustavViewModel: ObservableObject {
         self.count = 0
     }
     
-
+    
     
     //MARK: SOUND
     @Published var soundThemeArray = ["beep", "90s", "bell", "trumpet", "game"]
@@ -192,25 +220,22 @@ class GustavViewModel: ObservableObject {
     
     func playSound() {
         if isSoundOn && isTimerRunning {
-                if self.count < 1 && timers[activeTimerIndex] > 3 {
-                    SoundManager.instance.playSound(sound: .final, theme: activeSoundTheme)
-                } else if self.count < 4 && self.count > 0 && timers[activeTimerIndex] > 9 {
-                    SoundManager.instance.playSound(sound: .countdown, theme: activeSoundTheme)
-                }
+            if self.count < 1 && timers[activeTimerIndex].value > 3 {
+                SoundManager.instance.playSound(sound: .final, theme: activeSoundTheme)
+            } else if self.count < 4 && self.count > 0 && timers[activeTimerIndex].value > 9 {
+                SoundManager.instance.playSound(sound: .countdown, theme: activeSoundTheme)
+            }
         }
     }
     
     func saveSettings() {
-        if let index = recentTimers.firstIndex(where: { $0 == timers }) {
-            recentTimers.remove(at: index)
-        } else {
-            recentTimers.remove(at: recentTimers.count - 1)
-        }
-        recentTimers.insert(timers, at: 0)
+        // Resetujeme časovač
         resetTimer()
+        
+        // Zavřeme sheet
         self.showingSheet = false
     }
-
+    
     
     //MARK: BG
     

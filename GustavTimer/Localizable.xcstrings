@@ -4,6 +4,9 @@
     "" : {
 
     },
+    "%@" : {
+
+    },
     "%lld" : {
 
     },
@@ -19,6 +22,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "About"
+          }
+        }
+      }
+    },
+    "ADD_INTERVAL" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+ přidat interval"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+ add interval"
           }
         }
       }
@@ -45,7 +64,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Pozadí"
           }
         },
@@ -107,6 +126,54 @@
         }
       }
     },
+    "INTERVAL_NAME:" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Název intervalu"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Interval name:"
+          }
+        }
+      }
+    },
+    "INTERVAL_TIME" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Čas intervalu"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Interval time"
+          }
+        }
+      }
+    },
+    "INTERVALS" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intervaly"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intervals"
+          }
+        }
+      }
+    },
     "LAP" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -120,28 +187,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lap %@: "
-          }
-        }
-      }
-    },
-    "Lap %lld" : {
-
-    },
-    "Lap Detail" : {
-
-    },
-    "LAP_TIME" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Čas intervalu"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lap time"
           }
         }
       }
@@ -209,22 +254,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "RESET"
-          }
-        }
-      }
-    },
-    "ROUND " : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@. KOLO"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ROUND %@"
           }
         }
       }

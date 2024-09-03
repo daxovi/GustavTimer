@@ -23,9 +23,15 @@ struct LapDetail: View {
     var body: some View {
         List {
             Section {
+                HStack {
+                    Text("INTERVAL_NAME:")
+                    TextField("", text: $viewModel.timers[index].name)
+                }
+            }
+            Section {
                 
                 VStack(alignment: .center) {
-                    Text("LAP_TIME")
+                    Text("INTERVAL_TIME")
                     TextField("", text: $timerText)
                         .font(.system(size: 100))
                         .multilineTextAlignment(.center)
@@ -33,16 +39,16 @@ struct LapDetail: View {
                         .onChange(of: timerText, { oldValue, newValue in
                             // Validace a převod textu na číslo
                             if let value = Int(newValue), value > 0 {
-                                viewModel.timers[index] = value
+                                viewModel.timers[index].value = value
                             } else if newValue.isEmpty {
-                                viewModel.timers[index] = 1 // nebo jiná výchozí hodnota
+                                viewModel.timers[index].value = 1 // nebo jiná výchozí hodnota
                             } else {
-                                timerText = String(viewModel.timers[index])
+                                timerText = String(viewModel.timers[index].value)
                             }
                         })
                         .onAppear {
                             // Načtení výchozí hodnoty z viewModelu
-                            timerText = String(viewModel.timers[index])
+                            timerText = String(viewModel.timers[index].value)
                         }
                     Text("SECONDS")
                 }
@@ -58,6 +64,6 @@ struct LapDetail: View {
             }
             
         }
-        .navigationTitle("Lap \(index + 1)")
+        .navigationTitle("\(viewModel.timers[index].name)")
     }
 }

@@ -31,9 +31,9 @@ struct Laps: View {
                 LapDetail(index: index, viewModel: viewModel)
             } label: {
                 HStack {
-                    Text("Lap \(index + 1)")
+                    Text("\(viewModel.timers[index].name)")
                     Spacer()
-                    Text("\(viewModel.timers[index])")
+                    Text("\(viewModel.timers[index].value)")
                 }
             }
         }
