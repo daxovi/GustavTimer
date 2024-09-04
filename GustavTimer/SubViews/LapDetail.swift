@@ -28,6 +28,13 @@ struct LapDetail: View {
                     TextField("", text: $viewModel.timers[index].name)
                 }
             }
+            Picker("picker", selection: $viewModel.timers[index].value) {
+                ForEach(1..<601) { number in
+                    Text("\(number)")
+                        .tag(number)
+                }
+            }
+            .pickerStyle(.wheel)
             Section {
                 
                 VStack(alignment: .center) {

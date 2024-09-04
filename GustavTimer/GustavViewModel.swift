@@ -82,11 +82,9 @@ class GustavViewModel: ObservableObject {
            let decodedTimers = try? JSONDecoder().decode([TimerData].self, from: savedData) {
             self.timers = decodedTimers
         } else {
-            clearUserDefaults()
-            self.timers = [TimerData(value: 60, name: "Work"), TimerData(value: 30, name: "Rest")]
+            migrateTimersFrom122To130()
         }
     }
-    
     
     private func countProgressRatio(timerIndex: Int) -> Double {
         let sum = Double(timers.reduce(0) { $0 + $1.value })
@@ -212,8 +210,6 @@ class GustavViewModel: ObservableObject {
         self.count = 0
     }
     
-    
-    
     //MARK: SOUND
     @Published var soundThemeArray = ["beep", "90s", "bell", "trumpet", "game"]
     @AppStorage("soundTheme") var activeSoundTheme = "beep"
@@ -238,7 +234,6 @@ class GustavViewModel: ObservableObject {
     
     
     //MARK: BG
-    
     let bgImages: [BGImageModel] = [
         BGImageModel(image: "Benchpress", author: "", source: "www.unsplash.com"),
         BGImageModel(image: "Boxer", author: "", source: "www.unsplash.com"),
@@ -261,6 +256,22 @@ class GustavViewModel: ObservableObject {
             return bgImages[bgIndex].getImage()
         } else {
             return bgImages[0].getImage()
+        }
+    }
+    
+    // MARK: 1.2.2 - > 1.3
+    private func migrateTimersFrom122To130() {
+        if let savedTimers = UserDefaults.standard.array(forKey: "timers") as? [Int] {
+            self.timers = []
+            for (index, timer) in savedTimers.enumerated() {
+                let lapName = "Lap \(index + 1)"
+                self.timers.append(TimerData(value: timer, name: lapName))
+            }
+            // Vymaž uložené data pro klíč "timers"
+            UserDefaults.standard.removeObject(forKey: "timers")
+        } else {
+            clearUserDefaults()
+            self.timers = [TimerData(value: 60, name: "Work"), TimerData(value: 30, name: "Rest")]
         }
     }
 }
