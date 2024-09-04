@@ -11,15 +11,20 @@ struct LapDetail: View {
     let index: Int
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel: GustavViewModel
+    @State private var selectedMinutes: Int = 0
+    @State private var selectedSeconds: Int = 0
     @State private var timerText: String = ""
-    @State private var timerValue: Int = 0
     
     private func delete(at offsets: IndexSet) {
         if viewModel.timers.count > 1 {
             viewModel.timers.remove(atOffsets: offsets)
         }
     }
-
+    
+    private func updateTimerValue() {
+        viewModel.timers[index].value = (selectedMinutes * 60) + selectedSeconds
+    }
+    
     var body: some View {
         List {
             Section {
@@ -28,38 +33,61 @@ struct LapDetail: View {
                     TextField("", text: $viewModel.timers[index].name)
                 }
             }
-            Picker("picker", selection: $viewModel.timers[index].value) {
-                ForEach(1..<601) { number in
-                    Text("\(number)")
-                        .tag(number)
-                }
-            }
-            .pickerStyle(.wheel)
+            
             Section {
-                
-                VStack(alignment: .center) {
+                VStack {
                     Text("INTERVAL_TIME")
-                    TextField("", text: $timerText)
-                        .font(.system(size: 100))
-                        .multilineTextAlignment(.center)
-                        .keyboardType(.numberPad) // Nastavení na numerickou klávesnici
-                        .onChange(of: timerText, { oldValue, newValue in
-                            // Validace a převod textu na číslo
-                            if let value = Int(newValue), value > 0 {
-                                viewModel.timers[index].value = value
-                            } else if newValue.isEmpty {
-                                viewModel.timers[index].value = 1 // nebo jiná výchozí hodnota
-                            } else {
-                                timerText = String(viewModel.timers[index].value)
+                    
+                    HStack {
+                        Picker("Minutes", selection: $selectedMinutes) {
+                            ForEach(0..<60) { minute in
+                                Text("\(minute) min").tag(minute)
                             }
-                        })
-                        .onAppear {
-                            // Načtení výchozí hodnoty z viewModelu
-                            timerText = String(viewModel.timers[index].value)
                         }
-                    Text("SECONDS")
+                        .pickerStyle(.wheel)
+                        .onChange(of: selectedMinutes, { _, _ in
+                            updateTimerValue()
+                        })
+                        
+                        Picker("Seconds", selection: $selectedSeconds) {
+                            ForEach(0..<60) { second in
+                                Text("\(second) sec").tag(second)
+                            }
+                        }
+                        .pickerStyle(.wheel)
+                        .onChange(of: selectedSeconds) { _, _ in
+                            updateTimerValue()
+                        }
+                    }
+                    
+                    Text("Total: \(viewModel.timers[index].value) seconds")
                 }
             }
+            Section {
+                            
+                            VStack(alignment: .center) {
+                                Text("INTERVAL_TIME")
+                                TextField("", text: $timerText)
+                                    .font(.system(size: 100))
+                                    .multilineTextAlignment(.center)
+                                    .keyboardType(.numberPad) // Nastavení na numerickou klávesnici
+                                    .onChange(of: timerText, { oldValue, newValue in
+                                        // Validace a převod textu na číslo
+                                        if let value = Int(newValue), value > 0 {
+                                            viewModel.timers[index].value = value
+                                        } else if newValue.isEmpty {
+                                            viewModel.timers[index].value = 1 // nebo jiná výchozí hodnota
+                                        } else {
+                                            timerText = String(viewModel.timers[index].value)
+                                        }
+                                    })
+                                    .onAppear {
+                                        // Načtení výchozí hodnoty z viewModelu
+                                        timerText = String(viewModel.timers[index].value)
+                                    }
+                                Text("SECONDS")
+                            }
+                        }
             
             Section {
                 if viewModel.timers.count > 1 {
@@ -69,7 +97,11 @@ struct LapDetail: View {
                     })
                 }
             }
-            
+        }
+        .onAppear {
+            // Initialize the selected minutes and seconds from the viewModel
+            selectedMinutes = viewModel.timers[index].value / 60
+            selectedSeconds = viewModel.timers[index].value % 60
         }
         .navigationTitle("\(viewModel.timers[index].name)")
     }

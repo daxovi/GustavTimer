@@ -10,6 +10,12 @@
     "%lld" : {
 
     },
+    "%lld min" : {
+
+    },
+    "%lld sec" : {
+
+    },
     "ABOUT" : {
       "localizations" : {
         "cs" : {
@@ -225,7 +231,7 @@
         }
       }
     },
-    "picker" : {
+    "Minutes" : {
 
     },
     "RATE" : {
@@ -277,6 +283,9 @@
           }
         }
       }
+    },
+    "Seconds" : {
+
     },
     "SECONDS" : {
       "localizations" : {
@@ -394,6 +403,9 @@
           }
         }
       }
+    },
+    "Total: %lld seconds" : {
+
     }
   },
   "version" : "1.0"
