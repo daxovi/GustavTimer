@@ -259,6 +259,18 @@ class GustavViewModel: ObservableObject {
         }
     }
     
+    // Funkce na formátování času
+    func formattedTime(from totalSeconds: Int) -> String {
+        let minutes = totalSeconds / 60
+        let seconds = totalSeconds % 60
+        
+        if minutes > 0 {
+            return String(format: "%d:%02d", minutes, seconds) // Minuty a vteřiny (např. 2:05)
+        } else {
+            return String(format: "%d", seconds) // Pouze vteřiny (např. 45)
+        }
+    }
+    
     // MARK: 1.2.2 - > 1.3
     private func migrateTimersFrom122To130() {
         if let savedTimers = UserDefaults.standard.array(forKey: "timers") as? [Int] {

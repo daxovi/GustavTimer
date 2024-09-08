@@ -6,16 +6,21 @@
 //
 
 import SwiftUI
+/*
 import PhotosUI
 import SwiftData
+*/
 
 struct EditSheetView: View {
     @StateObject var viewModel: GustavViewModel
+    
+    /*
     @Environment(\.modelContext) var context
     @Query var customImage: [CustomImageModel]
     
     @State var selectedPhoto: PhotosPickerItem?
     @State var selectedPhotoData: Data?
+     */
     
     var body: some View {
         VStack(spacing: 0) {
@@ -34,15 +39,16 @@ struct EditSheetView: View {
                     Section("TIMER_SETTINGS") {
                         Toggle("LOOP", isOn: $viewModel.isLooping)
                             .tint(Color("StartColor"))
-                        Toggle("SOUND", isOn: $viewModel.isSoundOn)
-                            .tint(Color("StartColor"))
-                        if viewModel.isSoundOn {
-                            soundThemes
+                        NavigationLink {
+                            SoundView(viewModel: viewModel)
+                        } label: {
+                            Text("Sound")
                         }
-                    }
-                    
-                    Section("BACKGROUND") {
-                        bgSelector
+                        NavigationLink {
+                            BGView(viewModel: viewModel)
+                        } label: {
+                            Text("BACKGROUND")
+                        }
                     }
                     
                     Section("ABOUT") {
@@ -50,11 +56,13 @@ struct EditSheetView: View {
                     }
                 }
                 .navigationTitle("EDIT_TITLE")
+                .font(Font.custom("MartianMono-Regular", size: 15))
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar { toolbarButtons }
             }
             .accentColor(Color("StopColor"))
-            .font(.none)
+            .font(Font.custom("MartianMonoSemiCondensed-Regular", size: 15))
+
         }
     }
     
@@ -96,6 +104,7 @@ struct EditSheetView: View {
         .foregroundStyle(Color("StopColor"))
     }
 
+    /*
     // MARK: bgSelector
     var bgSelector: some View {
         VStack(alignment: .leading, spacing: 15) {
@@ -179,6 +188,8 @@ struct EditSheetView: View {
             }
         }
     }
+     */
+
 }
 
 extension Image {
@@ -187,7 +198,6 @@ extension Image {
             .resizable()
             .scaledToFill()
             .grayscale(1.0)
-            .frame(width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.width / 3 * 1.635)
             .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }

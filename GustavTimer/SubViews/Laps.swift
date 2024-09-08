@@ -34,6 +34,8 @@ struct Laps: View {
                     Text("\(viewModel.timers[index].name)")
                     Spacer()
                     Text("\(viewModel.timers[index].value)")
+                        .foregroundColor(Color("StopColor"))
+                        .font(Font.custom("MartianMono-Bold", size: 15))
                 }
             }
         }

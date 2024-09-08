@@ -4,6 +4,10 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>MartianMonoSemiCondensed-Regular.ttf</string>
+		<string>MartianMonoCondensed-Regular.ttf</string>
+		<string>MartianMonoSemiCondensed-Bold.ttf</string>
+		<string>MartianMonoCondensed-Bold.ttf</string>
 		<string>MartianMono-Bold.ttf</string>
 		<string>MartianMono-Regular.ttf</string>
 	</array>

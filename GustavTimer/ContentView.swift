@@ -53,6 +53,7 @@ struct ContentView: View {
     
     var rounds: some View {
         Text( "\(viewModel.timers[viewModel.activeTimerIndex].name)")
+            .textCase(.uppercase)
                 .safeAreaPadding(.horizontal)
                 .foregroundColor(Color("StartColor").opacity((viewModel.round == 0) ? 0.0 : 1.0))
                 .animation(.easeInOut(duration: 0.2), value: viewModel.round)

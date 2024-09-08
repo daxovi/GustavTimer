@@ -10,12 +10,6 @@
     "%lld" : {
 
     },
-    "%lld min" : {
-
-    },
-    "%lld sec" : {
-
-    },
     "ABOUT" : {
       "localizations" : {
         "cs" : {
@@ -137,7 +131,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Název intervalu"
+            "value" : "Název intervalu:"
           }
         },
         "en" : {
@@ -231,7 +225,7 @@
         }
       }
     },
-    "Minutes" : {
+    "no sound" : {
 
     },
     "RATE" : {
@@ -284,9 +278,6 @@
         }
       }
     },
-    "Seconds" : {
-
-    },
     "SECONDS" : {
       "localizations" : {
         "cs" : {
@@ -336,6 +327,9 @@
           }
         }
       }
+    },
+    "Sound" : {
+
     },
     "SOUND" : {
       "extractionState" : "manual",
@@ -403,9 +397,6 @@
           }
         }
       }
-    },
-    "Total: %lld seconds" : {
-
     }
   },
   "version" : "1.0"
