@@ -13,10 +13,10 @@ import AVFoundation
 import PhotosUI
 
 class GustavViewModel: ObservableObject {
-    let maxTimers = 5
+    let maxTimers = AppConfig.maxTimerCount
     let progressBarHeight = 5
     let buttonHeight = 80.0
-    let maxCountdownValue = 600
+    let maxCountdownValue = AppConfig.maxTimerValue
     
     var isTimerFull: Bool {return !(timers.count < maxTimers)}
     

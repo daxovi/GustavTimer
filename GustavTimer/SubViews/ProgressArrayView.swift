@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Progress: View {
+struct ProgressArrayView: View {
     @StateObject var viewModel: GustavViewModel
     
     var body: some View {

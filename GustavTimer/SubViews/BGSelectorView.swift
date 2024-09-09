@@ -9,7 +9,7 @@ import SwiftUI
 import PhotosUI
 import SwiftData
 
-struct BGView: View {
+struct BGSelectorView: View {
     
     @StateObject var viewModel: GustavViewModel
     @Environment(\.modelContext) var context

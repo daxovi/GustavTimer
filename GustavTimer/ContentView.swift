@@ -18,7 +18,7 @@ struct ContentView: View {
         GeometryReader(content: { geometry in
             ZStack {
                 if viewModel.bgIndex == -1 {
-                    if let uiImage = UIImage(data: customImage.last!.image) {
+                    if let lastImageData = customImage.last?.image, let uiImage = UIImage(data: lastImageData) {
                         BGImageView(image: Image(uiImage: uiImage))
                     } else {
                         BGImageView(image: viewModel.getImage())
@@ -28,7 +28,7 @@ struct ContentView: View {
                 }
                 
                 VStack {
-                    Progress(viewModel: viewModel)
+                    ProgressArrayView(viewModel: viewModel)
                         .padding(.top)
                     HStack {
                         rounds
@@ -61,7 +61,7 @@ struct ContentView: View {
     
     var counter: some View {
         Text("\(viewModel.count)")
-            .font(Font.custom("MartianMono-Bold", size: 500))
+            .font(Font.custom(AppConfig.counterFontName, size: 500))
             .minimumScaleFactor(0.01)
             .padding((viewModel.count < 10) ? 30 : 0)
             .foregroundColor(Color("StartColor"))

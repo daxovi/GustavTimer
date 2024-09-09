@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SoundView: View {
+struct SoundSelectorView: View {
     
     var soundThemeArray = ["sound1", "sound2", "sound3", "sound4", "sound5"]
     @StateObject var viewModel: GustavViewModel
@@ -49,5 +49,5 @@ struct SoundView: View {
 }
 
 #Preview {
-    SoundView(viewModel: GustavViewModel.shared)
+    SoundSelectorView(viewModel: GustavViewModel.shared)
 }

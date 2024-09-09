@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Laps: View {
+struct LapsView: View {
     @StateObject var viewModel: GustavViewModel
     @Environment(\.presentationMode) var presentationMode
     
@@ -28,13 +28,13 @@ struct Laps: View {
     var body: some View {
         ForEach(viewModel.timers) { timer in
             NavigationLink {
-                LapDetail(timer: timer, viewModel: viewModel)
+                LapDetailView(timer: timer, viewModel: viewModel)
             } label: {
                 HStack {
                     Text("\(timer.name)")
                     Spacer()
                     Text("\(timer.value)")
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color("ResetColor"))
                 }
             }
         }

@@ -7,27 +7,19 @@
 
 import SwiftUI
 /*
-import PhotosUI
-import SwiftData
-*/
+ import PhotosUI
+ import SwiftData
+ */
 
 struct EditSheetView: View {
     @StateObject var viewModel: GustavViewModel
-    
-    /*
-    @Environment(\.modelContext) var context
-    @Query var customImage: [CustomImageModel]
-    
-    @State var selectedPhoto: PhotosPickerItem?
-    @State var selectedPhotoData: Data?
-     */
     
     var body: some View {
         VStack(spacing: 0) {
             NavigationStack {
                 List {
                     Section("INTERVALS", content: {
-                        Laps(viewModel: viewModel)
+                        LapsView(viewModel: viewModel)
                         if !viewModel.isTimerFull {
                             Button(action: viewModel.addTimer, label: {
                                 Text("ADD_INTERVAL")
@@ -40,12 +32,17 @@ struct EditSheetView: View {
                         Toggle("LOOP", isOn: $viewModel.isLooping)
                             .tint(Color("StartColor"))
                         NavigationLink {
-                            SoundView(viewModel: viewModel)
+                            SoundSelectorView(viewModel: viewModel)
                         } label: {
-                            Text("Sound")
+                            HStack {
+                                Text("Sound")
+                                Spacer()
+                                Text("\(viewModel.isSoundOn ? viewModel.activeSoundTheme : "none")")
+                                    .foregroundStyle(Color(Color("ResetColor")))
+                            }
                         }
                         NavigationLink {
-                            BGView(viewModel: viewModel)
+                            BGSelectorView(viewModel: viewModel)
                         } label: {
                             Text("BACKGROUND")
                         }
@@ -56,19 +53,18 @@ struct EditSheetView: View {
                     }
                 }
                 .navigationTitle("EDIT_TITLE")
-                .font(Font.custom("MartianMono-Regular", size: 15))
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar { toolbarButtons }
             }
             .accentColor(Color("StopColor"))
-            .font(Font.custom("MartianMonoSemiCondensed-Regular", size: 15))
-
+            .font(Font.custom(AppConfig.appFontName, size: 15))
+            
         }
     }
     
     var rateButton: some View {
         Button("RATE") {
-            let url = "https://apps.apple.com/app/id6478176431?action=write-review"
+            let url = AppConfig.reviewURL
             guard let writeReviewURL = URL(string: url)
             else { fatalError("Expected a valid URL") }
             UIApplication.shared.open(writeReviewURL, options: [:], completionHandler: nil)
@@ -98,98 +94,11 @@ struct EditSheetView: View {
     }
     
     var toolbarButtons: some View {
-            Button(action: viewModel.saveSettings) {
-                Text("SAVE")
-            }
+        Button(action: viewModel.saveSettings) {
+            Text("SAVE")
+        }
         .foregroundStyle(Color("StopColor"))
     }
-
-    /*
-    // MARK: bgSelector
-    var bgSelector: some View {
-        VStack(alignment: .leading, spacing: 15) {
-            Text("BACKGROUND")
-                .fontWeight(.bold)
-            ScrollView(.horizontal) {
-                HStack {
-                    ForEach(0..<viewModel.bgImages.count, id: \.self) { index in
-                        viewModel.bgImages[index].getImage()
-                            .backgroundThumbnail()
-                            .onTapGesture { viewModel.setBG(index: index) }
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(style: .init(lineWidth: (viewModel.bgIndex == index) ? 4 : 0))
-                                    .fill(Color("StartColor"))
-                                    .animation(.easeInOut, value: viewModel.bgIndex)
-                            }
-                            .padding(1)
-                    }
-                    if customImage.isEmpty {
-                        PhotosPicker(selection: $selectedPhoto) {
-                            RoundedRectangle(cornerRadius: 10)
-                                .fill(Color((viewModel.bgIndex == -1) ? "StartColor" : "ResetColor"))
-                                .frame(width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.width / 3 * 1.635)
-                                .overlay(alignment: .center) {
-                                    Image(systemName: "photo")
-                                        .foregroundStyle(Color((viewModel.bgIndex == -1) ? "ResetColor" : "StartColor"))
-                                        .font(.title)
-                                        .padding()
-                                }
-                        }
-                        .task(id: selectedPhoto) {
-                            if let data = try? await selectedPhoto?.loadTransferable(type: Data.self) {
-                                try? context.delete(model: CustomImageModel.self)
-                                selectedPhotoData = data
-                                let customPhoto = CustomImageModel(image: data)
-                                context.insert(customPhoto)
-                                viewModel.setBG(index: -1)
-                            }
-                        }
-                    } else {
-                        ForEach(customImage, id: \.id) { imageData in
-                            if let uiImage = UIImage(data: imageData.image) {
-                                HStack(spacing: 0) {
-                                    Image(uiImage: uiImage)
-                                        .backgroundThumbnail()
-                                        .onTapGesture { viewModel.setBG(index: -1) }
-                                        .overlay {
-                                            RoundedRectangle(cornerRadius: 10)
-                                                .stroke(style: .init(lineWidth: (viewModel.bgIndex == -1) ? 4 : 0))
-                                                .fill(Color("StartColor"))
-                                                .animation(.easeInOut, value: viewModel.bgIndex)
-                                        }
-                                        .padding(1)
-                                    PhotosPicker(selection: $selectedPhoto, matching: .images) {
-                                        Image(systemName: "photo")
-                                            .foregroundStyle(Color((viewModel.bgIndex == -1) ? "ResetColor" : "StartColor"))
-                                            .font(.title)
-                                            .padding()
-                                            .animation(.easeInOut, value: viewModel.bgIndex)
-                                    }
-                                }
-                                .background {
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .fill(Color((viewModel.bgIndex == -1) ? "StartColor" : "ResetColor"))
-                                        .animation(.easeInOut, value: viewModel.bgIndex)
-                                }
-                            }
-                        }
-                        .task(id: selectedPhoto) {
-                            if let data = try? await selectedPhoto?.loadTransferable(type: Data.self) {
-                                try? context.delete(model: CustomImageModel.self)
-                                selectedPhotoData = data
-                                let customPhoto = CustomImageModel(image: data)
-                                context.insert(customPhoto)
-                                viewModel.setBG(index: -1)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-     */
-
 }
 
 extension Image {
