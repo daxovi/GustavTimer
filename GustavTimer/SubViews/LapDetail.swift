@@ -8,32 +8,40 @@
 import SwiftUI
 
 struct LapDetail: View {
-    let index: Int
+    var timer: TimerData
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel: GustavViewModel
     @State private var timerText: String = ""
+    @FocusState private var keyboardFocused: Bool
     
-    private func delete(at offsets: IndexSet) {
-        if viewModel.timers.count > 1 {
-            viewModel.timers.remove(atOffsets: offsets)
+    func deleteTimer() {
+            if let index = viewModel.timers.firstIndex(where: { $0.id == timer.id }) {
+                viewModel.timers.remove(at: index)
+            }
         }
-    }
     
     var body: some View {
         List {
             Section {
                 HStack {
                     Text("INTERVAL_NAME:")
-                    TextField("", text: $viewModel.timers[index].name)
-                        .font(Font.custom("MartianMono-Bold", size: 15))
-                        .foregroundColor(Color("StopColor"))
+                        .opacity(0.6)
+                        .textCase(.uppercase)
+                    
+                    if let index = viewModel.timers.firstIndex(where: { $0.id == timer.id }) {
+                        TextField("", text: $viewModel.timers[index].name)
+                            .font(Font.custom("MartianMono-Bold", size: 15))
+                    } else {
+                        Text("Timer not found")
+                            .foregroundColor(.red)
+                    }
                 }
             }
             Section {
                             VStack(alignment: .center) {
                                 Text("INTERVAL_TIME")
                                     .textCase(.uppercase)
-                                    .font(Font.custom("MartianMonoSemiCondensed-Bold", size: 15))
+                               //     .font(Font.custom("MartianMonoSemiCondensed-Bold", size: 15))
                                 TextField("", text: $timerText)
                                     .font(Font.custom("MartianMono-Bold", size: 100))
                                     .multilineTextAlignment(.center)
@@ -42,14 +50,15 @@ struct LapDetail: View {
                                     .onChange(of: timerText, { _, newValue in
                                         setTimer(newValue: newValue)
                                     })
+                                    .focused($keyboardFocused)
                                     .onAppear {
                                         // Načtení výchozí hodnoty z viewModelu
-                                        timerText = String(viewModel.timers[index].value)
+                                        timerText = String(timer.value)
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                                    keyboardFocused = true
+                                                }
                                     }
                                     .padding()
-                                Text("SECONDS")
-                                    .font(Font.custom("MartianMonoSemiCondensed-Bold", size: 15))
-                                    .textCase(.uppercase)
                                 HStack {
                                     HintButton(labelText: "1min", action: {setTimer(newValue: "60")})
                                     Spacer()
@@ -57,8 +66,6 @@ struct LapDetail: View {
                                     Spacer()
                                     HintButton(labelText: "5min", action: {setTimer(newValue: "300")})
                                 }
-                                .padding(.top)
-                                .padding(.top)
                             }
                         }
             .foregroundStyle(Color.white)
@@ -66,32 +73,30 @@ struct LapDetail: View {
             .listRowBackground(
                     BGImageView(image: viewModel.getImage()).blur(radius: 6)
                         .frame(width: 450)
+                        .opacity(0.9)
             )
             .tint(Color("StartColor"))
             
             Section {
                 if viewModel.timers.count > 1 {
                     Button("DELETE", action: {
-                        dismiss()
-                        delete(at: [index])
+                        deleteTimer()
+                            dismiss()
                     })
                 }
             }
         }
-        .onTapGesture {
-            self.hideKeyboard()
-        }
-        .navigationTitle("\(viewModel.timers[index].name)")
+        .navigationTitle("\(timer.name)")
     }
     
     func setTimer(newValue: String) {
         if let value = Int(newValue), value > 0 {
             timerText = newValue
-            viewModel.timers[index].value = value
+            viewModel.timers[viewModel.timers.firstIndex(where: { $0.id == timer.id })!].value = value
         } else if newValue.isEmpty {
-            viewModel.timers[index].value = 1 // nebo jiná výchozí hodnota
+            viewModel.timers[viewModel.timers.firstIndex(where: { $0.id == timer.id })!].value = 1 // nebo jiná výchozí hodnota
         } else {
-            timerText = String(viewModel.timers[index].value)
+            timerText = String(viewModel.timers[viewModel.timers.firstIndex(where: { $0.id == timer.id })!].value)
         }
     }
 }

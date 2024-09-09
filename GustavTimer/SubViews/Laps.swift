@@ -26,20 +26,19 @@ struct Laps: View {
     }
     
     var body: some View {
-        ForEach(viewModel.timers.indices, id: \.self) { index in
+        ForEach(viewModel.timers) { timer in
             NavigationLink {
-                LapDetail(index: index, viewModel: viewModel)
+                LapDetail(timer: timer, viewModel: viewModel)
             } label: {
                 HStack {
-                    Text("\(viewModel.timers[index].name)")
+                    Text("\(timer.name)")
                     Spacer()
-                    Text("\(viewModel.timers[index].value)")
-                        .foregroundColor(Color("StopColor"))
-                        .font(Font.custom("MartianMono-Bold", size: 15))
+                    Text("\(timer.value)")
+                        .foregroundColor(.gray)
                 }
             }
         }
         .onMove(perform: move)
-        .onDelete(perform: delete)
+        .onDelete(perform: viewModel.timers.count > 1 ? delete : nil)
     }
 }

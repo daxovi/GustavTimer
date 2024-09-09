@@ -12,11 +12,6 @@ import AVKit
 import AVFoundation
 import PhotosUI
 
-struct TimerData: Codable {
-    var value: Int
-    var name: String
-}
-
 class GustavViewModel: ObservableObject {
     let maxTimers = 5
     let progressBarHeight = 5

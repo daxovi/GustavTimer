@@ -22,6 +22,7 @@
 		CF5B11162AD33DE200F42131 /* MartianMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF5B11152AD33DE200F42131 /* MartianMono-Regular.ttf */; };
 		CF70037D2C8DE816009F1531 /* HintButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70037C2C8DE816009F1531 /* HintButton.swift */; };
 		CF70037F2C8DED37009F1531 /* BGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70037E2C8DED37009F1531 /* BGView.swift */; };
+		CF7B1B412C8F6BD3005D4664 /* TimerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7B1B402C8F6BD3005D4664 /* TimerData.swift */; };
 		CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */; };
 		CF93EAF22C5E4C6B00A98ABD /* 90s-final.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF93EAF02C5E4C6B00A98ABD /* 90s-final.mp3 */; };
 		CF93EAF32C5E4C6B00A98ABD /* 90s-countdown.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF93EAF12C5E4C6B00A98ABD /* 90s-countdown.mp3 */; };
@@ -38,7 +39,6 @@
 		CFB1394F2AE59ED900EE8B2C /* BGImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1394E2AE59ED900EE8B2C /* BGImageModel.swift */; };
 		CFC3A7722AAF8B1B00BB8CC2 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC3A7712AAF8B1B00BB8CC2 /* ProgressBar.swift */; };
 		CFC81B022C5FF6F700F98E36 /* LapDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC81B012C5FF6F700F98E36 /* LapDetail.swift */; };
-		CFCE3C722C43105800D33AE3 /* TimerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE3C712C43105800D33AE3 /* TimerRow.swift */; };
 		CFCE3C742C43129B00D33AE3 /* Laps.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE3C732C43129B00D33AE3 /* Laps.swift */; };
 		CFCE3C762C431EC900D33AE3 /* HideKeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE3C752C431EC900D33AE3 /* HideKeyboardExtension.swift */; };
 		CFF71ACC2B8B99BC00884E82 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */; };
@@ -62,6 +62,7 @@
 		CF5B11152AD33DE200F42131 /* MartianMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Regular.ttf"; sourceTree = "<group>"; };
 		CF70037C2C8DE816009F1531 /* HintButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintButton.swift; sourceTree = "<group>"; };
 		CF70037E2C8DED37009F1531 /* BGView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGView.swift; sourceTree = "<group>"; };
+		CF7B1B402C8F6BD3005D4664 /* TimerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerData.swift; sourceTree = "<group>"; };
 		CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageModel.swift; sourceTree = "<group>"; };
 		CF93EAF02C5E4C6B00A98ABD /* 90s-final.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "90s-final.mp3"; sourceTree = "<group>"; };
 		CF93EAF12C5E4C6B00A98ABD /* 90s-countdown.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "90s-countdown.mp3"; sourceTree = "<group>"; };
@@ -78,7 +79,6 @@
 		CFB1394E2AE59ED900EE8B2C /* BGImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGImageModel.swift; sourceTree = "<group>"; };
 		CFC3A7712AAF8B1B00BB8CC2 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		CFC81B012C5FF6F700F98E36 /* LapDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapDetail.swift; sourceTree = "<group>"; };
-		CFCE3C712C43105800D33AE3 /* TimerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRow.swift; sourceTree = "<group>"; };
 		CFCE3C732C43129B00D33AE3 /* Laps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Laps.swift; sourceTree = "<group>"; };
 		CFCE3C752C431EC900D33AE3 /* HideKeyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboardExtension.swift; sourceTree = "<group>"; };
 		CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -114,28 +114,22 @@
 		CF21843229F052590060706C /* GustavTimer */ = {
 			isa = PBXGroup;
 			children = (
+				CF7B1B422C8F6BE2005D4664 /* Fonts */,
+				CF7B1B3F2C8F6BA9005D4664 /* Models */,
 				CFCE3C772C431EF400D33AE3 /* Extensions */,
 				CFCE3C702C43104100D33AE3 /* SubViews */,
 				CF279C462C31A0CF0084C43F /* Sound */,
 				CF5B11122AD33CE500F42131 /* Info.plist */,
 				CF21843329F052590060706C /* GustavTimerApp.swift */,
-				CFB1394E2AE59ED900EE8B2C /* BGImageModel.swift */,
 				CF21843529F052590060706C /* ContentView.swift */,
 				CFB1394C2AE572D300EE8B2C /* BGImageView.swift */,
 				CFADBCF32AC9DC7B00AE27D8 /* EditSheetView.swift */,
-				CF93EB002C5E679700A98ABD /* PrivacyInfo.xcprivacy */,
-				CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */,
-				CF5B11152AD33DE200F42131 /* MartianMono-Regular.ttf */,
-				CF0194572C8A1A1E00CAC1BD /* MartianMonoCondensed-Regular.ttf */,
-				CF0194552C8A186700CAC1BD /* MartianMonoSemiCondensed-Bold.ttf */,
-				CF0194592C8A1AB500CAC1BD /* MartianMonoSemiCondensed-Regular.ttf */,
-				CF5B11132AD33D8900F42131 /* MartianMono-Bold.ttf */,
-				CF0194532C8A17C100CAC1BD /* MartianMonoCondensed-Bold.ttf */,
 				CF21844129F0528C0060706C /* GustavViewModel.swift */,
+				CF279C4B2C31A8940084C43F /* SoundManager.swift */,
+				CF93EB002C5E679700A98ABD /* PrivacyInfo.xcprivacy */,
 				CF21843729F0525E0060706C /* Assets.xcassets */,
 				CF21843929F0525E0060706C /* Preview Content */,
 				CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */,
-				CF279C4B2C31A8940084C43F /* SoundManager.swift */,
 			);
 			path = GustavTimer;
 			sourceTree = "<group>";
@@ -171,11 +165,33 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		CF7B1B3F2C8F6BA9005D4664 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CFB1394E2AE59ED900EE8B2C /* BGImageModel.swift */,
+				CF7B1B402C8F6BD3005D4664 /* TimerData.swift */,
+				CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CF7B1B422C8F6BE2005D4664 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CF5B11152AD33DE200F42131 /* MartianMono-Regular.ttf */,
+				CF0194572C8A1A1E00CAC1BD /* MartianMonoCondensed-Regular.ttf */,
+				CF0194552C8A186700CAC1BD /* MartianMonoSemiCondensed-Bold.ttf */,
+				CF0194592C8A1AB500CAC1BD /* MartianMonoSemiCondensed-Regular.ttf */,
+				CF5B11132AD33D8900F42131 /* MartianMono-Bold.ttf */,
+				CF0194532C8A17C100CAC1BD /* MartianMonoCondensed-Bold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		CFCE3C702C43104100D33AE3 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
 				CF70037B2C8DE807009F1531 /* UI */,
-				CFCE3C712C43105800D33AE3 /* TimerRow.swift */,
 				CFADBCF12AC9C8AE00AE27D8 /* Progress.swift */,
 				CFC3A7712AAF8B1B00BB8CC2 /* ProgressBar.swift */,
 				CFCE3C732C43129B00D33AE3 /* Laps.swift */,
@@ -287,7 +303,6 @@
 				CFB1394F2AE59ED900EE8B2C /* BGImageModel.swift in Sources */,
 				CFC3A7722AAF8B1B00BB8CC2 /* ProgressBar.swift in Sources */,
 				CF01945C2C8A20D700CAC1BD /* SoundView.swift in Sources */,
-				CFCE3C722C43105800D33AE3 /* TimerRow.swift in Sources */,
 				CFADBCF42AC9DC7B00AE27D8 /* EditSheetView.swift in Sources */,
 				CFADBCF22AC9C8AE00AE27D8 /* Progress.swift in Sources */,
 				CF21844229F0528C0060706C /* GustavViewModel.swift in Sources */,
@@ -298,6 +313,7 @@
 				CF21843429F052590060706C /* GustavTimerApp.swift in Sources */,
 				CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */,
 				CF279C4C2C31A8940084C43F /* SoundManager.swift in Sources */,
+				CF7B1B412C8F6BD3005D4664 /* TimerData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
