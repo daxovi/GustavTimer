@@ -43,14 +43,11 @@ struct BGSelectorView: View {
                         if let uiImage = UIImage(data: imageData.image) {
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(Color((viewModel.bgIndex == -1) ? "StartColor" : "ResetColor"))
-                                .frame(width: .infinity, height: UIScreen.main.bounds.width / 2 * 1.635)
+                        //        .frame(width: .infinity, height: UIScreen.main.bounds.width / 2 * 1.635)
                                 .overlay(alignment: .center) {
                                     Image(uiImage: uiImage)
                                         .backgroundThumbnail()
                                         .scaledToFit()
-                                    //            .clipped()
-                                        
-
                                         .grayscale(1.0)
                                         .onTapGesture { viewModel.setBG(index: -1) }
                                         .padding(4)
@@ -62,7 +59,8 @@ struct BGSelectorView: View {
                 PhotosPicker(selection: $selectedPhoto) {
                     RoundedRectangle(cornerRadius: 10)
                         .fill(Color("ResetColor"))
-                        .frame(width: .infinity, height: UIScreen.main.bounds.width / 2 * 1.635)
+                       .frame(width: .infinity, height: UIScreen.main.bounds.width / 2 * 1.635)
+                   //     .frame(minHeight: 100)
                         .overlay(alignment: .center) {
                             Image(systemName: "photo")
                                 .foregroundStyle(Color("StartColor"))
