@@ -34,6 +34,7 @@
 		CF93EAFF2C5E569400A98ABD /* game-final.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF93EAFD2C5E569400A98ABD /* game-final.mp3 */; };
 		CF93EB012C5E679700A98ABD /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = CF93EB002C5E679700A98ABD /* PrivacyInfo.xcprivacy */; };
 		CF9922AD2C8F84C9004186DF /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9922AC2C8F84C9004186DF /* AppConfig.swift */; };
+		CF9922AF2C920C51004186DF /* BackgroundThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9922AE2C920C51004186DF /* BackgroundThumbnail.swift */; };
 		CFADBCF22AC9C8AE00AE27D8 /* ProgressArrayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADBCF12AC9C8AE00AE27D8 /* ProgressArrayView.swift */; };
 		CFADBCF42AC9DC7B00AE27D8 /* EditSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADBCF32AC9DC7B00AE27D8 /* EditSheetView.swift */; };
 		CFB1394D2AE572D300EE8B2C /* BGImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1394C2AE572D300EE8B2C /* BGImageView.swift */; };
@@ -75,6 +76,7 @@
 		CF93EAFD2C5E569400A98ABD /* game-final.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "game-final.mp3"; sourceTree = "<group>"; };
 		CF93EB002C5E679700A98ABD /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		CF9922AC2C8F84C9004186DF /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		CF9922AE2C920C51004186DF /* BackgroundThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundThumbnail.swift; sourceTree = "<group>"; };
 		CFADBCF12AC9C8AE00AE27D8 /* ProgressArrayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressArrayView.swift; sourceTree = "<group>"; };
 		CFADBCF32AC9DC7B00AE27D8 /* EditSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSheetView.swift; sourceTree = "<group>"; };
 		CFB1394C2AE572D300EE8B2C /* BGImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGImageView.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				CFCE3C752C431EC900D33AE3 /* HideKeyboardExtension.swift */,
+				CF9922AE2C920C51004186DF /* BackgroundThumbnail.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				CFADBCF22AC9C8AE00AE27D8 /* ProgressArrayView.swift in Sources */,
 				CF21844229F0528C0060706C /* GustavViewModel.swift in Sources */,
 				CF9922AD2C8F84C9004186DF /* AppConfig.swift in Sources */,
+				CF9922AF2C920C51004186DF /* BackgroundThumbnail.swift in Sources */,
 				CF70037D2C8DE816009F1531 /* HintButton.swift in Sources */,
 				CFCE3C762C431EC900D33AE3 /* HideKeyboardExtension.swift in Sources */,
 				CF70037F2C8DED37009F1531 /* BGSelectorView.swift in Sources */,

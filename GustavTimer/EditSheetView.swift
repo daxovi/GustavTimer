@@ -101,12 +101,4 @@ struct EditSheetView: View {
     }
 }
 
-extension Image {
-    func backgroundThumbnail() -> some View {
-        self
-            .resizable()
-            .scaledToFill()
-            .grayscale(1.0)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-    }
-}
+
