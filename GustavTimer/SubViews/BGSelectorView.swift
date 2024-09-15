@@ -11,7 +11,7 @@ import SwiftData
 
 struct BGSelectorView: View {
     
-    @StateObject var viewModel: GustavViewModel
+    @StateObject var viewModel = GustavViewModel.shared
     @Environment(\.modelContext) var context
     @Query var customImage: [CustomImageModel]
     

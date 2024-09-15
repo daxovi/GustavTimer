@@ -333,5 +333,22 @@ class GustavViewModel: ObservableObject {
         }
     }
     
+    //MARK: Písmo
+    var geometry: GeometryProxy? = nil
+    var counterFontSize: Int {
+        return 300
+    }
+    
+    func counterFontSize(geometry: GeometryProxy) -> CGFloat {
+        print("\(geometry.size.width)")
+        
+        
+
+        if (count < 10) {
+            return geometry.size.height + 50
+        } else {
+            return geometry.size.height - 190
+        }
+    }
     
 }

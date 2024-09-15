@@ -251,6 +251,9 @@
         }
       }
     },
+    "Meditace" : {
+
+    },
     "NO" : {
       "localizations" : {
         "cs" : {
@@ -473,6 +476,9 @@
           }
         }
       }
+    },
+    "zvukový tón po 5 minutách" : {
+
     }
   },
   "version" : "1.0"

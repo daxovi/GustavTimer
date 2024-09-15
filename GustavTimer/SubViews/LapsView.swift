@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LapsView: View {
-    @StateObject var viewModel: GustavViewModel
+    @StateObject var viewModel = GustavViewModel.shared
     @Environment(\.presentationMode) var presentationMode
     
     private func move(from source: IndexSet, to destination: Int) {
@@ -28,7 +28,7 @@ struct LapsView: View {
     var body: some View {
         ForEach(viewModel.timers) { timer in
             NavigationLink {
-                LapDetailView(timer: timer, viewModel: viewModel)
+                LapDetailView(timer: timer)
             } label: {
                 HStack {
                     Text("\(timer.name)")

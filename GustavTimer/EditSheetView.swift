@@ -12,12 +12,38 @@ import SwiftUI
  */
 
 struct EditSheetView: View {
-    @StateObject var viewModel: GustavViewModel
+    @StateObject var viewModel = GustavViewModel.shared
     
     var body: some View {
         VStack(spacing: 0) {
             NavigationStack {
                 List {
+                    TabView {
+                        RoundedRectangle(cornerRadius: 15)
+                            .fill(Color.blue)
+                            .overlay {
+                                VStack {
+                                    Text("Meditace")
+                                    Spacer()
+                                    Text("zvukový tón po 5 minutách")
+                                    Spacer()
+                                }
+                                .padding()
+                            }
+                            .onTapGesture {
+                                viewModel.setBG(index: 9)
+                                viewModel.timers =  [TimerData(value: 300, name: "Meditace")]
+                                viewModel.saveSettings()
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                        RoundedRectangle(cornerRadius: 15)
+                            .fill(Color.red)
+                    }
+                    .tabViewStyle(.page)
+                 //   .indexViewStyle(.page(backgroundDisplayMode: .always))
+                    .listRowInsets(EdgeInsets())
+                    .listRowBackground(Color.clear)
+                    .frame(height: 200)
                     Section("INTERVALS", content: {
                         LapsView(viewModel: viewModel)
                         if !viewModel.isTimerFull {

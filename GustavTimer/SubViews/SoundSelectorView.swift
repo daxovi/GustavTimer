@@ -10,7 +10,7 @@ import SwiftUI
 struct SoundSelectorView: View {
     
     var soundThemeArray = ["sound1", "sound2", "sound3", "sound4", "sound5"]
-    @StateObject var viewModel: GustavViewModel
+    @StateObject var viewModel = GustavViewModel.shared
     
     var body: some View {
         ScrollView {

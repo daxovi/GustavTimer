@@ -23,7 +23,7 @@ struct ContentView: View {
                 background
                 
                 VStack {
-                    ProgressArrayView(viewModel: viewModel)
+                    ProgressArrayView()
                         .padding(.top)
                     HStack {
                         rounds
@@ -106,7 +106,7 @@ struct ContentView: View {
         .safeAreaPadding(.horizontal)
         .sheet(isPresented: $viewModel.showingSheet, onDismiss: {
             viewModel.saveSettings()
-        }) { EditSheetView(viewModel: viewModel) }
+        }) { EditSheetView() }
     }
 }
 
