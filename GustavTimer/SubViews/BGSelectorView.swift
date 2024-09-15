@@ -18,14 +18,9 @@ struct BGSelectorView: View {
     @State var selectedPhoto: PhotosPickerItem?
     @State var selectedPhotoData: Data?
     
-    private let flexibleColumn = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
-    
     var body: some View {
         ScrollView() {
-            LazyVGrid(columns: flexibleColumn, spacing: 10) {
+            LazyVGrid(columns: viewModel.gridColumns, spacing: 10) {
                 ForEach(0..<viewModel.bgImages.count, id: \.self) { index in
                     viewModel.bgImages[index].getImage()
                         .backgroundThumbnail()
@@ -41,17 +36,21 @@ struct BGSelectorView: View {
                 if !customImage.isEmpty {
                     ForEach(customImage, id: \.id) { imageData in
                         if let uiImage = UIImage(data: imageData.image) {
-                            RoundedRectangle(cornerRadius: 10)
-                                .fill(Color((viewModel.bgIndex == -1) ? "StartColor" : "ResetColor"))
-                        //        .frame(width: .infinity, height: UIScreen.main.bounds.width / 2 * 1.635)
-                                .overlay(alignment: .center) {
-                                    Image(uiImage: uiImage)
-                                        .backgroundThumbnail()
-                                        .scaledToFit()
-                                        .grayscale(1.0)
-                                        .onTapGesture { viewModel.setBG(index: -1) }
-                                        .padding(4)
-                                }
+                            GeometryReader { geometry in
+                                            Image(uiImage: uiImage)
+                                    .backgroundThumbnail()
+                                                .aspectRatio(contentMode: .fill) // Vyplní celý čtverec
+                                                .frame(width: geometry.size.width, height: geometry.size.width) // Zajistí čtvercovou velikost
+                                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                                .onTapGesture { viewModel.setBG(index: -1) }
+                                                .overlay {
+                                                    RoundedRectangle(cornerRadius: 10)
+                                                        .stroke(style: .init(lineWidth: (viewModel.bgIndex == -1) ? 4 : 0))
+                                                        .fill(Color("StartColor"))
+                                                        .animation(.easeInOut, value: viewModel.bgIndex)
+                                                }
+                                        }
+                                        .aspectRatio(1, contentMode: .fit) // Zachová poměr 1:1, takže bude čtverec
                         }
                     }
                     
@@ -59,8 +58,7 @@ struct BGSelectorView: View {
                 PhotosPicker(selection: $selectedPhoto) {
                     RoundedRectangle(cornerRadius: 10)
                         .fill(Color("ResetColor"))
-                       .frame(width: .infinity, height: UIScreen.main.bounds.width / 2 * 1.635)
-                   //     .frame(minHeight: 100)
+                        .aspectRatio(1, contentMode: .fill)
                         .overlay(alignment: .center) {
                             Image(systemName: "photo")
                                 .foregroundStyle(Color("StartColor"))

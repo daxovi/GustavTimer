@@ -12,6 +12,7 @@ struct LapDetailView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel: GustavViewModel
     @State private var timerText: String = ""
+    @State private var isShowingConfirmationDialog: Bool = false
     @FocusState private var keyboardFocused: Bool
     
     func deleteTimer() {
@@ -30,6 +31,11 @@ struct LapDetailView: View {
                     
                     if let index = viewModel.timers.firstIndex(where: { $0.id == timer.id }) {
                         TextField("", text: $viewModel.timers[index].name)
+                            .onChange(of: viewModel.timers[index].name) { _, newValue in
+                                if newValue.count > AppConfig.maxTimerName {
+                                    viewModel.timers[index].name = String(newValue.prefix(AppConfig.maxTimerName))
+                                    }
+                                }
                     } else {
                         Text("Timer not found")
                             .foregroundColor(.red)
@@ -69,18 +75,30 @@ struct LapDetailView: View {
             .foregroundStyle(Color.white)
             .padding()
             .listRowBackground(
-                BGImageView(image: viewModel.getImage()).blur(radius: 6)
-                    .frame(width: 450)
-                    .opacity(0.9)
+                ZStack {
+                    Color.black.opacity(0.9)
+                    BGImageView(image: viewModel.getImage()).blur(radius: 6)
+                        .opacity(0.9)
+                }
             )
             .tint(Color("StartColor"))
             
             Section {
                 if viewModel.timers.count > 1 {
                     Button("DELETE", action: {
-                        deleteTimer()
-                        dismiss()
+                        isShowingConfirmationDialog.toggle()
                     })
+                    .foregroundColor(.white)
+                    .listRowBackground(Color.red)
+                    .confirmationDialog("DELETE_DIALOG?", isPresented: $isShowingConfirmationDialog, titleVisibility: .visible) {
+                        Button("YES_DELETE" , role: .destructive) {
+                            deleteTimer()
+                            dismiss()
+                        }
+                        Button("NO") {
+                            isShowingConfirmationDialog.toggle()
+                        }
+                    }
                 }
             }
         }

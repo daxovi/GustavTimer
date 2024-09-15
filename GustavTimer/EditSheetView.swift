@@ -56,7 +56,7 @@ struct EditSheetView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar { toolbarButtons }
             }
-            .accentColor(Color("StopColor"))
+            .tint(Color("StopColor"))
             .font(Font.custom(AppConfig.appFontName, size: 15))
             
         }

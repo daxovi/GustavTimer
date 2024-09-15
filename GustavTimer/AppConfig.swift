@@ -26,4 +26,7 @@ struct AppConfig {
     // Velikosti fontů
     static let largeFontSize: CGFloat = 30
     static let smallFontSize: CGFloat = 15
+    
+    // Maximální název intervalu
+    static let maxTimerName: Int = 12
 }

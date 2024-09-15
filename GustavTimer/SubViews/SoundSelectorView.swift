@@ -12,14 +12,9 @@ struct SoundSelectorView: View {
     var soundThemeArray = ["sound1", "sound2", "sound3", "sound4", "sound5"]
     @StateObject var viewModel: GustavViewModel
     
-    private let flexibleColumn = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
-    
     var body: some View {
         ScrollView {
-            LazyVGrid(columns: flexibleColumn, spacing: 10) {
+            LazyVGrid(columns: viewModel.gridColumns, spacing: 10) {
                 RoundedRectangle(cornerSize: CGSizeMake(10, 10))
                     .aspectRatio(1, contentMode: .fill)
                     .onTapGesture {

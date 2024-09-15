@@ -35,6 +35,7 @@
 		CF93EB012C5E679700A98ABD /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = CF93EB002C5E679700A98ABD /* PrivacyInfo.xcprivacy */; };
 		CF9922AD2C8F84C9004186DF /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9922AC2C8F84C9004186DF /* AppConfig.swift */; };
 		CF9922AF2C920C51004186DF /* BackgroundThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9922AE2C920C51004186DF /* BackgroundThumbnail.swift */; };
+		CF9922B12C959AC1004186DF /* ControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9922B02C959AC1004186DF /* ControlButton.swift */; };
 		CFADBCF22AC9C8AE00AE27D8 /* ProgressArrayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADBCF12AC9C8AE00AE27D8 /* ProgressArrayView.swift */; };
 		CFADBCF42AC9DC7B00AE27D8 /* EditSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADBCF32AC9DC7B00AE27D8 /* EditSheetView.swift */; };
 		CFB1394D2AE572D300EE8B2C /* BGImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1394C2AE572D300EE8B2C /* BGImageView.swift */; };
@@ -77,6 +78,7 @@
 		CF93EB002C5E679700A98ABD /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		CF9922AC2C8F84C9004186DF /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		CF9922AE2C920C51004186DF /* BackgroundThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundThumbnail.swift; sourceTree = "<group>"; };
+		CF9922B02C959AC1004186DF /* ControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButton.swift; sourceTree = "<group>"; };
 		CFADBCF12AC9C8AE00AE27D8 /* ProgressArrayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressArrayView.swift; sourceTree = "<group>"; };
 		CFADBCF32AC9DC7B00AE27D8 /* EditSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSheetView.swift; sourceTree = "<group>"; };
 		CFB1394C2AE572D300EE8B2C /* BGImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGImageView.swift; sourceTree = "<group>"; };
@@ -130,7 +132,6 @@
 				CFB1394C2AE572D300EE8B2C /* BGImageView.swift */,
 				CFADBCF32AC9DC7B00AE27D8 /* EditSheetView.swift */,
 				CF21844129F0528C0060706C /* GustavViewModel.swift */,
-				CF279C4B2C31A8940084C43F /* SoundManager.swift */,
 				CF93EB002C5E679700A98ABD /* PrivacyInfo.xcprivacy */,
 				CF21843729F0525E0060706C /* Assets.xcassets */,
 				CF21843929F0525E0060706C /* Preview Content */,
@@ -150,6 +151,7 @@
 		CF279C462C31A0CF0084C43F /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				CF279C4B2C31A8940084C43F /* SoundManager.swift */,
 				CF93EAF12C5E4C6B00A98ABD /* 90s-countdown.mp3 */,
 				CF93EAF82C5E551600A98ABD /* beep-countdown.mp3 */,
 				CF93EAFC2C5E569400A98ABD /* game-countdown.mp3 */,
@@ -167,6 +169,7 @@
 			children = (
 				CFC3A7712AAF8B1B00BB8CC2 /* ProgressBar.swift */,
 				CF70037C2C8DE816009F1531 /* HintButton.swift */,
+				CF9922B02C959AC1004186DF /* ControlButton.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				CFC3A7722AAF8B1B00BB8CC2 /* ProgressBar.swift in Sources */,
 				CF01945C2C8A20D700CAC1BD /* SoundSelectorView.swift in Sources */,
 				CFADBCF42AC9DC7B00AE27D8 /* EditSheetView.swift in Sources */,
+				CF9922B12C959AC1004186DF /* ControlButton.swift in Sources */,
 				CFADBCF22AC9C8AE00AE27D8 /* ProgressArrayView.swift in Sources */,
 				CF21844229F0528C0060706C /* GustavViewModel.swift in Sources */,
 				CF9922AD2C8F84C9004186DF /* AppConfig.swift in Sources */,
@@ -465,8 +469,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiresFullScreen = NO;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -477,11 +481,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -502,8 +506,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiresFullScreen = NO;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -514,11 +518,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

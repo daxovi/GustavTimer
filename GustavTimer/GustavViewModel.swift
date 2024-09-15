@@ -14,8 +14,6 @@ import PhotosUI
 
 class GustavViewModel: ObservableObject {
     let maxTimers = AppConfig.maxTimerCount
-    let progressBarHeight = 5
-    let buttonHeight = 80.0
     let maxCountdownValue = AppConfig.maxTimerValue
     
     var isTimerFull: Bool {return !(timers.count < maxTimers)}
@@ -126,11 +124,19 @@ class GustavViewModel: ObservableObject {
             }
     }
     
-    func startStopTimer() {
+    func startStopTimer(requestReview: @escaping () -> ()) {
         if timer == nil {
             startTimer()
         } else {
             stopTimer()
+        }
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.0) {
+            if self.stopCounter > 20 && !self.isTimerRunning {
+                if !self.isTimerRunning {
+                    self.stopCounter = 0
+                    requestReview()
+                }
+            }
         }
     }
     
@@ -236,10 +242,10 @@ class GustavViewModel: ObservableObject {
         BGImageModel(image: "Lanes", author: "", source: "www.unsplash.com"),
         BGImageModel(image: "Poster", author: "", source: "www.unsplash.com"),
         BGImageModel(image: "Pullup", author: "", source: "www.unsplash.com"),
-        BGImageModel(image: "Rope", author: "", source: "www.unsplash.com"),
         BGImageModel(image: "Squat", author: "", source: "www.unsplash.com"),
-        BGImageModel(image: "Stone", author: "", source: "www.unsplash.com"),
-        BGImageModel(image: "Weights", author: "", source: "www.unsplash.com")
+        BGImageModel(image: "Wood", author: "", source: "www.unsplash.com"),
+        BGImageModel(image: "Buddha", author: "", source: "www.unsplash.com"),
+        BGImageModel(image: "Lotos", author: "", source: "www.unsplash.com")
     ]
     
     func setBG(index: Int) {
@@ -281,4 +287,51 @@ class GustavViewModel: ObservableObject {
             self.timers = [TimerData(value: 60, name: "Work"), TimerData(value: 30, name: "Rest")]
         }
     }
+    
+    // MARK: Display sizes
+    // iPhone
+    @Published var isIphoneLandscape: Bool = false
+    @Published var isIpad: Bool = false
+    @Published var isIpadWide: Bool = false
+    
+    func updateSizeClass(verticalSizeClass: UserInterfaceSizeClass?, horizontalSizeClass: UserInterfaceSizeClass?) {
+        isIpad = UIDevice.current.userInterfaceIdiom == .pad
+        if verticalSizeClass == .compact && UIDevice.current.userInterfaceIdiom == .phone {
+            isIphoneLandscape = true
+        } else {
+            isIphoneLandscape = false
+        }
+        if isIpad && horizontalSizeClass == .regular {
+            isIpadWide = true
+        }
+    }
+    
+    var controlButtonsRadius: CGFloat { isIphoneLandscape ? 40 : 100 }
+    var controlButtonsPadding: CGFloat { isIphoneLandscape || isIpad ? 15 : 5 }
+    var controlButtonsWidth: CGFloat? { isIphoneLandscape || isIpadWide ? 400 : nil}
+    var progressBarHeight: Int { isIphoneLandscape ? 6 : 6 }
+    var controlButtonsHeight: CGFloat { isIphoneLandscape ? 65 : 100 }
+    
+    // Grid
+    private let flexibleNarrowColumn = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    
+    private let flexibleWideColumn = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    
+    var gridColumns: [GridItem] {
+        if isIphoneLandscape || isIpadWide {
+            return flexibleWideColumn
+        } else {
+            return flexibleNarrowColumn
+        }
+    }
+    
+    
 }
