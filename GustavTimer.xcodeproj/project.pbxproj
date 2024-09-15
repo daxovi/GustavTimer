@@ -36,6 +36,7 @@
 		CF9922AD2C8F84C9004186DF /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9922AC2C8F84C9004186DF /* AppConfig.swift */; };
 		CF9922AF2C920C51004186DF /* BackgroundThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9922AE2C920C51004186DF /* BackgroundThumbnail.swift */; };
 		CF9922B12C959AC1004186DF /* ControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9922B02C959AC1004186DF /* ControlButton.swift */; };
+		CF9922B72C976470004186DF /* ControlButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9922B62C976470004186DF /* ControlButtonsView.swift */; };
 		CFADBCF22AC9C8AE00AE27D8 /* ProgressArrayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADBCF12AC9C8AE00AE27D8 /* ProgressArrayView.swift */; };
 		CFADBCF42AC9DC7B00AE27D8 /* EditSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADBCF32AC9DC7B00AE27D8 /* EditSheetView.swift */; };
 		CFB1394D2AE572D300EE8B2C /* BGImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1394C2AE572D300EE8B2C /* BGImageView.swift */; };
@@ -79,6 +80,7 @@
 		CF9922AC2C8F84C9004186DF /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		CF9922AE2C920C51004186DF /* BackgroundThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundThumbnail.swift; sourceTree = "<group>"; };
 		CF9922B02C959AC1004186DF /* ControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButton.swift; sourceTree = "<group>"; };
+		CF9922B62C976470004186DF /* ControlButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButtonsView.swift; sourceTree = "<group>"; };
 		CFADBCF12AC9C8AE00AE27D8 /* ProgressArrayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressArrayView.swift; sourceTree = "<group>"; };
 		CFADBCF32AC9DC7B00AE27D8 /* EditSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSheetView.swift; sourceTree = "<group>"; };
 		CFB1394C2AE572D300EE8B2C /* BGImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGImageView.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				CFC81B012C5FF6F700F98E36 /* LapDetailView.swift */,
 				CF01945B2C8A20D700CAC1BD /* SoundSelectorView.swift */,
 				CF70037E2C8DED37009F1531 /* BGSelectorView.swift */,
+				CF9922B62C976470004186DF /* ControlButtonsView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				CF9922AD2C8F84C9004186DF /* AppConfig.swift in Sources */,
 				CF9922AF2C920C51004186DF /* BackgroundThumbnail.swift in Sources */,
 				CF70037D2C8DE816009F1531 /* HintButton.swift in Sources */,
+				CF9922B72C976470004186DF /* ControlButtonsView.swift in Sources */,
 				CFCE3C762C431EC900D33AE3 /* HideKeyboardExtension.swift in Sources */,
 				CF70037F2C8DED37009F1531 /* BGSelectorView.swift in Sources */,
 				CFC81B022C5FF6F700F98E36 /* LapDetailView.swift in Sources */,

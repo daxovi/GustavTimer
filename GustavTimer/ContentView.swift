@@ -11,7 +11,6 @@ import SwiftData
 
 struct ContentView: View {
     @StateObject var viewModel = GustavViewModel.shared
-    @Environment(\.requestReview) var requestReview
     
     @Environment(\.verticalSizeClass) var verticalSizeClass
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
@@ -36,7 +35,7 @@ struct ContentView: View {
                     
                     Spacer()
                     
-                    controlButtons
+                    ControlButtonsView()
                 }
                 .font(Font.custom("MartianMono-Regular", size: 15))
                 .ignoresSafeArea(edges: .bottom)
@@ -79,23 +78,6 @@ struct ContentView: View {
             .font(Font.custom(AppConfig.counterFontName, size: 800))
             .minimumScaleFactor(0.01)
             .foregroundColor(Color("StartColor"))
-    }
-    
-    var controlButtons: some View {
-        HStack(spacing: 0) {
-            ControlButton(action: {
-                viewModel.startStopTimer(requestReview: {requestReview()})
-            }, text: viewModel.isTimerRunning ? "STOP" : "START")
-            if viewModel.isTimerRunning {
-                ControlButton(action: { viewModel.skipLap() }, text: "SKIP")
-            } else {
-                ControlButton(action: { viewModel.resetTimer() }, text: "RESET")
-            }
-        }
-        .frame(width: viewModel.controlButtonsWidth)
-        .clipShape(RoundedRectangle(cornerRadius: viewModel.controlButtonsRadius))
-        .padding(viewModel.controlButtonsPadding)
-        .shadow(color: .black.opacity(0.2), radius: 10, x: 4, y: 4)
     }
     
     var editButton: some View {
