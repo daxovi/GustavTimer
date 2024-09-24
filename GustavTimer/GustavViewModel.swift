@@ -230,7 +230,7 @@ class GustavViewModel: ObservableObject {
         resetTimer()
         
         // Zavřeme sheet
-        self.showingSheet = false
+ //       self.showingSheet = false
     }
     
     
@@ -288,29 +288,25 @@ class GustavViewModel: ObservableObject {
         }
     }
     
+    /*
     // MARK: Display sizes
     // iPhone
-    @Published var isIphoneLandscape: Bool = false
+    // @Published var isIphoneLandscape: Bool = false
     @Published var isIpad: Bool = false
     @Published var isIpadWide: Bool = false
     
     func updateSizeClass(verticalSizeClass: UserInterfaceSizeClass?, horizontalSizeClass: UserInterfaceSizeClass?) {
         isIpad = UIDevice.current.userInterfaceIdiom == .pad
-        if verticalSizeClass == .compact && UIDevice.current.userInterfaceIdiom == .phone {
-            isIphoneLandscape = true
-        } else {
-            isIphoneLandscape = false
-        }
         if isIpad && horizontalSizeClass == .regular {
             isIpadWide = true
         }
     }
     
-    var controlButtonsRadius: CGFloat { isIphoneLandscape ? 40 : 100 }
-    var controlButtonsPadding: CGFloat { isIphoneLandscape || isIpad ? 15 : 5 }
-    var controlButtonsWidth: CGFloat? { isIphoneLandscape || isIpadWide ? 400 : nil}
-    var progressBarHeight: Int { isIphoneLandscape ? 6 : 6 }
-    var controlButtonsHeight: CGFloat { isIphoneLandscape ? 65 : 100 }
+    var controlButtonsRadius: CGFloat = 0
+    var controlButtonsPadding: CGFloat { isIpad ? 15 : 0 }
+    var controlButtonsWidth: CGFloat? { isIpadWide ? 400 : nil}
+    var progressBarHeight: Int  = 6
+    var controlButtonsHeight: CGFloat = 100
     
     // Grid
     private let flexibleNarrowColumn = [
@@ -326,29 +322,11 @@ class GustavViewModel: ObservableObject {
     ]
     
     var gridColumns: [GridItem] {
-        if isIphoneLandscape || isIpadWide {
+        if isIpadWide {
             return flexibleWideColumn
         } else {
             return flexibleNarrowColumn
         }
     }
-    
-    //MARK: Písmo
-    var geometry: GeometryProxy? = nil
-    var counterFontSize: Int {
-        return 300
-    }
-    
-    func counterFontSize(geometry: GeometryProxy) -> CGFloat {
-        print("\(geometry.size.width)")
-        
-        
-
-        if (count < 10) {
-            return geometry.size.height + 50
-        } else {
-            return geometry.size.height - 190
-        }
-    }
-    
+    */
 }

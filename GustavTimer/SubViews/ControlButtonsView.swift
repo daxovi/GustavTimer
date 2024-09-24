@@ -22,10 +22,6 @@ struct ControlButtonsView: View {
                 ControlButton(action: { viewModel.resetTimer() }, text: "RESET")
             }
         }
-        .frame(width: viewModel.controlButtonsWidth)
-        .clipShape(RoundedRectangle(cornerRadius: viewModel.controlButtonsRadius))
-        .padding(viewModel.controlButtonsPadding)
-        .shadow(color: .black.opacity(0.2), radius: 10, x: 4, y: 4)
     }
 }
 

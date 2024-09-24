@@ -12,29 +12,74 @@ struct SoundSelectorView: View {
     var soundThemeArray = ["sound1", "sound2", "sound3", "sound4", "sound5"]
     @StateObject var viewModel = GustavViewModel.shared
     
+    private let flexibleNarrowColumn = [
+        GridItem(.flexible(), spacing: 15),
+        GridItem(.flexible(), spacing: 15)
+    ]
+    
     var body: some View {
         ScrollView {
-            LazyVGrid(columns: viewModel.gridColumns, spacing: 10) {
-                RoundedRectangle(cornerSize: CGSizeMake(10, 10))
-                    .aspectRatio(1, contentMode: .fill)
+            LazyVGrid(columns: flexibleNarrowColumn, spacing: 15) {
+                Image("mute")
+                    .resizable()
+                    .scaledToFill()
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
+                    
+                    .overlay {
+                        ZStack {
+                            LinearGradient(gradient: Gradient(colors: [.clear, .clear, .black.opacity(0.8)]), startPoint: .top, endPoint: .bottom)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(style: .init(lineWidth: (!viewModel.isSoundOn) ? 4 : 0))
+                                .fill(Color("StartColor"))
+                                .animation(.easeInOut, value: viewModel.isSoundOn)
+                            HStack {
+                                VStack {
+                                    Spacer()
+                                    Text("MUTE")
+                                        .font(Font.custom(AppConfig.counterFontName, size: AppConfig.smallFontSize))
+                                        .foregroundStyle(Color.white)
+                                    
+                                }
+                                Spacer()
+                            }
+                            .padding()
+                        }
+                    }
                     .onTapGesture {
                         viewModel.isSoundOn = false
                     }
-                    .foregroundColor(!viewModel.isSoundOn ? Color("StartColor") : Color.gray)
-                    .overlay {
-                        Text("no sound")
-                    }
                 ForEach(viewModel.soundThemeArray, id: \.self) { theme in
-                    RoundedRectangle(cornerSize: CGSizeMake(10, 10))
-                        .aspectRatio(1, contentMode: .fill)
+                    Image("\(theme)")
+                        .resizable()
+                        .scaledToFill()
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                        
+                        .overlay {
+                            ZStack {
+                                LinearGradient(gradient: Gradient(colors: [.clear, .clear, .black.opacity(0.8)]), startPoint: .top, endPoint: .bottom)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(style: .init(lineWidth: (viewModel.activeSoundTheme == theme && viewModel.isSoundOn) ? 4 : 0))
+                                    .fill(Color("StartColor"))
+                                    .animation(.easeInOut, value: viewModel.activeSoundTheme)
+                                HStack {
+                                    VStack {
+                                        Spacer()
+                                        Text(theme)
+                                            .font(Font.custom(AppConfig.counterFontName, size: AppConfig.smallFontSize))
+                                            .foregroundStyle(Color.white)
+                                        
+                                    }
+                                    Spacer()
+                                }
+                                .padding()
+                            }
+                        }
                         .onTapGesture {
                             viewModel.isSoundOn = true
                             viewModel.activeSoundTheme = theme
                             SoundManager.instance.playSound(sound: .final, theme: theme)
-                        }
-                        .foregroundColor((viewModel.activeSoundTheme == theme && viewModel.isSoundOn) ? Color("StartColor") : Color.gray)
-                        .overlay {
-                            Text("\(theme)")
                         }
                 }
             }
@@ -44,5 +89,5 @@ struct SoundSelectorView: View {
 }
 
 #Preview {
-    SoundSelectorView(viewModel: GustavViewModel.shared)
+    SoundSelectorView()
 }

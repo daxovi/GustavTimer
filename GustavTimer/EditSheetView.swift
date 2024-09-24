@@ -18,34 +18,9 @@ struct EditSheetView: View {
         VStack(spacing: 0) {
             NavigationStack {
                 List {
-                    TabView {
-                        RoundedRectangle(cornerRadius: 15)
-                            .fill(Color.blue)
-                            .overlay {
-                                VStack {
-                                    Text("Meditace")
-                                    Spacer()
-                                    Text("zvukový tón po 5 minutách")
-                                    Spacer()
-                                }
-                                .padding()
-                            }
-                            .onTapGesture {
-                                viewModel.setBG(index: 9)
-                                viewModel.timers =  [TimerData(value: 300, name: "Meditace")]
-                                viewModel.saveSettings()
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                        RoundedRectangle(cornerRadius: 15)
-                            .fill(Color.red)
-                    }
-                    .tabViewStyle(.page)
-                 //   .indexViewStyle(.page(backgroundDisplayMode: .always))
-                    .listRowInsets(EdgeInsets())
-                    .listRowBackground(Color.clear)
-                    .frame(height: 200)
+                    quickTimers
                     Section("INTERVALS", content: {
-                        LapsView(viewModel: viewModel)
+                        LapsView()
                         if !viewModel.isTimerFull {
                             Button(action: viewModel.addTimer, label: {
                                 Text("ADD_INTERVAL")
@@ -60,17 +35,12 @@ struct EditSheetView: View {
                         NavigationLink {
                             SoundSelectorView(viewModel: viewModel)
                         } label: {
-                            HStack {
-                                Text("Sound")
-                                Spacer()
-                                Text("\(viewModel.isSoundOn ? viewModel.activeSoundTheme : "none")")
-                                    .foregroundStyle(Color(Color("ResetColor")))
-                            }
+                            ListButton(name: "Sound", value: "\(viewModel.isSoundOn ? viewModel.activeSoundTheme : "MUTE")")
                         }
                         NavigationLink {
                             BGSelectorView(viewModel: viewModel)
                         } label: {
-                            Text("BACKGROUND")
+                            ListButton(name: "BACKGROUND")
                         }
                     }
                     
@@ -84,8 +54,34 @@ struct EditSheetView: View {
             }
             .tint(Color("StopColor"))
             .font(Font.custom(AppConfig.appFontName, size: 15))
-            
         }
+    }
+    
+    
+        
+    
+    var quickTimers: some View {
+        TabView {
+            QuickTimerBanner(action: {
+                viewModel.setBG(index: 6)
+                viewModel.timers =  [TimerData(value: 20, name: "tabata"), TimerData(value: 10, name: "rest")]
+                viewModel.saveSettings()
+            }, titleLabel: "Tabata", buttonLabel: "20/10sec", image: Image("img-tabata"))
+            QuickTimerBanner(action: {
+                viewModel.setBG(index: 2)
+                viewModel.timers =  [TimerData(value: 60, name: "rest")]
+                viewModel.saveSettings()
+            }, titleLabel: "Rest", buttonLabel: "60sec", image: Image("img-rest"))
+            QuickTimerBanner(action: {
+                viewModel.setBG(index: 9)
+                viewModel.timers =  [TimerData(value: 300, name: "meditate")]
+                viewModel.saveSettings()
+            }, titleLabel: "Meditate", buttonLabel: "5min", image: Image("img-meditate"))
+        }
+        .tabViewStyle(.page)
+        .listRowInsets(EdgeInsets())
+        .listRowBackground(Color.clear)
+        .frame(height: 200)
     }
     
     var rateButton: some View {
@@ -97,30 +93,11 @@ struct EditSheetView: View {
         }
     }
     
-    // MARK: soundThemes
-    var soundThemes: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack {
-                ForEach(viewModel.soundThemeArray, id: \.self) { theme in
-                    Text(theme.uppercased())
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 8)
-                        .background(content: {
-                            RoundedRectangle(cornerRadius: 5)
-                                .fill(viewModel.activeSoundTheme == theme ? Color("StartColor") : Color.gray.opacity(0.2))
-                        })
-                        .fixedSize(horizontal: true, vertical: false)
-                        .onTapGesture {
-                            viewModel.activeSoundTheme = theme
-                            SoundManager.instance.playSound(sound: .final, theme: theme)
-                        }
-                }
-            }
-        }
-    }
-    
     var toolbarButtons: some View {
-        Button(action: viewModel.saveSettings) {
+        Button(action: {
+            viewModel.saveSettings()
+            viewModel.showingSheet = false
+        }) {
             Text("SAVE")
         }
         .foregroundStyle(Color("StopColor"))
@@ -128,3 +105,8 @@ struct EditSheetView: View {
 }
 
 
+struct EditSheetView_Previews: PreviewProvider {
+    static var previews: some View {
+        EditSheetView()
+    }
+}

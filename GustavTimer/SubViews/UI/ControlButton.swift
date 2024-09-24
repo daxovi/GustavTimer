@@ -30,7 +30,7 @@ struct ControlButton: View {
                     Text(text)
                         .foregroundStyle( color == Color("StartColor") ? Color("ResetColor") : Color("StartColor"))
                 }
-                .frame(height: viewModel.controlButtonsHeight)
+                .frame(height: 100)
         })
     }
 }

@@ -29,4 +29,6 @@ struct AppConfig {
     
     // Maximální název intervalu
     static let maxTimerName: Int = 12
+    
+    // Rozměry
 }

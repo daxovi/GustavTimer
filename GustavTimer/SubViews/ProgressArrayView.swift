@@ -22,6 +22,6 @@ struct ProgressArrayView: View {
             }
         }
         .padding(.horizontal)
-        .frame(height: CGFloat(viewModel.progressBarHeight))
+        .frame(height: 6)
     }
 }

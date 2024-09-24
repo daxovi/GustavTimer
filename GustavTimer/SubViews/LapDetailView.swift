@@ -103,6 +103,9 @@ struct LapDetailView: View {
             }
         }
         .navigationTitle("\(timer.name)")
+        .onDisappear {
+            viewModel.saveSettings()
+        }
     }
     
     func setTimer(newValue: String) {

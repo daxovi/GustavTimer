@@ -43,6 +43,8 @@
 		CFB1394F2AE59ED900EE8B2C /* BGImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1394E2AE59ED900EE8B2C /* BGImageModel.swift */; };
 		CFC3A7722AAF8B1B00BB8CC2 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC3A7712AAF8B1B00BB8CC2 /* ProgressBar.swift */; };
 		CFC81B022C5FF6F700F98E36 /* LapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC81B012C5FF6F700F98E36 /* LapDetailView.swift */; };
+		CFCD99CE2CA064CF0017BD0E /* QuickTimerBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD99CD2CA064CF0017BD0E /* QuickTimerBanner.swift */; };
+		CFCD99D02CA068B00017BD0E /* ListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD99CF2CA068B00017BD0E /* ListButton.swift */; };
 		CFCE3C742C43129B00D33AE3 /* LapsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE3C732C43129B00D33AE3 /* LapsView.swift */; };
 		CFCE3C762C431EC900D33AE3 /* HideKeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE3C752C431EC900D33AE3 /* HideKeyboardExtension.swift */; };
 		CFF71ACC2B8B99BC00884E82 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */; };
@@ -87,6 +89,8 @@
 		CFB1394E2AE59ED900EE8B2C /* BGImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGImageModel.swift; sourceTree = "<group>"; };
 		CFC3A7712AAF8B1B00BB8CC2 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		CFC81B012C5FF6F700F98E36 /* LapDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapDetailView.swift; sourceTree = "<group>"; };
+		CFCD99CD2CA064CF0017BD0E /* QuickTimerBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerBanner.swift; sourceTree = "<group>"; };
+		CFCD99CF2CA068B00017BD0E /* ListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListButton.swift; sourceTree = "<group>"; };
 		CFCE3C732C43129B00D33AE3 /* LapsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapsView.swift; sourceTree = "<group>"; };
 		CFCE3C752C431EC900D33AE3 /* HideKeyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboardExtension.swift; sourceTree = "<group>"; };
 		CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 		CF21843229F052590060706C /* GustavTimer */ = {
 			isa = PBXGroup;
 			children = (
+				CF9922BA2C9766DC004186DF /* Managers */,
 				CF7B1B422C8F6BE2005D4664 /* Fonts */,
 				CF7B1B3F2C8F6BA9005D4664 /* Models */,
 				CFCE3C772C431EF400D33AE3 /* Extensions */,
@@ -153,7 +158,6 @@
 		CF279C462C31A0CF0084C43F /* Sound */ = {
 			isa = PBXGroup;
 			children = (
-				CF279C4B2C31A8940084C43F /* SoundManager.swift */,
 				CF93EAF12C5E4C6B00A98ABD /* 90s-countdown.mp3 */,
 				CF93EAF82C5E551600A98ABD /* beep-countdown.mp3 */,
 				CF93EAFC2C5E569400A98ABD /* game-countdown.mp3 */,
@@ -172,6 +176,7 @@
 				CFC3A7712AAF8B1B00BB8CC2 /* ProgressBar.swift */,
 				CF70037C2C8DE816009F1531 /* HintButton.swift */,
 				CF9922B02C959AC1004186DF /* ControlButton.swift */,
+				CFCD99CF2CA068B00017BD0E /* ListButton.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -199,6 +204,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		CF9922BA2C9766DC004186DF /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				CF279C4B2C31A8940084C43F /* SoundManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		CFCE3C702C43104100D33AE3 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,6 +222,7 @@
 				CF01945B2C8A20D700CAC1BD /* SoundSelectorView.swift */,
 				CF70037E2C8DED37009F1531 /* BGSelectorView.swift */,
 				CF9922B62C976470004186DF /* ControlButtonsView.swift */,
+				CFCD99CD2CA064CF0017BD0E /* QuickTimerBanner.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -317,11 +331,13 @@
 				CF01945C2C8A20D700CAC1BD /* SoundSelectorView.swift in Sources */,
 				CFADBCF42AC9DC7B00AE27D8 /* EditSheetView.swift in Sources */,
 				CF9922B12C959AC1004186DF /* ControlButton.swift in Sources */,
+				CFCD99CE2CA064CF0017BD0E /* QuickTimerBanner.swift in Sources */,
 				CFADBCF22AC9C8AE00AE27D8 /* ProgressArrayView.swift in Sources */,
 				CF21844229F0528C0060706C /* GustavViewModel.swift in Sources */,
 				CF9922AD2C8F84C9004186DF /* AppConfig.swift in Sources */,
 				CF9922AF2C920C51004186DF /* BackgroundThumbnail.swift in Sources */,
 				CF70037D2C8DE816009F1531 /* HintButton.swift in Sources */,
+				CFCD99D02CA068B00017BD0E /* ListButton.swift in Sources */,
 				CF9922B72C976470004186DF /* ControlButtonsView.swift in Sources */,
 				CFCE3C762C431EC900D33AE3 /* HideKeyboardExtension.swift in Sources */,
 				CF70037F2C8DED37009F1531 /* BGSelectorView.swift in Sources */,
@@ -474,7 +490,8 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -511,7 +528,8 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

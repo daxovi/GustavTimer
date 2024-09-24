@@ -7,18 +7,41 @@
     "%@" : {
 
     },
-    "%@ %lld" : {
+    "%@ (%lld)" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "%1$@ %2$lld"
+            "value" : "%1$@ (%2$lld)"
           }
         }
       }
     },
     "%lld" : {
 
+    },
+    "5min" : {
+
+    },
+    "20/10sec" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "20/10s"
+          }
+        }
+      }
+    },
+    "60sec" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "60s"
+          }
+        }
+      }
     },
     "ABOUT" : {
       "localizations" : {
@@ -251,8 +274,31 @@
         }
       }
     },
-    "Meditace" : {
-
+    "Meditate" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meditace"
+          }
+        }
+      }
+    },
+    "MUTE" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "žádný"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "mute"
+          }
+        }
+      }
     },
     "NO" : {
       "localizations" : {
@@ -266,16 +312,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No"
-          }
-        }
-      }
-    },
-    "no sound" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "bez zvuku"
           }
         }
       }
@@ -313,6 +349,9 @@
         }
       }
     },
+    "Rest" : {
+
+    },
     "SAVE" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -330,19 +369,18 @@
         }
       }
     },
-    "SECONDS" : {
-      "extractionState" : "stale",
+    "SET_TIMER: " : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "vteřin"
+            "value" : "nastavit "
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "seconds"
+            "value" : "set timer: "
           }
         }
       }
@@ -377,16 +415,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "SKIP"
-          }
-        }
-      }
-    },
-    "Sound" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zvuk"
           }
         }
       }
@@ -442,6 +470,9 @@
         }
       }
     },
+    "Tabata" : {
+
+    },
     "Timer not found" : {
 
     },
@@ -476,9 +507,6 @@
           }
         }
       }
-    },
-    "zvukový tón po 5 minutách" : {
-
     }
   },
   "version" : "1.0"

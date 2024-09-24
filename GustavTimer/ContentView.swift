@@ -18,40 +18,30 @@ struct ContentView: View {
     @Query var customImage: [CustomImageModel]
     
     var body: some View {
-            ZStack {
-                background
+        ZStack {
+            background
+            
+            VStack {
+                ProgressArrayView()
+                    .padding(.top)
+                HStack {
+                    rounds
+                    Spacer()
+                    editButton
+                }
+                Spacer()
                 
-                VStack {
-                    ProgressArrayView()
-                        .padding(.top)
-                    HStack {
-                        rounds
-                        Spacer()
-                        editButton
-                    }
-                    Spacer()
-                    
-                    counter
-                    
-                    Spacer()
-                    
-                    ControlButtonsView()
-                }
-                .font(Font.custom("MartianMono-Regular", size: 15))
-                .ignoresSafeArea(edges: .bottom)
-                .statusBar(hidden: true)
-                .onChange(of: verticalSizeClass) { oldValue, newValue in
-                    viewModel.updateSizeClass(verticalSizeClass: newValue, horizontalSizeClass: horizontalSizeClass)
-                }
-                .onChange(of: horizontalSizeClass, { oldValue, newValue in
-                    viewModel.updateSizeClass(verticalSizeClass: verticalSizeClass, horizontalSizeClass: newValue)
-                })
-                .onAppear {
-                    viewModel.updateSizeClass(verticalSizeClass: verticalSizeClass, horizontalSizeClass: horizontalSizeClass)
-                }
-                .persistentSystemOverlays(.hidden)
+                counter
+                
+                Spacer()
+                
+                ControlButtonsView()
             }
-        
+            .font(Font.custom("MartianMono-Regular", size: 15))
+            .ignoresSafeArea(edges: .bottom)
+            .statusBar(hidden: true)
+            .persistentSystemOverlays(.hidden)
+        }
     }
     
     var background: some View {
@@ -67,7 +57,7 @@ struct ContentView: View {
     }
     
     var rounds: some View {
-        Text( "\(viewModel.timers[viewModel.activeTimerIndex].name) \(viewModel.round)")
+        Text( "\(viewModel.timers[viewModel.activeTimerIndex].name) (\(viewModel.round))")
                 .safeAreaPadding(.horizontal)
                 .foregroundColor(Color("StartColor").opacity((viewModel.round == 0) ? 0.0 : 1.0))
                 .animation(.easeInOut(duration: 0.2), value: viewModel.round)

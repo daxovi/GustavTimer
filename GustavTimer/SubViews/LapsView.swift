@@ -30,12 +30,7 @@ struct LapsView: View {
             NavigationLink {
                 LapDetailView(timer: timer)
             } label: {
-                HStack {
-                    Text("\(timer.name)")
-                    Spacer()
-                    Text("\(timer.value)")
-                        .foregroundColor(Color("ResetColor"))
-                }
+                ListButton(name: timer.name, value: "\(timer.value)")
             }
         }
         .onMove(perform: move)

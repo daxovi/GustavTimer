@@ -10,6 +10,10 @@ import PhotosUI
 import SwiftData
 
 struct BGSelectorView: View {
+    private let flexibleColumn = [
+        GridItem(.flexible(), spacing: 15),
+        GridItem(.flexible(), spacing: 15)
+    ]
     
     @StateObject var viewModel = GustavViewModel.shared
     @Environment(\.modelContext) var context
@@ -20,7 +24,7 @@ struct BGSelectorView: View {
     
     var body: some View {
         ScrollView() {
-            LazyVGrid(columns: viewModel.gridColumns, spacing: 10) {
+            LazyVGrid(columns: flexibleColumn, spacing: 15) {
                 ForEach(0..<viewModel.bgImages.count, id: \.self) { index in
                     viewModel.bgImages[index].getImage()
                         .backgroundThumbnail()
