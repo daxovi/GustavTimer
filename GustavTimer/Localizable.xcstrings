@@ -20,12 +20,32 @@
     "%lld" : {
 
     },
+    "1min" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1:00"
+          }
+        }
+      }
+    },
+    "1min30sec" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1:30"
+          }
+        }
+      }
+    },
     "5min" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "5min"
+            "value" : "5:00"
           }
         }
       }
@@ -35,7 +55,13 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "20/10s"
+            "value" : "20/10 sekund"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "20/10 seconds"
           }
         }
       }
@@ -45,7 +71,13 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "30/30s"
+            "value" : "30/30 sekund"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "30/30 seconds"
           }
         }
       }
@@ -55,7 +87,13 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "60/5s"
+            "value" : "60/5 sekund"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "60/5 seconds"
           }
         }
       }
@@ -65,7 +103,29 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "60s"
+            "value" : "60 sekund"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "60 seconds"
+          }
+        }
+      }
+    },
+    "300sec" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5 minut"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5 minutes"
           }
         }
       }
@@ -124,7 +184,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Pozadí"
           }
         },
@@ -140,7 +200,7 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Smazat"
           }
         },
@@ -417,14 +477,14 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "nastavit "
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "set timer: "
+            "value" : "set timer to "
           }
         }
       }
@@ -544,7 +604,14 @@
       }
     },
     "Try Gustav Weights" : {
-
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyzkoušej Gustav Weights"
+          }
+        }
+      }
     },
     "Work-Rest" : {
       "localizations" : {

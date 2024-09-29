@@ -10,6 +10,7 @@ import SwiftUI
 struct ControlButtonsView: View {
     @StateObject var viewModel = GustavViewModel.shared
     @Environment(\.requestReview) var requestReview
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     var body: some View {
         HStack(spacing: 0) {
@@ -22,6 +23,8 @@ struct ControlButtonsView: View {
                 ControlButton(action: { viewModel.resetTimer() }, text: "RESET")
             }
         }
+        .frame(maxWidth: 1000)
+        .clipShape(horizontalSizeClass == .regular ? RoundedRectangle(cornerRadius: 25) : RoundedRectangle(cornerRadius: 0))
     }
 }
 

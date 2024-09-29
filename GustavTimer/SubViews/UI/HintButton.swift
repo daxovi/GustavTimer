@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HintButton: View {
-    var labelText: String
+    var labelText: LocalizedStringKey
     var action: () -> ()
     
     var body: some View {
