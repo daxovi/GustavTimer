@@ -16,7 +16,7 @@ struct QuickTimerBanner: View {
     var body: some View {
         image
             .resizable()
-            .scaledToFill()
+            .aspectRatio(1.8, contentMode: .fill)
             .clipShape(RoundedRectangle(cornerRadius: 15))
             .overlay {
                 HStack(alignment: .center) {
@@ -40,8 +40,8 @@ struct QuickTimerBanner: View {
                                 Color("StartColor")
                                     .cornerRadius(10)
                             }
-                            .shadow(radius: 15  )
-                        Spacer()
+                            .shadow(radius: 15)
+                            .padding(.bottom, 25)
                     }
                     .padding(20)
                     Spacer()

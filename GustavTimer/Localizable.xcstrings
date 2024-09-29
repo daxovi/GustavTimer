@@ -21,7 +21,14 @@
 
     },
     "5min" : {
-
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5min"
+          }
+        }
+      }
     },
     "20/10sec" : {
       "localizations" : {
@@ -29,6 +36,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "20/10s"
+          }
+        }
+      }
+    },
+    "30/30sec" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "30/30s"
+          }
+        }
+      }
+    },
+    "60/5sec" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "60/5s"
           }
         }
       }
@@ -171,6 +198,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Edit"
+          }
+        }
+      }
+    },
+    "Fast switch" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fast Switch"
           }
         }
       }
@@ -350,7 +387,14 @@
       }
     },
     "Rest" : {
-
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odpočinek"
+          }
+        }
+      }
     },
     "SAVE" : {
       "extractionState" : "manual",
@@ -471,7 +515,14 @@
       }
     },
     "Tabata" : {
-
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tabata"
+          }
+        }
+      }
     },
     "Timer not found" : {
 
@@ -488,6 +539,19 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Timer settings"
+          }
+        }
+      }
+    },
+    "Try Gustav Weights" : {
+
+    },
+    "Work-Rest" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Work/Rest"
           }
         }
       }

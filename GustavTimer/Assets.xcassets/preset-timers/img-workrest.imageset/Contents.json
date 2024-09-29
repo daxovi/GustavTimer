@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "img-workrest.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

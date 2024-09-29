@@ -13,8 +13,7 @@ struct SoundSelectorView: View {
     @StateObject var viewModel = GustavViewModel.shared
     
     private let flexibleNarrowColumn = [
-        GridItem(.flexible(), spacing: 15),
-        GridItem(.flexible(), spacing: 15)
+        GridItem(.adaptive(minimum: 120))
     ]
     
     var body: some View {

@@ -11,8 +11,7 @@ import SwiftData
 
 struct BGSelectorView: View {
     private let flexibleColumn = [
-        GridItem(.flexible(), spacing: 15),
-        GridItem(.flexible(), spacing: 15)
+        GridItem(.adaptive(minimum: 120))
     ]
     
     @StateObject var viewModel = GustavViewModel.shared

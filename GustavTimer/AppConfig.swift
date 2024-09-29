@@ -18,6 +18,7 @@ struct AppConfig {
     
     // Odkazy
     static let reviewURL: String = "https://apps.apple.com/app/id6478176431?action=write-review"
+    static let weightsURL: String = "https://apps.apple.com/us/app/gustav-weights/id6483001116"
     
     // Barvy
     static let primaryColor: Color = Color("PrimaryColor")

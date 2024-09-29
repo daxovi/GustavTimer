@@ -28,7 +28,6 @@ struct EditSheetView: View {
                             })
                         }
                     })
-                    
                     Section("TIMER_SETTINGS") {
                         Toggle("LOOP", isOn: $viewModel.isLooping)
                             .tint(Color("StartColor"))
@@ -43,9 +42,9 @@ struct EditSheetView: View {
                             ListButton(name: "BACKGROUND")
                         }
                     }
-                    
                     Section("ABOUT") {
                         rateButton
+                        weightsButton
                     }
                 }
                 .navigationTitle("EDIT_TITLE")
@@ -57,9 +56,6 @@ struct EditSheetView: View {
         }
     }
     
-    
-        
-    
     var quickTimers: some View {
         TabView {
             QuickTimerBanner(action: {
@@ -67,6 +63,16 @@ struct EditSheetView: View {
                 viewModel.timers =  [TimerData(value: 20, name: "tabata"), TimerData(value: 10, name: "rest")]
                 viewModel.saveSettings()
             }, titleLabel: "Tabata", buttonLabel: "20/10sec", image: Image("img-tabata"))
+            QuickTimerBanner(action: {
+                viewModel.setBG(index: 0)
+                viewModel.timers =  [TimerData(value: 30, name: "work"), TimerData(value: 30, name: "rest")]
+                viewModel.saveSettings()
+            }, titleLabel: "Work-Rest", buttonLabel: "30/30sec", image: Image("img-workrest"))
+            QuickTimerBanner(action: {
+                viewModel.setBG(index: 3)
+                viewModel.timers =  [TimerData(value: 60, name: "work"), TimerData(value: 5, name: "ready")]
+                viewModel.saveSettings()
+            }, titleLabel: "Fast switch", buttonLabel: "60/5sec", image: Image("img-fastswitch"))
             QuickTimerBanner(action: {
                 viewModel.setBG(index: 2)
                 viewModel.timers =  [TimerData(value: 60, name: "rest")]
@@ -81,7 +87,7 @@ struct EditSheetView: View {
         .tabViewStyle(.page)
         .listRowInsets(EdgeInsets())
         .listRowBackground(Color.clear)
-        .frame(height: 200)
+        .aspectRatio(1.8, contentMode: .fill)
     }
     
     var rateButton: some View {
@@ -90,6 +96,14 @@ struct EditSheetView: View {
             guard let writeReviewURL = URL(string: url)
             else { fatalError("Expected a valid URL") }
             UIApplication.shared.open(writeReviewURL, options: [:], completionHandler: nil)
+        }
+    }
+    var weightsButton: some View {
+        Button("Try Gustav Weights") {
+            let url = AppConfig.weightsURL
+            guard let weightsURL = URL(string: url)
+            else { fatalError("Expected a valid URL") }
+            UIApplication.shared.open(weightsURL, options: [:], completionHandler: nil)
         }
     }
     
