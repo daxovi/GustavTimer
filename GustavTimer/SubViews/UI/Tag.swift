@@ -11,6 +11,7 @@ struct Tag: View {
     var label: String
     var isHighlighted: Bool
     var action: (() -> Void)?
+    @Environment(\.colorScheme) var colorScheme
     
     init(_ label: String, isHighlighted: Bool = false, action: (() -> Void)? = nil) {
         self.label = label
@@ -26,11 +27,11 @@ struct Tag: View {
                     .background(
                         RoundedRectangle(cornerRadius: 20)
                             .foregroundStyle(
-                                Color(isHighlighted ? .accent : .white)
+                                Color(isHighlighted ? .accent : (colorScheme == .light ? .white : .black))
                                     .shadow(.inner(color: .black.opacity(0.35), radius: 1, x: 0, y: 1))
                             )
                     )
-                    .foregroundStyle(Color("ResetColor"))
+                    .foregroundStyle(colorScheme == .light ? Color("ResetColor") : .white)
                     .onTapGesture { action?() }
                     .textCase(.uppercase)
     }
