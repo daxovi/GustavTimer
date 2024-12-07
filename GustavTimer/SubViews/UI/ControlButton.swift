@@ -9,17 +9,8 @@ import SwiftUI
 
 struct ControlButton: View {
     var action: () -> ()
-    var text: String
-    var color: Color {
-        switch text {
-        case "START":
-            Color("StartColor")
-        case "STOP":
-            Color("StopColor")
-        default:
-            Color("ResetColor")
-        }
-    }
+    var text: LocalizedStringKey
+    var color: Color
     
     @StateObject var viewModel = GustavViewModel.shared
     
@@ -28,7 +19,10 @@ struct ControlButton: View {
             color
                 .overlay {
                     Text(text)
-                        .foregroundStyle( color == Color("StartColor") ? Color("ResetColor") : Color("StartColor"))
+                        .foregroundStyle(color == .start ? .reset : .start)
+                        .font(Font.custom("MartianMono-Regular", size: 16))
+                        .textCase(.uppercase)
+
                 }
                 .frame(height: 100)
         })

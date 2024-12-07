@@ -2,6 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLName</key>
+			<string>cz.daliborjanecek.GustavTimer</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>gustavtimerapp</string>
+			</array>
+		</dict>
+	</array>
 	<key>UIAppFonts</key>
 	<array>
 		<string>MartianMonoSemiCondensed-Regular.ttf</string>
@@ -10,6 +23,7 @@
 		<string>MartianMonoCondensed-Bold.ttf</string>
 		<string>MartianMono-Bold.ttf</string>
 		<string>MartianMono-Regular.ttf</string>
+		<string>MartianMono-Thin.ttf</string>
 	</array>
 </dict>
 </plist>

@@ -16,11 +16,11 @@ struct ControlButtonsView: View {
         HStack(spacing: 0) {
             ControlButton(action: {
                 viewModel.startStopTimer(requestReview: {requestReview()})
-            }, text: viewModel.isTimerRunning ? "STOP" : "START")
+            }, text: viewModel.isTimerRunning ? "STOP" : "START", color: viewModel.isTimerRunning ? .stop : .start)
             if viewModel.isTimerRunning {
-                ControlButton(action: { viewModel.skipLap() }, text: "SKIP")
+                ControlButton(action: { viewModel.skipLap() }, text: "SKIP", color: .reset)
             } else {
-                ControlButton(action: { viewModel.resetTimer() }, text: "RESET")
+                ControlButton(action: { viewModel.resetTimer() }, text: "RESET", color: .reset)
             }
         }
         .frame(maxWidth: 1000)

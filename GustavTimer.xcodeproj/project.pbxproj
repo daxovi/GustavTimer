@@ -42,6 +42,9 @@
 		CFB1394D2AE572D300EE8B2C /* BGImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1394C2AE572D300EE8B2C /* BGImageView.swift */; };
 		CFB1394F2AE59ED900EE8B2C /* BGImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1394E2AE59ED900EE8B2C /* BGImageModel.swift */; };
 		CFC3A7722AAF8B1B00BB8CC2 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC3A7712AAF8B1B00BB8CC2 /* ProgressBar.swift */; };
+		CFC4C1852D04766D0086CEBB /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC4C1842D04766D0086CEBB /* Tag.swift */; };
+		CFC4C1872D047C1D0086CEBB /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC4C1862D047C1D0086CEBB /* WhatsNewView.swift */; };
+		CFC4C1892D0499010086CEBB /* MartianMono-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFC4C1882D0499010086CEBB /* MartianMono-Thin.ttf */; };
 		CFC81B022C5FF6F700F98E36 /* LapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC81B012C5FF6F700F98E36 /* LapDetailView.swift */; };
 		CFCD99CE2CA064CF0017BD0E /* QuickTimerBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD99CD2CA064CF0017BD0E /* QuickTimerBanner.swift */; };
 		CFCD99D02CA068B00017BD0E /* ListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD99CF2CA068B00017BD0E /* ListButton.swift */; };
@@ -88,6 +91,9 @@
 		CFB1394C2AE572D300EE8B2C /* BGImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGImageView.swift; sourceTree = "<group>"; };
 		CFB1394E2AE59ED900EE8B2C /* BGImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGImageModel.swift; sourceTree = "<group>"; };
 		CFC3A7712AAF8B1B00BB8CC2 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		CFC4C1842D04766D0086CEBB /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		CFC4C1862D047C1D0086CEBB /* WhatsNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewView.swift; sourceTree = "<group>"; };
+		CFC4C1882D0499010086CEBB /* MartianMono-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Thin.ttf"; sourceTree = "<group>"; };
 		CFC81B012C5FF6F700F98E36 /* LapDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapDetailView.swift; sourceTree = "<group>"; };
 		CFCD99CD2CA064CF0017BD0E /* QuickTimerBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerBanner.swift; sourceTree = "<group>"; };
 		CFCD99CF2CA068B00017BD0E /* ListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListButton.swift; sourceTree = "<group>"; };
@@ -136,6 +142,7 @@
 				CF9922AC2C8F84C9004186DF /* AppConfig.swift */,
 				CF21843329F052590060706C /* GustavTimerApp.swift */,
 				CF21843529F052590060706C /* ContentView.swift */,
+				CFC4C1862D047C1D0086CEBB /* WhatsNewView.swift */,
 				CFB1394C2AE572D300EE8B2C /* BGImageView.swift */,
 				CFADBCF32AC9DC7B00AE27D8 /* EditSheetView.swift */,
 				CF21844129F0528C0060706C /* GustavViewModel.swift */,
@@ -177,6 +184,7 @@
 				CF70037C2C8DE816009F1531 /* HintButton.swift */,
 				CF9922B02C959AC1004186DF /* ControlButton.swift */,
 				CFCD99CF2CA068B00017BD0E /* ListButton.swift */,
+				CFC4C1842D04766D0086CEBB /* Tag.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -194,6 +202,7 @@
 		CF7B1B422C8F6BE2005D4664 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				CFC4C1882D0499010086CEBB /* MartianMono-Thin.ttf */,
 				CF5B11152AD33DE200F42131 /* MartianMono-Regular.ttf */,
 				CF0194572C8A1A1E00CAC1BD /* MartianMonoCondensed-Regular.ttf */,
 				CF0194552C8A186700CAC1BD /* MartianMonoSemiCondensed-Bold.ttf */,
@@ -306,6 +315,7 @@
 				CF0194542C8A17C100CAC1BD /* MartianMonoCondensed-Bold.ttf in Resources */,
 				CF93EAF32C5E4C6B00A98ABD /* 90s-countdown.mp3 in Resources */,
 				CF93EAFF2C5E569400A98ABD /* game-final.mp3 in Resources */,
+				CFC4C1892D0499010086CEBB /* MartianMono-Thin.ttf in Resources */,
 				CF93EB012C5E679700A98ABD /* PrivacyInfo.xcprivacy in Resources */,
 				CF21843829F0525E0060706C /* Assets.xcassets in Resources */,
 				CF93EAFA2C5E551600A98ABD /* beep-countdown.mp3 in Resources */,
@@ -331,8 +341,10 @@
 				CF01945C2C8A20D700CAC1BD /* SoundSelectorView.swift in Sources */,
 				CFADBCF42AC9DC7B00AE27D8 /* EditSheetView.swift in Sources */,
 				CF9922B12C959AC1004186DF /* ControlButton.swift in Sources */,
+				CFC4C1852D04766D0086CEBB /* Tag.swift in Sources */,
 				CFCD99CE2CA064CF0017BD0E /* QuickTimerBanner.swift in Sources */,
 				CFADBCF22AC9C8AE00AE27D8 /* ProgressArrayView.swift in Sources */,
+				CFC4C1872D047C1D0086CEBB /* WhatsNewView.swift in Sources */,
 				CF21844229F0528C0060706C /* GustavViewModel.swift in Sources */,
 				CF9922AD2C8F84C9004186DF /* AppConfig.swift in Sources */,
 				CF9922AF2C920C51004186DF /* BackgroundThumbnail.swift in Sources */,

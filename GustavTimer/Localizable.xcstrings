@@ -130,6 +130,9 @@
         }
       }
     },
+    "2025" : {
+
+    },
     "ABOUT" : {
       "localizations" : {
         "cs" : {
@@ -192,6 +195,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Background"
+          }
+        }
+      }
+    },
+    "Challenge" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "výzva"
           }
         }
       }
@@ -262,6 +275,16 @@
         }
       }
     },
+    "enter challenge" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "zahájit výzvu"
+          }
+        }
+      }
+    },
     "Fast switch" : {
       "localizations" : {
         "cs" : {
@@ -320,6 +343,9 @@
         }
       }
     },
+    "Landing page" : {
+
+    },
     "LAP" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -377,6 +403,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Meditace"
+          }
+        }
+      }
+    },
+    "monthly" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "měsíční"
           }
         }
       }

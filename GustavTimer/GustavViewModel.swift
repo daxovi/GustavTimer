@@ -21,6 +21,7 @@ class GustavViewModel: ObservableObject {
     @Published var round: Int = 0
     @Published var count: Int = 0
     @Published var showingSheet = false
+    @Published var showingWhatsNew = false
     
     @Published var timers: [TimerData] = [] {
         didSet {

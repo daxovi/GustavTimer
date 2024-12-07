@@ -17,6 +17,8 @@ struct ContentView: View {
     
     @Query var customImage: [CustomImageModel]
     
+    @State var landingPage: Bool = false
+    
     var body: some View {
         ZStack {
             background
@@ -41,6 +43,82 @@ struct ContentView: View {
             .ignoresSafeArea(edges: .bottom)
             .statusBar(hidden: true)
             .persistentSystemOverlays(.hidden)
+            
+            if landingPage {
+                Color.red
+                    .overlay(content: {
+                        Text("Landing page")
+                    })
+                    .padding(100)
+                    .onTapGesture {
+                        landingPage.toggle()
+                    }
+            }
+            
+        }
+        .onAppear {
+            viewModel.showingWhatsNew = true
+        }
+        .sheet(isPresented: $viewModel.showingWhatsNew) {
+            WhatsNewView(buttonLabel: "enter challenge", action: {
+                viewModel.showingWhatsNew = false
+                viewModel.showingSheet.toggle()
+            }) {
+                VStack {
+                    HStack {
+                            Text("2025")
+                            .font(Font.custom("MartianMono-Bold", size: deviceType() == .smalliPhone ? 40 : 55))
+                            .foregroundStyle(Color.stop)
+                        Spacer()
+                    }
+                    HStack {
+                        Text(LocalizedStringKey("monthly"))
+                            .textCase(.uppercase)
+                        Spacer()
+                    }
+                    HStack {
+                            Text(LocalizedStringKey("Challenge"))
+                            .textCase(.uppercase)
+                        Spacer()
+                    }
+                }
+                .font(Font.custom("MartianMono-Thin", size: deviceType() == .smalliPhone ? 40 : 55))
+                .padding(.vertical, deviceType() == .smalliPhone ? 0 : 25)
+            }
+            
+        }
+        // depplink
+        .onOpenURL { URL in
+            guard URL.scheme == "gustavtimerapp" else {
+                return
+            }
+            guard let components = URLComponents(url: URL, resolvingAgainstBaseURL: true) else {
+                print("Invalid URL")
+                return
+            }
+            
+            guard let action = components.host, action == "landing" else {
+                print("Unknown URL, we can't handle this one!")
+                return
+            }
+            landingPage = true
+        }
+    }
+    
+    enum DeviceType {
+        case smalliPhone
+        case largeiPhone
+    }
+
+    func deviceType() -> DeviceType {
+        let screenWidth = UIScreen.main.bounds.width
+        
+        if screenWidth <= 385 {
+            // iPhone SE, SE2, iPhone 8
+            return .smalliPhone
+        } else {
+            // iPhone X, 11, 12, a další větší modely
+            return .largeiPhone
         }
     }
     
@@ -58,9 +136,9 @@ struct ContentView: View {
     
     var rounds: some View {
         Text( "\(viewModel.timers[viewModel.activeTimerIndex].name) (\(viewModel.round))")
-                .safeAreaPadding(.horizontal)
-                .foregroundColor(Color("StartColor").opacity((viewModel.round == 0) ? 0.0 : 1.0))
-                .animation(.easeInOut(duration: 0.2), value: viewModel.round)
+            .safeAreaPadding(.horizontal)
+            .foregroundColor(Color("StartColor").opacity((viewModel.round == 0) ? 0.0 : 1.0))
+            .animation(.easeInOut(duration: 0.2), value: viewModel.round)
     }
     
     var counter: some View {
