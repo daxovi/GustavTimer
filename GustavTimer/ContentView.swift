@@ -60,31 +60,10 @@ struct ContentView: View {
             viewModel.showingWhatsNew = true
         }
         .sheet(isPresented: $viewModel.showingWhatsNew) {
-            WhatsNewView(buttonLabel: "enter challenge", action: {
+            WhatsNewView(buttonLabel: "enter challenge", tags: ["#whatsnew", "V1.3", "#newyear"], action: {
                 viewModel.showingWhatsNew = false
                 viewModel.showingSheet.toggle()
-            }) {
-                VStack {
-                    HStack {
-                            Text("2025")
-                            .font(Font.custom("MartianMono-Bold", size: deviceType() == .smalliPhone ? 40 : 55))
-                            .foregroundStyle(Color.stop)
-                        Spacer()
-                    }
-                    HStack {
-                        Text(LocalizedStringKey("monthly"))
-                            .textCase(.uppercase)
-                        Spacer()
-                    }
-                    HStack {
-                            Text(LocalizedStringKey("Challenge"))
-                            .textCase(.uppercase)
-                        Spacer()
-                    }
-                }
-                .font(Font.custom("MartianMono-Thin", size: deviceType() == .smalliPhone ? 40 : 55))
-                .padding(.vertical, deviceType() == .smalliPhone ? 0 : 25)
-            }
+            })
             
         }
         // depplink
