@@ -57,7 +57,7 @@ struct ContentView: View {
             
         }
         .onAppear {
-            viewModel.showingWhatsNew = true
+            viewModel.showWhatsNew()
         }
         .sheet(isPresented: $viewModel.showingWhatsNew) {
             WhatsNewView(buttonLabel: "enter challenge", tags: ["#whatsnew", "V1.3", "#newyear"], action: {
