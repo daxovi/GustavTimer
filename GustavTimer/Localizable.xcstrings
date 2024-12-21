@@ -196,17 +196,6 @@
         }
       }
     },
-    "Challenge" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "výzva"
-          }
-        }
-      }
-    },
     "DELETE" : {
       "localizations" : {
         "cs" : {
@@ -401,17 +390,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Meditace"
-          }
-        }
-      }
-    },
-    "monthly" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "měsíční"
           }
         }
       }
@@ -644,6 +622,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vyzkoušej Gustav Weights"
+          }
+        }
+      }
+    },
+    "What's New" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Co je nového"
           }
         }
       }

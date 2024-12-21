@@ -45,6 +45,7 @@ struct EditSheetView: View {
                     }
                     Section("ABOUT") {
                         rateButton
+                        whatsNewButton
                         weightsButton
                     }
                 }
@@ -142,6 +143,15 @@ struct EditSheetView: View {
             guard let weightsURL = URL(string: url)
             else { fatalError("Expected a valid URL") }
             UIApplication.shared.open(weightsURL, options: [:], completionHandler: nil)
+        }
+    }
+    
+    var whatsNewButton: some View {
+        Button("What's New") {
+            viewModel.showingSheet = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                viewModel.showingWhatsNew = true
+            }
         }
     }
     
