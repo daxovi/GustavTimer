@@ -39,6 +39,8 @@ class GustavViewModel: ObservableObject {
     @AppStorage("stopCounter") var stopCounter: Int = 0
     @AppStorage("whatsNewVersion") var whatsNewVersion: Int = 0
     
+    @Published var startedFromDeeplink: Bool = false
+    
     var activeTimerIndex: Int = 0
     var timer: AnyCancellable?
     
@@ -173,6 +175,7 @@ class GustavViewModel: ObservableObject {
         self.progress = 0.0
         self.isTimerRunning = false
         self.count = timers[0].value
+        startedFromDeeplink = false
     }
     
     func setCount(count newCount: String) {
@@ -296,6 +299,58 @@ class GustavViewModel: ObservableObject {
             whatsNewVersion = AppConfig.version
         }
     }
+    
+    // MARK: Deeplinks
+    // fungují deeplinks s nastavením timeru gustavtimerapp://timer?warmup=10&run=50&cooldown=20
+    // i deeplinks pro whatsnew gustavtimerapp://whatsnew
+    func handleDeepLink(url: URL) {
+            guard url.scheme == "gustavtimerapp" else {
+                print("Invalid scheme")
+                return
+            }
+
+            guard let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
+                print("Invalid URL")
+                return
+            }
+
+        // Zpracování podle host (cesty za schematem)
+                if let host = components.host {
+                    switch host {
+                    case "whatsnew":
+                        // Aktivace obrazovky "What's New"
+                        showingWhatsNew = true
+                        print("Navigating to What's New page")
+                        
+                    case "timer":
+                        // Zpracování intervalů z query parametrů
+                        let tempTimers: [TimerData] = timers
+                        timers = []
+                        var tempIntervals: [String: Int] = [:]
+                        if let queryItems = components.queryItems {
+                            for item in queryItems {
+                                if let value = item.value, let intValue = Int(value) {
+                                    tempIntervals[item.name] = intValue
+                                    timers.append(TimerData(value: intValue, name: item.name))
+                                }
+                            }
+                        }
+                        // pokud výsledkem nebude nově nastavený timer tak se vrátí zpět původní timer
+                        if timers.isEmpty {
+                            timers = tempTimers
+                        } else {
+                            startedFromDeeplink = true
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                self.showingSheet = true
+                            }
+                        }
+                    default:
+                        print("Unknown host: \(host)")
+                    }
+                } else {
+                    print("No host found")
+                }
+        }
     
     /*
     // MARK: Display sizes

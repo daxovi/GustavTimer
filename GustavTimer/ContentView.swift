@@ -68,19 +68,7 @@ struct ContentView: View {
         }
         // depplink
         .onOpenURL { URL in
-            guard URL.scheme == "gustavtimerapp" else {
-                return
-            }
-            guard let components = URLComponents(url: URL, resolvingAgainstBaseURL: true) else {
-                print("Invalid URL")
-                return
-            }
-            
-            guard let action = components.host, action == "landing" else {
-                print("Unknown URL, we can't handle this one!")
-                return
-            }
-            landingPage = true
+            viewModel.handleDeepLink(url: URL)
         }
     }
     
