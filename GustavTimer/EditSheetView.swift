@@ -13,14 +13,16 @@ import SwiftUI
 
 struct EditSheetView: View {
     @StateObject var viewModel = GustavViewModel.shared
+    @Environment(\.colorScheme) var colorScheme
+    @State private var scrollPosition: CGFloat = 300.0
     
     var body: some View {
         VStack(spacing: 0) {
             NavigationStack {
                 List {
-                    quickTimers
+                  //  quickTimers
 
-                    Section("INTERVALS", content: {
+                    Section {
                         LapsView()
                         if !viewModel.isTimerFull {
                             Button(action: viewModel.addTimer, label: {
@@ -28,7 +30,23 @@ struct EditSheetView: View {
                                     .foregroundStyle(Color("ResetColor"))
                             })
                         }
-                    })
+                    }
+                    header: {
+                        VStack {
+                            Text("INTERVALS")
+                        }
+                        .padding(.top, 400)
+                        .background(
+                            GeometryReader(content: { geometry in
+                                Color.clear
+                                    .onChange(
+                                        of: geometry.frame(in: .global).minY
+                                    ) { oldValue, newValue in
+                                        scrollPosition = newValue
+                                    }
+                            })
+                        )
+                    }
                     Section("TIMER_SETTINGS") {
                         Toggle("LOOP", isOn: $viewModel.isLooping)
                             .tint(Color("StartColor"))
@@ -52,6 +70,24 @@ struct EditSheetView: View {
                 .navigationTitle("EDIT_TITLE")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar { toolbarButtons }
+                .background(
+                    ZStack {
+                        colorScheme == .light ? Color(.secondarySystemBackground) : Color(.systemBackground)
+                            
+                        VStack {
+                            Image("monthly1")
+                                .resizable()
+                                .padding(.horizontal, -10)
+                                .scaledToFit()
+                                .blur(radius: (100 - scrollPosition) * 0.02)
+                            Spacer()
+                        }
+
+                    }
+                        .ignoresSafeArea()
+                )
+                .scrollContentBackground(.hidden)
+
             }
             .tint(Color("StopColor"))
             .font(Font.custom(AppConfig.appFontName, size: 15))
