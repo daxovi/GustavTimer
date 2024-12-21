@@ -130,9 +130,6 @@
         }
       }
     },
-    "2025" : {
-
-    },
     "ABOUT" : {
       "localizations" : {
         "cs" : {
@@ -200,6 +197,7 @@
       }
     },
     "Challenge" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -408,6 +406,7 @@
       }
     },
     "monthly" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

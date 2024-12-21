@@ -21,7 +21,7 @@ class GustavViewModel: ObservableObject {
     @Published var round: Int = 0
     @Published var count: Int = 0
     @Published var showingSheet = false
-    @Published var showingWhatsNew = false
+    @Published var showingWhatsNew: Bool = false
     
     @Published var timers: [TimerData] = [] {
         didSet {
@@ -37,6 +37,7 @@ class GustavViewModel: ObservableObject {
     @Published var duration: Double = 1.0
     @AppStorage("bgIndex") var bgIndex = 0
     @AppStorage("stopCounter") var stopCounter: Int = 0
+    @AppStorage("whatsNewVersion") var whatsNewVersion: Int = 0
     
     var activeTimerIndex: Int = 0
     var timer: AnyCancellable?
@@ -286,6 +287,13 @@ class GustavViewModel: ObservableObject {
         } else {
             clearUserDefaults()
             self.timers = [TimerData(value: 60, name: "Work"), TimerData(value: 30, name: "Rest")]
+        }
+    }
+    
+    func showWhatsNew() {
+        if whatsNewVersion < AppConfig.version {
+            showingWhatsNew = true
+            whatsNewVersion = AppConfig.version
         }
     }
     

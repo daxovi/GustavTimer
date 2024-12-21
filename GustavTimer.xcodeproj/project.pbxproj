@@ -45,6 +45,7 @@
 		CFC4C1852D04766D0086CEBB /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC4C1842D04766D0086CEBB /* Tag.swift */; };
 		CFC4C1872D047C1D0086CEBB /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC4C1862D047C1D0086CEBB /* WhatsNewView.swift */; };
 		CFC4C1892D0499010086CEBB /* MartianMono-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFC4C1882D0499010086CEBB /* MartianMono-Thin.ttf */; };
+		CFC4C1F72D04C0C80086CEBB /* whatsnew.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFC4C1F62D04C0C80086CEBB /* whatsnew.mp4 */; };
 		CFC81B022C5FF6F700F98E36 /* LapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC81B012C5FF6F700F98E36 /* LapDetailView.swift */; };
 		CFCD99CE2CA064CF0017BD0E /* QuickTimerBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD99CD2CA064CF0017BD0E /* QuickTimerBanner.swift */; };
 		CFCD99D02CA068B00017BD0E /* ListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD99CF2CA068B00017BD0E /* ListButton.swift */; };
@@ -94,6 +95,7 @@
 		CFC4C1842D04766D0086CEBB /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		CFC4C1862D047C1D0086CEBB /* WhatsNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewView.swift; sourceTree = "<group>"; };
 		CFC4C1882D0499010086CEBB /* MartianMono-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Thin.ttf"; sourceTree = "<group>"; };
+		CFC4C1F62D04C0C80086CEBB /* whatsnew.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = whatsnew.mp4; sourceTree = "<group>"; };
 		CFC81B012C5FF6F700F98E36 /* LapDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapDetailView.swift; sourceTree = "<group>"; };
 		CFCD99CD2CA064CF0017BD0E /* QuickTimerBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerBanner.swift; sourceTree = "<group>"; };
 		CFCD99CF2CA068B00017BD0E /* ListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListButton.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				CF9922AC2C8F84C9004186DF /* AppConfig.swift */,
 				CF21843329F052590060706C /* GustavTimerApp.swift */,
 				CF21843529F052590060706C /* ContentView.swift */,
+				CFC4C18A2D04B5E30086CEBB /* Video */,
 				CFC4C1862D047C1D0086CEBB /* WhatsNewView.swift */,
 				CFB1394C2AE572D300EE8B2C /* BGImageView.swift */,
 				CFADBCF32AC9DC7B00AE27D8 /* EditSheetView.swift */,
@@ -219,6 +222,14 @@
 				CF279C4B2C31A8940084C43F /* SoundManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		CFC4C18A2D04B5E30086CEBB /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				CFC4C1F62D04C0C80086CEBB /* whatsnew.mp4 */,
+			);
+			path = Video;
 			sourceTree = "<group>";
 		};
 		CFCE3C702C43104100D33AE3 /* SubViews */ = {
@@ -320,6 +331,7 @@
 				CF21843829F0525E0060706C /* Assets.xcassets in Resources */,
 				CF93EAFA2C5E551600A98ABD /* beep-countdown.mp3 in Resources */,
 				CF5B11142AD33D8900F42131 /* MartianMono-Bold.ttf in Resources */,
+				CFC4C1F72D04C0C80086CEBB /* whatsnew.mp4 in Resources */,
 				CF5B11162AD33DE200F42131 /* MartianMono-Regular.ttf in Resources */,
 				CF93EAF22C5E4C6B00A98ABD /* 90s-final.mp3 in Resources */,
 				CF01945A2C8A1AB500CAC1BD /* MartianMonoSemiCondensed-Regular.ttf in Resources */,
@@ -509,7 +521,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = cz.daliborjanecek.GustavTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -547,7 +559,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = cz.daliborjanecek.GustavTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
