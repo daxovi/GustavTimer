@@ -24,6 +24,9 @@
 		CF70037F2C8DED37009F1531 /* BGSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70037E2C8DED37009F1531 /* BGSelectorView.swift */; };
 		CF7B1B412C8F6BD3005D4664 /* TimerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7B1B402C8F6BD3005D4664 /* TimerData.swift */; };
 		CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */; };
+		CF8E14652D173DFB00155BE8 /* 01.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF8E14642D173DFB00155BE8 /* 01.mp4 */; };
+		CF8E14672D17404900155BE8 /* VideoPlayerFullscreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E14662D17403900155BE8 /* VideoPlayerFullscreen.swift */; };
+		CF8E146B2D1745DB00155BE8 /* MonthlyMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E146A2D1745CC00155BE8 /* MonthlyMenuItem.swift */; };
 		CF93EAF22C5E4C6B00A98ABD /* 90s-final.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF93EAF02C5E4C6B00A98ABD /* 90s-final.mp3 */; };
 		CF93EAF32C5E4C6B00A98ABD /* 90s-countdown.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF93EAF12C5E4C6B00A98ABD /* 90s-countdown.mp3 */; };
 		CF93EAF52C5E4F6200A98ABD /* bell-final.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF93EAF42C5E4F6200A98ABD /* bell-final.mp3 */; };
@@ -74,6 +77,9 @@
 		CF70037E2C8DED37009F1531 /* BGSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGSelectorView.swift; sourceTree = "<group>"; };
 		CF7B1B402C8F6BD3005D4664 /* TimerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerData.swift; sourceTree = "<group>"; };
 		CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageModel.swift; sourceTree = "<group>"; };
+		CF8E14642D173DFB00155BE8 /* 01.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 01.mp4; sourceTree = "<group>"; };
+		CF8E14662D17403900155BE8 /* VideoPlayerFullscreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerFullscreen.swift; sourceTree = "<group>"; };
+		CF8E146A2D1745CC00155BE8 /* MonthlyMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyMenuItem.swift; sourceTree = "<group>"; };
 		CF93EAF02C5E4C6B00A98ABD /* 90s-final.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "90s-final.mp3"; sourceTree = "<group>"; };
 		CF93EAF12C5E4C6B00A98ABD /* 90s-countdown.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "90s-countdown.mp3"; sourceTree = "<group>"; };
 		CF93EAF42C5E4F6200A98ABD /* bell-final.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bell-final.mp3"; sourceTree = "<group>"; };
@@ -142,6 +148,7 @@
 				CF279C462C31A0CF0084C43F /* Sound */,
 				CF5B11122AD33CE500F42131 /* Info.plist */,
 				CF9922AC2C8F84C9004186DF /* AppConfig.swift */,
+				CF8E14692D1745C300155BE8 /* MonthlyChallenge */,
 				CF21843329F052590060706C /* GustavTimerApp.swift */,
 				CF21843529F052590060706C /* ContentView.swift */,
 				CFC4C18A2D04B5E30086CEBB /* Video */,
@@ -216,6 +223,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		CF8E14692D1745C300155BE8 /* MonthlyChallenge */ = {
+			isa = PBXGroup;
+			children = (
+				CF8E146A2D1745CC00155BE8 /* MonthlyMenuItem.swift */,
+			);
+			path = MonthlyChallenge;
+			sourceTree = "<group>";
+		};
 		CF9922BA2C9766DC004186DF /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +242,7 @@
 		CFC4C18A2D04B5E30086CEBB /* Video */ = {
 			isa = PBXGroup;
 			children = (
+				CF8E14642D173DFB00155BE8 /* 01.mp4 */,
 				CFC4C1F62D04C0C80086CEBB /* whatsnew.mp4 */,
 			);
 			path = Video;
@@ -237,6 +253,7 @@
 			children = (
 				CF70037B2C8DE807009F1531 /* UI */,
 				CFADBCF12AC9C8AE00AE27D8 /* ProgressArrayView.swift */,
+				CF8E14662D17403900155BE8 /* VideoPlayerFullscreen.swift */,
 				CFCE3C732C43129B00D33AE3 /* LapsView.swift */,
 				CFC81B012C5FF6F700F98E36 /* LapDetailView.swift */,
 				CF01945B2C8A20D700CAC1BD /* SoundSelectorView.swift */,
@@ -335,6 +352,7 @@
 				CF5B11162AD33DE200F42131 /* MartianMono-Regular.ttf in Resources */,
 				CF93EAF22C5E4C6B00A98ABD /* 90s-final.mp3 in Resources */,
 				CF01945A2C8A1AB500CAC1BD /* MartianMonoSemiCondensed-Regular.ttf in Resources */,
+				CF8E14652D173DFB00155BE8 /* 01.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,9 +368,11 @@
 				CF21843629F052590060706C /* ContentView.swift in Sources */,
 				CFB1394F2AE59ED900EE8B2C /* BGImageModel.swift in Sources */,
 				CFC3A7722AAF8B1B00BB8CC2 /* ProgressBar.swift in Sources */,
+				CF8E14672D17404900155BE8 /* VideoPlayerFullscreen.swift in Sources */,
 				CF01945C2C8A20D700CAC1BD /* SoundSelectorView.swift in Sources */,
 				CFADBCF42AC9DC7B00AE27D8 /* EditSheetView.swift in Sources */,
 				CF9922B12C959AC1004186DF /* ControlButton.swift in Sources */,
+				CF8E146B2D1745DB00155BE8 /* MonthlyMenuItem.swift in Sources */,
 				CFC4C1852D04766D0086CEBB /* Tag.swift in Sources */,
 				CFCD99CE2CA064CF0017BD0E /* QuickTimerBanner.swift in Sources */,
 				CFADBCF22AC9C8AE00AE27D8 /* ProgressArrayView.swift in Sources */,

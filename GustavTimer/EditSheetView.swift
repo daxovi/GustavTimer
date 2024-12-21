@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import AVFoundation
+import _AVKit_SwiftUI
 /*
  import PhotosUI
  import SwiftData
@@ -14,83 +16,88 @@ import SwiftUI
 struct EditSheetView: View {
     @StateObject var viewModel = GustavViewModel.shared
     @Environment(\.colorScheme) var colorScheme
-    @State private var scrollPosition: CGFloat = 300.0
+    @State private var scrollPosition: CGFloat = 500.0
+    @State private var showVideo = false
+    
+
     
     var body: some View {
-        VStack(spacing: 0) {
-            NavigationStack {
-                List {
-                  //  quickTimers
-
-                    Section {
-                        LapsView()
-                        if !viewModel.isTimerFull {
-                            Button(action: viewModel.addTimer, label: {
-                                Text("ADD_INTERVAL")
-                                    .foregroundStyle(Color("ResetColor"))
-                            })
-                        }
-                    }
-                    header: {
-                        VStack {
-                            Text("INTERVALS")
-                        }
-                        .padding(.top, 400)
-                        .background(
-                            GeometryReader(content: { geometry in
-                                Color.clear
-                                    .onChange(
-                                        of: geometry.frame(in: .global).minY
-                                    ) { oldValue, newValue in
-                                        scrollPosition = newValue
-                                    }
-                            })
-                        )
-                    }
-                    Section("TIMER_SETTINGS") {
-                        Toggle("LOOP", isOn: $viewModel.isLooping)
-                            .tint(Color("StartColor"))
-                        NavigationLink {
-                            SoundSelectorView(viewModel: viewModel)
-                        } label: {
-                            ListButton(name: "Sound", value: "\(viewModel.isSoundOn ? viewModel.activeSoundTheme : "MUTE")")
-                        }
-                        NavigationLink {
-                            BGSelectorView(viewModel: viewModel)
-                        } label: {
-                            ListButton(name: "BACKGROUND")
-                        }
-                    }
-                    Section("ABOUT") {
-                        rateButton
-                        whatsNewButton
-                        weightsButton
-                    }
-                }
-                .navigationTitle("EDIT_TITLE")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar { toolbarButtons }
-                .background(
-                    ZStack {
-                        colorScheme == .light ? Color(.secondarySystemBackground) : Color(.systemBackground)
-                            
-                        VStack {
-                            Image("monthly1")
-                                .resizable()
-                                .padding(.horizontal, -10)
-                                .scaledToFit()
-                                .blur(radius: (100 - scrollPosition) * 0.02)
-                            Spacer()
-                        }
-
-                    }
-                        .ignoresSafeArea()
-                )
-                .scrollContentBackground(.hidden)
-
+        ZStack {
+            if showVideo {
+                VideoPlayerFullscreen(videoURL: Bundle.main.url(forResource: "01", withExtension: "mp4")!)
+                    .onDisappear {showVideo = false}
             }
-            .tint(Color("StopColor"))
-            .font(Font.custom(AppConfig.appFontName, size: 15))
+            VStack(spacing: 0) {
+                NavigationStack {
+                    List {
+                        //  quickTimers
+                        MonthlyMenuItem(showVideo: $showVideo)
+                            .background(
+                                GeometryReader(content: { geometry in
+                                    Color.clear
+                                        .onChange(
+                                            of: geometry.frame(in: .global).minY
+                                        ) { oldValue, newValue in
+                                            scrollPosition = newValue
+                                            print("scrollposition: \(scrollPosition)")
+                                        }
+                                })
+                            )
+                        
+                        Section("INTERVALS") {
+                            LapsView()
+                            if !viewModel.isTimerFull {
+                                Button(action: viewModel.addTimer, label: {
+                                    Text("ADD_INTERVAL")
+                                        .foregroundStyle(Color("ResetColor"))
+                                })
+                            }
+                        }
+                        
+                        Section("TIMER_SETTINGS") {
+                            Toggle("LOOP", isOn: $viewModel.isLooping)
+                                .tint(Color("StartColor"))
+                            NavigationLink {
+                                SoundSelectorView(viewModel: viewModel)
+                            } label: {
+                                ListButton(name: "Sound", value: "\(viewModel.isSoundOn ? viewModel.activeSoundTheme : "MUTE")")
+                            }
+                            NavigationLink {
+                                BGSelectorView(viewModel: viewModel)
+                            } label: {
+                                ListButton(name: "BACKGROUND")
+                            }
+                        }
+                        Section("ABOUT") {
+                            rateButton
+                            whatsNewButton
+                            weightsButton
+                        }
+                    }
+                    .navigationTitle("EDIT_TITLE")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar { toolbarButtons }
+                    .background(
+                        ZStack {
+                            colorScheme == .light ? Color(.secondarySystemBackground) : Color(.systemBackground)
+                            
+                            VStack {
+                                Image("monthly1")
+                                    .resizable()
+                                    .padding(.horizontal, -20)
+                                    .scaledToFit()
+                                    .blur(radius: (380 - scrollPosition) * 0.1)
+                                Spacer()
+                            }
+                        }
+                            .ignoresSafeArea()
+                    )
+                    .scrollContentBackground(.hidden)
+                    
+                }
+                .tint(Color("StopColor"))
+                .font(Font.custom(AppConfig.appFontName, size: 15))
+            }
         }
     }
     
