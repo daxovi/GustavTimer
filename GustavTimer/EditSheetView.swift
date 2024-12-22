@@ -24,7 +24,7 @@ struct EditSheetView: View {
     var body: some View {
         ZStack {
             if showVideo {
-                VideoPlayerFullscreen(videoURL: Bundle.main.url(forResource: "01", withExtension: "mp4")!, onHalfway: {
+                VideoPlayerFullscreen(videoURL: Bundle.main.url(forResource: MonthlyConfig.videoName[viewModel.currentMonth - 1], withExtension: "mp4")!, onHalfway: {
                     print("Video reached halfway!")
                     viewModel.incrementMonthlyCounter()
                 })
@@ -34,7 +34,7 @@ struct EditSheetView: View {
                 NavigationStack {
                     List {
                         //  quickTimers
-                        MonthlyMenuItem(showVideo: $showVideo, monthlyCounter: $viewModel.monthlyCounter)
+                        MonthlyMenuItem(showVideo: $showVideo, monthlyActionText: viewModel.getChallengeText(), monthlyCounter: $viewModel.monthlyCounter)
                             .background(
                                 GeometryReader(content: { geometry in
                                     Color.clear
@@ -85,7 +85,7 @@ struct EditSheetView: View {
                             colorScheme == .light ? Color(.secondarySystemBackground) : Color(.systemBackground)
                             
                             VStack {
-                                Image("monthly1")
+                                Image(MonthlyConfig.bannerName[viewModel.currentMonth - 1])
                                     .resizable()
                                     .padding(.horizontal, -20)
                                     .scaledToFit()

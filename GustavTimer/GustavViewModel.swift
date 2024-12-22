@@ -51,6 +51,7 @@ class GustavViewModel: ObservableObject {
         UIApplication.shared.isIdleTimerDisabled = false
         loadTimersFromUserDefaults()
         self.count = timers[0].value
+        checkCurrentMonth()
     }
     
     private func clearUserDefaults() {
@@ -302,7 +303,50 @@ class GustavViewModel: ObservableObject {
     }
     
     // MARK: Monthly challenge
+    var currentMonth: Int { return Calendar.current.component(.month, from: Date()) }
+    @AppStorage("actualMonth") var actualMonth: Int = 0
     @AppStorage("monthlyCounter") var monthlyCounter: Int = 0
+    
+    func checkCurrentMonth() {
+        print("DEBUG actualMonth: \(actualMonth)")
+        print("DEBUG currentMonth: \(currentMonth)")
+        if actualMonth != currentMonth {
+            actualMonth = currentMonth
+            monthlyCounter = 0
+            print("DEBUG checkCurrentMonth: month change")
+        }
+    }
+    
+    func getChallengeText() -> LocalizedStringKey {
+        switch currentMonth {
+        case 1:
+            return "January challenge"
+        case 2:
+            return "February challenge"
+        case 3:
+            return "March challenge"
+        case 4:
+            return "April challenge"
+        case 5:
+            return "May challenge"
+        case 6:
+            return "June challenge"
+        case 7:
+            return "July challenge"
+        case 8:
+            return "August challenge"
+        case 9:
+            return "September challenge"
+        case 10:
+            return "October challenge"
+        case 11:
+            return "November challenge"
+        case 12:
+            return "December challenge"
+        default:
+            return "Monthly challenge"
+        }
+    }
     
     func incrementMonthlyCounter() {
         monthlyCounter += 1

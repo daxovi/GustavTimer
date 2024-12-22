@@ -9,9 +9,10 @@ import SwiftUI
 struct MonthlyMenuItem: View {
     @Binding var showVideo: Bool
     @State private var monthlyTitle: String = " \n "
+    var monthlyActionText: LocalizedStringKey
     @Binding var monthlyCounter: Int
     
-    let monthlyTitleArray: [String] = [" \n ", "413HL \n390LL", "MNTHL \nCHALLL", "M0NTH \nCHA11", "M0NTHL7 \nCHA11EN", "M04THL7 \nCHA11ENG3", "M0NTHLY \nCHA1L3NGE", "MONTHLY \nCHALLENGE"]
+    let monthlyTitleArray: [String] = [" \n ", " \nG5TV", " \n6U5TAV", " \nGUSTAV", "413HL \n695LL", "MNTHL \nCHALLL", "M0NTH \nCHA11", "M0NTHL7 \nCHA11EN", "M04THL7 \nCHA11ENG3", "M0NTHLY \nCHA1L3NGE", "MONTHLY \nCHALLENGE"]
     
     var body: some View {
         Section {
@@ -19,8 +20,9 @@ struct MonthlyMenuItem: View {
                 showVideo = true
             } label: {
                 HStack {
-                    Text("Accept challenge")
+                    Text(monthlyActionText)
                         .font(Font.custom(AppConfig.appFontName, size: 18))
+                        .textCase(.uppercase)
                     Spacer()
                     if monthlyCounter > 0 {
                         Color("ResetColor")
@@ -51,6 +53,7 @@ struct MonthlyMenuItem: View {
                     .onAppear {
                         animateMonthlyTitle(titleArray: monthlyTitleArray)
                     }
+                    .padding(.leading, -5)
             }
             .padding(.top, 200)
         }

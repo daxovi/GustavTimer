@@ -146,9 +146,6 @@
         }
       }
     },
-    "Accept challenge" : {
-
-    },
     "ADD_INTERVAL" : {
       "localizations" : {
         "cs" : {
@@ -182,6 +179,26 @@
         }
       }
     },
+    "April challenge" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dubnová výzva"
+          }
+        }
+      }
+    },
+    "August challenge" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Srpnová výzva"
+          }
+        }
+      }
+    },
     "BACKGROUND" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -195,6 +212,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Background"
+          }
+        }
+      }
+    },
+    "December challenge" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prosincová výzva"
           }
         }
       }
@@ -285,6 +312,16 @@
         }
       }
     },
+    "February challenge" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Únorová výzva"
+          }
+        }
+      }
+    },
     "INTERVAL_NAME:" : {
       "localizations" : {
         "cs" : {
@@ -329,6 +366,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Intervals"
+          }
+        }
+      }
+    },
+    "January challenge" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lednová výzva"
+          }
+        }
+      }
+    },
+    "July challenge" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Červencová výzva"
+          }
+        }
+      }
+    },
+    "June challenge" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Červnová výzva"
           }
         }
       }
@@ -387,12 +454,42 @@
         }
       }
     },
+    "March challenge" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Březnová výzva"
+          }
+        }
+      }
+    },
+    "May challenge" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Květnová výzva"
+          }
+        }
+      }
+    },
     "Meditate" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Meditace"
+          }
+        }
+      }
+    },
+    "Monthly challenge" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Měsíční výzva"
           }
         }
       }
@@ -425,6 +522,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No"
+          }
+        }
+      }
+    },
+    "November challenge" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listopadová výzva"
+          }
+        }
+      }
+    },
+    "October challenge" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Říjnová výzva"
           }
         }
       }
@@ -485,6 +602,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Save"
+          }
+        }
+      }
+    },
+    "September challenge" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zářijová výzva"
           }
         }
       }
