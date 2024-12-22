@@ -24,7 +24,7 @@
 		CF70037F2C8DED37009F1531 /* BGSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70037E2C8DED37009F1531 /* BGSelectorView.swift */; };
 		CF7B1B412C8F6BD3005D4664 /* TimerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7B1B402C8F6BD3005D4664 /* TimerData.swift */; };
 		CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */; };
-		CF8E14652D173DFB00155BE8 /* 01.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF8E14642D173DFB00155BE8 /* 01.mp4 */; };
+		CF8E14652D173DFB00155BE8 /* wallsit.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF8E14642D173DFB00155BE8 /* wallsit.mp4 */; };
 		CF8E14672D17404900155BE8 /* VideoPlayerFullscreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E14662D17403900155BE8 /* VideoPlayerFullscreen.swift */; };
 		CF8E146B2D1745DB00155BE8 /* MonthlyMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E146A2D1745CC00155BE8 /* MonthlyMenuItem.swift */; };
 		CF93EAF22C5E4C6B00A98ABD /* 90s-final.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF93EAF02C5E4C6B00A98ABD /* 90s-final.mp3 */; };
@@ -56,6 +56,8 @@
 		CFCE3C762C431EC900D33AE3 /* HideKeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE3C752C431EC900D33AE3 /* HideKeyboardExtension.swift */; };
 		CFF71ACC2B8B99BC00884E82 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */; };
 		CFFEC2B62D184F9800E4C157 /* MonthlyConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFEC2B52D184F8B00E4C157 /* MonthlyConfig.swift */; };
+		CFFEC2B82D186DEF00E4C157 /* mountainclimber.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFFEC2B72D186DEF00E4C157 /* mountainclimber.mp4 */; };
+		CFFEC2BA2D18730300E4C157 /* jumpingjack.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFFEC2B92D18730300E4C157 /* jumpingjack.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,7 +80,7 @@
 		CF70037E2C8DED37009F1531 /* BGSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGSelectorView.swift; sourceTree = "<group>"; };
 		CF7B1B402C8F6BD3005D4664 /* TimerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerData.swift; sourceTree = "<group>"; };
 		CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageModel.swift; sourceTree = "<group>"; };
-		CF8E14642D173DFB00155BE8 /* 01.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 01.mp4; sourceTree = "<group>"; };
+		CF8E14642D173DFB00155BE8 /* wallsit.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = wallsit.mp4; sourceTree = "<group>"; };
 		CF8E14662D17403900155BE8 /* VideoPlayerFullscreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerFullscreen.swift; sourceTree = "<group>"; };
 		CF8E146A2D1745CC00155BE8 /* MonthlyMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyMenuItem.swift; sourceTree = "<group>"; };
 		CF93EAF02C5E4C6B00A98ABD /* 90s-final.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "90s-final.mp3"; sourceTree = "<group>"; };
@@ -110,6 +112,8 @@
 		CFCE3C752C431EC900D33AE3 /* HideKeyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboardExtension.swift; sourceTree = "<group>"; };
 		CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		CFFEC2B52D184F8B00E4C157 /* MonthlyConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyConfig.swift; sourceTree = "<group>"; };
+		CFFEC2B72D186DEF00E4C157 /* mountainclimber.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = mountainclimber.mp4; sourceTree = "<group>"; };
+		CFFEC2B92D18730300E4C157 /* jumpingjack.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = jumpingjack.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,7 +249,9 @@
 		CFC4C18A2D04B5E30086CEBB /* Video */ = {
 			isa = PBXGroup;
 			children = (
-				CF8E14642D173DFB00155BE8 /* 01.mp4 */,
+				CFFEC2B72D186DEF00E4C157 /* mountainclimber.mp4 */,
+				CFFEC2B92D18730300E4C157 /* jumpingjack.mp4 */,
+				CF8E14642D173DFB00155BE8 /* wallsit.mp4 */,
 				CFC4C1F62D04C0C80086CEBB /* whatsnew.mp4 */,
 			);
 			path = Video;
@@ -336,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF93EAFB2C5E551600A98ABD /* beep-final.mp3 in Resources */,
+				CFFEC2BA2D18730300E4C157 /* jumpingjack.mp4 in Resources */,
 				CF21843B29F0525E0060706C /* Preview Assets.xcassets in Resources */,
 				CFF71ACC2B8B99BC00884E82 /* Localizable.xcstrings in Resources */,
 				CF0194562C8A186700CAC1BD /* MartianMonoSemiCondensed-Bold.ttf in Resources */,
@@ -348,6 +355,7 @@
 				CF93EAFF2C5E569400A98ABD /* game-final.mp3 in Resources */,
 				CFC4C1892D0499010086CEBB /* MartianMono-Thin.ttf in Resources */,
 				CF93EB012C5E679700A98ABD /* PrivacyInfo.xcprivacy in Resources */,
+				CFFEC2B82D186DEF00E4C157 /* mountainclimber.mp4 in Resources */,
 				CF21843829F0525E0060706C /* Assets.xcassets in Resources */,
 				CF93EAFA2C5E551600A98ABD /* beep-countdown.mp3 in Resources */,
 				CF5B11142AD33D8900F42131 /* MartianMono-Bold.ttf in Resources */,
@@ -355,7 +363,7 @@
 				CF5B11162AD33DE200F42131 /* MartianMono-Regular.ttf in Resources */,
 				CF93EAF22C5E4C6B00A98ABD /* 90s-final.mp3 in Resources */,
 				CF01945A2C8A1AB500CAC1BD /* MartianMonoSemiCondensed-Regular.ttf in Resources */,
-				CF8E14652D173DFB00155BE8 /* 01.mp4 in Resources */,
+				CF8E14652D173DFB00155BE8 /* wallsit.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

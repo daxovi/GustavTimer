@@ -19,12 +19,28 @@ struct EditSheetView: View {
     @State private var scrollPosition: CGFloat = 500.0
     @State private var showVideo = false
     
-
+    // Monthly
+    var monthlyVideoName: String {
+        if viewModel.actualMonth - 1 < MonthlyConfig.videoName.count {
+            return MonthlyConfig.videoName[viewModel.actualMonth - 1]
+        } else {
+            return MonthlyConfig.videoName[0]
+        }
+    }
+    
+    var monthlyBannerName: String {
+        if viewModel.actualMonth - 1 < MonthlyConfig.bannerName.count {
+            return MonthlyConfig.bannerName[viewModel.actualMonth - 1]
+        } else {
+            return MonthlyConfig.bannerName[0]
+        }
+    }
+    
     
     var body: some View {
         ZStack {
             if showVideo {
-                VideoPlayerFullscreen(videoURL: Bundle.main.url(forResource: MonthlyConfig.videoName[viewModel.currentMonth - 1], withExtension: "mp4")!, onHalfway: {
+                VideoPlayerFullscreen(videoURL: Bundle.main.url(forResource: monthlyVideoName, withExtension: "mp4")!, onHalfway: {
                     print("Video reached halfway!")
                     viewModel.incrementMonthlyCounter()
                 })
@@ -85,7 +101,7 @@ struct EditSheetView: View {
                             colorScheme == .light ? Color(.secondarySystemBackground) : Color(.systemBackground)
                             
                             VStack {
-                                Image(MonthlyConfig.bannerName[viewModel.currentMonth - 1])
+                                Image(monthlyBannerName)
                                     .resizable()
                                     .padding(.horizontal, -20)
                                     .scaledToFit()

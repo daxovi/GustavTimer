@@ -303,13 +303,25 @@ class GustavViewModel: ObservableObject {
     }
     
     // MARK: Monthly challenge
-    var currentMonth: Int { return Calendar.current.component(.month, from: Date()) }
-    @AppStorage("actualMonth") var actualMonth: Int = 0
+    private var currentMonth: Int { return Calendar.current.component(.month, from: Date()) }
+    @AppStorage("actualMonth") var actualMonth: Int = 1
     @AppStorage("monthlyCounter") var monthlyCounter: Int = 0
     
     func checkCurrentMonth() {
         print("DEBUG actualMonth: \(actualMonth)")
         print("DEBUG currentMonth: \(currentMonth)")
+        
+        let currentYear = Calendar.current.component(.year, from: Date())
+            
+        // Podmínka: pokud je aktuální rok 2024, ukončíme funkci
+        if currentYear == 2024 {
+            print("DEBUG checkCurrentMonth: Current year is 2024, skipping check")
+            // TESTBUILD
+            actualMonth = 1
+            actualMonth = MonthlyConfig.testingMonth
+            return
+        }
+
         if actualMonth != currentMonth {
             actualMonth = currentMonth
             monthlyCounter = 0
@@ -318,7 +330,7 @@ class GustavViewModel: ObservableObject {
     }
     
     func getChallengeText() -> LocalizedStringKey {
-        switch currentMonth {
+        switch actualMonth {
         case 1:
             return "January challenge"
         case 2:
