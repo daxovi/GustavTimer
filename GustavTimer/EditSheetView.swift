@@ -24,14 +24,17 @@ struct EditSheetView: View {
     var body: some View {
         ZStack {
             if showVideo {
-                VideoPlayerFullscreen(videoURL: Bundle.main.url(forResource: "01", withExtension: "mp4")!)
-                    .onDisappear {showVideo = false}
+                VideoPlayerFullscreen(videoURL: Bundle.main.url(forResource: "01", withExtension: "mp4")!, onHalfway: {
+                    print("Video reached halfway!")
+                    viewModel.incrementMonthlyCounter()
+                })
+                .onDisappear {showVideo = false}
             }
             VStack(spacing: 0) {
                 NavigationStack {
                     List {
                         //  quickTimers
-                        MonthlyMenuItem(showVideo: $showVideo)
+                        MonthlyMenuItem(showVideo: $showVideo, monthlyCounter: $viewModel.monthlyCounter)
                             .background(
                                 GeometryReader(content: { geometry in
                                     Color.clear

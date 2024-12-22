@@ -9,6 +9,7 @@ import SwiftUI
 struct MonthlyMenuItem: View {
     @Binding var showVideo: Bool
     @State private var monthlyTitle: String = " \n "
+    @Binding var monthlyCounter: Int
     
     let monthlyTitleArray: [String] = [" \n ", "413HL \n390LL", "MNTHL \nCHALLL", "M0NTH \nCHA11", "M0NTHL7 \nCHA11EN", "M04THL7 \nCHA11ENG3", "M0NTHLY \nCHA1L3NGE", "MONTHLY \nCHALLENGE"]
     
@@ -17,10 +18,27 @@ struct MonthlyMenuItem: View {
             Button {
                 showVideo = true
             } label: {
-                Text("START")
-                    .font(Font.custom(AppConfig.appFontName, size: 23))
-                    .padding(.vertical, 10)
-                    .foregroundStyle(Color("ResetColor"))
+                HStack {
+                    Text("Accept challenge")
+                        .font(Font.custom(AppConfig.appFontName, size: 18))
+                    Spacer()
+                    if monthlyCounter > 0 {
+                        Color("ResetColor")
+                            .frame(width: 25, height: 25)
+                            .clipShape(Circle())
+                            .overlay {
+                                Text("\(monthlyCounter)")
+                                    .font(Font.custom(AppConfig.appFontName, size: 10))
+                                    .foregroundStyle(Color("StartColor"))
+                            }
+                    } else {
+                        Image(systemName: "play.circle")
+                            .resizable()
+                            .frame(width: 25, height: 25)
+                    }
+                }
+                .padding(.vertical, 10)
+                .foregroundStyle(Color("ResetColor"))
             }
                 .listRowBackground(Color("StartColor"))
 

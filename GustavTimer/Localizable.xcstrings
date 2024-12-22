@@ -146,6 +146,9 @@
         }
       }
     },
+    "Accept challenge" : {
+
+    },
     "ADD_INTERVAL" : {
       "localizations" : {
         "cs" : {

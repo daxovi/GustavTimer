@@ -121,7 +121,7 @@ struct ContentView: View {
             viewModel.toggleSheet()
         }
         .safeAreaPadding(.horizontal)
-        .fullScreenCover(isPresented: $viewModel.showingSheet, content: {
+        .sheet(isPresented: $viewModel.showingSheet, content: {
             EditSheetView()
         })
     }

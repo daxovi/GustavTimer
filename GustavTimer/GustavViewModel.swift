@@ -23,6 +23,7 @@ class GustavViewModel: ObservableObject {
     @Published var showingSheet = false
     @Published var showingWhatsNew: Bool = false
     
+    
     @Published var timers: [TimerData] = [] {
         didSet {
             saveTimersToUserDefaults()
@@ -298,6 +299,13 @@ class GustavViewModel: ObservableObject {
             showingWhatsNew = true
             whatsNewVersion = AppConfig.version
         }
+    }
+    
+    // MARK: Monthly challenge
+    @AppStorage("monthlyCounter") var monthlyCounter: Int = 0
+    
+    func incrementMonthlyCounter() {
+        monthlyCounter += 1
     }
     
     // MARK: Deeplinks
