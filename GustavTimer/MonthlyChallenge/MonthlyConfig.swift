@@ -10,15 +10,15 @@ import SwiftUI
 struct MonthlyConfig {
     static let bannerName: [String] = [
         "wallsit",
-        "mountainclimber",
+        "mountainclimbers",
         "jumpingjack"
     ]
     
     static let videoName: [String] = [
         "wallsit",
-        "mountainclimber",
+        "mountainclimbers",
         "jumpingjack"
     ]
     
-    static let testingMonth: Int = 1
+    static let testingMonth: Int = 3
 }
