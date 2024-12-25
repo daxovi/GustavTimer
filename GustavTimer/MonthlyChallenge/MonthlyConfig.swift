@@ -20,5 +20,5 @@ struct MonthlyConfig {
         "jumpingjack"
     ]
     
-    static let testingMonth: Int = 3
+    static let testingMonth: Int = 1
 }
