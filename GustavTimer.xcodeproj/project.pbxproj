@@ -54,10 +54,10 @@
 		CFCE3C762C431EC900D33AE3 /* HideKeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE3C752C431EC900D33AE3 /* HideKeyboardExtension.swift */; };
 		CFF71ACC2B8B99BC00884E82 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */; };
 		CFFEC2B62D184F9800E4C157 /* MonthlyConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFEC2B52D184F8B00E4C157 /* MonthlyConfig.swift */; };
-		CFFEC2BC2D19E97900E4C157 /* wallsit.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFFEC2BB2D19E97900E4C157 /* wallsit.mp4 */; };
-		CFFEC2BF2D1A013400E4C157 /* mountainclimbers.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFFEC2BE2D1A013400E4C157 /* mountainclimbers.mp4 */; };
-		CFFEC2C02D1A013400E4C157 /* jumpingjack.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFFEC2BD2D1A013400E4C157 /* jumpingjack.mp4 */; };
 		CFFEC2CE2D1C483400E4C157 /* whatsnew.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFFEC2CD2D1C483400E4C157 /* whatsnew.mp4 */; };
+		CFFEC2D22D1C4D8C00E4C157 /* jumpingjack.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFFEC2CF2D1C4D8C00E4C157 /* jumpingjack.mp4 */; };
+		CFFEC2D32D1C4D8C00E4C157 /* mountainclimbers.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFFEC2D02D1C4D8C00E4C157 /* mountainclimbers.mp4 */; };
+		CFFEC2D42D1C4D8C00E4C157 /* wallsit.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFFEC2D12D1C4D8C00E4C157 /* wallsit.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,10 +110,10 @@
 		CFCE3C752C431EC900D33AE3 /* HideKeyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboardExtension.swift; sourceTree = "<group>"; };
 		CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		CFFEC2B52D184F8B00E4C157 /* MonthlyConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyConfig.swift; sourceTree = "<group>"; };
-		CFFEC2BB2D19E97900E4C157 /* wallsit.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = wallsit.mp4; sourceTree = "<group>"; };
-		CFFEC2BD2D1A013400E4C157 /* jumpingjack.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = jumpingjack.mp4; sourceTree = "<group>"; };
-		CFFEC2BE2D1A013400E4C157 /* mountainclimbers.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = mountainclimbers.mp4; sourceTree = "<group>"; };
 		CFFEC2CD2D1C483400E4C157 /* whatsnew.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = whatsnew.mp4; sourceTree = "<group>"; };
+		CFFEC2CF2D1C4D8C00E4C157 /* jumpingjack.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = jumpingjack.mp4; sourceTree = "<group>"; };
+		CFFEC2D02D1C4D8C00E4C157 /* mountainclimbers.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = mountainclimbers.mp4; sourceTree = "<group>"; };
+		CFFEC2D12D1C4D8C00E4C157 /* wallsit.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = wallsit.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,10 +249,10 @@
 		CFC4C18A2D04B5E30086CEBB /* Video */ = {
 			isa = PBXGroup;
 			children = (
+				CFFEC2CF2D1C4D8C00E4C157 /* jumpingjack.mp4 */,
+				CFFEC2D02D1C4D8C00E4C157 /* mountainclimbers.mp4 */,
+				CFFEC2D12D1C4D8C00E4C157 /* wallsit.mp4 */,
 				CFFEC2CD2D1C483400E4C157 /* whatsnew.mp4 */,
-				CFFEC2BD2D1A013400E4C157 /* jumpingjack.mp4 */,
-				CFFEC2BE2D1A013400E4C157 /* mountainclimbers.mp4 */,
-				CFFEC2BB2D19E97900E4C157 /* wallsit.mp4 */,
 			);
 			path = Video;
 			sourceTree = "<group>";
@@ -345,8 +345,6 @@
 				CF21843B29F0525E0060706C /* Preview Assets.xcassets in Resources */,
 				CFF71ACC2B8B99BC00884E82 /* Localizable.xcstrings in Resources */,
 				CF0194562C8A186700CAC1BD /* MartianMonoSemiCondensed-Bold.ttf in Resources */,
-				CFFEC2BF2D1A013400E4C157 /* mountainclimbers.mp4 in Resources */,
-				CFFEC2C02D1A013400E4C157 /* jumpingjack.mp4 in Resources */,
 				CF93EAF72C5E543100A98ABD /* trumpet-final.mp3 in Resources */,
 				CF93EAFE2C5E569400A98ABD /* game-countdown.mp3 in Resources */,
 				CF0194582C8A1A1E00CAC1BD /* MartianMonoCondensed-Regular.ttf in Resources */,
@@ -356,13 +354,15 @@
 				CF93EAFF2C5E569400A98ABD /* game-final.mp3 in Resources */,
 				CFC4C1892D0499010086CEBB /* MartianMono-Thin.ttf in Resources */,
 				CF93EB012C5E679700A98ABD /* PrivacyInfo.xcprivacy in Resources */,
-				CFFEC2BC2D19E97900E4C157 /* wallsit.mp4 in Resources */,
 				CFFEC2CE2D1C483400E4C157 /* whatsnew.mp4 in Resources */,
 				CF21843829F0525E0060706C /* Assets.xcassets in Resources */,
 				CF93EAFA2C5E551600A98ABD /* beep-countdown.mp3 in Resources */,
 				CF5B11142AD33D8900F42131 /* MartianMono-Bold.ttf in Resources */,
 				CF5B11162AD33DE200F42131 /* MartianMono-Regular.ttf in Resources */,
 				CF93EAF22C5E4C6B00A98ABD /* 90s-final.mp3 in Resources */,
+				CFFEC2D22D1C4D8C00E4C157 /* jumpingjack.mp4 in Resources */,
+				CFFEC2D32D1C4D8C00E4C157 /* mountainclimbers.mp4 in Resources */,
+				CFFEC2D42D1C4D8C00E4C157 /* wallsit.mp4 in Resources */,
 				CF01945A2C8A1AB500CAC1BD /* MartianMonoSemiCondensed-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
