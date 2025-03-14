@@ -14,10 +14,34 @@ struct MonthlyConfig {
         "jumpingjack"
     ]
     
+    static let bannerImageResource: [ImageResource] = [
+        .wallsit,
+        .mountainclimbers,
+        .jumpingjack,
+        .plank,
+        .squatjump,
+        .wallrun,
+        .duckwalk,
+        .legraises,
+        .jumplunges,
+        .glutebridges,
+        .burpees,
+        .superman
+    ]
+    
     static let videoName: [String] = [
         "wallsit",
         "mountainclimbers",
-        "jumpingjack"
+        "jumpingjack",
+        "plank",
+        "squatjump",
+        "wallrun",
+        "duckwalk",
+        "legraises",
+        "jumplunges",
+        "glutebridges",
+        "burpees",
+        "superman"
     ]
     
     static let testingMonth: Int = 1

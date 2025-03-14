@@ -322,6 +322,22 @@
         }
       }
     },
+    "Follow Gustav on Instagram" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sleduj Gustava na Instagramu"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Follow Gustav on Instagram"
+          }
+        }
+      }
+    },
     "INTERVAL_NAME:" : {
       "localizations" : {
         "cs" : {

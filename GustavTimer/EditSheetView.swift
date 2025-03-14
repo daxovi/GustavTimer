@@ -28,11 +28,11 @@ struct EditSheetView: View {
         }
     }
     
-    var monthlyBannerName: String {
+    var monthlyBannerName: ImageResource {
         if viewModel.actualMonth - 1 < MonthlyConfig.bannerName.count {
-            return MonthlyConfig.bannerName[viewModel.actualMonth - 1]
+            return MonthlyConfig.bannerImageResource[viewModel.actualMonth - 1]
         } else {
-            return MonthlyConfig.bannerName[0]
+            return MonthlyConfig.bannerImageResource[0]
         }
     }
     
@@ -89,6 +89,7 @@ struct EditSheetView: View {
                         }
                         Section("ABOUT") {
                             rateButton
+                            instagramButton
                             whatsNewButton
                             weightsButton
                         }
@@ -205,6 +206,14 @@ struct EditSheetView: View {
             guard let weightsURL = URL(string: url)
             else { fatalError("Expected a valid URL") }
             UIApplication.shared.open(weightsURL, options: [:], completionHandler: nil)
+        }
+    }
+    
+    var instagramButton: some View {
+        Button("Follow Gustav on Instagram") {
+            if let url = URL(string: "https://www.instagram.com/gustavtraining") {
+                UIApplication.shared.open(url)
+            }
         }
     }
     

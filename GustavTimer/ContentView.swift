@@ -60,7 +60,7 @@ struct ContentView: View {
             viewModel.showWhatsNew()
         }
         .sheet(isPresented: $viewModel.showingWhatsNew) {
-            WhatsNewView(buttonLabel: "enter challenge", tags: ["#whatsnew", "V1.3", "#newyear"], action: {
+            WhatsNewView(buttonLabel: "enter challenge", tags: ["#whatsnew", "V1.4"], action: {
                 viewModel.showingWhatsNew = false
                 viewModel.showingSheet.toggle()
             })
@@ -116,9 +116,26 @@ struct ContentView: View {
     }
     
     var editButton: some View {
-        Button("EDIT") {
-            print("button edit")
-            viewModel.toggleSheet()
+            Button {
+                viewModel.toggleSheet()
+            } label: {
+                HStack {
+                    HStack{
+                            Image(systemName: "infinity.circle.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(Color(viewModel.isLooping ? .start : .reset))
+                        Image(systemName: viewModel.isSoundOn ? "speaker.wave.2.circle.fill" : "speaker.slash.circle.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundColor(Color(viewModel.isSoundOn ? .start : .reset))
+                    }
+                    .frame(height: 20)
+
+                    Text("EDIT")
+                }
+                .foregroundColor(Color("StartColor"))
+
         }
         .safeAreaPadding(.horizontal)
         .sheet(isPresented: $viewModel.showingSheet, content: {
