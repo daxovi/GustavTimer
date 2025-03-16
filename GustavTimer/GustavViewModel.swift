@@ -12,6 +12,8 @@ import AVKit
 import AVFoundation
 import PhotosUI
 
+import BackgroundTasks
+
 class GustavViewModel: ObservableObject {
     let maxTimers = AppConfig.maxTimerCount
     let maxCountdownValue = AppConfig.maxTimerValue
@@ -22,7 +24,7 @@ class GustavViewModel: ObservableObject {
     @Published var count: Int = 0
     @Published var showingSheet = false
     @Published var showingWhatsNew: Bool = false
-    
+    @Published var liveActivity: Activity<TimerAtributes>? = nil
     
     @Published var timers: [TimerData] = [] {
         didSet {
@@ -44,6 +46,8 @@ class GustavViewModel: ObservableObject {
     
     var activeTimerIndex: Int = 0
     var timer: AnyCancellable?
+    
+    var audioPlayer: AVAudioPlayer?
     
     static let shared = GustavViewModel()
     
@@ -108,12 +112,19 @@ class GustavViewModel: ObservableObject {
         isTimerRunning = false
         timer = nil
         stopCounter += 1
+        
+        stopSilentAudio()
+        stopLiveActivity()
     }
     
     func startTimer() {
         if round == 0 {
             round = 1
         }
+        
+        playSilentAudio()
+        startLiveActivity()
+        
         UIApplication.shared.isIdleTimerDisabled = true
         isTimerRunning = true
         timer = Timer
@@ -122,14 +133,13 @@ class GustavViewModel: ObservableObject {
             .sink { [weak self] _ in
                 self?.count -= 1
                 self?.switchTimer()
-                
                 let activeTimerCount = Double(self?.timers[self?.activeTimerIndex ?? 0].value ?? 0)
                 let count = Double(self?.count ?? 0)
                 let countDifference = activeTimerCount - count
                 self?.progress = (countDifference + 1) / activeTimerCount
             }
     }
-    
+        
     func startStopTimer(requestReview: @escaping () -> ()) {
         if timer == nil {
             startTimer()
@@ -158,12 +168,15 @@ class GustavViewModel: ObservableObject {
                     stopTimer()
                 } else {
                     round += 1
+                    print("DEBUG: called updateLiveActivity from switch 1")
                 }
             }
             self.count = timers[activeTimerIndex].value
             if self.count <= 0 {
                 switchTimer()
+                print("DEBUG: called updateLiveActivity from switch 2")
             }
+            updateLiveActivity()
         } else {
             duration = 1.0
         }
@@ -415,46 +428,52 @@ class GustavViewModel: ObservableObject {
                     print("No host found")
                 }
         }
+}
+
+// MARK: - Live Activity
+import ActivityKit
+
+extension GustavViewModel {
+    func startLiveActivity() {
+        print("DEBUG: startLiveActivity")
+        let atributes = TimerAtributes(appName: "Gustav Timer App")
+        let state = TimerAtributes.TimerStatus(timerName: timers[activeTimerIndex].name)
+        
+        liveActivity = try? Activity<TimerAtributes>.request(attributes: atributes, content: .init(state: state, staleDate: Date().addingTimeInterval(TimeInterval(count + 1))))
+    }
     
-    /*
-    // MARK: Display sizes
-    // iPhone
-    // @Published var isIphoneLandscape: Bool = false
-    @Published var isIpad: Bool = false
-    @Published var isIpadWide: Bool = false
-    
-    func updateSizeClass(verticalSizeClass: UserInterfaceSizeClass?, horizontalSizeClass: UserInterfaceSizeClass?) {
-        isIpad = UIDevice.current.userInterfaceIdiom == .pad
-        if isIpad && horizontalSizeClass == .regular {
-            isIpadWide = true
+    func stopLiveActivity() {
+        let state = TimerAtributes.TimerStatus(timerName: "")
+        print("DEBUG: stopLiveActivity start")
+        
+        Task {
+            await liveActivity?.end(.init(state: state, staleDate: .now), dismissalPolicy: .immediate)
+            
+            print("DEBUG: stopLiveActivity")
+
         }
     }
     
-    var controlButtonsRadius: CGFloat = 0
-    var controlButtonsPadding: CGFloat { isIpad ? 15 : 0 }
-    var controlButtonsWidth: CGFloat? { isIpadWide ? 400 : nil}
-    var progressBarHeight: Int  = 6
-    var controlButtonsHeight: CGFloat = 100
-    
-    // Grid
-    private let flexibleNarrowColumn = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
-    
-    private let flexibleWideColumn = [
-        GridItem(.flexible()),
-        GridItem(.flexible()),
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
-    
-    var gridColumns: [GridItem] {
-        if isIpadWide {
-            return flexibleWideColumn
-        } else {
-            return flexibleNarrowColumn
+    func updateLiveActivity() {
+        let state = TimerAtributes.TimerStatus(timerName: timers[activeTimerIndex].name)
+        print("DEBUG: updateLiveActivity start")
+
+        Task {
+            await liveActivity?.update(.init(state: state, staleDate: Date().addingTimeInterval(Double(count))))
+            print("DEBUG: updateLiveActivity, count: \(count), timerName: \(timers[activeTimerIndex].name)")
         }
     }
-    */
+}
+
+// MARK: - Background task Hack
+import AVFoundation
+
+extension GustavViewModel {
+    func playSilentAudio() {
+        SoundManager.instance.playSilentAudio()
+    }
+    
+    func stopSilentAudio() {
+        SoundManager.instance.stopAudio()
+    }
 }

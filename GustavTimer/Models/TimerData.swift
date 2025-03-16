@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TimerData: Identifiable, Codable {
+struct TimerData: Identifiable, Codable, Equatable, Hashable {
     var id: UUID = UUID() // Unikátní identifikátor
     var value: Int
     var name: String

@@ -13,6 +13,7 @@ class SoundManager {
     static let instance = SoundManager() // Singleton
     
     var player: AVAudioPlayer?
+    var silentPlayer: AVAudioPlayer?
     
     enum SoundOption: String {
         case countdown
@@ -23,7 +24,7 @@ class SoundManager {
         configureAudioSession()
     }
     
-    func configureAudioSession() {
+    private func configureAudioSession() {
         do {
             let audioSession = AVAudioSession.sharedInstance()
             try audioSession.setCategory(.playback, options: [.mixWithOthers])
@@ -43,5 +44,21 @@ class SoundManager {
         } catch let error {
             print("Error playing sound. \(error.localizedDescription)")
         }
+    }
+    
+    func playSilentAudio() {
+        
+        guard let url = Bundle.main.url(forResource: "silence", withExtension: ".mp3") else { return }
+        
+        do {
+            silentPlayer = try AVAudioPlayer(contentsOf: url)
+            silentPlayer?.play()
+        } catch let error {
+            print("Error playing sound. \(error.localizedDescription)")
+        }
+    }
+    
+    func stopAudio() {
+        silentPlayer?.stop()
     }
 }

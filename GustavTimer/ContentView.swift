@@ -58,6 +58,9 @@ struct ContentView: View {
         }
         .onAppear {
             viewModel.showWhatsNew()
+            if !viewModel.isTimerRunning {
+                viewModel.stopLiveActivity()
+            }
         }
         .sheet(isPresented: $viewModel.showingWhatsNew) {
             WhatsNewView(buttonLabel: "enter challenge", tags: ["#whatsnew", "V1.4"], action: {
