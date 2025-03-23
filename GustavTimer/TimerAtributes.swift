@@ -14,6 +14,7 @@ struct TimerAtributes: ActivityAttributes {
     
     public struct ContentState: Codable, Hashable {
         var timerName: String
+        var endTime: Date
     }
     
 }

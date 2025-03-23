@@ -437,13 +437,13 @@ extension GustavViewModel {
     func startLiveActivity() {
         print("DEBUG: startLiveActivity")
         let atributes = TimerAtributes(appName: "Gustav Timer App")
-        let state = TimerAtributes.TimerStatus(timerName: timers[activeTimerIndex].name)
+        let state = TimerAtributes.TimerStatus(timerName: timers[activeTimerIndex].name, endTime: Date().addingTimeInterval(TimeInterval(count)))
         
         liveActivity = try? Activity<TimerAtributes>.request(attributes: atributes, content: .init(state: state, staleDate: Date().addingTimeInterval(TimeInterval(count + 1))))
     }
     
     func stopLiveActivity() {
-        let state = TimerAtributes.TimerStatus(timerName: "")
+        let state = TimerAtributes.TimerStatus(timerName: "", endTime: Date().addingTimeInterval(1))
         print("DEBUG: stopLiveActivity start")
         
         Task {
@@ -455,11 +455,11 @@ extension GustavViewModel {
     }
     
     func updateLiveActivity() {
-        let state = TimerAtributes.TimerStatus(timerName: timers[activeTimerIndex].name)
+        let state = TimerAtributes.TimerStatus(timerName: timers[activeTimerIndex].name, endTime: Date().addingTimeInterval(TimeInterval(count)))
         print("DEBUG: updateLiveActivity start")
 
         Task {
-            await liveActivity?.update(.init(state: state, staleDate: Date().addingTimeInterval(Double(count))))
+            await liveActivity?.update(.init(state: state, staleDate: Date().addingTimeInterval(TimeInterval(count))))
             print("DEBUG: updateLiveActivity, count: \(count), timerName: \(timers[activeTimerIndex].name)")
         }
     }

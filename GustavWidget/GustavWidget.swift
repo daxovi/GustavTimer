@@ -17,6 +17,10 @@ struct TimerActivityView : View {
             Text(context.state.timerName)
                 .foregroundColor(Color("StartColor"))
                 .font(.custom("MartianMono-Bold", size: 26))
+            
+            Text("\(context.state.endTime, style: .offset)")
+                .foregroundColor(Color("StartColor"))
+                .font(.custom("MartianMono-Bold", size: 16))
         }
         .padding(.horizontal)
     }
@@ -36,22 +40,29 @@ struct GustavWidget: Widget {
                             .font(.custom("MartianMono-Bold", size: 26))
                         
                         Spacer()
+                        
+                        Text("\(context.state.endTime, style: .timer)")
+                            .foregroundColor(Color("StartColor"))
+                            .font(.custom("MartianMono-Bold", size: 16))
                     }
                 }
+                
+                DynamicIslandExpandedRegion(.leading) {
+                    Text("\(context.state.endTime, style: .timer)")
+                        .foregroundColor(Color("StartColor"))
+                        .font(.custom("MartianMono-Bold", size: 16))
+                }
             } compactLeading: {
-                Text("\(context.state.timerName.first ?? " ")")
+                Text("\(context.state.timerName)")
                     .foregroundColor(Color("StartColor"))
                     .font(.custom("MartianMono-Bold", size: 16))
 
             } compactTrailing: {
-//                Text("\(context.state.endTime.timeIntervalSince(.now))")
-//                    .foregroundColor(Color("StartColor"))
-//                    .font(.custom("MartianMono-Bold", size: 16))
-                Text("Gustav timer")
+                Text("\(context.state.endTime, style: .relative)")
                     .foregroundColor(Color("StartColor"))
-                    .font(.custom("MartianMono-Bold", size: 8))
+                    .font(.custom("MartianMono-Bold", size: 16))
             } minimal: {
-                Text("\(context.state.timerName.first ?? " ")")
+                Text("\(context.state.timerName)")
                     .font(.custom("MartianMono-Bold", size: 16))
                     .foregroundColor(Color("StartColor"))
             }
@@ -67,11 +78,11 @@ extension TimerAtributes {
 
 extension TimerAtributes.ContentState {
     fileprivate static var rest: TimerAtributes.ContentState {
-        TimerAtributes.ContentState(timerName: "Rest")
+        TimerAtributes.ContentState(timerName: "Rest", endTime: Date().addingTimeInterval(120))
      }
      
      fileprivate static var workout: TimerAtributes.ContentState {
-         TimerAtributes.ContentState(timerName: "Workout")
+         TimerAtributes.ContentState(timerName: "Workout", endTime: Date().addingTimeInterval(30))
      }
 }
 
