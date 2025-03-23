@@ -29,7 +29,7 @@ struct EditSheetView: View {
     }
     
     var monthlyBannerName: ImageResource {
-        if viewModel.actualMonth - 1 < MonthlyConfig.bannerName.count {
+        if viewModel.actualMonth - 1 < MonthlyConfig.bannerImageResource.count {
             return MonthlyConfig.bannerImageResource[viewModel.actualMonth - 1]
         } else {
             return MonthlyConfig.bannerImageResource[0]

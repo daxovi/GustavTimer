@@ -321,7 +321,8 @@ class GustavViewModel: ObservableObject {
             actualMonth = MonthlyConfig.testingMonth
             return
         }
-
+        
+        // Podmínka: pokud se změnil měsíc, resetujeme počítadlo
         if actualMonth != currentMonth {
             actualMonth = currentMonth
             monthlyCounter = 0
