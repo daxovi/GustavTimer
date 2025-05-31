@@ -1,6 +1,58 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%lld s" : {
+
+    },
+    "%llds" : {
+
+    },
+    "⏭ Skip" : {
+
+    },
+    "⏱ %lld s, %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "⏱ %1$lld s, %2$@"
+          }
+        }
+      }
+    },
+    "⏱ %llds" : {
+
+    },
+    "⏸ Pauza" : {
+
+    },
+    "⏹ Stop" : {
+
+    },
+    "▶️ Resume" : {
+
+    },
+    "▶️ Start" : {
+
+    },
+    "✏️ Upravit" : {
+
+    },
+    "💾 Uložit trénink" : {
+
+    },
+    "📦 %lld kol zbývá" : {
+
+    },
+    "🔁 Nekonečný režim" : {
+
+    },
+    "🔁 Reset" : {
+
+    },
+    "🧹 Vymazat vše" : {
+
+    },
     "1min" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -209,6 +261,12 @@
         }
       }
     },
+    "Barva" : {
+
+    },
+    "Další: %@" : {
+
+    },
     "December challenge" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -253,6 +311,9 @@
           }
         }
       }
+    },
+    "Délka" : {
+
     },
     "EDIT" : {
       "extractionState" : "manual",
@@ -338,7 +399,7 @@
         }
       }
     },
-    "Gustav Timer" : {
+    "Hotovo" : {
 
     },
     "INTERVAL_NAME:" : {
@@ -391,6 +452,9 @@
           }
         }
       }
+    },
+    "Intervaly" : {
+
     },
     "January challenge" : {
       "extractionState" : "stale",
@@ -537,6 +601,18 @@
         }
       }
     },
+    "Název" : {
+
+    },
+    "Název intervalu" : {
+
+    },
+    "Název již existuje" : {
+
+    },
+    "Nekonečné opakování (loop)" : {
+
+    },
     "NO" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -575,6 +651,12 @@
           }
         }
       }
+    },
+    "Počet opakování: %lld" : {
+
+    },
+    "Přepsat" : {
+
     },
     "RATE" : {
       "extractionState" : "stale",
@@ -779,6 +861,12 @@
         }
       }
     },
+    "Trénink" : {
+
+    },
+    "Trénink se stejným názvem už existuje. Chceš ho přepsat?" : {
+
+    },
     "Try Gustav Weights" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -789,6 +877,21 @@
           }
         }
       }
+    },
+    "Typ" : {
+
+    },
+    "Uložené timery" : {
+
+    },
+    "Upravit interval" : {
+
+    },
+    "Upravit trénink" : {
+
+    },
+    "Vyber barvu" : {
+
     },
     "What's New" : {
       "extractionState" : "stale",
@@ -828,6 +931,15 @@
           }
         }
       }
+    },
+    "Žádné uložené tréninky" : {
+
+    },
+    "Základní info" : {
+
+    },
+    "Zrušit" : {
+
     }
   },
   "version" : "1.0"

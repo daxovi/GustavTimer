@@ -20,6 +20,16 @@
 		CF3335112DEB6B6300538DDC /* SpaceMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF33350A2DEB6B6300538DDC /* SpaceMono-Bold.ttf */; };
 		CF3335132DEB6C9D00538DDC /* TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3335122DEB6C9700538DDC /* TextStyle.swift */; };
 		CF3335162DEB6D0000538DDC /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3335152DEB6CFB00538DDC /* View+Extension.swift */; };
+		CF3335192DEB6F0000538DDC /* AppStoreLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3335182DEB6EFA00538DDC /* AppStoreLink.swift */; };
+		CF33351C2DEB6FBB00538DDC /* IntervalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF33351B2DEB6FB300538DDC /* IntervalModel.swift */; };
+		CF33351E2DEB704800538DDC /* TimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF33351D2DEB704500538DDC /* TimerModel.swift */; };
+		CF3335212DEB779F00538DDC /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3335202DEB779B00538DDC /* TimerViewModel.swift */; };
+		CF3335232DEB7B3000538DDC /* Color+Exntesion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3335222DEB7B2C00538DDC /* Color+Exntesion.swift */; };
+		CF3335252DEB7B3E00538DDC /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3335242DEB7B3700538DDC /* UIColor+Extension.swift */; };
+		CF3335272DEB7CD100538DDC /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3335262DEB7CCD00538DDC /* EditViewModel.swift */; };
+		CF3335292DEB7CDC00538DDC /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3335282DEB7CD900538DDC /* EditView.swift */; };
+		CF33352B2DEB7D6C00538DDC /* IntervalEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF33352A2DEB7D6700538DDC /* IntervalEditView.swift */; };
+		CF33352D2DEB7DFD00538DDC /* TimerRunningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF33352C2DEB7DF800538DDC /* TimerRunningView.swift */; };
 		CF93EB012C5E679700A98ABD /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = CF93EB002C5E679700A98ABD /* PrivacyInfo.xcprivacy */; };
 		CF9922AD2C8F84C9004186DF /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9922AC2C8F84C9004186DF /* AppConfig.swift */; };
 		CFF71ACC2B8B99BC00884E82 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */; };
@@ -40,6 +50,16 @@
 		CF33350D2DEB6B6300538DDC /* SpaceMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceMono-Regular.ttf"; sourceTree = "<group>"; };
 		CF3335122DEB6C9700538DDC /* TextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyle.swift; sourceTree = "<group>"; };
 		CF3335152DEB6CFB00538DDC /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		CF3335182DEB6EFA00538DDC /* AppStoreLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreLink.swift; sourceTree = "<group>"; };
+		CF33351B2DEB6FB300538DDC /* IntervalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalModel.swift; sourceTree = "<group>"; };
+		CF33351D2DEB704500538DDC /* TimerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerModel.swift; sourceTree = "<group>"; };
+		CF3335202DEB779B00538DDC /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
+		CF3335222DEB7B2C00538DDC /* Color+Exntesion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Exntesion.swift"; sourceTree = "<group>"; };
+		CF3335242DEB7B3700538DDC /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		CF3335262DEB7CCD00538DDC /* EditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
+		CF3335282DEB7CD900538DDC /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
+		CF33352A2DEB7D6700538DDC /* IntervalEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalEditView.swift; sourceTree = "<group>"; };
+		CF33352C2DEB7DF800538DDC /* TimerRunningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRunningView.swift; sourceTree = "<group>"; };
 		CF5B11122AD33CE500F42131 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CF93EB002C5E679700A98ABD /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		CF9922AC2C8F84C9004186DF /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
@@ -76,8 +96,12 @@
 		CF21843229F052590060706C /* GustavTimer */ = {
 			isa = PBXGroup;
 			children = (
+				CF33352F2DEB7F5F00538DDC /* Timer */,
+				CF33352E2DEB7F4A00538DDC /* Edit */,
+				CF33351A2DEB6FAB00538DDC /* Models */,
+				CF3335182DEB6EFA00538DDC /* AppStoreLink.swift */,
+				CF3335172DEB6EDD00538DDC /* Style */,
 				CF3335142DEB6CF500538DDC /* Extensions */,
-				CF3335122DEB6C9700538DDC /* TextStyle.swift */,
 				CF3334FF2DEB6B4100538DDC /* Fonts */,
 				CF5B11122AD33CE500F42131 /* Info.plist */,
 				CF9922AC2C8F84C9004186DF /* AppConfig.swift */,
@@ -116,9 +140,47 @@
 		CF3335142DEB6CF500538DDC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CF3335242DEB7B3700538DDC /* UIColor+Extension.swift */,
+				CF3335222DEB7B2C00538DDC /* Color+Exntesion.swift */,
 				CF3335152DEB6CFB00538DDC /* View+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CF3335172DEB6EDD00538DDC /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				CF3335122DEB6C9700538DDC /* TextStyle.swift */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
+		CF33351A2DEB6FAB00538DDC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CF33351D2DEB704500538DDC /* TimerModel.swift */,
+				CF33351B2DEB6FB300538DDC /* IntervalModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CF33352E2DEB7F4A00538DDC /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				CF33352A2DEB7D6700538DDC /* IntervalEditView.swift */,
+				CF3335282DEB7CD900538DDC /* EditView.swift */,
+				CF3335262DEB7CCD00538DDC /* EditViewModel.swift */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
+		CF33352F2DEB7F5F00538DDC /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				CF33352C2DEB7DF800538DDC /* TimerRunningView.swift */,
+				CF3335202DEB779B00538DDC /* TimerViewModel.swift */,
+			);
+			path = Timer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,11 +263,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF3335272DEB7CD100538DDC /* EditViewModel.swift in Sources */,
 				CF3335132DEB6C9D00538DDC /* TextStyle.swift in Sources */,
+				CF3335232DEB7B3000538DDC /* Color+Exntesion.swift in Sources */,
+				CF3335212DEB779F00538DDC /* TimerViewModel.swift in Sources */,
+				CF3335252DEB7B3E00538DDC /* UIColor+Extension.swift in Sources */,
+				CF33352D2DEB7DFD00538DDC /* TimerRunningView.swift in Sources */,
+				CF33351C2DEB6FBB00538DDC /* IntervalModel.swift in Sources */,
 				CF21843629F052590060706C /* ContentView.swift in Sources */,
+				CF3335292DEB7CDC00538DDC /* EditView.swift in Sources */,
 				CF3335162DEB6D0000538DDC /* View+Extension.swift in Sources */,
+				CF3335192DEB6F0000538DDC /* AppStoreLink.swift in Sources */,
+				CF33351E2DEB704800538DDC /* TimerModel.swift in Sources */,
 				CF9922AD2C8F84C9004186DF /* AppConfig.swift in Sources */,
 				CF21843429F052590060706C /* GustavTimerApp.swift in Sources */,
+				CF33352B2DEB7D6C00538DDC /* IntervalEditView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

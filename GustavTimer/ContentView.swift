@@ -6,15 +6,10 @@
 //
 
 import SwiftUI
-import StoreKit
-import SwiftData
 
 struct ContentView: View {
-    
     var body: some View {
-        Text("Gustav Timer")
-            .textStyle(.titlePrimary)
-            
+        TimerRunningView()
     }
 }
 
