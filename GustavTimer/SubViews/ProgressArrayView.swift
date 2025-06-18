@@ -1,5 +1,5 @@
 //
-//  ProgressView.swift
+//  ProgressArrayView.swift
 //  GustavTimer
 //
 //  Created by Dalibor Janeček on 01.10.2023.
