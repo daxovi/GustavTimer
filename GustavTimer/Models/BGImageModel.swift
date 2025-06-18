@@ -18,16 +18,14 @@ struct BGImageModel: Identifiable {
     }
     
     func getTitle() -> String {
-        var result = ""
-        if !author.isEmpty {
-            result = "Image by \(author)"
+        if !author.isEmpty && !source.isEmpty {
+            return "Image by \(author) from \(source)"
+        } else if !author.isEmpty {
+            return "Image by \(author)"
+        } else if !source.isEmpty {
+            return "Image source: \(source)"
+        } else {
+            return ""
         }
-        if !source.isEmpty {
-            if result.isEmpty {
-                result = "Image source: \(source)"
-            }
-            result = result + " from \(source)"
-        }
-        return result
     }
 }
