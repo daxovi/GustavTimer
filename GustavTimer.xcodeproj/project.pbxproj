@@ -16,7 +16,9 @@
 		CF21843629F052590060706C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF21843529F052590060706C /* ContentView.swift */; };
 		CF21843829F0525E0060706C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF21843729F0525E0060706C /* Assets.xcassets */; };
 		CF21843B29F0525E0060706C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF21843A29F0525E0060706C /* Preview Assets.xcassets */; };
-		CF21844229F0528C0060706C /* GustavViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF21844129F0528C0060706C /* GustavViewModel.swift */; };
+		CF21844229F0528C0060706C /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF21844129F0528C0060706C /* TimerViewModel.swift */; };
+		CF2222D02E353EA600A90265 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2222CF2E353EA300A90265 /* TimerView.swift */; };
+		CF2222D42E35402500A90265 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2222D32E35402000A90265 /* SettingsViewModel.swift */; };
 		CF279C4C2C31A8940084C43F /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF279C4B2C31A8940084C43F /* SoundManager.swift */; };
 		CF5B11142AD33D8900F42131 /* MartianMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF5B11132AD33D8900F42131 /* MartianMono-Bold.ttf */; };
 		CF5B11162AD33DE200F42131 /* MartianMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF5B11152AD33DE200F42131 /* MartianMono-Regular.ttf */; };
@@ -45,11 +47,11 @@
 		CF93EAFF2C5E569400A98ABD /* game-final.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF93EAFD2C5E569400A98ABD /* game-final.mp3 */; };
 		CF93EB012C5E679700A98ABD /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = CF93EB002C5E679700A98ABD /* PrivacyInfo.xcprivacy */; };
 		CF9922AD2C8F84C9004186DF /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9922AC2C8F84C9004186DF /* AppConfig.swift */; };
-		CF9922AF2C920C51004186DF /* BackgroundThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9922AE2C920C51004186DF /* BackgroundThumbnail.swift */; };
+		CF9922AF2C920C51004186DF /* Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9922AE2C920C51004186DF /* Image+Extension.swift */; };
 		CF9922B12C959AC1004186DF /* ControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9922B02C959AC1004186DF /* ControlButton.swift */; };
 		CF9922B72C976470004186DF /* ControlButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9922B62C976470004186DF /* ControlButtonsView.swift */; };
 		CFADBCF22AC9C8AE00AE27D8 /* ProgressArrayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADBCF12AC9C8AE00AE27D8 /* ProgressArrayView.swift */; };
-		CFADBCF42AC9DC7B00AE27D8 /* EditSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADBCF32AC9DC7B00AE27D8 /* EditSheetView.swift */; };
+		CFADBCF42AC9DC7B00AE27D8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADBCF32AC9DC7B00AE27D8 /* SettingsView.swift */; };
 		CFB1394D2AE572D300EE8B2C /* BGImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1394C2AE572D300EE8B2C /* BGImageView.swift */; };
 		CFB1394F2AE59ED900EE8B2C /* BGImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1394E2AE59ED900EE8B2C /* BGImageModel.swift */; };
 		CFC3A7722AAF8B1B00BB8CC2 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC3A7712AAF8B1B00BB8CC2 /* ProgressBar.swift */; };
@@ -60,7 +62,7 @@
 		CFCD99CE2CA064CF0017BD0E /* QuickTimerBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD99CD2CA064CF0017BD0E /* QuickTimerBanner.swift */; };
 		CFCD99D02CA068B00017BD0E /* ListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD99CF2CA068B00017BD0E /* ListButton.swift */; };
 		CFCE3C742C43129B00D33AE3 /* LapsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE3C732C43129B00D33AE3 /* LapsView.swift */; };
-		CFCE3C762C431EC900D33AE3 /* HideKeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE3C752C431EC900D33AE3 /* HideKeyboardExtension.swift */; };
+		CFCE3C762C431EC900D33AE3 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE3C752C431EC900D33AE3 /* View+Extension.swift */; };
 		CFF71ACC2B8B99BC00884E82 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */; };
 		CFFEC2B62D184F9800E4C157 /* MonthlyConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFEC2B52D184F8B00E4C157 /* MonthlyConfig.swift */; };
 		CFFEC2CE2D1C483400E4C157 /* whatsnew.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFFEC2CD2D1C483400E4C157 /* whatsnew.mp4 */; };
@@ -80,7 +82,9 @@
 		CF21843529F052590060706C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CF21843729F0525E0060706C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF21843A29F0525E0060706C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		CF21844129F0528C0060706C /* GustavViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavViewModel.swift; sourceTree = "<group>"; };
+		CF21844129F0528C0060706C /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
+		CF2222CF2E353EA300A90265 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		CF2222D32E35402000A90265 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		CF279C4B2C31A8940084C43F /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		CF5B11122AD33CE500F42131 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CF5B11132AD33D8900F42131 /* MartianMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Bold.ttf"; sourceTree = "<group>"; };
@@ -110,11 +114,11 @@
 		CF93EAFD2C5E569400A98ABD /* game-final.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "game-final.mp3"; sourceTree = "<group>"; };
 		CF93EB002C5E679700A98ABD /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		CF9922AC2C8F84C9004186DF /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
-		CF9922AE2C920C51004186DF /* BackgroundThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundThumbnail.swift; sourceTree = "<group>"; };
+		CF9922AE2C920C51004186DF /* Image+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extension.swift"; sourceTree = "<group>"; };
 		CF9922B02C959AC1004186DF /* ControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButton.swift; sourceTree = "<group>"; };
 		CF9922B62C976470004186DF /* ControlButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButtonsView.swift; sourceTree = "<group>"; };
 		CFADBCF12AC9C8AE00AE27D8 /* ProgressArrayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressArrayView.swift; sourceTree = "<group>"; };
-		CFADBCF32AC9DC7B00AE27D8 /* EditSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSheetView.swift; sourceTree = "<group>"; };
+		CFADBCF32AC9DC7B00AE27D8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CFB1394C2AE572D300EE8B2C /* BGImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGImageView.swift; sourceTree = "<group>"; };
 		CFB1394E2AE59ED900EE8B2C /* BGImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGImageModel.swift; sourceTree = "<group>"; };
 		CFC3A7712AAF8B1B00BB8CC2 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
@@ -125,7 +129,7 @@
 		CFCD99CD2CA064CF0017BD0E /* QuickTimerBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerBanner.swift; sourceTree = "<group>"; };
 		CFCD99CF2CA068B00017BD0E /* ListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListButton.swift; sourceTree = "<group>"; };
 		CFCE3C732C43129B00D33AE3 /* LapsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapsView.swift; sourceTree = "<group>"; };
-		CFCE3C752C431EC900D33AE3 /* HideKeyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboardExtension.swift; sourceTree = "<group>"; };
+		CFCE3C752C431EC900D33AE3 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		CFFEC2B52D184F8B00E4C157 /* MonthlyConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyConfig.swift; sourceTree = "<group>"; };
 		CFFEC2CD2D1C483400E4C157 /* whatsnew.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = whatsnew.mp4; sourceTree = "<group>"; };
@@ -174,12 +178,12 @@
 				CF9922AC2C8F84C9004186DF /* AppConfig.swift */,
 				CF8E14692D1745C300155BE8 /* MonthlyChallenge */,
 				CF21843329F052590060706C /* GustavTimerApp.swift */,
+				CF2222D12E353FA100A90265 /* Timer */,
 				CF21843529F052590060706C /* ContentView.swift */,
 				CFC4C18A2D04B5E30086CEBB /* Video */,
 				CFC4C1862D047C1D0086CEBB /* WhatsNewView.swift */,
 				CFB1394C2AE572D300EE8B2C /* BGImageView.swift */,
-				CFADBCF32AC9DC7B00AE27D8 /* EditSheetView.swift */,
-				CF21844129F0528C0060706C /* GustavViewModel.swift */,
+				CF2222D22E353FE800A90265 /* Settings */,
 				CF93EB002C5E679700A98ABD /* PrivacyInfo.xcprivacy */,
 				CF21843729F0525E0060706C /* Assets.xcassets */,
 				CF21843929F0525E0060706C /* Preview Content */,
@@ -194,6 +198,24 @@
 				CF21843A29F0525E0060706C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CF2222D12E353FA100A90265 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				CF21844129F0528C0060706C /* TimerViewModel.swift */,
+				CF2222CF2E353EA300A90265 /* TimerView.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		CF2222D22E353FE800A90265 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				CF2222D32E35402000A90265 /* SettingsViewModel.swift */,
+				CFADBCF32AC9DC7B00AE27D8 /* SettingsView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		CF279C462C31A0CF0084C43F /* Sound */ = {
@@ -303,8 +325,8 @@
 		CFCE3C772C431EF400D33AE3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				CFCE3C752C431EC900D33AE3 /* HideKeyboardExtension.swift */,
-				CF9922AE2C920C51004186DF /* BackgroundThumbnail.swift */,
+				CFCE3C752C431EC900D33AE3 /* View+Extension.swift */,
+				CF9922AE2C920C51004186DF /* Image+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -415,25 +437,27 @@
 				CF21843629F052590060706C /* ContentView.swift in Sources */,
 				CFB1394F2AE59ED900EE8B2C /* BGImageModel.swift in Sources */,
 				CFC3A7722AAF8B1B00BB8CC2 /* ProgressBar.swift in Sources */,
+				CF2222D42E35402500A90265 /* SettingsViewModel.swift in Sources */,
 				CF8E14672D17404900155BE8 /* VideoPlayerFullscreen.swift in Sources */,
 				CF01945C2C8A20D700CAC1BD /* SoundSelectorView.swift in Sources */,
-				CFADBCF42AC9DC7B00AE27D8 /* EditSheetView.swift in Sources */,
+				CFADBCF42AC9DC7B00AE27D8 /* SettingsView.swift in Sources */,
 				CF9922B12C959AC1004186DF /* ControlButton.swift in Sources */,
 				CF8E146B2D1745DB00155BE8 /* MonthlyMenuItem.swift in Sources */,
 				CFC4C1852D04766D0086CEBB /* Tag.swift in Sources */,
 				CFCD99CE2CA064CF0017BD0E /* QuickTimerBanner.swift in Sources */,
 				CFADBCF22AC9C8AE00AE27D8 /* ProgressArrayView.swift in Sources */,
 				CFC4C1872D047C1D0086CEBB /* WhatsNewView.swift in Sources */,
-				CF21844229F0528C0060706C /* GustavViewModel.swift in Sources */,
+				CF21844229F0528C0060706C /* TimerViewModel.swift in Sources */,
 				CF9922AD2C8F84C9004186DF /* AppConfig.swift in Sources */,
-				CF9922AF2C920C51004186DF /* BackgroundThumbnail.swift in Sources */,
+				CF9922AF2C920C51004186DF /* Image+Extension.swift in Sources */,
 				CF70037D2C8DE816009F1531 /* HintButton.swift in Sources */,
 				CFCD99D02CA068B00017BD0E /* ListButton.swift in Sources */,
 				CF9922B72C976470004186DF /* ControlButtonsView.swift in Sources */,
-				CFCE3C762C431EC900D33AE3 /* HideKeyboardExtension.swift in Sources */,
+				CFCE3C762C431EC900D33AE3 /* View+Extension.swift in Sources */,
 				CF70037F2C8DED37009F1531 /* BGSelectorView.swift in Sources */,
 				CFC81B022C5FF6F700F98E36 /* LapDetailView.swift in Sources */,
 				CFFEC2B62D184F9800E4C157 /* MonthlyConfig.swift in Sources */,
+				CF2222D02E353EA600A90265 /* TimerView.swift in Sources */,
 				CF21843429F052590060706C /* GustavTimerApp.swift in Sources */,
 				CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */,
 				CF279C4C2C31A8940084C43F /* SoundManager.swift in Sources */,

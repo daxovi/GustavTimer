@@ -12,8 +12,6 @@ struct ControlButton: View {
     var text: LocalizedStringKey
     var color: Color
     
-    @StateObject var viewModel = GustavViewModel.shared
-    
     var body: some View {
         Button(action: action, label: {
             color

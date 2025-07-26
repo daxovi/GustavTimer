@@ -1,5 +1,5 @@
 //
-//  EditSheetView.swift
+//  SettingsView.swift
 //  GustavTimer
 //
 //  Created by Dalibor Janeček on 01.10.2023.
@@ -13,8 +13,8 @@ import _AVKit_SwiftUI
  import SwiftData
  */
 
-struct EditSheetView: View {
-    @StateObject var viewModel = GustavViewModel.shared
+struct SettingsView: View {
+    @StateObject var viewModel = TimerViewModel.shared
     @Environment(\.colorScheme) var colorScheme
     @State private var scrollPosition: CGFloat = 500.0
     @State private var showVideo = false
@@ -240,6 +240,6 @@ struct EditSheetView: View {
 
 struct EditSheetView_Previews: PreviewProvider {
     static var previews: some View {
-        EditSheetView()
+        SettingsView()
     }
 }

@@ -1,5 +1,5 @@
 //
-//  GustavViewModel.swift
+//  TimerViewModel.swift
 //  GustavTimer
 //
 //  Created by Dalibor Janeček on 19.04.2023.
@@ -12,7 +12,7 @@ import AVKit
 import AVFoundation
 import PhotosUI
 
-class GustavViewModel: ObservableObject {
+class TimerViewModel: ObservableObject {
     let maxTimers = AppConfig.maxTimerCount
     let maxCountdownValue = AppConfig.maxTimerValue
     
@@ -45,7 +45,7 @@ class GustavViewModel: ObservableObject {
     var activeTimerIndex: Int = 0
     var timer: AnyCancellable?
     
-    static let shared = GustavViewModel()
+    static let shared = TimerViewModel()
     
     init() {
         UIApplication.shared.isIdleTimerDisabled = false
@@ -416,46 +416,4 @@ class GustavViewModel: ObservableObject {
                     print("No host found")
                 }
         }
-    
-    /*
-    // MARK: Display sizes
-    // iPhone
-    // @Published var isIphoneLandscape: Bool = false
-    @Published var isIpad: Bool = false
-    @Published var isIpadWide: Bool = false
-    
-    func updateSizeClass(verticalSizeClass: UserInterfaceSizeClass?, horizontalSizeClass: UserInterfaceSizeClass?) {
-        isIpad = UIDevice.current.userInterfaceIdiom == .pad
-        if isIpad && horizontalSizeClass == .regular {
-            isIpadWide = true
-        }
-    }
-    
-    var controlButtonsRadius: CGFloat = 0
-    var controlButtonsPadding: CGFloat { isIpad ? 15 : 0 }
-    var controlButtonsWidth: CGFloat? { isIpadWide ? 400 : nil}
-    var progressBarHeight: Int  = 6
-    var controlButtonsHeight: CGFloat = 100
-    
-    // Grid
-    private let flexibleNarrowColumn = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
-    
-    private let flexibleWideColumn = [
-        GridItem(.flexible()),
-        GridItem(.flexible()),
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
-    
-    var gridColumns: [GridItem] {
-        if isIpadWide {
-            return flexibleWideColumn
-        } else {
-            return flexibleNarrowColumn
-        }
-    }
-    */
 }
