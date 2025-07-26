@@ -33,7 +33,7 @@ class SettingsViewModel: ObservableObject {
         return timers.count >= AppConfig.maxTimerCount
     }
     
-    func addTimer() {
+    func addInterval() {
         if !isTimerFull {
             timers.append(IntervalData(value: 5, name: "Lap \(timers.count + 1)"))
         }

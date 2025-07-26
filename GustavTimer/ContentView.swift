@@ -34,10 +34,10 @@ struct ContentView: View {
     }
     
     private func initializeDataIfNeeded() {
-        if timerData.isEmpty || timerData.first(where: { $0.id == defaultTimerId }) == nil {
+        if timerData.isEmpty {
             let defaultTimer = TimerData(id: defaultTimerId)
             context.insert(defaultTimer)
-            
+            print("DEBUG: Default timer created with id: \(defaultTimerId)")
             try? context.save()
         }
     }

@@ -64,10 +64,16 @@ struct SettingsView: View {
                         
                         Section("INTERVALS") {
                             // TODO: přidat omezení na 5 timerů, další nepřidávat
-//                            ForEach(viewModel.timers) { timer in
-//                                Text("timer.name")
-//                            }
-                                Button(action: viewModel.addTimer, label: {
+                            if !timerData.isEmpty {
+                                ForEach(timerData[0].intervals) { interval in
+                                    HStack {
+                                        Text(interval.name)
+                                        Spacer()
+                                        Text("\(interval.value)")
+                                    }
+                                }
+                            }
+                                Button(action: viewModel.addInterval, label: {
                                     Text("ADD_INTERVAL")
                                         .foregroundStyle(Color("ResetColor"))
                                 })

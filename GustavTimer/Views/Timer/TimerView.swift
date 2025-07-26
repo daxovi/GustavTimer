@@ -10,7 +10,7 @@ import SwiftData
 
 struct TimerView: View {
     @Binding var showSettings: Bool
-    @Query var timerData: [TimerData]
+    @Environment(\.modelContext) var context
     @StateObject var viewModel = TimerViewModel()
     
     var body: some View {
@@ -42,6 +42,9 @@ struct TimerView: View {
         }
         .onAppear {
             viewModel.showWhatsNew()
+        }
+        .onAppear {
+            viewModel.setModelContext(context)
         }
         .sheet(isPresented: $viewModel.showingWhatsNew) {
             WhatsNewView(buttonLabel: "enter challenge", tags: ["#whatsnew", "V1.4"], action: {

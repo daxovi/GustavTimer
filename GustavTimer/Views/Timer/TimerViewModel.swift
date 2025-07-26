@@ -11,6 +11,7 @@ import SwiftUI
 import AVKit
 import AVFoundation
 import PhotosUI
+import SwiftData
 
 class TimerViewModel: ObservableObject {
     let maxTimers = AppConfig.maxTimerCount
@@ -25,11 +26,7 @@ class TimerViewModel: ObservableObject {
     
     @Environment(\.requestReview) var requestReview
     
-    @Published var timers: [IntervalData] = [] {
-        didSet {
-            saveTimersToUserDefaults()
-        }
-    }
+    @Published var timers: [IntervalData]
     
     @Published var isTimerRunning = false
     @Published var progress: Double = 0.0
@@ -46,11 +43,19 @@ class TimerViewModel: ObservableObject {
     
     var activeTimerIndex: Int = 0
     var timer: AnyCancellable?
+    
+    private var modelContext: ModelContext?
         
     init() {
         UIApplication.shared.isIdleTimerDisabled = false
-        loadTimersFromUserDefaults()
+        
+        self.timers = [IntervalData(value: 60, name: "Work"), IntervalData(value: 30, name: "Rest")]
         self.count = timers[0].value
+    }
+    
+    func setModelContext(_ context: ModelContext) {
+        self.modelContext = context
+        loadTimersFromSwiftData()
     }
     
     private func clearUserDefaults() {
@@ -306,4 +311,68 @@ class TimerViewModel: ObservableObject {
                     print("No host found")
                 }
         }
+}
+
+extension TimerViewModel {
+    // Načíst timery ze SwiftData
+    private func loadTimersFromSwiftData() {
+        guard let context = modelContext else { return }
+        
+        do {
+            let descriptor = FetchDescriptor<TimerData>()
+            let timerDataArray = try context.fetch(descriptor)
+            
+            if let timerData = timerDataArray.first {
+                // Převést TimerData na IntervalData
+                self.timers = timerData.intervals.map { interval in
+                    IntervalData(value: interval.value, name: interval.name)
+                }
+                
+                if !timers.isEmpty {
+                    self.count = timers[0].value
+                }
+            } else {
+                // Pokud nejsou data, vytvoř výchozí
+                createDefaultTimerData()
+            }
+        } catch {
+            print("Error loading timers from SwiftData: \(error)")
+            createDefaultTimerData()
+        }
+    }
+    
+    // Uložit timery do SwiftData
+    private func saveTimersToSwiftData() {
+        guard let context = modelContext else { return }
+        
+        do {
+            // Načti existující TimerData nebo vytvoř nový
+            let descriptor = FetchDescriptor<TimerData>()
+            let timerDataArray = try context.fetch(descriptor)
+            
+            let timerData: TimerData
+            if let existingTimerData = timerDataArray.first {
+                timerData = existingTimerData
+            } else {
+                timerData = TimerData(id: 0)
+                context.insert(timerData)
+            }
+            
+            // Aktualizuj intervals
+            timerData.intervals = timers.map { timer in
+                IntervalData(value: timer.value, name: timer.name)
+            }
+            
+            try context.save()
+        } catch {
+            print("Error saving timers to SwiftData: \(error)")
+        }
+    }
+    
+    // Vytvoř výchozí data
+    private func createDefaultTimerData() {
+        self.timers = [IntervalData(value: 60, name: "Work"), IntervalData(value: 30, name: "Rest")]
+        self.count = timers[0].value
+        saveTimersToSwiftData()
+    }
 }
