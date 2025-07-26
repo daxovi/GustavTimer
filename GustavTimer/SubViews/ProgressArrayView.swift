@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProgressArrayView: View {
-    @StateObject var viewModel = GustavViewModel.shared
+    @StateObject var viewModel = TimerViewModel.shared
     
     var body: some View {
         GeometryReader { geometry in

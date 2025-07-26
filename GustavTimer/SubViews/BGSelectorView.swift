@@ -14,7 +14,7 @@ struct BGSelectorView: View {
         GridItem(.adaptive(minimum: 120))
     ]
     
-    @StateObject var viewModel = GustavViewModel.shared
+    @StateObject var viewModel = TimerViewModel.shared
     @Environment(\.modelContext) var context
     @Query var customImage: [CustomImageModel]
     

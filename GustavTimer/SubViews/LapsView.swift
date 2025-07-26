@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LapsView: View {
-    @StateObject var viewModel = GustavViewModel.shared
+    @StateObject var viewModel = TimerViewModel.shared
     @Environment(\.presentationMode) var presentationMode
     @State private var bgLapOpacity: [Int: Double] = [:] // Mapujeme indexy na opacity
     @Environment(\.colorScheme) var colorScheme
