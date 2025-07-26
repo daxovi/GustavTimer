@@ -11,12 +11,15 @@ import SwiftUI
 
 @Model
 class TimerData {
-    var id = UUID()
-    var intervals: [IntervalData] = [IntervalData(value: 30, name: "Work"), IntervalData(value: 15, name: "Rest")]
+    var id: Int
+    var intervals: [IntervalData] = [
+        IntervalData(value: 30, name: "Work"),
+        IntervalData(value: 15, name: "Rest")
+    ]
     var isLoop: Bool = true
     
-    init() {
-        
+    init(id: Int) {
+        self.id = id
     }
 }
 

@@ -10,6 +10,10 @@ import StoreKit
 import SwiftData
 
 struct ContentView: View {
+    @Query var timerData: [TimerData]
+    
+    @Environment(\.modelContext) var context
+    
     @AppStorage("selectedBackgroundIndex") private var selectedBackgroundIndex: Int = 0
     @AppStorage("activeTimerId") private var activeTimerId: Int = 0
     @AppStorage("selectedSound") private var selectedSound: String = "beep"
@@ -17,11 +21,25 @@ struct ContentView: View {
     
     @State private var showSettings = false
     
+    private var defaultTimerId: Int = 0
+    
     var body: some View {
         TimerView(showSettings: $showSettings)
             .sheet(isPresented: $showSettings) {
                 SettingsView()
             }
+            .onAppear {
+                initializeDataIfNeeded()
+            }
+    }
+    
+    private func initializeDataIfNeeded() {
+        if timerData.isEmpty || timerData.first(where: { $0.id == defaultTimerId }) == nil {
+            let defaultTimer = TimerData(id: defaultTimerId)
+            context.insert(defaultTimer)
+            
+            try? context.save()
+        }
     }
 }
 

@@ -8,17 +8,14 @@
 import SwiftUI
 import AVFoundation
 import _AVKit_SwiftUI
-/*
- import PhotosUI
- import SwiftData
- */
+import SwiftData
 
 struct SettingsView: View {
+    @Query var timerData: [TimerData]
     @StateObject var viewModel = SettingsViewModel()
     @Environment(\.colorScheme) var colorScheme
     @State private var scrollPosition: CGFloat = 500.0
     @State private var showVideo = false
-    
     @Environment(\.dismiss) private var dismiss
     
     // Monthly

@@ -10,7 +10,7 @@ import SwiftData
 
 struct TimerView: View {
     @Binding var showSettings: Bool
-    
+    @Query var timerData: [TimerData]
     @StateObject var viewModel = TimerViewModel()
     
     var body: some View {

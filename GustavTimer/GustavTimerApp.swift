@@ -10,7 +10,6 @@ import SwiftData
 
 @main
 struct GustavTimerApp: App {
-    
     var body: some Scene {
         WindowGroup {
             ContentView()
