@@ -10,7 +10,7 @@ import SwiftUI
 struct LapDetailView: View {
     var timer: TimerData
     @Environment(\.dismiss) var dismiss
-    @StateObject var viewModel = TimerViewModel.shared
+    @ObservedObject var viewModel: TimerViewModel
     @State private var timerText: String = ""
     @State private var isShowingConfirmationDialog: Bool = false
     @FocusState private var keyboardFocused: Bool

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LapsView: View {
-    @StateObject var viewModel = TimerViewModel.shared
+    @ObservedObject var viewModel: TimerViewModel
     @Environment(\.presentationMode) var presentationMode
     @State private var bgLapOpacity: [Int: Double] = [:] // Mapujeme indexy na opacity
     @Environment(\.colorScheme) var colorScheme
@@ -32,7 +32,7 @@ struct LapsView: View {
         ForEach(viewModel.timers.indices, id: \.self) { index in
             let timer = viewModel.timers[index]
             NavigationLink {
-                LapDetailView(timer: timer)
+                LapDetailView(timer: timer, viewModel: viewModel)
             } label: {
                 ListButton(name: timer.name, value: "\(timer.value)")
 

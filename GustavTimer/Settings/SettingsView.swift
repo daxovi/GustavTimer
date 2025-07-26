@@ -14,7 +14,11 @@ import _AVKit_SwiftUI
  */
 
 struct SettingsView: View {
-    @StateObject var viewModel = TimerViewModel.shared
+    @StateObject var viewModel: SettingsViewModel
+
+    init(viewModel: SettingsViewModel = SettingsViewModel()) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
     @Environment(\.colorScheme) var colorScheme
     @State private var scrollPosition: CGFloat = 500.0
     @State private var showVideo = false
@@ -50,7 +54,7 @@ struct SettingsView: View {
                 NavigationStack {
                     List {
                         //  quickTimers
-                        MonthlyMenuItem(showVideo: $showVideo, monthlyActionText: viewModel.getChallengeText(), monthlyCounter: $viewModel.monthlyCounter)
+                        MonthlyMenuItem(showVideo: $showVideo, monthlyActionText: viewModel.getChallengeText(), monthlyCounter: $viewModel.timerViewModel.monthlyCounter)
                             .background(
                                 GeometryReader(content: { geometry in
                                     Color.clear
@@ -64,7 +68,7 @@ struct SettingsView: View {
                             )
                         
                         Section("INTERVALS") {
-                            LapsView()
+                            LapsView(viewModel: viewModel.timerViewModel)
                             if !viewModel.isTimerFull {
                                 Button(action: viewModel.addTimer, label: {
                                     Text("ADD_INTERVAL")
@@ -77,12 +81,12 @@ struct SettingsView: View {
                             Toggle("LOOP", isOn: $viewModel.isLooping)
                                 .tint(Color("StartColor"))
                             NavigationLink {
-                                SoundSelectorView(viewModel: viewModel)
+                                SoundSelectorView(viewModel: viewModel.timerViewModel)
                             } label: {
                                 ListButton(name: "Sound", value: "\(viewModel.isSoundOn ? viewModel.activeSoundTheme : "MUTE")")
                             }
                             NavigationLink {
-                                BGSelectorView(viewModel: viewModel)
+                                BGSelectorView(viewModel: viewModel.timerViewModel)
                             } label: {
                                 ListButton(name: "BACKGROUND")
                             }
@@ -240,6 +244,6 @@ struct SettingsView: View {
 
 struct EditSheetView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView(viewModel: SettingsViewModel())
     }
 }
