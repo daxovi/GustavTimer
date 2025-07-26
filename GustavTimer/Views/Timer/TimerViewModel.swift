@@ -23,6 +23,7 @@ class TimerViewModel: ObservableObject {
     @Published var showingSheet = false
     @Published var showingWhatsNew: Bool = false
     
+    @Environment(\.requestReview) var requestReview
     
     @Published var timers: [TimerData] = [] {
         didSet {
@@ -33,12 +34,13 @@ class TimerViewModel: ObservableObject {
     @Published var isTimerRunning = false
     @Published var progress: Double = 0.0
     @AppStorage("isLooping") var isLooping: Bool = true
-    @AppStorage("isSoundOn") var isSoundOn = true
     @Published var editMode = EditMode.inactive
     @Published var duration: Double = 1.0
-    @AppStorage("bgIndex") var bgIndex = 0
     @AppStorage("stopCounter") var stopCounter: Int = 0
     @AppStorage("whatsNewVersion") var whatsNewVersion: Int = 0
+    
+    @AppStorage("selectedSound") var selectedSound: String = "beep"
+    @AppStorage("isSoundEnabled") var isSoundEnabled: Bool = true
     
     @Published var startedFromDeeplink: Bool = false
     
@@ -51,7 +53,6 @@ class TimerViewModel: ObservableObject {
         UIApplication.shared.isIdleTimerDisabled = false
         loadTimersFromUserDefaults()
         self.count = timers[0].value
-        checkCurrentMonth()
     }
     
     private func clearUserDefaults() {
@@ -130,19 +131,11 @@ class TimerViewModel: ObservableObject {
             }
     }
     
-    func startStopTimer(requestReview: @escaping () -> ()) {
+    func startStopTimer() {
         if timer == nil {
             startTimer()
         } else {
             stopTimer()
-        }
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.0) {
-            if self.stopCounter > 20 && !self.isTimerRunning {
-                if !self.isTimerRunning {
-                    self.stopCounter = 0
-                    requestReview()
-                }
-            }
         }
     }
     
@@ -219,51 +212,13 @@ class TimerViewModel: ObservableObject {
     }
     
     //MARK: SOUND
-    @Published var soundThemeArray = ["beep", "90s", "bell", "trumpet", "game"]
-    @AppStorage("soundTheme") var activeSoundTheme = "beep"
-    
     func playSound() {
-        if isSoundOn && isTimerRunning {
+        if isSoundEnabled && isTimerRunning {
             if self.count < 1 && timers[activeTimerIndex].value > 3 {
-                SoundManager.instance.playSound(sound: .final, theme: activeSoundTheme)
+                SoundManager.instance.playSound(sound: .final, theme: selectedSound)
             } else if self.count < 4 && self.count > 0 && timers[activeTimerIndex].value > 9 {
-                SoundManager.instance.playSound(sound: .countdown, theme: activeSoundTheme)
+                SoundManager.instance.playSound(sound: .countdown, theme: selectedSound)
             }
-        }
-    }
-    
-    func saveSettings() {
-        // Resetujeme časovač
-        resetTimer()
-        
-        // Zavřeme sheet
- //       self.showingSheet = false
-    }
-    
-    
-    //MARK: BG
-    let bgImages: [BGImageModel] = [
-        BGImageModel(image: "Benchpress", author: "", source: "www.unsplash.com"),
-        BGImageModel(image: "Boxer", author: "", source: "www.unsplash.com"),
-        BGImageModel(image: "Ground", author: "", source: "www.unsplash.com"),
-        BGImageModel(image: "Lanes", author: "", source: "www.unsplash.com"),
-        BGImageModel(image: "Poster", author: "", source: "www.unsplash.com"),
-        BGImageModel(image: "Pullup", author: "", source: "www.unsplash.com"),
-        BGImageModel(image: "Squat", author: "", source: "www.unsplash.com"),
-        BGImageModel(image: "Wood", author: "", source: "www.unsplash.com"),
-        BGImageModel(image: "Buddha", author: "", source: "www.unsplash.com"),
-        BGImageModel(image: "Lotos", author: "", source: "www.unsplash.com")
-    ]
-    
-    func setBG(index: Int) {
-        self.bgIndex = index
-    }
-    
-    func getImage() -> Image {
-        if bgImages.indices.contains(bgIndex) {
-            return bgImages[bgIndex].getImage()
-        } else {
-            return bgImages[0].getImage()
         }
     }
     
@@ -301,70 +256,7 @@ class TimerViewModel: ObservableObject {
             whatsNewVersion = AppConfig.version
         }
     }
-    
-    // MARK: Monthly challenge
-    private var currentMonth: Int { return Calendar.current.component(.month, from: Date()) }
-    @AppStorage("actualMonth") var actualMonth: Int = 1
-    @AppStorage("monthlyCounter") var monthlyCounter: Int = 0
-    
-    func checkCurrentMonth() {
-        print("DEBUG actualMonth: \(actualMonth)")
-        print("DEBUG currentMonth: \(currentMonth)")
         
-        let currentYear = Calendar.current.component(.year, from: Date())
-            
-        // Podmínka: pokud je aktuální rok 2024, ukončíme funkci
-        if currentYear == 2024 {
-            print("DEBUG checkCurrentMonth: Current year is 2024, skipping check")
-            // TESTBUILD
-            actualMonth = 1
-            actualMonth = MonthlyConfig.testingMonth
-            return
-        }
-        
-        // Podmínka: pokud se změnil měsíc, resetujeme počítadlo
-        if actualMonth != currentMonth {
-            actualMonth = currentMonth
-            monthlyCounter = 0
-            print("DEBUG checkCurrentMonth: month change")
-        }
-    }
-    
-    func getChallengeText() -> LocalizedStringKey {
-        switch actualMonth {
-        case 1:
-            return "January challenge"
-        case 2:
-            return "February challenge"
-        case 3:
-            return "March challenge"
-        case 4:
-            return "April challenge"
-        case 5:
-            return "May challenge"
-        case 6:
-            return "June challenge"
-        case 7:
-            return "July challenge"
-        case 8:
-            return "August challenge"
-        case 9:
-            return "September challenge"
-        case 10:
-            return "October challenge"
-        case 11:
-            return "November challenge"
-        case 12:
-            return "December challenge"
-        default:
-            return "Monthly challenge"
-        }
-    }
-    
-    func incrementMonthlyCounter() {
-        monthlyCounter += 1
-    }
-    
     // MARK: Deeplinks
     // fungují deeplinks s nastavením timeru gustavtimerapp://timer?warmup=10&run=50&cooldown=20
     // i deeplinks pro whatsnew gustavtimerapp://whatsnew

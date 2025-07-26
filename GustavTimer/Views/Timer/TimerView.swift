@@ -9,18 +9,13 @@ import SwiftUI
 import SwiftData
 
 struct TimerView: View {
+    @Binding var showSettings: Bool
+    
     @StateObject var viewModel = TimerViewModel.shared
-    
-    @Environment(\.verticalSizeClass) var verticalSizeClass
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    
-    @Query var customImage: [CustomImageModel]
-    
-    @State var landingPage: Bool = false
     
     var body: some View {
         ZStack {
-            background
+            BackgroundImageView()
             
             VStack {
                 ProgressArrayView()
@@ -36,24 +31,12 @@ struct TimerView: View {
                 
                 Spacer()
                 
-                ControlButtonsView()
+                controlButtons
             }
             .font(Font.custom("MartianMono-Regular", size: 15))
             .ignoresSafeArea(edges: .bottom)
             .statusBar(hidden: true)
             .persistentSystemOverlays(.hidden)
-            
-            if landingPage {
-                Color.red
-                    .overlay(content: {
-                        Text("Landing page")
-                    })
-                    .padding(100)
-                    .onTapGesture {
-                        landingPage.toggle()
-                    }
-            }
-            
         }
         .onAppear {
             viewModel.showWhatsNew()
@@ -88,16 +71,19 @@ struct TimerView: View {
         }
     }
     
-    var background: some View {
-        if viewModel.bgIndex == -1 {
-            if let lastImageData = customImage.last?.image, let uiImage = UIImage(data: lastImageData) {
-                BGImageView(image: Image(uiImage: uiImage))
+    var controlButtons: some View {
+        HStack(spacing: 0) {
+            ControlButton(action: {
+                viewModel.startStopTimer()
+            }, text: viewModel.isTimerRunning ? "STOP" : "START", color: viewModel.isTimerRunning ? .stop : .start)
+            if viewModel.isTimerRunning {
+                ControlButton(action: { viewModel.skipLap() }, text: "SKIP", color: .reset)
             } else {
-                BGImageView(image: viewModel.getImage())
+                ControlButton(action: { viewModel.resetTimer() }, text: "RESET", color: .reset)
             }
-        } else {
-            BGImageView(image: viewModel.getImage())
         }
+        .frame(maxWidth: 1000)
+        .clipShape(RoundedRectangle(cornerRadius: 0))
     }
     
     var rounds: some View {
@@ -116,7 +102,7 @@ struct TimerView: View {
     
     var editButton: some View {
             Button {
-                viewModel.toggleSheet()
+                showSettings.toggle()
             } label: {
                 HStack {
                     HStack{
@@ -124,22 +110,18 @@ struct TimerView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .foregroundColor(Color(viewModel.isLooping ? .start : .reset))
-                        Image(systemName: viewModel.isSoundOn ? "speaker.wave.2.circle.fill" : "speaker.slash.circle.fill")
+                        Image(systemName: viewModel.isSoundEnabled ? "speaker.wave.2.circle.fill" : "speaker.slash.circle.fill")
                             .resizable()
                             .scaledToFit()
-                            .foregroundColor(Color(viewModel.isSoundOn ? .start : .reset))
+                            .foregroundColor(Color(viewModel.isSoundEnabled ? .start : .reset))
                     }
                     .frame(height: 20)
 
                     Text("EDIT")
                 }
                 .foregroundColor(Color("StartColor"))
-
         }
         .safeAreaPadding(.horizontal)
-        .sheet(isPresented: $viewModel.showingSheet, content: {
-            SettingsView()
-        })
     }
     
 }

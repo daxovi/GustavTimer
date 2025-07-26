@@ -1,12 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-
-    },
-    "%@" : {
-
-    },
     "%@ (%lld)" : {
       "localizations" : {
         "en" : {
@@ -21,6 +15,7 @@
 
     },
     "1min" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -31,6 +26,7 @@
       }
     },
     "1min30sec" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -41,6 +37,7 @@
       }
     },
     "5min" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -51,6 +48,7 @@
       }
     },
     "20/10sec" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -67,6 +65,7 @@
       }
     },
     "30/30sec" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -83,6 +82,7 @@
       }
     },
     "60/5sec" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -99,6 +99,7 @@
       }
     },
     "60sec" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -115,6 +116,7 @@
       }
     },
     "300sec" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -227,6 +229,7 @@
       }
     },
     "DELETE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -243,6 +246,7 @@
       }
     },
     "DELETE_DIALOG?" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -303,6 +307,7 @@
       }
     },
     "Fast switch" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -339,6 +344,7 @@
       }
     },
     "INTERVAL_NAME:" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -355,6 +361,7 @@
       }
     },
     "INTERVAL_TIME" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -415,9 +422,6 @@
           }
         }
       }
-    },
-    "Landing page" : {
-
     },
     "LAP" : {
       "extractionState" : "manual",
@@ -491,6 +495,7 @@
       }
     },
     "Meditate" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -527,6 +532,7 @@
       }
     },
     "NO" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -596,6 +602,7 @@
       }
     },
     "Rest" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -633,6 +640,7 @@
       }
     },
     "SET_TIMER: " : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -734,6 +742,7 @@
       }
     },
     "Tabata" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -742,9 +751,6 @@
           }
         }
       }
-    },
-    "Timer not found" : {
-
     },
     "TIMER_SETTINGS" : {
       "localizations" : {
@@ -773,6 +779,7 @@
       }
     },
     "What's New" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -783,6 +790,7 @@
       }
     },
     "Work-Rest" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -793,6 +801,7 @@
       }
     },
     "YES_DELETE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

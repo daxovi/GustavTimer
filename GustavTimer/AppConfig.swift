@@ -33,5 +33,21 @@ struct AppConfig {
     // Maximální název intervalu
     static let maxTimerName: Int = 12
     
+    // Background
+    static let backgroundImages: [BackgroundImageModel] = [
+        BackgroundImageModel(image: "Benchpress", author: "", source: "www.unsplash.com"),
+        BackgroundImageModel(image: "Boxer", author: "", source: "www.unsplash.com"),
+        BackgroundImageModel(image: "Ground", author: "", source: "www.unsplash.com"),
+        BackgroundImageModel(image: "Lanes", author: "", source: "www.unsplash.com"),
+        BackgroundImageModel(image: "Poster", author: "", source: "www.unsplash.com"),
+        BackgroundImageModel(image: "Pullup", author: "", source: "www.unsplash.com"),
+        BackgroundImageModel(image: "Squat", author: "", source: "www.unsplash.com"),
+        BackgroundImageModel(image: "Wood", author: "", source: "www.unsplash.com"),
+        BackgroundImageModel(image: "Buddha", author: "", source: "www.unsplash.com"),
+        BackgroundImageModel(image: "Lotos", author: "", source: "www.unsplash.com")
+    ]
+    
+    static let soundThemes = ["beep", "90s", "bell", "trumpet", "game"]
+    
     // Rozměry
 }

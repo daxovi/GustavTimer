@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BGImageModel: Identifiable {
+struct BackgroundImageModel: Identifiable {
     let id = UUID()
     let image: String
     let author: String

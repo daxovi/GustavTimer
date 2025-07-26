@@ -10,8 +10,18 @@ import StoreKit
 import SwiftData
 
 struct ContentView: View {
+    @AppStorage("selectedBackgroundIndex") private var selectedBackgroundIndex: Int = 0
+    @AppStorage("activeTimerId") private var activeTimerId: Int = 0
+    @AppStorage("selectedSound") private var selectedSound: String = "beep"
+    @AppStorage("isSoundEnabled") private var isSoundEnabled: Bool = true
+    
+    @State private var showSettings = false
+    
     var body: some View {
-        TimerView()
+        TimerView(showSettings: $showSettings)
+            .sheet(isPresented: $showSettings) {
+                SettingsView()
+            }
     }
 }
 

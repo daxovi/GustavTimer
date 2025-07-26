@@ -9,30 +9,31 @@ import SwiftUI
 import PhotosUI
 import SwiftData
 
-struct BGSelectorView: View {
+struct BackgroundSelectorView: View {
     private let flexibleColumn = [
         GridItem(.adaptive(minimum: 120))
     ]
     
-    @StateObject var viewModel = TimerViewModel.shared
+    @AppStorage("bgIndex") var bgIndex: Int = 0
+    
     @Environment(\.modelContext) var context
     @Query var customImage: [CustomImageModel]
     
-    @State var selectedPhoto: PhotosPickerItem?
-    @State var selectedPhotoData: Data?
+    @State private var selectedPhoto: PhotosPickerItem?
+    @State private var selectedPhotoData: Data?
     
     var body: some View {
         ScrollView() {
             LazyVGrid(columns: flexibleColumn, spacing: 15) {
-                ForEach(0..<viewModel.bgImages.count, id: \.self) { index in
-                    viewModel.bgImages[index].getImage()
+                ForEach(0..<AppConfig.backgroundImages.count, id: \.self) { index in
+                    AppConfig.backgroundImages[index].getImage()
                         .backgroundThumbnail()
-                        .onTapGesture { viewModel.setBG(index: index) }
+                        .onTapGesture { setBG(index: index) }
                         .overlay {
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(style: .init(lineWidth: (viewModel.bgIndex == index) ? 4 : 0))
+                                .stroke(style: .init(lineWidth: (bgIndex == index) ? 4 : 0))
                                 .fill(Color("StartColor"))
-                                .animation(.easeInOut, value: viewModel.bgIndex)
+                                .animation(.easeInOut, value: bgIndex)
                         }
                         .padding(1)
                 }
@@ -45,12 +46,12 @@ struct BGSelectorView: View {
                                                 .aspectRatio(contentMode: .fill) // Vyplní celý čtverec
                                                 .frame(width: geometry.size.width, height: geometry.size.width) // Zajistí čtvercovou velikost
                                                 .clipShape(RoundedRectangle(cornerRadius: 10))
-                                                .onTapGesture { viewModel.setBG(index: -1) }
+                                                .onTapGesture { setBG(index: -1) }
                                                 .overlay {
                                                     RoundedRectangle(cornerRadius: 10)
-                                                        .stroke(style: .init(lineWidth: (viewModel.bgIndex == -1) ? 4 : 0))
+                                                        .stroke(style: .init(lineWidth: (bgIndex == -1) ? 4 : 0))
                                                         .fill(Color("StartColor"))
-                                                        .animation(.easeInOut, value: viewModel.bgIndex)
+                                                        .animation(.easeInOut, value: bgIndex)
                                                 }
                                         }
                                         .aspectRatio(1, contentMode: .fit) // Zachová poměr 1:1, takže bude čtverec
@@ -79,9 +80,21 @@ struct BGSelectorView: View {
                     selectedPhotoData = data
                     let customPhoto = CustomImageModel(image: data)
                     context.insert(customPhoto)
-                    viewModel.setBG(index: -1)
+                    setBG(index: -1)
                 }
             }
+        }
+    }
+    
+    func setBG(index: Int) {
+        self.bgIndex = index
+    }
+    
+    func getImage() -> Image {
+        if AppConfig.backgroundImages.indices.contains(bgIndex) {
+            return AppConfig.backgroundImages[bgIndex].getImage()
+        } else {
+            return AppConfig.backgroundImages[0].getImage()
         }
     }
 }
