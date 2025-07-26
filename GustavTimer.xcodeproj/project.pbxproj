@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -134,10 +134,6 @@
 		CFFEC2D12D1C4D8C00E4C157 /* wallsit.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = wallsit.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		CF7DDC622D591C5400971C80 /* Resources */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Resources; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
-
 /* Begin PBXFrameworksBuildPhase section */
 		CF21842D29F052590060706C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -168,7 +164,6 @@
 		CF21843229F052590060706C /* GustavTimer */ = {
 			isa = PBXGroup;
 			children = (
-				CF7DDC622D591C5400971C80 /* Resources */,
 				CF9922BA2C9766DC004186DF /* Managers */,
 				CF7B1B422C8F6BE2005D4664 /* Fonts */,
 				CF7B1B3F2C8F6BA9005D4664 /* Models */,
@@ -328,9 +323,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				CF7DDC622D591C5400971C80 /* Resources */,
 			);
 			name = GustavTimer;
 			productName = GustavTimer;
