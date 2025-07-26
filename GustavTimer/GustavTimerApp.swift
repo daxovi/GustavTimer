@@ -16,5 +16,6 @@ struct GustavTimerApp: App {
             ContentView()
         }
         .modelContainer(for: [CustomImageModel.self])
+        .modelContainer(for: [TimerData.self])
     }
 }

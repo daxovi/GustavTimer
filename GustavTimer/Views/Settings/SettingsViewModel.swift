@@ -14,7 +14,7 @@ class SettingsViewModel: ObservableObject {
     @AppStorage("actualMonth") var actualMonth: Int = 1
     @AppStorage("monthlyCounter") var monthlyCounter: Int = 0
     
-    @Published var timers: [TimerData] = [] {
+    @Published var timers: [IntervalData] = [] {
         didSet {
             saveTimersToUserDefaults()
         }
@@ -35,7 +35,7 @@ class SettingsViewModel: ObservableObject {
     
     func addTimer() {
         if !isTimerFull {
-            timers.append(TimerData(value: 5, name: "Lap \(timers.count + 1)"))
+            timers.append(IntervalData(value: 5, name: "Lap \(timers.count + 1)"))
         }
     }
     
@@ -98,9 +98,9 @@ class SettingsViewModel: ObservableObject {
     // Uložit pole `TimerData` do UserDefaults
     private func saveTimersToUserDefaults() {
         // Validace hodnoty `Int` a vytvoření nové instance `TimerData`
-        let validTimers = timers.map { timer -> TimerData in
+        let validTimers = timers.map { timer -> IntervalData in
             let validValue = min(timer.value, AppConfig.maxTimerValue)
-            return TimerData(value: validValue, name: timer.name)
+            return IntervalData(value: validValue, name: timer.name)
         }
         
         if let encodedData = try? JSONEncoder().encode(validTimers) {
@@ -111,7 +111,7 @@ class SettingsViewModel: ObservableObject {
     // Načíst pole `TimerData` z UserDefaults
     private func loadTimersFromUserDefaults() {
         if let savedData = UserDefaults.standard.data(forKey: "timerData"),
-           let decodedTimers = try? JSONDecoder().decode([TimerData].self, from: savedData) {
+           let decodedTimers = try? JSONDecoder().decode([IntervalData].self, from: savedData) {
             self.timers = decodedTimers
         }
     }

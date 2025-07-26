@@ -11,20 +11,22 @@ import SwiftData
 struct TimerView: View {
     @Binding var showSettings: Bool
     
-    @StateObject var viewModel = TimerViewModel.shared
+    @StateObject var viewModel = TimerViewModel()
     
     var body: some View {
         ZStack {
             BackgroundImageView()
             
             VStack {
-                ProgressArrayView()
+                ProgressArrayView(viewModel: viewModel)
                     .padding(.top)
+                
                 HStack {
                     rounds
                     Spacer()
                     editButton
                 }
+                
                 Spacer()
                 
                 counter
@@ -51,23 +53,6 @@ struct TimerView: View {
         // depplink
         .onOpenURL { URL in
             viewModel.handleDeepLink(url: URL)
-        }
-    }
-    
-    enum DeviceType {
-        case smalliPhone
-        case largeiPhone
-    }
-
-    func deviceType() -> DeviceType {
-        let screenWidth = UIScreen.main.bounds.width
-        
-        if screenWidth <= 385 {
-            // iPhone SE, SE2, iPhone 8
-            return .smalliPhone
-        } else {
-            // iPhone X, 11, 12, a další větší modely
-            return .largeiPhone
         }
     }
     

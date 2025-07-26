@@ -25,7 +25,7 @@ class TimerViewModel: ObservableObject {
     
     @Environment(\.requestReview) var requestReview
     
-    @Published var timers: [TimerData] = [] {
+    @Published var timers: [IntervalData] = [] {
         didSet {
             saveTimersToUserDefaults()
         }
@@ -46,9 +46,7 @@ class TimerViewModel: ObservableObject {
     
     var activeTimerIndex: Int = 0
     var timer: AnyCancellable?
-    
-    static let shared = TimerViewModel()
-    
+        
     init() {
         UIApplication.shared.isIdleTimerDisabled = false
         loadTimersFromUserDefaults()
@@ -66,9 +64,9 @@ class TimerViewModel: ObservableObject {
     // Uložit pole `TimerData` do UserDefaults
     private func saveTimersToUserDefaults() {
         // Validace hodnoty `Int` a vytvoření nové instance `TimerData`
-        let validTimers = timers.map { timer -> TimerData in
+        let validTimers = timers.map { timer -> IntervalData in
             let validValue = min(timer.value, maxCountdownValue)
-            return TimerData(value: validValue, name: timer.name)
+            return IntervalData(value: validValue, name: timer.name)
         }
         
         if let encodedData = try? JSONEncoder().encode(validTimers) {
@@ -79,7 +77,7 @@ class TimerViewModel: ObservableObject {
     // Načíst pole `TimerData` z UserDefaults
     private func loadTimersFromUserDefaults() {
         if let savedData = UserDefaults.standard.data(forKey: "timerData"),
-           let decodedTimers = try? JSONDecoder().decode([TimerData].self, from: savedData) {
+           let decodedTimers = try? JSONDecoder().decode([IntervalData].self, from: savedData) {
             self.timers = decodedTimers
         } else {
             migrateTimersFrom122To130()
@@ -186,7 +184,7 @@ class TimerViewModel: ObservableObject {
     
     func addTimer() {
         if !isTimerFull {
-            timers.append(TimerData(value: 5, name: "Lap \(timers.count + 1)"))
+            timers.append(IntervalData(value: 5, name: "Lap \(timers.count + 1)"))
         }
     }
     
@@ -240,13 +238,13 @@ class TimerViewModel: ObservableObject {
             self.timers = []
             for (index, timer) in savedTimers.enumerated() {
                 let lapName = "Lap \(index + 1)"
-                self.timers.append(TimerData(value: timer, name: lapName))
+                self.timers.append(IntervalData(value: timer, name: lapName))
             }
             // Vymaž uložené data pro klíč "timers"
             UserDefaults.standard.removeObject(forKey: "timers")
         } else {
             clearUserDefaults()
-            self.timers = [TimerData(value: 60, name: "Work"), TimerData(value: 30, name: "Rest")]
+            self.timers = [IntervalData(value: 60, name: "Work"), IntervalData(value: 30, name: "Rest")]
         }
     }
     
@@ -281,14 +279,14 @@ class TimerViewModel: ObservableObject {
                         
                     case "timer":
                         // Zpracování intervalů z query parametrů
-                        let tempTimers: [TimerData] = timers
+                        let tempTimers: [IntervalData] = timers
                         timers = []
                         var tempIntervals: [String: Int] = [:]
                         if let queryItems = components.queryItems {
                             for item in queryItems {
                                 if let value = item.value, let intValue = Int(value) {
                                     tempIntervals[item.name] = intValue
-                                    timers.append(TimerData(value: intValue, name: item.name))
+                                    timers.append(IntervalData(value: intValue, name: item.name))
                                 }
                             }
                         }

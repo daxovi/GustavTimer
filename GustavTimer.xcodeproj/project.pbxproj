@@ -19,12 +19,13 @@
 		CF21844229F0528C0060706C /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF21844129F0528C0060706C /* TimerViewModel.swift */; };
 		CF2222D02E353EA600A90265 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2222CF2E353EA300A90265 /* TimerView.swift */; };
 		CF2222D42E35402500A90265 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2222D32E35402000A90265 /* SettingsViewModel.swift */; };
+		CF2222DA2E355A8200A90265 /* TimerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2222D92E355A8000A90265 /* TimerData.swift */; };
 		CF279C4C2C31A8940084C43F /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF279C4B2C31A8940084C43F /* SoundManager.swift */; };
 		CF5B11142AD33D8900F42131 /* MartianMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF5B11132AD33D8900F42131 /* MartianMono-Bold.ttf */; };
 		CF5B11162AD33DE200F42131 /* MartianMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF5B11152AD33DE200F42131 /* MartianMono-Regular.ttf */; };
 		CF70037D2C8DE816009F1531 /* HintButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70037C2C8DE816009F1531 /* HintButton.swift */; };
 		CF70037F2C8DED37009F1531 /* BackgroundSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70037E2C8DED37009F1531 /* BackgroundSelectorView.swift */; };
-		CF7B1B412C8F6BD3005D4664 /* TimerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7B1B402C8F6BD3005D4664 /* TimerData.swift */; };
+		CF7B1B412C8F6BD3005D4664 /* IntervalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7B1B402C8F6BD3005D4664 /* IntervalData.swift */; };
 		CF7B2C742D90416900D12684 /* jumplunges.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF7B2C6E2D90416900D12684 /* jumplunges.mp4 */; };
 		CF7B2C752D90416900D12684 /* glutebridges.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF7B2C6D2D90416900D12684 /* glutebridges.mp4 */; };
 		CF7B2C762D90416900D12684 /* wallrun.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF7B2C732D90416900D12684 /* wallrun.mp4 */; };
@@ -81,13 +82,14 @@
 		CF21844129F0528C0060706C /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		CF2222CF2E353EA300A90265 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		CF2222D32E35402000A90265 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		CF2222D92E355A8000A90265 /* TimerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerData.swift; sourceTree = "<group>"; };
 		CF279C4B2C31A8940084C43F /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		CF5B11122AD33CE500F42131 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CF5B11132AD33D8900F42131 /* MartianMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Bold.ttf"; sourceTree = "<group>"; };
 		CF5B11152AD33DE200F42131 /* MartianMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Regular.ttf"; sourceTree = "<group>"; };
 		CF70037C2C8DE816009F1531 /* HintButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintButton.swift; sourceTree = "<group>"; };
 		CF70037E2C8DED37009F1531 /* BackgroundSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSelectorView.swift; sourceTree = "<group>"; };
-		CF7B1B402C8F6BD3005D4664 /* TimerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerData.swift; sourceTree = "<group>"; };
+		CF7B1B402C8F6BD3005D4664 /* IntervalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalData.swift; sourceTree = "<group>"; };
 		CF7B2C6B2D90416900D12684 /* burpees.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = burpees.mp4; sourceTree = "<group>"; };
 		CF7B2C6C2D90416900D12684 /* duckwalk.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = duckwalk.mp4; sourceTree = "<group>"; };
 		CF7B2C6D2D90416900D12684 /* glutebridges.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = glutebridges.mp4; sourceTree = "<group>"; };
@@ -265,8 +267,9 @@
 		CF7B1B3F2C8F6BA9005D4664 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CF2222D92E355A8000A90265 /* TimerData.swift */,
 				CFB1394E2AE59ED900EE8B2C /* BackgroundImageModel.swift */,
-				CF7B1B402C8F6BD3005D4664 /* TimerData.swift */,
+				CF7B1B402C8F6BD3005D4664 /* IntervalData.swift */,
 				CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */,
 			);
 			path = Models;
@@ -469,7 +472,8 @@
 				CF21843429F052590060706C /* GustavTimerApp.swift in Sources */,
 				CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */,
 				CF279C4C2C31A8940084C43F /* SoundManager.swift in Sources */,
-				CF7B1B412C8F6BD3005D4664 /* TimerData.swift in Sources */,
+				CF7B1B412C8F6BD3005D4664 /* IntervalData.swift in Sources */,
+				CF2222DA2E355A8200A90265 /* TimerData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
