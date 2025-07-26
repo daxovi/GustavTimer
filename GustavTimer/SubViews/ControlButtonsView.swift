@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ControlButtonsView: View {
-    @StateObject var viewModel = TimerViewModel.shared
+    @ObservedObject var viewModel: TimerViewModel
     @Environment(\.requestReview) var requestReview
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
@@ -29,5 +29,5 @@ struct ControlButtonsView: View {
 }
 
 #Preview {
-    ControlButtonsView()
+    ControlButtonsView(viewModel: .shared)
 }

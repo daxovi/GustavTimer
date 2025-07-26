@@ -23,7 +23,7 @@ struct TimerView: View {
             background
             
             VStack {
-                ProgressArrayView()
+                ProgressArrayView(viewModel: viewModel)
                     .padding(.top)
                 HStack {
                     rounds
@@ -36,7 +36,7 @@ struct TimerView: View {
                 
                 Spacer()
                 
-                ControlButtonsView()
+                ControlButtonsView(viewModel: viewModel)
             }
             .font(Font.custom("MartianMono-Regular", size: 15))
             .ignoresSafeArea(edges: .bottom)
@@ -138,7 +138,7 @@ struct TimerView: View {
         }
         .safeAreaPadding(.horizontal)
         .sheet(isPresented: $viewModel.showingSheet, content: {
-            SettingsView()
+            SettingsView(viewModel: SettingsViewModel(timerViewModel: viewModel))
         })
     }
     

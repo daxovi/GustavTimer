@@ -10,7 +10,7 @@ import SwiftUI
 struct SoundSelectorView: View {
     
     var soundThemeArray = ["sound1", "sound2", "sound3", "sound4", "sound5"]
-    @StateObject var viewModel = TimerViewModel.shared
+    @ObservedObject var viewModel: TimerViewModel
     
     private let flexibleNarrowColumn = [
         GridItem(.adaptive(minimum: 120))
@@ -88,5 +88,5 @@ struct SoundSelectorView: View {
 }
 
 #Preview {
-    SoundSelectorView()
+    SoundSelectorView(viewModel: .shared)
 }
