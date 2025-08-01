@@ -174,6 +174,7 @@ class TimerViewModel: ObservableObject {
         self.isTimerRunning = false
         self.count = timers[0].value
         startedFromDeeplink = false
+        loadTimersFromSwiftData()
     }
     
     func setCount(count newCount: String) {
@@ -317,7 +318,7 @@ extension TimerViewModel {
     // Načíst timery ze SwiftData
     private func loadTimersFromSwiftData() {
         guard let context = modelContext else { return }
-        
+        print("DEBUG: Loading timers from SwiftData")
         do {
             let descriptor = FetchDescriptor<TimerData>()
             let timerDataArray = try context.fetch(descriptor)

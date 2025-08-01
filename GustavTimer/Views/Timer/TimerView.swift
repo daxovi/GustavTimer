@@ -46,6 +46,9 @@ struct TimerView: View {
         .onAppear {
             viewModel.setModelContext(context)
         }
+        .onChange(of: showSettings) { _, _ in
+            viewModel.resetTimer()
+        }
         .sheet(isPresented: $viewModel.showingWhatsNew) {
             WhatsNewView(buttonLabel: "enter challenge", tags: ["#whatsnew", "V1.4"], action: {
                 viewModel.showingWhatsNew = false
@@ -60,18 +63,23 @@ struct TimerView: View {
     }
     
     var controlButtons: some View {
-        HStack(spacing: 0) {
-            ControlButton(action: {
-                viewModel.startStopTimer()
-            }, text: viewModel.isTimerRunning ? "STOP" : "START", color: viewModel.isTimerRunning ? .stop : .start)
-            if viewModel.isTimerRunning {
-                ControlButton(action: { viewModel.skipLap() }, text: "SKIP", color: .reset)
-            } else {
-                ControlButton(action: { viewModel.resetTimer() }, text: "RESET", color: .reset)
-            }
+        HStack(spacing: 16) {
+            ControlButton(
+                action: viewModel.startStopTimer,
+                label: viewModel.isTimerRunning ? "STOP" : "START",
+                description: viewModel.isTimerRunning ? nil : "\(viewModel.timers[viewModel.activeTimerIndex].name)",
+                color: viewModel.isTimerRunning ? .stop : .start)
+            
+            ControlButton(
+                action: viewModel.isTimerRunning ? viewModel.skipLap : viewModel.resetTimer,
+                label: viewModel.isTimerRunning ? "SKIP" : "RESET",
+                color: .reset)
+            .frame(width: 100)
+            
         }
-        .frame(maxWidth: 1000)
-        .clipShape(RoundedRectangle(cornerRadius: 0))
+        .animation(.easeInOut, value: viewModel.isTimerRunning)
+        .frame(maxWidth: .infinity)
+        .padding()
     }
     
     var rounds: some View {

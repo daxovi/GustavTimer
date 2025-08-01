@@ -13,10 +13,16 @@ import SwiftData
 struct SettingsView: View {
     @Query var timerData: [TimerData]
     @StateObject var viewModel = SettingsViewModel()
-    @Environment(\.colorScheme) var colorScheme
     @State private var scrollPosition: CGFloat = 500.0
     @State private var showVideo = false
+    
+    @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.modelContext) var context
+    
+    private var intervals: [IntervalData] {
+        timerData.first(where: { $0.id == 0 })?.intervals ?? []
+    }
     
     // Monthly
     var monthlyVideoName: String {
@@ -62,21 +68,22 @@ struct SettingsView: View {
                                 })
                             )
                         
-                        Section("INTERVALS") {
-                            // TODO: přidat omezení na 5 timerů, další nepřidávat
-                            if !timerData.isEmpty {
-                                ForEach(timerData[0].intervals) { interval in
-                                    HStack {
-                                        Text(interval.name)
-                                        Spacer()
-                                        Text("\(interval.value)")
-                                    }
-                                }
+                        Section {
+                            ForEach(intervals) { interval in
+                                intervalRow(for: interval)
                             }
-                                Button(action: viewModel.addInterval, label: {
-                                    Text("ADD_INTERVAL")
-                                        .foregroundStyle(Color("ResetColor"))
-                                })
+                            .onDelete(perform: deleteInterval)
+                            .onMove(perform: moveInterval)
+
+                            if intervals.count < 5 {
+                                buttonAddInterval
+                            }
+                        } header: {
+                            HStack {
+                                Text("INTERVALS")
+                                Spacer()
+                                EditButton()
+                            }
                         }
                         
                         Section("TIMER_SETTINGS") {
@@ -99,7 +106,7 @@ struct SettingsView: View {
                         Section("ABOUT") {
                             rateButton
                             instagramButton
-//                            whatsNewButton
+                            //                            whatsNewButton
                             weightsButton
                         }
                     }
@@ -127,6 +134,75 @@ struct SettingsView: View {
                 .tint(Color("StopColor"))
                 .font(Font.custom(AppConfig.appFontName, size: 15))
             }
+        }
+        .onAppear {
+            viewModel.setModelContext(context)
+        }
+    }
+    
+    private func deleteInterval(at offsets: IndexSet) {
+        let timerData = getOrCreateTimerData()
+        
+        for index in offsets {
+            let intervalToDelete = intervals[index]
+            timerData.intervals.removeAll { $0.id == intervalToDelete.id }
+        }
+    }
+    
+    private func moveInterval(from source: IndexSet, to destination: Int) {
+        let timerData = getOrCreateTimerData()
+        var mutableIntervals = timerData.intervals
+        mutableIntervals.move(fromOffsets: source, toOffset: destination)
+        timerData.intervals = mutableIntervals
+    }
+    
+    var buttonAddInterval: some View {
+        Button(action: addInterval, label: {
+            Text("ADD_INTERVAL")
+                .foregroundStyle(Color("ResetColor"))
+        })
+    }
+    
+    private func intervalRow(for interval: IntervalData) -> some View {
+        HStack {
+            TextField("Name", text: Binding(
+                get: { interval.name },
+                set: { newValue in
+                    let timerData = getOrCreateTimerData()
+                    if let index = timerData.intervals.firstIndex(where: { $0.id == interval.id }) {
+                        timerData.intervals[index].name = newValue
+                    }
+                }
+            ))
+            
+            Spacer()
+            
+            TextField("Interval", value: Binding(
+                get: { interval.value },
+                set: { newValue in
+                    let timerData = getOrCreateTimerData()
+                    if let index = timerData.intervals.firstIndex(where: { $0.id == interval.id }) {
+                        timerData.intervals[index].value = newValue
+                    }
+                }
+            ), format: .number)
+            .keyboardType(.numberPad)
+            .multilineTextAlignment(.trailing)
+        }
+    }
+    
+    private func addInterval() {
+        let timerData = getOrCreateTimerData()
+        timerData.intervals.append(IntervalData(value: 5, name: "Lap \(intervals.count + 1)"))
+    }
+        
+    private func getOrCreateTimerData() -> TimerData {
+        if let existing = timerData.first(where: { $0.id == 0 }) {
+            return existing
+        } else {
+            let newData = TimerData(id: 0)
+            context.insert(newData)
+            return newData
         }
     }
     
@@ -156,23 +232,23 @@ struct SettingsView: View {
     }
     
     // TODO: implementovat WhatsNewView
-//    var whatsNewButton: some View {
-//        Button("What's New") {
-//            viewModel.showingSheet = false
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-//                viewModel.showingWhatsNew = true
-//            }
-//        }
-//    }
+    //    var whatsNewButton: some View {
+    //        Button("What's New") {
+    //            viewModel.showingSheet = false
+    //            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+    //                viewModel.showingWhatsNew = true
+    //            }
+    //        }
+    //    }
     
     var toolbarButtons: some View {
-            Button(action: {
-                // TODO: resetovat timer
-                dismiss()
-            }) {
-                Text("SAVE")
-            }
-            .foregroundStyle(Color("StopColor"))
+        Button(action: {
+            // TODO: resetovat timer
+            dismiss()
+        }) {
+            Text("SAVE")
+        }
+        .foregroundStyle(Color("StopColor"))
     }
 }
 
@@ -180,5 +256,6 @@ struct SettingsView: View {
 struct EditSheetView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
+            .modelContainer(for: [CustomImageModel.self, TimerData.self])
     }
 }

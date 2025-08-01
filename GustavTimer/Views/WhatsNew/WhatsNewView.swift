@@ -51,7 +51,7 @@ struct WhatsNewView: View {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         action()
                     }
-                }, text: buttonLabel, color: .start)
+                }, label: buttonLabel, color: .start)
             }
         .ignoresSafeArea()
     }

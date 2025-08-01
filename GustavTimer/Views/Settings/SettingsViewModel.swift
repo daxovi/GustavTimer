@@ -6,27 +6,30 @@
 //
 
 import SwiftUI
+import SwiftData
 
 class SettingsViewModel: ObservableObject {
 
     private var currentMonth: Int { return Calendar.current.component(.month, from: Date()) }
+    private var modelContext: ModelContext?
     
     @AppStorage("actualMonth") var actualMonth: Int = 1
     @AppStorage("monthlyCounter") var monthlyCounter: Int = 0
     
-    @Published var timers: [IntervalData] = [] {
-        didSet {
-            saveTimersToUserDefaults()
-        }
-    }
+    @Published var timers: [IntervalData] = []
+    @Published var timerIsFull: Bool = false
     
     @AppStorage("isLooping") var isLooping: Bool = true
     @AppStorage("selectedSound") var selectedSound: String = "beep"
     @AppStorage("isSoundEnabled") var isSoundEnabled: Bool = true
     
     init() {
-        loadTimersFromUserDefaults()
         checkCurrentMonth()
+    }
+    
+    func setModelContext(_ context: ModelContext) {
+        self.modelContext = context
+        loadTimersFromSwiftData()
     }
     
     var isTimerFull: Bool {
@@ -94,25 +97,63 @@ class SettingsViewModel: ObservableObject {
     func incrementMonthlyCounter() {
         monthlyCounter += 1
     }
-    
-    // Uložit pole `TimerData` do UserDefaults
-    private func saveTimersToUserDefaults() {
-        // Validace hodnoty `Int` a vytvoření nové instance `TimerData`
-        let validTimers = timers.map { timer -> IntervalData in
-            let validValue = min(timer.value, AppConfig.maxTimerValue)
-            return IntervalData(value: validValue, name: timer.name)
-        }
+}
+
+extension SettingsViewModel {
+    // Načíst timery ze SwiftData
+    private func loadTimersFromSwiftData() {
+        guard let context = modelContext else { return }
         
-        if let encodedData = try? JSONEncoder().encode(validTimers) {
-            UserDefaults.standard.setValue(encodedData, forKey: "timerData")
+        do {
+            let descriptor = FetchDescriptor<TimerData>()
+            let timerDataArray = try context.fetch(descriptor)
+            
+            if let timerData = timerDataArray.first {
+                // Převést TimerData na IntervalData
+                self.timers = timerData.intervals.map { interval in
+                    IntervalData(value: interval.value, name: interval.name)
+                }
+            } else {
+                // Pokud nejsou data, vytvoř výchozí
+                createDefaultTimerData()
+            }
+        } catch {
+            print("Error loading timers from SwiftData: \(error)")
+            createDefaultTimerData()
         }
     }
     
-    // Načíst pole `TimerData` z UserDefaults
-    private func loadTimersFromUserDefaults() {
-        if let savedData = UserDefaults.standard.data(forKey: "timerData"),
-           let decodedTimers = try? JSONDecoder().decode([IntervalData].self, from: savedData) {
-            self.timers = decodedTimers
+    // Uložit timery do SwiftData
+    private func saveTimersToSwiftData() {
+        guard let context = modelContext else { return }
+        
+        do {
+            // Načti existující TimerData nebo vytvoř nový
+            let descriptor = FetchDescriptor<TimerData>()
+            let timerDataArray = try context.fetch(descriptor)
+            
+            let timerData: TimerData
+            if let existingTimerData = timerDataArray.first {
+                timerData = existingTimerData
+            } else {
+                timerData = TimerData(id: 0)
+                context.insert(timerData)
+            }
+            
+            // Aktualizuj intervals
+            timerData.intervals = timers.map { timer in
+                IntervalData(value: timer.value, name: timer.name)
+            }
+            
+            try context.save()
+        } catch {
+            print("Error saving timers to SwiftData: \(error)")
         }
+    }
+    
+    // Vytvoř výchozí data
+    private func createDefaultTimerData() {
+        self.timers = [IntervalData(value: 60, name: "Work"), IntervalData(value: 30, name: "Rest")]
+        saveTimersToSwiftData()
     }
 }

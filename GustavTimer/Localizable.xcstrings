@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@" : {
+
+    },
     "%@ (%lld)" : {
       "localizations" : {
         "en" : {
@@ -343,6 +346,9 @@
         }
       }
     },
+    "Interval" : {
+
+    },
     "INTERVAL_NAME:" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -530,6 +536,9 @@
           }
         }
       }
+    },
+    "Name" : {
+
     },
     "NO" : {
       "extractionState" : "stale",

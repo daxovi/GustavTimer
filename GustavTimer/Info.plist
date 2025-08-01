@@ -17,6 +17,11 @@
 	</array>
 	<key>UIAppFonts</key>
 	<array>
+		<string>SpaceGrotesk-SemiBold.ttf</string>
+		<string>SpaceGrotesk-Regular.ttf</string>
+		<string>SpaceGrotesk-Medium.ttf</string>
+		<string>SpaceGrotesk-Light.ttf</string>
+		<string>SpaceGrotesk-Bold.ttf</string>
 		<string>MartianMonoSemiCondensed-Regular.ttf</string>
 		<string>MartianMonoCondensed-Regular.ttf</string>
 		<string>MartianMonoSemiCondensed-Bold.ttf</string>
