@@ -12,6 +12,8 @@ struct SoundSelectorView: View {
     @AppStorage("isSoundEnabled") private var isSoundEnabled: Bool = true
     @AppStorage("selectedSound") private var selectedSound: String = "beep"
     
+    @Environment(\.theme) private var theme
+    
     private let flexibleNarrowColumn = [
         GridItem(.adaptive(minimum: 120))
     ]
@@ -30,13 +32,13 @@ struct SoundSelectorView: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke(style: .init(lineWidth: (!isSoundEnabled) ? 4 : 0))
-                                .fill(Color("StartColor"))
+                                .fill(theme.colors.volt)
                                 .animation(.easeInOut, value: isSoundEnabled)
                             HStack {
                                 VStack {
                                     Spacer()
                                     Text("MUTE")
-                                        .font(Font.custom(AppConfig.counterFontName, size: AppConfig.smallFontSize))
+                                        .font(theme.fonts.body)
                                         .foregroundStyle(Color.white)
                                 }
                                 Spacer()
@@ -47,8 +49,8 @@ struct SoundSelectorView: View {
                     .onTapGesture {
                         isSoundEnabled = false
                     }
-                ForEach(AppConfig.soundThemes, id: \.self) { theme in
-                    Image("\(theme)")
+                ForEach(AppConfig.soundThemes, id: \.self) { soundTheme in
+                    Image("\(soundTheme)")
                         .resizable()
                         .scaledToFill()
                         .clipShape(RoundedRectangle(cornerRadius: 15))
@@ -58,14 +60,14 @@ struct SoundSelectorView: View {
                                 LinearGradient(gradient: Gradient(colors: [.clear, .clear, .black.opacity(0.8)]), startPoint: .top, endPoint: .bottom)
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
                                 RoundedRectangle(cornerRadius: 10)
-                                    .stroke(style: .init(lineWidth: (selectedSound == theme && isSoundEnabled) ? 4 : 0))
-                                    .fill(Color("StartColor"))
+                                    .stroke(style: .init(lineWidth: (selectedSound == soundTheme && isSoundEnabled) ? 4 : 0))
+                                    .fill(theme.colors.volt)
                                     .animation(.easeInOut, value: selectedSound)
                                 HStack {
                                     VStack {
                                         Spacer()
-                                        Text(theme)
-                                            .font(Font.custom(AppConfig.counterFontName, size: AppConfig.smallFontSize))
+                                        Text(soundTheme)
+                                            .font(theme.fonts.body)
                                             .foregroundStyle(Color.white)
                                         
                                     }
@@ -76,8 +78,8 @@ struct SoundSelectorView: View {
                         }
                         .onTapGesture {
                             isSoundEnabled = true
-                            selectedSound = theme
-                            SoundManager.instance.playSound(sound: .final, theme: theme)
+                            selectedSound = soundTheme
+                            SoundManager.instance.playSound(sound: .final, theme: soundTheme)
                         }
                 }
             }

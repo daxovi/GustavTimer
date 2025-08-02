@@ -14,10 +14,6 @@ struct AppConfig {
     static let maxTimerValue: Int = 600
     static let maxTimerCount: Int = 5
     
-    // Název fontu
-    static let counterFontName: String = "MartianMono-Bold"
-    static let appFontName: String = "MartianMonoSemiCondensed-Regular"
-    
     // Odkazy
     static let reviewURL: String = "https://apps.apple.com/app/id6478176431?action=write-review"
     static let weightsURL: String = "https://apps.apple.com/us/app/gustav-weights/id6483001116"

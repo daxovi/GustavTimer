@@ -90,6 +90,7 @@ class TimerViewModel: ObservableObject {
     
     private func updateTimer() {
         count -= 1
+        playSound()
         updateProgress()
         
         if count <= 0 {
@@ -107,7 +108,7 @@ class TimerViewModel: ObservableObject {
     }
     
     private func switchToNextTimer() {
-        playSound()
+        
         activeTimerIndex += 1
         
         if activeTimerIndex >= timers.count {
@@ -227,7 +228,7 @@ class TimerViewModel: ObservableObject {
     private func playSound() {
         guard isSoundEnabled && isTimerRunning else { return }
         
-        if count < 1 && timers[activeTimerIndex].value > 3 {
+        if count < 1 && timers[activeTimerIndex].value > 1 {
             SoundManager.instance.playSound(sound: .final, theme: selectedSound)
         } else if count < 4 && count > 0 && timers[activeTimerIndex].value > 9 {
             SoundManager.instance.playSound(sound: .countdown, theme: selectedSound)

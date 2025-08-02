@@ -11,6 +11,7 @@ struct MonthlyMenuItem: View {
     @State private var monthlyTitle: String = " \n "
     var monthlyActionText: LocalizedStringKey
     @Binding var monthlyCounter: Int
+    @Environment(\.theme) private var theme
     
     let monthlyTitleArray: [String] = [" \n ", " \nG5TV", " \n6U5TAV", " \nGUSTAV", "413HL \n695LL", "MNTHL \nCHALLL", "M0NTH \nCHA11", "M0NTHL7 \nCHA11EN", "M04THL7 \nCHA11ENG3", "M0NTHLY \nCHA1L3NGE", "MONTHLY \nCHALLENGE"]
     
@@ -21,17 +22,17 @@ struct MonthlyMenuItem: View {
             } label: {
                 HStack {
                     Text(monthlyActionText)
-                        .font(Font.custom(AppConfig.appFontName, size: 18))
+                        .font(theme.fonts.body)
                         .textCase(.uppercase)
                     Spacer()
                     if monthlyCounter > 0 {
-                        Color("ResetColor")
+                        theme.colors.neutral
                             .frame(width: 25, height: 25)
                             .clipShape(Circle())
                             .overlay {
                                 Text("\(monthlyCounter)")
-                                    .font(Font.custom(AppConfig.appFontName, size: 10))
-                                    .foregroundStyle(Color("StartColor"))
+                                    .font(theme.fonts.settingsCaption)
+                                    .foregroundStyle(theme.colors.volt)
                             }
                     } else {
                         Image(systemName: "play.circle")
@@ -40,16 +41,16 @@ struct MonthlyMenuItem: View {
                     }
                 }
                 .padding(.vertical, 10)
-                .foregroundStyle(Color("ResetColor"))
+                .foregroundStyle(theme.colors.neutral)
             }
-                .listRowBackground(Color("StartColor"))
+                .listRowBackground(theme.colors.volt)
 
         } header: {
             VStack {
                 Text(monthlyTitle)
                     .shadow(color: .black.opacity(0.5), radius: 20, x: 0, y: 0)
-                    .font(Font.custom(AppConfig.counterFontName, size: 33))
-                    .foregroundStyle(Color("StartColor"))
+                    .font(theme.fonts.settingsButtonBold)
+                    .foregroundStyle(theme.colors.volt)
                     .onAppear {
                         animateMonthlyTitle(titleArray: monthlyTitleArray)
                     }

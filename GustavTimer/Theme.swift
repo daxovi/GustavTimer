@@ -25,6 +25,8 @@ struct Theme {
         let buttonDescription = Font.custom("SpaceGrotesk-Regular", size: 20, relativeTo: .title3)
         let timerCounter = Font.custom("SpaceMono-Bold", size: 800)
         let headUpDisplay = Font.custom("SpaceGrotesk-Bold", size: 17, relativeTo: .headline)
+        let settingsButtonBold = Font.custom("SpaceGrotesk-Bold", size: 33, relativeTo: .largeTitle)
+        let settingsCaption = Font.custom("SpaceGrotesk-Regular", size: 10, relativeTo: .caption2)
     }
     
     struct Layout {
