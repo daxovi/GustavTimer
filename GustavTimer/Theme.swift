@@ -12,6 +12,7 @@ struct Theme {
     let fonts = Fonts()
     let layout = Layout()
     let icons = Icons()
+    let animations = Animations()
     
     struct Colors {
         let volt = Color.start
@@ -47,6 +48,12 @@ struct Theme {
         let vibration = Image(.ngIconVibration)
             .renderingMode(.template)
             .resizable()
+    }
+    
+    struct Animations {
+        let reset = "reset"
+        let skip = "skip"
+        
     }
 }
 

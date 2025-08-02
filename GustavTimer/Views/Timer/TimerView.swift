@@ -107,7 +107,7 @@ private extension TimerView {
     var secondaryButton: some View {
         ControlButton(
             action: viewModel.isTimerRunning ? viewModel.skipLap : viewModel.resetTimer,
-            icon: viewModel.isTimerRunning ? theme.icons.skip : theme.icons.reset,
+            riveAnimation: viewModel.isTimerRunning ? theme.animations.reset : theme.animations.reset,
             color: .reset
         )
         .frame(width: 100)
@@ -141,7 +141,9 @@ private extension TimerView {
                     .foregroundColor(theme.colors.volt)
             }
             
-            soundIcon
+            if viewModel.isSoundEnabled {
+                soundIcon
+            }
         }
         .frame(height: 20)
     }

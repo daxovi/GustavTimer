@@ -40,6 +40,8 @@
 		CF8C07C02E3E04250083ED1D /* SpaceMono-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07BD2E3E04250083ED1D /* SpaceMono-Italic.ttf */; };
 		CF8C07C12E3E04250083ED1D /* SpaceMono-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07BC2E3E04250083ED1D /* SpaceMono-BoldItalic.ttf */; };
 		CF8C07C22E3E04250083ED1D /* SpaceMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07BB2E3E04250083ED1D /* SpaceMono-Bold.ttf */; };
+		CF8C07C72E3E64100083ED1D /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = CF8C07C62E3E64100083ED1D /* RiveRuntime */; };
+		CF8C07CD2E3E673C0083ED1D /* reset.riv in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07CC2E3E673C0083ED1D /* reset.riv */; };
 		CF8E14672D17404900155BE8 /* VideoPlayerFullscreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E14662D17403900155BE8 /* VideoPlayerFullscreen.swift */; };
 		CF8E146B2D1745DB00155BE8 /* MonthlyMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E146A2D1745CC00155BE8 /* MonthlyMenuItem.swift */; };
 		CF93EAF22C5E4C6B00A98ABD /* 90s-final.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF93EAF02C5E4C6B00A98ABD /* 90s-final.mp3 */; };
@@ -107,6 +109,7 @@
 		CF8C07BC2E3E04250083ED1D /* SpaceMono-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceMono-BoldItalic.ttf"; sourceTree = "<group>"; };
 		CF8C07BD2E3E04250083ED1D /* SpaceMono-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceMono-Italic.ttf"; sourceTree = "<group>"; };
 		CF8C07BE2E3E04250083ED1D /* SpaceMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceMono-Regular.ttf"; sourceTree = "<group>"; };
+		CF8C07CC2E3E673C0083ED1D /* reset.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = reset.riv; sourceTree = "<group>"; };
 		CF8E14662D17403900155BE8 /* VideoPlayerFullscreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerFullscreen.swift; sourceTree = "<group>"; };
 		CF8E146A2D1745CC00155BE8 /* MonthlyMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyMenuItem.swift; sourceTree = "<group>"; };
 		CF93EAF02C5E4C6B00A98ABD /* 90s-final.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "90s-final.mp3"; sourceTree = "<group>"; };
@@ -143,6 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF8C07C72E3E64100083ED1D /* RiveRuntime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +180,7 @@
 				CF279C462C31A0CF0084C43F /* Sound */,
 				CF5B11122AD33CE500F42131 /* Info.plist */,
 				CF9922AC2C8F84C9004186DF /* AppConfig.swift */,
+				CF8C07CE2E3E6AC80083ED1D /* RiveAnimations */,
 				CF8E14692D1745C300155BE8 /* MonthlyChallenge */,
 				CF21843329F052590060706C /* GustavTimerApp.swift */,
 				CF21843529F052590060706C /* ContentView.swift */,
@@ -298,6 +303,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		CF8C07CE2E3E6AC80083ED1D /* RiveAnimations */ = {
+			isa = PBXGroup;
+			children = (
+				CF8C07CC2E3E673C0083ED1D /* reset.riv */,
+			);
+			path = RiveAnimations;
+			sourceTree = "<group>";
+		};
 		CF8E14692D1745C300155BE8 /* MonthlyChallenge */ = {
 			isa = PBXGroup;
 			children = (
@@ -400,6 +413,9 @@
 				cs,
 			);
 			mainGroup = CF21842729F052590060706C;
+			packageReferences = (
+				CF8C07C52E3E64100083ED1D /* XCRemoteSwiftPackageReference "rive-ios" */,
+			);
 			productRefGroup = CF21843129F052590060706C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -434,6 +450,7 @@
 				CF7B2C792D90416900D12684 /* squatjump.mp4 in Resources */,
 				CF7B2C7A2D90416900D12684 /* plank.mp4 in Resources */,
 				CF7B2C7B2D90416900D12684 /* superman.mp4 in Resources */,
+				CF8C07CD2E3E673C0083ED1D /* reset.riv in Resources */,
 				CF7B2C7C2D90416900D12684 /* duckwalk.mp4 in Resources */,
 				CF93EB012C5E679700A98ABD /* PrivacyInfo.xcprivacy in Resources */,
 				CFFEC2CE2D1C483400E4C157 /* whatsnew.mp4 in Resources */,
@@ -712,6 +729,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CF8C07C52E3E64100083ED1D /* XCRemoteSwiftPackageReference "rive-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rive-app/rive-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.11.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CF8C07C62E3E64100083ED1D /* RiveRuntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF8C07C52E3E64100083ED1D /* XCRemoteSwiftPackageReference "rive-ios" */;
+			productName = RiveRuntime;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CF21842829F052590060706C /* Project object */;
 }

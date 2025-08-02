@@ -6,24 +6,40 @@
 //
 
 import SwiftUI
+import RiveRuntime
 
 struct ControlButton: View {
     let action: () -> ()
     var label: LocalizedStringKey? = nil
-    var icon: Image? = nil
+    var riveAnimation: String?
     var description: LocalizedStringKey? = nil
     let color: Color
-    
+    @StateObject private var riveViewModel: RiveViewModel
+
     @Environment(\.theme) var theme
     
+    init(action: @escaping () -> (), label: LocalizedStringKey? = nil, riveAnimation: String? = nil, description: LocalizedStringKey? = nil, color: Color = .start) {
+        self.action = action
+        self.label = label
+        self.riveAnimation = riveAnimation
+        self.description = description
+        self.color = color
+        self._riveViewModel = StateObject(wrappedValue: RiveViewModel(fileName: riveAnimation ?? "reset"))
+    }
+
     var body: some View {
-        Button(action: action, label: {
+        Button(action: {
+            riveViewModel.play(loop: .oneShot)
+            riveViewModel.reset()
+            action()
+        }, label: {
             color
-                .overlay( (icon != nil) ? AnyView(iconView) : AnyView(labelView) )
+                .overlay( (riveAnimation != nil) ? AnyView(animationView) : AnyView(labelView) )
                 .overlay( buttonBorder )
                 .frame(height: theme.layout.controlHeight)
                 .clipShape(RoundedRectangle(cornerRadius: theme.layout.buttonRadius))
         })
+        .buttonStyle(.plain)
     }
     
     @ViewBuilder
@@ -46,12 +62,10 @@ struct ControlButton: View {
     }
     
     @ViewBuilder
-    private var iconView: some View {
-        if let icon {
-            icon
-                .scaledToFit()
-                .frame(height: 40)
-                .foregroundStyle(color == .start ? .reset : .start)
+    private var animationView: some View {
+        if (riveAnimation != nil) {
+            riveViewModel.view()
+                .padding(30)
         }
     }
     
@@ -70,7 +84,7 @@ struct ControlButton: View {
         Spacer()
         ControlButton(action: {}, label: "start", description: "30 s", color: .stop)
             .padding()
-    ControlButton(action: {}, label: "start", color: .start)
+        ControlButton(action: {}, label: "start", riveAnimation: "reset", color: .reset)
             .padding()
 
         Spacer()
