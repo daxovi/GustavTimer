@@ -134,11 +134,12 @@ class TimerViewModel: ObservableObject {
             count = timers[0].value
         } else {
             vibrateFinish()
-            stopTimer()
+            resetTimer()
         }
     }
     
     func resetTimer() {
+        stopTimer()
         duration = 0.01
         round = 0
         timer = nil
