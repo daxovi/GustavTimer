@@ -20,6 +20,7 @@ class SettingsViewModel: ObservableObject {
     @Published var timerIsFull: Bool = false
     
     @AppStorage("isLooping") var isLooping: Bool = true
+    @AppStorage("isVibrating") var isVibrating: Bool = false
     @AppStorage("selectedSound") var selectedSound: String = "beep"
     @AppStorage("isSoundEnabled") var isSoundEnabled: Bool = true
     

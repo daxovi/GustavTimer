@@ -30,14 +30,15 @@ class TimerViewModel: ObservableObject {
     
     @Published var isTimerRunning = false
     @Published var progress: Double = 0.0
-    @AppStorage("isLooping") var isLooping: Bool = true
     @Published var editMode = EditMode.inactive
     @Published var duration: Double = 1.0
+    
+    @AppStorage("isLooping") var isLooping: Bool = true
     @AppStorage("stopCounter") var stopCounter: Int = 0
     @AppStorage("whatsNewVersion") var whatsNewVersion: Int = 0
-    
     @AppStorage("selectedSound") var selectedSound: String = "beep"
     @AppStorage("isSoundEnabled") var isSoundEnabled: Bool = true
+    @AppStorage("isVibrating") var isVibrating: Bool = false
     
     @Published var startedFromDeeplink: Bool = false
     
@@ -143,18 +144,22 @@ class TimerViewModel: ObservableObject {
     }
     
     func switchTimer() {
-        playSound()
         if self.count <= 0 && isTimerRunning {
+            playSound()
             activeTimerIndex += 1
             if activeTimerIndex >= timers.count {
                 duration = 0.0
                 activeTimerIndex = 0
                 progress = 0.0
                 if !isLooping {
+                    vibrateFinish()
                     stopTimer()
                 } else {
+                    vibrateRound()
                     round += 1
                 }
+            } else {
+                vibrate()
             }
             self.count = timers[activeTimerIndex].value
             if self.count <= 0 {
@@ -215,7 +220,30 @@ class TimerViewModel: ObservableObject {
         self.count = 0
     }
     
-    //MARK: SOUND
+    // MARK: - VIBRATION
+    func vibrate() {
+        if isVibrating && isTimerRunning {
+            let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.impactOccurred()
+//            generator.notificationOccurred(.success)
+        }
+    }
+    
+    func vibrateRound() {
+        if isVibrating && isTimerRunning {
+            let generator = UINotificationFeedbackGenerator()
+            generator.notificationOccurred(.success)
+        }
+    }
+    
+    func vibrateFinish() {
+        if isVibrating && isTimerRunning {
+            let generator = UINotificationFeedbackGenerator()
+            generator.notificationOccurred(.error)
+        }
+    }
+    
+    //MARK: - SOUND
     func playSound() {
         if isSoundEnabled && isTimerRunning {
             if self.count < 1 && timers[activeTimerIndex].value > 3 {

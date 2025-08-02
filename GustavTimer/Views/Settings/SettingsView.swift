@@ -19,6 +19,7 @@ struct SettingsView: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) var context
+    @Environment(\.theme) var theme
     
     private var intervals: [IntervalData] {
         timerData.first(where: { $0.id == 0 })?.intervals ?? []
@@ -90,6 +91,9 @@ struct SettingsView: View {
                             Toggle("LOOP", isOn: $viewModel.isLooping)
                                 .tint(Color("StartColor"))
                             
+                            Toggle("HAPTICS", isOn: $viewModel.isVibrating)
+                                .tint(Color("StartColor"))
+                            
                             NavigationLink {
                                 SoundSelectorView()
                             } label: {
@@ -132,7 +136,7 @@ struct SettingsView: View {
                     
                 }
                 .tint(Color("StopColor"))
-                .font(Font.custom(AppConfig.appFontName, size: 15))
+                .font(theme.fonts.body)
             }
         }
         .onAppear {

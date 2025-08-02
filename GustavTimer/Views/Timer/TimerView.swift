@@ -11,6 +11,7 @@ import SwiftData
 struct TimerView: View {
     @Binding var showSettings: Bool
     @Environment(\.modelContext) var context
+    @Environment(\.theme) var theme
     @StateObject var viewModel = TimerViewModel()
     
     var body: some View {
@@ -26,7 +27,8 @@ struct TimerView: View {
                     Spacer()
                     editButton
                 }
-                
+                .font(theme.fonts.headUpDisplay)
+
                 Spacer()
                 
                 counter
@@ -35,7 +37,6 @@ struct TimerView: View {
                 
                 controlButtons
             }
-            .font(Font.custom("MartianMono-Regular", size: 15))
             .ignoresSafeArea(edges: .bottom)
             .statusBar(hidden: true)
             .persistentSystemOverlays(.hidden)
@@ -72,7 +73,7 @@ struct TimerView: View {
             
             ControlButton(
                 action: viewModel.isTimerRunning ? viewModel.skipLap : viewModel.resetTimer,
-                label: viewModel.isTimerRunning ? "SKIP" : "RESET",
+                icon: viewModel.isTimerRunning ? theme.icons.skip : theme.icons.reset,
                 color: .reset)
             .frame(width: 100)
             
@@ -91,7 +92,7 @@ struct TimerView: View {
     
     var counter: some View {
         Text("\(viewModel.count)")
-            .font(Font.custom(AppConfig.counterFontName, size: 800))
+            .font(theme.fonts.timerCounter)
             .minimumScaleFactor(0.01)
             .foregroundColor(Color("StartColor"))
     }
@@ -102,10 +103,18 @@ struct TimerView: View {
             } label: {
                 HStack {
                     HStack{
-                            Image(systemName: "infinity.circle.fill")
-                                .resizable()
+                        if viewModel.isLooping {
+                            theme.icons.loop
+                                    .resizable()
+                                    .scaledToFit()
+                                    .foregroundColor(theme.colors.volt)
+                        }
+                        
+                        if viewModel.isVibrating {
+                            theme.icons.vibration
                                 .scaledToFit()
-                                .foregroundColor(Color(viewModel.isLooping ? .start : .reset))
+                                .foregroundColor(theme.colors.volt)
+                        }
                         Image(systemName: viewModel.isSoundEnabled ? "speaker.wave.2.circle.fill" : "speaker.slash.circle.fill")
                             .resizable()
                             .scaledToFit()
@@ -120,4 +129,9 @@ struct TimerView: View {
         .safeAreaPadding(.horizontal)
     }
     
+}
+
+#Preview {
+    ContentView()
+        .modelContainer(for: [CustomImageModel.self, TimerData.self])
 }

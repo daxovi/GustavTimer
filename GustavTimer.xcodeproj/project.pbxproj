@@ -41,6 +41,11 @@
 		CF8C07B42E3D5AED0083ED1D /* SpaceGrotesk-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07AD2E3D5AED0083ED1D /* SpaceGrotesk-Bold.ttf */; };
 		CF8C07B52E3D5AED0083ED1D /* SpaceGrotesk-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07B02E3D5AED0083ED1D /* SpaceGrotesk-Regular.ttf */; };
 		CF8C07B62E3D5AED0083ED1D /* SpaceGrotesk-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07AE2E3D5AED0083ED1D /* SpaceGrotesk-Light.ttf */; };
+		CF8C07BA2E3DFD9B0083ED1D /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8C07B92E3DFD990083ED1D /* Theme.swift */; };
+		CF8C07BF2E3E04250083ED1D /* SpaceMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07BE2E3E04250083ED1D /* SpaceMono-Regular.ttf */; };
+		CF8C07C02E3E04250083ED1D /* SpaceMono-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07BD2E3E04250083ED1D /* SpaceMono-Italic.ttf */; };
+		CF8C07C12E3E04250083ED1D /* SpaceMono-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07BC2E3E04250083ED1D /* SpaceMono-BoldItalic.ttf */; };
+		CF8C07C22E3E04250083ED1D /* SpaceMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07BB2E3E04250083ED1D /* SpaceMono-Bold.ttf */; };
 		CF8E14672D17404900155BE8 /* VideoPlayerFullscreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E14662D17403900155BE8 /* VideoPlayerFullscreen.swift */; };
 		CF8E146B2D1745DB00155BE8 /* MonthlyMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E146A2D1745CC00155BE8 /* MonthlyMenuItem.swift */; };
 		CF93EAF22C5E4C6B00A98ABD /* 90s-final.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF93EAF02C5E4C6B00A98ABD /* 90s-final.mp3 */; };
@@ -110,6 +115,11 @@
 		CF8C07AF2E3D5AED0083ED1D /* SpaceGrotesk-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceGrotesk-Medium.ttf"; sourceTree = "<group>"; };
 		CF8C07B02E3D5AED0083ED1D /* SpaceGrotesk-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceGrotesk-Regular.ttf"; sourceTree = "<group>"; };
 		CF8C07B12E3D5AED0083ED1D /* SpaceGrotesk-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceGrotesk-SemiBold.ttf"; sourceTree = "<group>"; };
+		CF8C07B92E3DFD990083ED1D /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		CF8C07BB2E3E04250083ED1D /* SpaceMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceMono-Bold.ttf"; sourceTree = "<group>"; };
+		CF8C07BC2E3E04250083ED1D /* SpaceMono-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceMono-BoldItalic.ttf"; sourceTree = "<group>"; };
+		CF8C07BD2E3E04250083ED1D /* SpaceMono-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceMono-Italic.ttf"; sourceTree = "<group>"; };
+		CF8C07BE2E3E04250083ED1D /* SpaceMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceMono-Regular.ttf"; sourceTree = "<group>"; };
 		CF8E14662D17403900155BE8 /* VideoPlayerFullscreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerFullscreen.swift; sourceTree = "<group>"; };
 		CF8E146A2D1745CC00155BE8 /* MonthlyMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyMenuItem.swift; sourceTree = "<group>"; };
 		CF93EAF02C5E4C6B00A98ABD /* 90s-final.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "90s-final.mp3"; sourceTree = "<group>"; };
@@ -183,6 +193,7 @@
 				CF8E14692D1745C300155BE8 /* MonthlyChallenge */,
 				CF21843329F052590060706C /* GustavTimerApp.swift */,
 				CF21843529F052590060706C /* ContentView.swift */,
+				CF8C07B92E3DFD990083ED1D /* Theme.swift */,
 				CFC4C18A2D04B5E30086CEBB /* Video */,
 				CF93EB002C5E679700A98ABD /* PrivacyInfo.xcprivacy */,
 				CF21843729F0525E0060706C /* Assets.xcassets */,
@@ -293,6 +304,10 @@
 				CF8C07AF2E3D5AED0083ED1D /* SpaceGrotesk-Medium.ttf */,
 				CF8C07B02E3D5AED0083ED1D /* SpaceGrotesk-Regular.ttf */,
 				CF8C07B12E3D5AED0083ED1D /* SpaceGrotesk-SemiBold.ttf */,
+				CF8C07BB2E3E04250083ED1D /* SpaceMono-Bold.ttf */,
+				CF8C07BC2E3E04250083ED1D /* SpaceMono-BoldItalic.ttf */,
+				CF8C07BD2E3E04250083ED1D /* SpaceMono-Italic.ttf */,
+				CF8C07BE2E3E04250083ED1D /* SpaceMono-Regular.ttf */,
 				CFC4C1882D0499010086CEBB /* MartianMono-Thin.ttf */,
 				CF5B11152AD33DE200F42131 /* MartianMono-Regular.ttf */,
 				CF0194572C8A1A1E00CAC1BD /* MartianMonoCondensed-Regular.ttf */,
@@ -435,6 +450,10 @@
 				CF7B2C742D90416900D12684 /* jumplunges.mp4 in Resources */,
 				CF7B2C752D90416900D12684 /* glutebridges.mp4 in Resources */,
 				CF7B2C762D90416900D12684 /* wallrun.mp4 in Resources */,
+				CF8C07BF2E3E04250083ED1D /* SpaceMono-Regular.ttf in Resources */,
+				CF8C07C02E3E04250083ED1D /* SpaceMono-Italic.ttf in Resources */,
+				CF8C07C12E3E04250083ED1D /* SpaceMono-BoldItalic.ttf in Resources */,
+				CF8C07C22E3E04250083ED1D /* SpaceMono-Bold.ttf in Resources */,
 				CF7B2C772D90416900D12684 /* legraises.mp4 in Resources */,
 				CF7B2C782D90416900D12684 /* burpees.mp4 in Resources */,
 				CF7B2C792D90416900D12684 /* squatjump.mp4 in Resources */,
@@ -488,6 +507,7 @@
 				CFCE3C762C431EC900D33AE3 /* View+Extension.swift in Sources */,
 				CF70037F2C8DED37009F1531 /* BackgroundSelectorView.swift in Sources */,
 				CFFEC2B62D184F9800E4C157 /* MonthlyConfig.swift in Sources */,
+				CF8C07BA2E3DFD9B0083ED1D /* Theme.swift in Sources */,
 				CF2222D02E353EA600A90265 /* TimerView.swift in Sources */,
 				CF21843429F052590060706C /* GustavTimerApp.swift in Sources */,
 				CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */,

@@ -9,41 +9,59 @@ import SwiftUI
 
 struct ControlButton: View {
     let action: () -> ()
-    let label: LocalizedStringKey
+    var label: LocalizedStringKey? = nil
+    var icon: Image? = nil
     var description: LocalizedStringKey? = nil
     let color: Color
+    
+    @Environment(\.theme) var theme
     
     var body: some View {
         Button(action: action, label: {
             color
-                .overlay {
-                    HStack{
-                        Text(label)
-                            .foregroundStyle(color == .start ? .reset : .start)
-                            .font(Font.custom("SpaceGrotesk-SemiBold", size: 20))
-                            .textCase(.uppercase)
-                        if let description {
-                            Text(description)
-                                .foregroundStyle(color == .start ? .reset : .white)
-                                .font(Font.custom("SpaceGrotesk-Regular", size: 20))
-                                .textCase(.uppercase)
-                                .opacity(0.5)
-                        }
-                    }
-
-                }
-                .overlay(
-                    RoundedRectangle(cornerRadius: 40)
-                        .inset(by: 1)
-                        .stroke(
-                            LinearGradient(colors: [.white.opacity(1), .white.opacity(0), .white.opacity(1)], startPoint: .top, endPoint: .bottom),
-                            lineWidth: 3)
-                        .opacity(0.15)
-                )
-                .frame(height: 100)
-                .clipShape(RoundedRectangle(cornerRadius: 40))
-
+                .overlay( (icon != nil) ? AnyView(iconView) : AnyView(labelView) )
+                .overlay( buttonBorder )
+                .frame(height: theme.layout.controlHeight)
+                .clipShape(RoundedRectangle(cornerRadius: theme.layout.buttonRadius))
         })
+    }
+    
+    @ViewBuilder
+    private var labelView: some View {
+        if let label {
+            HStack{
+                Text(label)
+                    .foregroundStyle(color == .start ? .reset : .start)
+                    .font(theme.fonts.buttonLabel)
+                    .textCase(.uppercase)
+                if let description {
+                    Text(description)
+                        .foregroundStyle(color == .start ? .reset : .white)
+                        .font(theme.fonts.buttonDescription)
+                        .textCase(.uppercase)
+                        .opacity(0.5)
+                }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private var iconView: some View {
+        if let icon {
+            icon
+                .scaledToFit()
+                .frame(height: 40)
+                .foregroundStyle(color == .start ? .reset : .start)
+        }
+    }
+    
+    private var buttonBorder: some View {
+        RoundedRectangle(cornerRadius: theme.layout.buttonRadius)
+            .inset(by: 1)
+            .stroke(
+                LinearGradient(colors: [.white.opacity(1), .white.opacity(0), .white.opacity(1)], startPoint: .top, endPoint: .bottom),
+                lineWidth: 3)
+            .opacity(0.15)
     }
 }
 

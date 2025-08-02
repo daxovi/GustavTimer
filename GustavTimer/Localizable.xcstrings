@@ -787,6 +787,9 @@
         }
       }
     },
+    "VIBRATION" : {
+
+    },
     "What's New" : {
       "extractionState" : "stale",
       "localizations" : {
