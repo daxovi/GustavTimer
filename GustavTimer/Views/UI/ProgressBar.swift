@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ProgressBar: View {
     @Binding var progress: Double
-    @Binding var duration: Double
     
     var cornerRadius: CGFloat = 0
     
@@ -17,12 +16,13 @@ struct ProgressBar: View {
         GeometryReader { proxy in
             ZStack(alignment: .leading) {
                 Color("ResetColor")
-                //    .opacity(0.5)
                     .cornerRadius(cornerRadius)
+                    .clipShape(Capsule())
                 Color("StartColor")
                     .frame(width: proxy.size.width * progress)
                     .cornerRadius(cornerRadius)
-                    .animation(.linear(duration: duration), value: progress)
+                    .animation(.linear(duration: 1.0), value: progress)
+                    .clipShape(Capsule())
             }
         }
     }

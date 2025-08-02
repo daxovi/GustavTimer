@@ -28,7 +28,6 @@ class TimerViewModel: ObservableObject {
     @Published var isTimerRunning = false
     @Published var progress: Double = 0.0
     @Published var editMode = EditMode.inactive
-    @Published var duration: Double = 1.0
     @Published var startedFromDeeplink: Bool = false
     
     // MARK: - Settings
@@ -70,6 +69,8 @@ class TimerViewModel: ObservableObject {
     private func startTimer() {
         if round == 0 { round = 1 }
         
+        updateProgress()
+        
         UIApplication.shared.isIdleTimerDisabled = true
         isTimerRunning = true
         
@@ -91,33 +92,33 @@ class TimerViewModel: ObservableObject {
     private func updateTimer() {
         count -= 1
         playSound()
-        updateProgress()
-        
+
         if count <= 0 {
             switchToNextTimer()
         } else {
-            duration = 1.0
+            updateProgress()
+
         }
     }
     
     private func updateProgress() {
-        let activeTimerCount = Double(timers[activeTimerIndex].value)
-        let currentCount = Double(count)
-        let countDifference = activeTimerCount - currentCount
-        progress = (countDifference + 1) / activeTimerCount
+        let activeTimerCount = Double(timers[activeTimerIndex].value) // 5
+        let currentCount = Double(count) // 5
+        let countDifference = activeTimerCount - currentCount // 0
+        progress = (countDifference + 1) / activeTimerCount // 1/5
+        print("DEBUG: progress: \(progress)")
     }
     
     private func switchToNextTimer() {
         
         activeTimerIndex += 1
-        
         if activeTimerIndex >= timers.count {
             handleRoundCompletion()
         } else {
             vibrate()
             count = timers[activeTimerIndex].value
-            progress = 0.0  // Reset progress immediately for new timer
-            duration = 0.01  // Very quick transition
+            updateProgress()
+
             if count <= 0 {
                 switchToNextTimer() // Skip zero-duration timers
             }
@@ -125,7 +126,6 @@ class TimerViewModel: ObservableObject {
     }
     
     private func handleRoundCompletion() {
-        duration = 0.0
         activeTimerIndex = 0
         progress = 0.0
         
@@ -133,6 +133,8 @@ class TimerViewModel: ObservableObject {
             vibrateRound()
             round += 1
             count = timers[0].value
+            updateProgress()
+
         } else {
             vibrateFinish()
             resetTimer()
@@ -141,7 +143,6 @@ class TimerViewModel: ObservableObject {
     
     func resetTimer() {
         stopTimer()
-        duration = 0.01
         round = 0
         timer = nil
         activeTimerIndex = 0
@@ -153,7 +154,6 @@ class TimerViewModel: ObservableObject {
     }
     
     func skipLap() {
-        duration = 0.0
         progress = 1.0
         count = 0
     }
