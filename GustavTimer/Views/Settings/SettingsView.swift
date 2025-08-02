@@ -21,185 +21,182 @@ struct SettingsView: View {
     @Environment(\.modelContext) var context
     @Environment(\.theme) var theme
     
-    private var intervals: [IntervalData] {
-        timerData.first(where: { $0.id == 0 })?.intervals ?? []
+    // MARK: - Computed Properties
+    private var currentTimerData: TimerData {
+        getOrCreateTimerData()
     }
     
-    // Monthly
-    var monthlyVideoName: String {
-        if viewModel.actualMonth - 1 < MonthlyConfig.videoName.count {
-            return MonthlyConfig.videoName[viewModel.actualMonth - 1]
-        } else {
-            return MonthlyConfig.videoName[0]
-        }
+    private var monthlyVideoName: String {
+        let index = max(0, min(viewModel.actualMonth - 1, MonthlyConfig.videoName.count - 1))
+        return MonthlyConfig.videoName[index]
     }
     
-    var monthlyBannerName: ImageResource {
-        if viewModel.actualMonth - 1 < MonthlyConfig.bannerImageResource.count {
-            return MonthlyConfig.bannerImageResource[viewModel.actualMonth - 1]
-        } else {
-            return MonthlyConfig.bannerImageResource[0]
-        }
+    private var monthlyBannerName: ImageResource {
+        let index = max(0, min(viewModel.actualMonth - 1, MonthlyConfig.bannerImageResource.count - 1))
+        return MonthlyConfig.bannerImageResource[index]
     }
-    
     
     var body: some View {
         ZStack {
             if showVideo {
-                VideoPlayerFullscreen(videoURL: Bundle.main.url(forResource: monthlyVideoName, withExtension: "mp4")!, onHalfway: {
-                    print("Video reached halfway!")
-                    viewModel.incrementMonthlyCounter()
-                })
-                .onDisappear {showVideo = false}
+                VideoPlayerFullscreen(
+                    videoURL: Bundle.main.url(forResource: monthlyVideoName, withExtension: "mp4")!,
+                    onHalfway: viewModel.incrementMonthlyCounter
+                )
+                .onDisappear { showVideo = false }
             }
-            VStack(spacing: 0) {
-                NavigationStack {
-                    List {
-                        //  quickTimers
-                        MonthlyMenuItem(showVideo: $showVideo, monthlyActionText: viewModel.getChallengeText(), monthlyCounter: $viewModel.monthlyCounter)
-                            .background(
-                                GeometryReader(content: { geometry in
-                                    Color.clear
-                                        .onChange(
-                                            of: geometry.frame(in: .global).minY
-                                        ) { oldValue, newValue in
-                                            scrollPosition = newValue
-                                            print("scrollposition: \(scrollPosition)")
-                                        }
-                                })
-                            )
-                        
-                        Section {
-                            ForEach(intervals) { interval in
-                                intervalRow(for: interval)
-                            }
-                            .onDelete(perform: deleteInterval)
-                            .onMove(perform: moveInterval)
-
-                            if intervals.count < 5 {
-                                buttonAddInterval
-                            }
-                        } header: {
-                            HStack {
-                                Text("INTERVALS")
-                                Spacer()
-                                EditButton()
-                            }
-                        }
-                        
-                        Section("TIMER_SETTINGS") {
-                            Toggle("LOOP", isOn: $viewModel.isLooping)
-                                .tint(Color("StartColor"))
-                            
-                            Toggle("HAPTICS", isOn: $viewModel.isVibrating)
-                                .tint(Color("StartColor"))
-                            
-                            NavigationLink {
-                                SoundSelectorView()
-                            } label: {
-                                ListButton(name: "Sound", value: "\(viewModel.isSoundEnabled ? viewModel.selectedSound : "MUTE")")
-                            }
-                            
-                            NavigationLink {
-                                BackgroundSelectorView()
-                            } label: {
-                                ListButton(name: "BACKGROUND")
-                            }
-                        }
-                        
-                        Section("ABOUT") {
-                            rateButton
-                            instagramButton
-                            //                            whatsNewButton
-                            weightsButton
-                        }
-                    }
-                    .navigationTitle("EDIT_TITLE")
-                    .navigationBarTitleDisplayMode(.inline)
-                    .toolbar { toolbarButtons }
-                    .background(
-                        ZStack {
-                            colorScheme == .light ? Color(.secondarySystemBackground) : Color(.systemBackground)
-                            
-                            VStack {
-                                Image(monthlyBannerName)
-                                    .resizable()
-                                    .padding(.horizontal, -20)
-                                    .scaledToFit()
-                                    .blur(radius: (380 - scrollPosition) * 0.1)
-                                Spacer()
-                            }
-                        }
-                            .ignoresSafeArea()
-                    )
-                    .scrollContentBackground(.hidden)
-                    
+            
+            NavigationStack {
+                List {
+                    monthlySection
+                    intervalsSection
+                    timerSettingsSection
+                    aboutSection
                 }
-                .tint(Color("StopColor"))
-                .font(theme.fonts.body)
+                .navigationTitle("EDIT_TITLE")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar { saveButton }
+                .background(backgroundView)
+                .scrollContentBackground(.hidden)
+            }
+            .tint(Color("StopColor"))
+            .font(theme.fonts.body)
+        }
+    }
+    
+    // MARK: - Sections
+    private var monthlySection: some View {
+        MonthlyMenuItem(
+            showVideo: $showVideo,
+            monthlyActionText: viewModel.getChallengeText(),
+            monthlyCounter: $viewModel.monthlyCounter
+        )
+        .background(scrollPositionReader)
+    }
+    
+    private var intervalsSection: some View {
+        Section {
+            ForEach(currentTimerData.intervals) { interval in
+                intervalRow(for: interval)
+            }
+            .onDelete { viewModel.deleteInterval(at: $0, from: currentTimerData) }
+            .onMove { viewModel.moveInterval(from: $0, to: $1, in: currentTimerData) }
+
+            if currentTimerData.intervals.count < 5 {
+                addIntervalButton
+            }
+        } header: {
+            HStack {
+                Text("INTERVALS")
+                Spacer()
+                EditButton()
             }
         }
-        .onAppear {
-            viewModel.setModelContext(context)
+    }
+    
+    private var timerSettingsSection: some View {
+        Section("TIMER_SETTINGS") {
+            Toggle("LOOP", isOn: $viewModel.isLooping)
+                .tint(Color("StartColor"))
+            
+            Toggle("HAPTICS", isOn: $viewModel.isVibrating)
+                .tint(Color("StartColor"))
+            
+            NavigationLink {
+                SoundSelectorView()
+            } label: {
+                ListButton(name: "Sound", value: "\(viewModel.isSoundEnabled ? viewModel.selectedSound : "MUTE")")
+            }
+            
+            NavigationLink {
+                BackgroundSelectorView()
+            } label: {
+                ListButton(name: "BACKGROUND")
+            }
         }
     }
     
-    private func deleteInterval(at offsets: IndexSet) {
-        let timerData = getOrCreateTimerData()
-        
-        for index in offsets {
-            let intervalToDelete = intervals[index]
-            timerData.intervals.removeAll { $0.id == intervalToDelete.id }
+    private var aboutSection: some View {
+        Section("ABOUT") {
+            Button("RATE") {
+                if let url = URL(string: AppConfig.reviewURL) {
+                    UIApplication.shared.open(url)
+                }
+            }
+            
+            Button("Try Gustav Weights") {
+                if let url = URL(string: AppConfig.weightsURL) {
+                    UIApplication.shared.open(url)
+                }
+            }
+            
+            Button("Follow Gustav on Instagram") {
+                if let url = URL(string: "https://www.instagram.com/gustavtraining") {
+                    UIApplication.shared.open(url)
+                }
+            }
         }
     }
     
-    private func moveInterval(from source: IndexSet, to destination: Int) {
-        let timerData = getOrCreateTimerData()
-        var mutableIntervals = timerData.intervals
-        mutableIntervals.move(fromOffsets: source, toOffset: destination)
-        timerData.intervals = mutableIntervals
-    }
-    
-    var buttonAddInterval: some View {
-        Button(action: addInterval, label: {
-            Text("ADD_INTERVAL")
-                .foregroundStyle(Color("ResetColor"))
-        })
+    // MARK: - Helper Views
+    private var addIntervalButton: some View {
+        Button("ADD_INTERVAL") {
+            viewModel.addInterval(to: currentTimerData)
+        }
+        .foregroundStyle(Color("ResetColor"))
     }
     
     private func intervalRow(for interval: IntervalData) -> some View {
         HStack {
             TextField("Name", text: Binding(
                 get: { interval.name },
-                set: { newValue in
-                    let timerData = getOrCreateTimerData()
-                    if let index = timerData.intervals.firstIndex(where: { $0.id == interval.id }) {
-                        timerData.intervals[index].name = newValue
-                    }
-                }
+                set: { viewModel.updateIntervalName($0, for: interval.id, in: currentTimerData) }
             ))
             
             Spacer()
             
             TextField("Interval", value: Binding(
                 get: { interval.value },
-                set: { newValue in
-                    let timerData = getOrCreateTimerData()
-                    if let index = timerData.intervals.firstIndex(where: { $0.id == interval.id }) {
-                        timerData.intervals[index].value = newValue
-                    }
-                }
+                set: { viewModel.updateIntervalValue($0, for: interval.id, in: currentTimerData) }
             ), format: .number)
             .keyboardType(.numberPad)
             .multilineTextAlignment(.trailing)
         }
     }
     
-    private func addInterval() {
-        let timerData = getOrCreateTimerData()
-        timerData.intervals.append(IntervalData(value: 5, name: "Lap \(intervals.count + 1)"))
+    private var scrollPositionReader: some View {
+        GeometryReader { geometry in
+            Color.clear
+                .onChange(of: geometry.frame(in: .global).minY) { _, newValue in
+                    scrollPosition = newValue
+                }
+        }
     }
-        
+    
+    private var backgroundView: some View {
+        ZStack {
+            colorScheme == .light ? Color(.secondarySystemBackground) : Color(.systemBackground)
+            
+            VStack {
+                Image(monthlyBannerName)
+                    .resizable()
+                    .padding(.horizontal, -20)
+                    .scaledToFit()
+                    .blur(radius: (380 - scrollPosition) * 0.1)
+                Spacer()
+            }
+        }
+        .ignoresSafeArea()
+    }
+    
+    private var saveButton: some View {
+        Button("SAVE") {
+            dismiss()
+        }
+        .foregroundStyle(Color("StopColor"))
+    }
+    
+    // MARK: - Helper Methods
     private func getOrCreateTimerData() -> TimerData {
         if let existing = timerData.first(where: { $0.id == 0 }) {
             return existing
@@ -209,57 +206,9 @@ struct SettingsView: View {
             return newData
         }
     }
-    
-    var rateButton: some View {
-        Button("RATE") {
-            let url = AppConfig.reviewURL
-            guard let writeReviewURL = URL(string: url)
-            else { fatalError("Expected a valid URL") }
-            UIApplication.shared.open(writeReviewURL, options: [:], completionHandler: nil)
-        }
-    }
-    var weightsButton: some View {
-        Button("Try Gustav Weights") {
-            let url = AppConfig.weightsURL
-            guard let weightsURL = URL(string: url)
-            else { fatalError("Expected a valid URL") }
-            UIApplication.shared.open(weightsURL, options: [:], completionHandler: nil)
-        }
-    }
-    
-    var instagramButton: some View {
-        Button("Follow Gustav on Instagram") {
-            if let url = URL(string: "https://www.instagram.com/gustavtraining") {
-                UIApplication.shared.open(url)
-            }
-        }
-    }
-    
-    // TODO: implementovat WhatsNewView
-    //    var whatsNewButton: some View {
-    //        Button("What's New") {
-    //            viewModel.showingSheet = false
-    //            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-    //                viewModel.showingWhatsNew = true
-    //            }
-    //        }
-    //    }
-    
-    var toolbarButtons: some View {
-        Button(action: {
-            // TODO: resetovat timer
-            dismiss()
-        }) {
-            Text("SAVE")
-        }
-        .foregroundStyle(Color("StopColor"))
-    }
 }
 
-
-struct EditSheetView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingsView()
-            .modelContainer(for: [CustomImageModel.self, TimerData.self])
-    }
+#Preview {
+    SettingsView()
+        .modelContainer(for: [CustomImageModel.self, TimerData.self])
 }

@@ -9,16 +9,10 @@ import SwiftUI
 import SwiftData
 
 class SettingsViewModel: ObservableObject {
-
-    private var currentMonth: Int { return Calendar.current.component(.month, from: Date()) }
-    private var modelContext: ModelContext?
+    private var currentMonth: Int { Calendar.current.component(.month, from: Date()) }
     
     @AppStorage("actualMonth") var actualMonth: Int = 1
     @AppStorage("monthlyCounter") var monthlyCounter: Int = 0
-    
-    @Published var timers: [IntervalData] = []
-    @Published var timerIsFull: Bool = false
-    
     @AppStorage("isLooping") var isLooping: Bool = true
     @AppStorage("isVibrating") var isVibrating: Bool = false
     @AppStorage("selectedSound") var selectedSound: String = "beep"
@@ -28,30 +22,11 @@ class SettingsViewModel: ObservableObject {
         checkCurrentMonth()
     }
     
-    func setModelContext(_ context: ModelContext) {
-        self.modelContext = context
-        loadTimersFromSwiftData()
-    }
-    
-    var isTimerFull: Bool {
-        return timers.count >= AppConfig.maxTimerCount
-    }
-    
-    func addInterval() {
-        if !isTimerFull {
-            timers.append(IntervalData(value: 5, name: "Lap \(timers.count + 1)"))
-        }
-    }
-    
-    
     func checkCurrentMonth() {
-        
         let currentYear = Calendar.current.component(.year, from: Date())
             
         // Podmínka: pokud je aktuální rok 2024, ukončíme funkci
         if currentYear == 2024 {
-            // TESTBUILD
-            actualMonth = 1
             actualMonth = MonthlyConfig.testingMonth
             return
         }
@@ -60,101 +35,47 @@ class SettingsViewModel: ObservableObject {
         if actualMonth != currentMonth {
             actualMonth = currentMonth
             monthlyCounter = 0
-            print("DEBUG checkCurrentMonth: month change")
         }
     }
     
     func getChallengeText() -> LocalizedStringKey {
-        switch actualMonth {
-        case 1:
-            return "January challenge"
-        case 2:
-            return "February challenge"
-        case 3:
-            return "March challenge"
-        case 4:
-            return "April challenge"
-        case 5:
-            return "May challenge"
-        case 6:
-            return "June challenge"
-        case 7:
-            return "July challenge"
-        case 8:
-            return "August challenge"
-        case 9:
-            return "September challenge"
-        case 10:
-            return "October challenge"
-        case 11:
-            return "November challenge"
-        case 12:
-            return "December challenge"
-        default:
-            return "Monthly challenge"
-        }
+        let monthNames: [LocalizedStringKey] = [
+            "January challenge", "February challenge", "March challenge",
+            "April challenge", "May challenge", "June challenge",
+            "July challenge", "August challenge", "September challenge",
+            "October challenge", "November challenge", "December challenge"
+        ]
+        
+        return (1...12).contains(actualMonth) ? monthNames[actualMonth - 1] : "Monthly challenge"
     }
     
     func incrementMonthlyCounter() {
         monthlyCounter += 1
     }
-}
-
-extension SettingsViewModel {
-    // Načíst timery ze SwiftData
-    private func loadTimersFromSwiftData() {
-        guard let context = modelContext else { return }
-        
-        do {
-            let descriptor = FetchDescriptor<TimerData>()
-            let timerDataArray = try context.fetch(descriptor)
-            
-            if let timerData = timerDataArray.first {
-                // Převést TimerData na IntervalData
-                self.timers = timerData.intervals.map { interval in
-                    IntervalData(value: interval.value, name: interval.name)
-                }
-            } else {
-                // Pokud nejsou data, vytvoř výchozí
-                createDefaultTimerData()
-            }
-        } catch {
-            print("Error loading timers from SwiftData: \(error)")
-            createDefaultTimerData()
+    
+    // MARK: - Timer Management
+    func addInterval(to timerData: TimerData) {
+        guard timerData.intervals.count < 5 else { return }
+        timerData.intervals.append(IntervalData(value: 5, name: "Lap \(timerData.intervals.count + 1)"))
+    }
+    
+    func deleteInterval(at offsets: IndexSet, from timerData: TimerData) {
+        timerData.intervals.remove(atOffsets: offsets)
+    }
+    
+    func moveInterval(from source: IndexSet, to destination: Int, in timerData: TimerData) {
+        timerData.intervals.move(fromOffsets: source, toOffset: destination)
+    }
+    
+    func updateIntervalName(_ name: String, for intervalId: UUID, in timerData: TimerData) {
+        if let index = timerData.intervals.firstIndex(where: { $0.id == intervalId }) {
+            timerData.intervals[index].name = name
         }
     }
     
-    // Uložit timery do SwiftData
-    private func saveTimersToSwiftData() {
-        guard let context = modelContext else { return }
-        
-        do {
-            // Načti existující TimerData nebo vytvoř nový
-            let descriptor = FetchDescriptor<TimerData>()
-            let timerDataArray = try context.fetch(descriptor)
-            
-            let timerData: TimerData
-            if let existingTimerData = timerDataArray.first {
-                timerData = existingTimerData
-            } else {
-                timerData = TimerData(id: 0)
-                context.insert(timerData)
-            }
-            
-            // Aktualizuj intervals
-            timerData.intervals = timers.map { timer in
-                IntervalData(value: timer.value, name: timer.name)
-            }
-            
-            try context.save()
-        } catch {
-            print("Error saving timers to SwiftData: \(error)")
+    func updateIntervalValue(_ value: Int, for intervalId: UUID, in timerData: TimerData) {
+        if let index = timerData.intervals.firstIndex(where: { $0.id == intervalId }) {
+            timerData.intervals[index].value = value
         }
-    }
-    
-    // Vytvoř výchozí data
-    private func createDefaultTimerData() {
-        self.timers = [IntervalData(value: 60, name: "Work"), IntervalData(value: 30, name: "Rest")]
-        saveTimersToSwiftData()
     }
 }

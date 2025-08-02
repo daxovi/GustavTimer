@@ -37,7 +37,6 @@ struct ContentView: View {
         if timerData.isEmpty {
             let defaultTimer = TimerData(id: defaultTimerId)
             context.insert(defaultTimer)
-            print("DEBUG: Default timer created with id: \(defaultTimerId)")
             try? context.save()
         }
     }
