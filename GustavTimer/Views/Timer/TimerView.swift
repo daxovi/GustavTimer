@@ -22,16 +22,11 @@ struct TimerView: View {
                 ProgressArrayView(viewModel: viewModel)
                     .padding(.top)
                 
-                HStack {
-                    rounds
-                    Spacer()
-                    editButton
-                }
-                .font(theme.fonts.headUpDisplay)
-
+                headerSection
+                
                 Spacer()
                 
-                counter
+                counterDisplay
                 
                 Spacer()
                 
@@ -42,93 +37,154 @@ struct TimerView: View {
             .persistentSystemOverlays(.hidden)
         }
         .onAppear {
-            viewModel.showWhatsNew()
-        }
-        .onAppear {
-            viewModel.setModelContext(context)
+            setupViewModel()
         }
         .onChange(of: showSettings) { _, _ in
             viewModel.resetTimer()
         }
         .sheet(isPresented: $viewModel.showingWhatsNew) {
-            WhatsNewView(buttonLabel: "enter challenge", tags: ["#whatsnew", "V1.4"], action: {
-                viewModel.showingWhatsNew = false
-                viewModel.showingSheet.toggle()
-            })
-            
+            whatsNewSheet
         }
-        // depplink
-        .onOpenURL { URL in
-            viewModel.handleDeepLink(url: URL)
+        .onOpenURL { url in
+            viewModel.handleDeepLink(url: url)
+        }
+    }
+}
+
+// MARK: - View Components
+private extension TimerView {
+    
+    var headerSection: some View {
+        HStack {
+            currentTimerInfo
+            Spacer()
+            settingsButton
+        }
+        .font(theme.fonts.headUpDisplay)
+    }
+    
+    var currentTimerInfo: some View {
+        Group {
+            if let currentTimer = currentTimer {
+                Text("\(currentTimer.name) (\(viewModel.round))")
+                    .safeAreaPadding(.horizontal)
+                    .foregroundColor(Color("StartColor").opacity(viewModel.round == 0 ? 0.0 : 1.0))
+                    .animation(.easeInOut(duration: 0.2), value: viewModel.round)
+            } else {
+                Text("No Timer")
+                    .safeAreaPadding(.horizontal)
+                    .foregroundColor(Color("StartColor").opacity(0.5))
+            }
         }
     }
     
-    var controlButtons: some View {
-        HStack(spacing: 16) {
-            ControlButton(
-                action: viewModel.startStopTimer,
-                label: viewModel.isTimerRunning ? "STOP" : "START",
-                description: viewModel.isTimerRunning ? nil : "\(viewModel.timers[viewModel.activeTimerIndex].name)",
-                color: viewModel.isTimerRunning ? .stop : .start)
-            
-            ControlButton(
-                action: viewModel.isTimerRunning ? viewModel.skipLap : viewModel.resetTimer,
-                icon: viewModel.isTimerRunning ? theme.icons.skip : theme.icons.reset,
-                color: .reset)
-            .frame(width: 100)
-            
-        }
-        .animation(.easeInOut, value: viewModel.isTimerRunning)
-        .frame(maxWidth: .infinity)
-        .padding()
-    }
-    
-    var rounds: some View {
-        Text( "\(viewModel.timers[viewModel.activeTimerIndex].name) (\(viewModel.round))")
-            .safeAreaPadding(.horizontal)
-            .foregroundColor(Color("StartColor").opacity((viewModel.round == 0) ? 0.0 : 1.0))
-            .animation(.easeInOut(duration: 0.2), value: viewModel.round)
-    }
-    
-    var counter: some View {
+    var counterDisplay: some View {
         Text("\(viewModel.count)")
             .font(theme.fonts.timerCounter)
             .minimumScaleFactor(0.01)
             .foregroundColor(Color("StartColor"))
     }
     
-    var editButton: some View {
-            Button {
-                showSettings.toggle()
-            } label: {
-                HStack {
-                    HStack{
-                        if viewModel.isLooping {
-                            theme.icons.loop
-                                    .resizable()
-                                    .scaledToFit()
-                                    .foregroundColor(theme.colors.volt)
-                        }
-                        
-                        if viewModel.isVibrating {
-                            theme.icons.vibration
-                                .scaledToFit()
-                                .foregroundColor(theme.colors.volt)
-                        }
-                        Image(systemName: viewModel.isSoundEnabled ? "speaker.wave.2.circle.fill" : "speaker.slash.circle.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .foregroundColor(Color(viewModel.isSoundEnabled ? .start : .reset))
-                    }
-                    .frame(height: 20)
-
-                    Text("EDIT")
-                }
-                .foregroundColor(Color("StartColor"))
+    var controlButtons: some View {
+        HStack(spacing: 16) {
+            startStopButton
+            secondaryButton
+        }
+        .animation(.easeInOut, value: viewModel.isTimerRunning)
+        .frame(maxWidth: .infinity)
+        .padding()
+    }
+    
+    var startStopButton: some View {
+        ControlButton(
+            action: viewModel.startStopTimer,
+            label: viewModel.isTimerRunning ? "STOP" : "START",
+            description: startButtonDescription.map { LocalizedStringKey($0) },
+            color: viewModel.isTimerRunning ? .stop : .start
+        )
+    }
+    
+    var secondaryButton: some View {
+        ControlButton(
+            action: viewModel.isTimerRunning ? viewModel.skipLap : viewModel.resetTimer,
+            icon: viewModel.isTimerRunning ? theme.icons.skip : theme.icons.reset,
+            color: .reset
+        )
+        .frame(width: 100)
+    }
+    
+    var settingsButton: some View {
+        Button {
+            showSettings.toggle()
+        } label: {
+            HStack {
+                settingsIcons
+                Text("EDIT")
+            }
+            .foregroundColor(Color("StartColor"))
         }
         .safeAreaPadding(.horizontal)
     }
     
+    var settingsIcons: some View {
+        HStack {
+            if viewModel.isLooping {
+                theme.icons.loop
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundColor(theme.colors.volt)
+            }
+            
+            if viewModel.isVibrating {
+                theme.icons.vibration
+                    .scaledToFit()
+                    .foregroundColor(theme.colors.volt)
+            }
+            
+            soundIcon
+        }
+        .frame(height: 20)
+    }
+    
+    var soundIcon: some View {
+        Image(systemName: viewModel.isSoundEnabled ? "speaker.wave.2.circle.fill" : "speaker.slash.circle.fill")
+            .resizable()
+            .scaledToFit()
+            .foregroundColor(Color(viewModel.isSoundEnabled ? .start : .reset))
+    }
+    
+    var whatsNewSheet: some View {
+        WhatsNewView(
+            buttonLabel: "enter challenge",
+            tags: ["#whatsnew", "V1.4"]
+        ) {
+            viewModel.showingWhatsNew = false
+            viewModel.showingSheet.toggle()
+        }
+    }
+}
+
+// MARK: - Computed Properties
+private extension TimerView {
+    
+    var currentTimer: IntervalData? {
+        guard viewModel.activeTimerIndex < viewModel.timers.count else { return nil }
+        return viewModel.timers[viewModel.activeTimerIndex]
+    }
+    
+    var startButtonDescription: String? {
+        guard !viewModel.isTimerRunning, let currentTimer = currentTimer else { return nil }
+        return currentTimer.name
+    }
+}
+
+// MARK: - Helper Methods
+private extension TimerView {
+    
+    func setupViewModel() {
+        viewModel.setModelContext(context)
+        viewModel.showWhatsNew()
+    }
 }
 
 #Preview {
