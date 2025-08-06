@@ -116,6 +116,12 @@ class GustavViewModel: ObservableObject {
         }
         UIApplication.shared.isIdleTimerDisabled = true
         isTimerRunning = true
+        
+        // Immediately set target progress and duration for initial animation
+        duration = 1.0
+        let activeTimerCount = Double(timers[activeTimerIndex].value)
+        progress = 1.0 / activeTimerCount
+        
         timer = Timer
             .publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
@@ -163,6 +169,11 @@ class GustavViewModel: ObservableObject {
             self.count = timers[activeTimerIndex].value
             if self.count <= 0 {
                 switchTimer()
+            } else {
+                // When starting a new timer, immediately set target progress and duration for animation
+                duration = 1.0
+                let activeTimerCount = Double(timers[activeTimerIndex].value)
+                progress = 1.0 / activeTimerCount
             }
         } else {
             duration = 1.0
