@@ -191,6 +191,9 @@
         }
       }
     },
+    "ADD_TIMER_TO_FAVOURITES" : {
+
+    },
     "April challenge" : {
       "localizations" : {
         "cs" : {
@@ -200,6 +203,9 @@
           }
         }
       }
+    },
+    "Are you sure you want to delete '%@'?" : {
+
     },
     "August challenge" : {
       "localizations" : {
@@ -228,6 +234,9 @@
         }
       }
     },
+    "Cancel" : {
+
+    },
     "December challenge" : {
       "localizations" : {
         "cs" : {
@@ -237,6 +246,9 @@
           }
         }
       }
+    },
+    "Delete" : {
+
     },
     "DELETE" : {
       "extractionState" : "stale",
@@ -254,6 +266,9 @@
           }
         }
       }
+    },
+    "Delete Timer" : {
+
     },
     "DELETE_DIALOG?" : {
       "extractionState" : "stale",
@@ -306,6 +321,9 @@
         }
       }
     },
+    "Enter a name for your timer configuration" : {
+
+    },
     "enter challenge" : {
       "localizations" : {
         "cs" : {
@@ -326,6 +344,9 @@
           }
         }
       }
+    },
+    "FAVOURITE_INTERVALS" : {
+
     },
     "February challenge" : {
       "localizations" : {
@@ -634,6 +655,9 @@
         }
       }
     },
+    "Save" : {
+
+    },
     "SAVE" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -651,7 +675,7 @@
         }
       }
     },
-    "SAVED_INTERVALS" : {
+    "Save Timer" : {
 
     },
     "September challenge" : {
@@ -776,6 +800,9 @@
           }
         }
       }
+    },
+    "Timer Name" : {
+
     },
     "TIMER_SETTINGS" : {
       "localizations" : {

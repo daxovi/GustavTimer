@@ -107,7 +107,7 @@ struct SettingsView: View {
             }
             .onDelete { viewModel.deleteInterval(at: $0, from: currentTimerData) }
             .onMove { viewModel.moveInterval(from: $0, to: $1, in: currentTimerData) }
-
+            
             if currentTimerData.intervals.count < 5 {
                 addIntervalButton
             }
@@ -121,7 +121,7 @@ struct SettingsView: View {
         }
         
         Button(action: viewModel.saveTimerData) {
-            Text("SAVE_TIMER")
+            Text("ADD_TIMER_TO_FAVOURITES")
         }
         .foregroundStyle(.white)
         .listRowBackground(Color.red)
@@ -131,28 +131,47 @@ struct SettingsView: View {
     private var savedTimersSection: some View {
         let savedTimers = timerData.filter { $0.id != 0 }
         if !savedTimers.isEmpty {
-            Section("SAVED_INTERVALS") {
-                ScrollView(.horizontal) {
-                    HStack {
+            Section("FAVOURITE_INTERVALS") {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: -16) {
                         ForEach(savedTimers) { timer in
-                            VStack {
+                            VStack(alignment: .leading) {
                                 Text(timer.name)
+                                    .padding(.bottom, 2)
                                 
                                 ForEach(timer.intervals) { interval in
                                     Text("\(interval.name): \(interval.value) s")
-                                }
-                                
-                                Button(action: { viewModel.deleteTimerData(timer) }) {
-                                    Image(systemName: "trash")
+                                        .font(theme.fonts.settingsCaption)
                                 }
                             }
-                            .frame(width: 150, height: 100)
+                            .frame(width: 150, height: 100, alignment: .topLeading)
+                            .padding(8)
+                            .background(Color.white)
+                            .overlay(alignment: .bottomLeading) {
+                                LinearGradient(colors: [.white.opacity(0), .white.opacity(0.8), .white], startPoint: .center, endPoint: .bottom)
+                            }
+                            .overlay(alignment: .bottomTrailing) {
+                                Button(action: { viewModel.deleteTimerData(timer) }) {
+                                    Image(systemName: "trash")
+                                        .foregroundStyle(.white)
+                                        .padding(4)
+                                        .background(Color.red)
+                                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                                        .padding(8)
+                                    
+                                }
+                            }
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .shadow(color: .black.opacity(0.2), radius: 1, x: 0, y: 1)
+                            .padding()
                             .onTapGesture {
                                 viewModel.loadTimerData(timer)
                             }
                         }
                     }
+                    .padding(.leading, 8)
                 }
+                .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
             }
         }
     }
@@ -287,7 +306,53 @@ struct SettingsView: View {
     }
 }
 
+//#Preview {
+//    SettingsView()
+//        .modelContainer(for: [CustomImageModel.self, TimerData.self])
+//}
+
 #Preview {
-    SettingsView()
-        .modelContainer(for: [CustomImageModel.self, TimerData.self])
+    @Previewable @Environment(\.theme) var theme
+    List {
+        Section("FAVOURITE_INTERVALS") {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: -16) {
+                    ForEach(0..<4) { index in
+                        VStack(alignment: .leading) {
+                            Text("timer.name")
+                                .padding(.bottom, 2)
+                            
+                            ForEach(0..<6) { index in
+                                Text("Rest: 30 s")
+                                    .font(theme.fonts.settingsCaption)
+                            }
+                            
+                            
+                        }
+                        .frame(width: 150, height: 100, alignment: .topLeading)
+                        .padding(8)
+                        .background(Color.white)
+                        .overlay(alignment: .bottomLeading) {
+                            LinearGradient(colors: [.white.opacity(0), .white.opacity(0.8), .white], startPoint: .center, endPoint: .bottom)
+                        }
+                        .overlay(alignment: .bottomTrailing) {
+                            Button(action: { }) {
+                                Image(systemName: "trash")
+                                    .padding(4)
+                                    .background(Color.red)
+                                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                                    .padding(8)
+                                
+                            }
+                        }
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .shadow(color: .black.opacity(0.2), radius: 1, x: 0, y: 1)
+                        .padding()
+                    }
+                }
+                .padding(.leading, 8)
+            }
+            .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+        }
+    }
 }
