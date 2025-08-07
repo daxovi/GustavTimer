@@ -11,6 +11,16 @@
         }
       }
     },
+    "%@: %lld s" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@: %2$lld s"
+          }
+        }
+      }
+    },
     "%lld" : {
 
     },
@@ -640,6 +650,9 @@
           }
         }
       }
+    },
+    "SAVED_INTERVALS" : {
+
     },
     "September challenge" : {
       "localizations" : {

@@ -50,6 +50,7 @@ struct SettingsView: View {
                 List {
                     monthlySection
                     intervalsSection
+                    savedTimersSection
                     timerSettingsSection
                     aboutSection
                 }
@@ -74,6 +75,7 @@ struct SettingsView: View {
         .background(scrollPositionReader)
     }
     
+    @ViewBuilder
     private var intervalsSection: some View {
         Section {
             ForEach(currentTimerData.intervals) { interval in
@@ -85,11 +87,47 @@ struct SettingsView: View {
             if currentTimerData.intervals.count < 5 {
                 addIntervalButton
             }
+            
         } header: {
             HStack {
                 Text("INTERVALS")
                 Spacer()
                 EditButton()
+            }
+        }
+        
+        Button(action: viewModel.saveTimerData) {
+            Text("SAVE_TIMER")
+        }
+        .foregroundStyle(.white)
+        .listRowBackground(Color.red)
+    }
+    
+    @ViewBuilder
+    private var savedTimersSection: some View {
+        if !timerData.isEmpty {
+            Section("SAVED_INTERVALS") {
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(timerData) { timer in
+                            VStack {
+                                Text(timer.name)
+                                
+                                ForEach(timer.intervals) { interval in
+                                    Text("\(interval.name): \(interval.value) s")
+                                }
+                                
+                                Button(action: { viewModel.deleteTimerData(timer) }) {
+                                    Image(systemName: "trash")
+                                }
+                            }
+                            .frame(width: 150, height: 100)
+                            .onTapGesture {
+                                viewModel.loadTimerData(timer)
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -201,7 +239,7 @@ struct SettingsView: View {
         if let existing = timerData.first(where: { $0.id == 0 }) {
             return existing
         } else {
-            let newData = TimerData(id: 0)
+            let newData = TimerData(id: 0, name: "Default Timer")
             context.insert(newData)
             return newData
         }
