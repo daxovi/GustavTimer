@@ -73,6 +73,10 @@ class TimerViewModel: ObservableObject {
         UIApplication.shared.isIdleTimerDisabled = true
         isTimerRunning = true
         
+        // Immediately calculate initial progress and set animation duration
+        duration = 1.0
+        updateProgress()
+        
         timer = Timer
             .publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
@@ -117,7 +121,14 @@ class TimerViewModel: ObservableObject {
             vibrate()
             count = timers[activeTimerIndex].value
             progress = 0.0  // Reset progress immediately for new timer
-            duration = 0.01  // Very quick transition
+            duration = 0.01  // Very quick transition to 0
+            
+            // After a brief moment, set up the animation for the new timer
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.02) {
+                self.duration = 1.0
+                self.updateProgress()
+            }
+            
             if count <= 0 {
                 switchToNextTimer() // Skip zero-duration timers
             }
@@ -133,6 +144,12 @@ class TimerViewModel: ObservableObject {
             vibrateRound()
             round += 1
             count = timers[0].value
+            
+            // Set up immediate animation for the new round
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.02) {
+                self.duration = 1.0
+                self.updateProgress()
+            }
         } else {
             vibrateFinish()
             resetTimer()
