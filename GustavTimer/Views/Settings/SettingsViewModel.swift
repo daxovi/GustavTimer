@@ -8,7 +8,15 @@
 import SwiftUI
 import SwiftData
 
+extension Notification.Name {
+    static let loadTimerData = Notification.Name("loadTimerData")
+}
+
 class SettingsViewModel: ObservableObject {
+    @Published var showSaveAlert = false
+    @Published var showDeleteAlert = false
+    @Published var newTimerName = ""
+    @Published var timerToDelete: TimerData?
     private var currentMonth: Int { Calendar.current.component(.month, from: Date()) }
     
     @AppStorage("actualMonth") var actualMonth: Int = 1
@@ -40,14 +48,82 @@ class SettingsViewModel: ObservableObject {
     
     func loadTimerData(_ timer: TimerData) {
         // TODO: Load timer data from storage to default timer with id: 0
+        // This function should be called with a ModelContext to work properly
+        // For now, we'll store the timer data in a way that can be accessed by the view
+        DispatchQueue.main.async {
+            // The actual loading will be handled by the view that has access to ModelContext
+            NotificationCenter.default.post(name: .loadTimerData, object: timer)
+        }
     }
     
     func saveTimerData() {
         // TODO: Ask user about name of the saved timer and then save actual timer data with id: 0 to SwiftData with new id (id 0 is reserved for default timer)
+        newTimerName = ""
+        showSaveAlert = true
+    }
+    
+    func performSaveTimerData(context: ModelContext, defaultTimer: TimerData) {
+        guard !newTimerName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
+        
+        do {
+            // Get the highest existing ID to generate a new one
+            let descriptor = FetchDescriptor<TimerData>(
+                sortBy: [SortDescriptor(\.id, order: .reverse)]
+            )
+            let existingTimers = try context.fetch(descriptor)
+            let newId = (existingTimers.first?.id ?? 0) + 1
+            
+            // Create new timer with copied data from default timer
+            let newTimer = TimerData(id: newId, name: newTimerName.trimmingCharacters(in: .whitespacesAndNewlines))
+            newTimer.intervals = defaultTimer.intervals.map { interval in
+                IntervalData(value: interval.value, name: interval.name)
+            }
+            newTimer.isLoop = defaultTimer.isLoop
+            
+            context.insert(newTimer)
+            try context.save()
+            
+        } catch {
+            print("Error saving timer: \(error)")
+        }
     }
     
     func deleteTimerData(_ timer: TimerData) {
         // TODO: Ask user about deleting, then delete timer data from SwiftData or go back. If timer is loaded, reset default timer data to initial state.
+        timerToDelete = timer
+        showDeleteAlert = true
+    }
+    
+    func performDeleteTimerData(context: ModelContext, defaultTimer: TimerData) {
+        guard let timerToDelete = timerToDelete else { return }
+        
+        do {
+            // Delete the timer from context
+            context.delete(timerToDelete)
+            try context.save()
+            
+            // Reset default timer to initial state if needed
+            // We'll assume the timer was loaded if the intervals match
+            let intervalsMatch = timerToDelete.intervals.count == defaultTimer.intervals.count &&
+                                zip(timerToDelete.intervals, defaultTimer.intervals).allSatisfy { saved, current in
+                                    saved.value == current.value && saved.name == current.name
+                                }
+            
+            if intervalsMatch {
+                // Reset to initial default state
+                defaultTimer.intervals = [
+                    IntervalData(value: 30, name: "Work"),
+                    IntervalData(value: 15, name: "Rest")
+                ]
+                defaultTimer.isLoop = true
+                try context.save()
+            }
+            
+        } catch {
+            print("Error deleting timer: \(error)")
+        }
+        
+        self.timerToDelete = nil
     }
     
     func getChallengeText() -> LocalizedStringKey {

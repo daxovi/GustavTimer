@@ -62,6 +62,30 @@ struct SettingsView: View {
             }
             .tint(Color("StopColor"))
             .font(theme.fonts.body)
+            .alert("Save Timer", isPresented: $viewModel.showSaveAlert) {
+                TextField("Timer Name", text: $viewModel.newTimerName)
+                Button("Save") {
+                    viewModel.performSaveTimerData(context: context, defaultTimer: currentTimerData)
+                }
+                Button("Cancel", role: .cancel) { }
+            } message: {
+                Text("Enter a name for your timer configuration")
+            }
+            .alert("Delete Timer", isPresented: $viewModel.showDeleteAlert) {
+                Button("Delete", role: .destructive) {
+                    viewModel.performDeleteTimerData(context: context, defaultTimer: currentTimerData)
+                }
+                Button("Cancel", role: .cancel) { }
+            } message: {
+                if let timer = viewModel.timerToDelete {
+                    Text("Are you sure you want to delete '\(timer.name)'?")
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: .loadTimerData)) { notification in
+                if let timerToLoad = notification.object as? TimerData {
+                    loadTimerDataToDefault(timerToLoad)
+                }
+            }
         }
     }
     
@@ -242,6 +266,22 @@ struct SettingsView: View {
             let newData = TimerData(id: 0, name: "Default Timer")
             context.insert(newData)
             return newData
+        }
+    }
+    
+    private func loadTimerDataToDefault(_ timerToLoad: TimerData) {
+        let defaultTimer = currentTimerData
+        
+        // Copy intervals from the selected timer to default timer
+        defaultTimer.intervals = timerToLoad.intervals.map { interval in
+            IntervalData(value: interval.value, name: interval.name)
+        }
+        defaultTimer.isLoop = timerToLoad.isLoop
+        
+        do {
+            try context.save()
+        } catch {
+            print("Error loading timer data: \(error)")
         }
     }
 }
