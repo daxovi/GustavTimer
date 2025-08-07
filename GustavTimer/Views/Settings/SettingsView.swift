@@ -129,11 +129,12 @@ struct SettingsView: View {
     
     @ViewBuilder
     private var savedTimersSection: some View {
-        if !timerData.isEmpty {
+        let savedTimers = timerData.filter { $0.id != 0 }
+        if !savedTimers.isEmpty {
             Section("SAVED_INTERVALS") {
                 ScrollView(.horizontal) {
                     HStack {
-                        ForEach(timerData) { timer in
+                        ForEach(savedTimers) { timer in
                             VStack {
                                 Text(timer.name)
                                 

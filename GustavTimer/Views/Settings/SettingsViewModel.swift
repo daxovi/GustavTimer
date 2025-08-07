@@ -86,10 +86,16 @@ class SettingsViewModel: ObservableObject {
         } catch {
             print("Error saving timer: \(error)")
         }
+        
+        // Clear the input field
+        newTimerName = ""
     }
     
     func deleteTimerData(_ timer: TimerData) {
         // TODO: Ask user about deleting, then delete timer data from SwiftData or go back. If timer is loaded, reset default timer data to initial state.
+        // Prevent deleting the default timer (id: 0)
+        guard timer.id != 0 else { return }
+        
         timerToDelete = timer
         showDeleteAlert = true
     }
