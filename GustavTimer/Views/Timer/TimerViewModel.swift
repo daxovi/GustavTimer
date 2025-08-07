@@ -97,15 +97,16 @@ class TimerViewModel: ObservableObject {
             switchToNextTimer()
         } else {
             updateProgress()
-
         }
     }
     
     private func updateProgress() {
         let activeTimerCount = Double(timers[activeTimerIndex].value)
         let currentCount = Double(count)
-        let countDifference = activeTimerCount - currentCount
-        progress = countDifference / activeTimerCount
+        let elapsedSeconds = activeTimerCount - currentCount
+        
+        // Progress should go from 0.0 to 1.0 as timer completes
+        progress = elapsedSeconds / activeTimerCount
     }
     
     private func switchToNextTimer() {
