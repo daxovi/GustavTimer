@@ -77,6 +77,11 @@ class TimerViewModel: ObservableObject {
         loadTimers()
     }
     
+    /// Znovu načte časovače z databáze
+    func reloadTimers() {
+        loadTimers()
+    }
+    
     // MARK: - Logika časovače
     /// Spustí nebo zastaví časovač
     func startStopTimer() {

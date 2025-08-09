@@ -39,7 +39,11 @@ struct TimerView: View {
         .onAppear {
             setupViewModel()
         }
-        .onChange(of: showSettings) { _, _ in
+        .onChange(of: showSettings) { _, newValue in
+            if !newValue {
+                // SettingsView se zavřelo, znovu načti data z databáze
+                viewModel.reloadTimers()
+            }
             viewModel.resetTimer()
         }
         .sheet(isPresented: $viewModel.showingWhatsNew) {
