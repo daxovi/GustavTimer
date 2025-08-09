@@ -191,6 +191,12 @@ struct SettingsView: View {
             }
             
             NavigationLink {
+                TimeDisplayFormatView()
+            } label: {
+                ListButton(name: "Time Format", value: viewModel.timeDisplayFormat.displayName)
+            }
+            
+            NavigationLink {
                 BackgroundSelectorView()
             } label: {
                 ListButton(name: "BACKGROUND")

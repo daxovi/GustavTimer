@@ -37,11 +37,13 @@ class TimerViewModel: ObservableObject {
     @AppStorage("selectedSound") var selectedSound: String = "beep"
     @AppStorage("isSoundEnabled") var isSoundEnabled: Bool = true
     @AppStorage("isVibrating") var isVibrating: Bool = false
+    @AppStorage("timeDisplayFormat") var timeDisplayFormat: TimeDisplayFormat = .seconds
     
     // MARK: - Private Properties
     var activeTimerIndex: Int = 0  // Public for ProgressArrayView access
     private var timer: AnyCancellable?
     private var modelContext: ModelContext?
+    private var tenthsCounter: Int = 0  // Counter for tenths of seconds
     
     // MARK: - Initialization
     init() {
@@ -54,6 +56,7 @@ class TimerViewModel: ObservableObject {
             IntervalData(value: 30, name: "Rest")
         ]
         count = timers[0].value
+        tenthsCounter = count * 10
     }
     
     func setModelContext(_ context: ModelContext) {
@@ -69,13 +72,14 @@ class TimerViewModel: ObservableObject {
     private func startTimer() {
         if round == 0 { round = 1 }
         
+        tenthsCounter = count * 10  // Initialize tenths counter
         updateProgress()
         
         UIApplication.shared.isIdleTimerDisabled = true
         isTimerRunning = true
         
         timer = Timer
-            .publish(every: 1.0, on: .main, in: .common)
+            .publish(every: 0.1, on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
                 self?.updateTimer()
@@ -90,22 +94,30 @@ class TimerViewModel: ObservableObject {
     }
     
     private func updateTimer() {
-        count -= 1
-        playSound()
+        tenthsCounter -= 1
+        
+        // Update count every 10 tenths (1 second)
+        let newCount = tenthsCounter / 10
+        
+        // Play sound only when crossing second boundaries
+        if newCount != count {
+            count = newCount
+        }
+        
 
-        if count <= 0 {
+        if tenthsCounter <= 0 {
+            count = 0
             switchToNextTimer()
         } else {
-            updateProgress()
-
         }
+        updateProgress()
     }
     
     private func updateProgress() {
-        let activeTimerCount = Double(timers[activeTimerIndex].value) // 5
-        let currentCount = Double(count) // 5
-        let countDifference = activeTimerCount - currentCount // 0
-        progress = (countDifference + 1) / activeTimerCount // 1/5
+        let activeTimerTotalTenths = Double(timers[activeTimerIndex].value * 10)
+        let currentTenths = Double(tenthsCounter)
+        let progressTenths = activeTimerTotalTenths - currentTenths
+        progress = progressTenths / activeTimerTotalTenths
         print("DEBUG: progress: \(progress)")
     }
     
@@ -116,8 +128,9 @@ class TimerViewModel: ObservableObject {
             handleRoundCompletion()
         } else {
             vibrate()
+            playSound()
             count = timers[activeTimerIndex].value
-            updateProgress()
+            tenthsCounter = count * 10
 
             if count <= 0 {
                 switchToNextTimer() // Skip zero-duration timers
@@ -131,12 +144,15 @@ class TimerViewModel: ObservableObject {
         
         if isLooping {
             vibrateRound()
+            playSound()
             round += 1
             count = timers[0].value
-            updateProgress()
+            tenthsCounter = count * 10
+//            updateProgress()
 
         } else {
             vibrateFinish()
+            playSound()
             resetTimer()
         }
     }
@@ -149,6 +165,7 @@ class TimerViewModel: ObservableObject {
         progress = 0.0
         isTimerRunning = false
         count = timers[0].value
+        tenthsCounter = count * 10
         startedFromDeeplink = false
         loadTimers()
     }
@@ -156,6 +173,7 @@ class TimerViewModel: ObservableObject {
     func skipLap() {
         progress = 1.0
         count = 0
+        tenthsCounter = 0
     }
     
     // MARK: - Timer Management
@@ -201,6 +219,25 @@ class TimerViewModel: ObservableObject {
             : String(format: "%d", seconds)
     }
     
+    func formattedCurrentTime() -> String {
+        switch timeDisplayFormat {
+        case .seconds:
+            return "\(count)"
+        case .minutesSecondsHundredths:
+            let totalTenths = tenthsCounter
+            let minutes = totalTenths / 600  // 600 tenths = 1 minute
+            let remainingTenths = totalTenths % 600
+            let seconds = remainingTenths / 10
+            let tenths = remainingTenths % 10
+            
+            if minutes > 0 {
+                return String(format: "%d:%02d.%01d", minutes, seconds, tenths)
+            } else {
+                return String(format: "%d.%01d", seconds, tenths)
+            }
+        }
+    }
+    
     func toggleSheet() {
         showingSheet.toggle()
         resetTimer()
@@ -228,9 +265,9 @@ class TimerViewModel: ObservableObject {
     private func playSound() {
         guard isSoundEnabled && isTimerRunning else { return }
         
-        if count < 1 && timers[activeTimerIndex].value > 1 {
+        if count == 0 && timers[activeTimerIndex].value > 1 {
             SoundManager.instance.playSound(sound: .final, theme: selectedSound)
-        } else if count < 4 && count > 0 && timers[activeTimerIndex].value > 9 {
+        } else if count == 3 && count > 0 && timers[activeTimerIndex].value > 9 {
             SoundManager.instance.playSound(sound: .countdown, theme: selectedSound)
         }
     }
@@ -301,6 +338,7 @@ extension TimerViewModel {
                 timers = timerData.intervals
                 if !timers.isEmpty {
                     count = timers[0].value
+                    tenthsCounter = count * 10
                 }
             } else {
                 createAndSaveDefaultTimers()

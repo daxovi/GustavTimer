@@ -79,7 +79,7 @@ private extension TimerView {
     }
     
     var counterDisplay: some View {
-        Text("\(viewModel.count)")
+        Text(viewModel.formattedCurrentTime())
             .font(theme.fonts.timerCounter)
             .minimumScaleFactor(0.01)
             .foregroundColor(Color("StartColor"))
