@@ -102,15 +102,15 @@ class TimerViewModel: ObservableObject {
         // Play sound only when crossing second boundaries
         if newCount != count {
             count = newCount
-            playSound()
         }
+        
 
         if tenthsCounter <= 0 {
             count = 0
             switchToNextTimer()
         } else {
-            updateProgress()
         }
+        updateProgress()
     }
     
     private func updateProgress() {
@@ -128,9 +128,9 @@ class TimerViewModel: ObservableObject {
             handleRoundCompletion()
         } else {
             vibrate()
+            playSound()
             count = timers[activeTimerIndex].value
             tenthsCounter = count * 10
-            updateProgress()
 
             if count <= 0 {
                 switchToNextTimer() // Skip zero-duration timers
@@ -144,13 +144,15 @@ class TimerViewModel: ObservableObject {
         
         if isLooping {
             vibrateRound()
+            playSound()
             round += 1
             count = timers[0].value
             tenthsCounter = count * 10
-            updateProgress()
+//            updateProgress()
 
         } else {
             vibrateFinish()
+            playSound()
             resetTimer()
         }
     }
@@ -263,9 +265,9 @@ class TimerViewModel: ObservableObject {
     private func playSound() {
         guard isSoundEnabled && isTimerRunning else { return }
         
-        if count < 1 && timers[activeTimerIndex].value > 1 {
+        if count == 0 && timers[activeTimerIndex].value > 1 {
             SoundManager.instance.playSound(sound: .final, theme: selectedSound)
-        } else if count < 4 && count > 0 && timers[activeTimerIndex].value > 9 {
+        } else if count == 3 && count > 0 && timers[activeTimerIndex].value > 9 {
             SoundManager.instance.playSound(sound: .countdown, theme: selectedSound)
         }
     }
