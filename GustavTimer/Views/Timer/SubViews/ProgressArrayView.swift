@@ -14,7 +14,7 @@ struct ProgressArrayView: View {
         GeometryReader { geometry in
             HStack(spacing: 5) {
                 ForEach(Array(viewModel.timers.enumerated()), id: \.offset) { index, timer in
-                    ProgressBar(progress: (index == viewModel.activeTimerIndex) ? $viewModel.progress : (index < viewModel.activeTimerIndex) ? .constant(1.0) : .constant(0.0))
+                    ProgressBar(progress: (index == viewModel.activeTimerIndex) ? .constant(viewModel.progress) : (index < viewModel.activeTimerIndex) ? .constant(1.0) : .constant(0.0))
                         .frame(width: viewModel.getProgressBarWidth(geometry: geometry, timerIndex: index))
                         .clipShape(RoundedRectangle(cornerRadius: 20))
 
