@@ -43,7 +43,7 @@ class TimerViewModel: ObservableObject {
     var activeTimerIndex: Int = 0  // Veřejné pro přístup z ProgressArrayView
     private var timer: AnyCancellable?
     private var modelContext: ModelContext?
-    private var currentTenths: Int = 0  // Počítadlo desetin sekund - sjednocená verze
+    @Published private var currentTenths: Int = 0  // Počítadlo desetin sekund - sjednocená verze
     
     // MARK: - Vypočítané vlastnosti
     /// Aktuální čas v sekundách (počítaný z desetin)
