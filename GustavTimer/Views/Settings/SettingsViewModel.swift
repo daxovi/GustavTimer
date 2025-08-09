@@ -12,7 +12,7 @@ extension Notification.Name {
     static let loadTimerData = Notification.Name("loadTimerData")
 }
 
-/// ViewModel pro správu nastavení - zjednodušená verze
+/// ViewModel pro správu nastavení - zjednodušená verze s českými komentáři
 class SettingsViewModel: ObservableObject {
     // MARK: - Publikované vlastnosti
     @Published var showSaveAlert = false
@@ -30,53 +30,51 @@ class SettingsViewModel: ObservableObject {
     @AppStorage("timeDisplayFormat") var timeDisplayFormat: TimeDisplayFormat = .seconds
     
     /// Aktuální měsíc z kalendáře
-    private var aktualniMesic: Int { Calendar.current.component(.month, from: Date()) }
+    private var currentMonth: Int { Calendar.current.component(.month, from: Date()) }
     
     // MARK: - Inicializace
     init() {
-        zkontrolovatAktualniMesic()
+        checkCurrentMonth()
     }
-    
     
     // MARK: - Měsíční výzva
     /// Kontrola a aktualizace aktuálního měsíce
-    private func zkontrolovatAktualniMesic() {
-        let aktualniRok = Calendar.current.component(.year, from: Date())
+    func checkCurrentMonth() {
+        let currentYear = Calendar.current.component(.year, from: Date())
         
         // Pro testování v roce 2024 použít testovací měsíc
-        if aktualniRok == 2024 {
+        if currentYear == 2024 {
             actualMonth = MonthlyConfig.testingMonth
             return
         }
         
         // Resetování počítadla při změně měsíce
-        if actualMonth != aktualniMesic {
-            actualMonth = aktualniMesic
+        if actualMonth != currentMonth {
+            actualMonth = currentMonth
             monthlyCounter = 0
         }
     }
     
     /// Získání textu pro měsíční výzvu
-    func ziskatTextVyzvy() -> LocalizedStringKey {
-        let mesiceVyzev: [LocalizedStringKey] = [
+    func getChallengeText() -> LocalizedStringKey {
+        let challengeTexts: [LocalizedStringKey] = [
             "January challenge", "February challenge", "March challenge",
             "April challenge", "May challenge", "June challenge", 
             "July challenge", "August challenge", "September challenge",
             "October challenge", "November challenge", "December challenge"
         ]
         
-        return (1...12).contains(actualMonth) ? mesiceVyzev[actualMonth - 1] : "Monthly challenge"
+        return (1...12).contains(actualMonth) ? challengeTexts[actualMonth - 1] : "Monthly challenge"
     }
     
     /// Zvýšení počítadla měsíční výzvy
-    func zvysitPocitadloVyzvy() {
+    func incrementMonthlyCounter() {
         monthlyCounter += 1
     }
     
-    
     // MARK: - Správa časovačů
     /// Načtení dat časovače (pomocí notifikace)
-    func nacistDataCasovace(_ timer: TimerData) {
+    func loadTimerData(_ timer: TimerData) {
         DispatchQueue.main.async {
             // Skutečné načtení bude zpracováno view s přístupem k ModelContext
             NotificationCenter.default.post(name: .loadTimerData, object: timer)
@@ -84,13 +82,13 @@ class SettingsViewModel: ObservableObject {
     }
     
     /// Zobrazení dialogu pro uložení časovače
-    func ulozitDataCasovace() {
+    func saveTimerData() {
         newTimerName = ""
         showSaveAlert = true
     }
     
     /// Provedení uložení časovače s novým jménem
-    func provesesUlozeniCasovace(context: ModelContext, vychoziCasovac: TimerData) {
+    func performSaveTimerData(context: ModelContext, defaultTimer: TimerData) {
         guard !newTimerName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
         
         do {
@@ -98,17 +96,17 @@ class SettingsViewModel: ObservableObject {
             let descriptor = FetchDescriptor<TimerData>(
                 sortBy: [SortDescriptor(\.id, order: .reverse)]
             )
-            let existujiciCasovace = try context.fetch(descriptor)
-            let noveId = (existujiciCasovace.first?.id ?? 0) + 1
+            let existingTimers = try context.fetch(descriptor)
+            let newId = (existingTimers.first?.id ?? 0) + 1
             
             // Vytvořit nový časovač s kopií dat z výchozího
-            let novyCasovac = TimerData(id: noveId, name: newTimerName.trimmingCharacters(in: .whitespacesAndNewlines))
-            novyCasovac.intervals = vychoziCasovac.intervals.map { interval in
+            let newTimer = TimerData(id: newId, name: newTimerName.trimmingCharacters(in: .whitespacesAndNewlines))
+            newTimer.intervals = defaultTimer.intervals.map { interval in
                 IntervalData(value: interval.value, name: interval.name)
             }
-            novyCasovac.isLoop = vychoziCasovac.isLoop
+            newTimer.isLoop = defaultTimer.isLoop
             
-            context.insert(novyCasovac)
+            context.insert(newTimer)
             try context.save()
             
         } catch {
@@ -118,9 +116,8 @@ class SettingsViewModel: ObservableObject {
         newTimerName = ""
     }
     
-    
     /// Zobrazení dialogu pro smazání časovače
-    func smazatDataCasovace(_ timer: TimerData) {
+    func deleteTimerData(_ timer: TimerData) {
         // Zamezit smazání výchozího časovače (id: 0)
         guard timer.id != 0 else { return }
         
@@ -129,27 +126,27 @@ class SettingsViewModel: ObservableObject {
     }
     
     /// Provedení smazání časovače
-    func provesesSmazaniCasovace(context: ModelContext, vychoziCasovac: TimerData) {
-        guard let casovacKeZruseni = timerToDelete else { return }
+    func performDeleteTimerData(context: ModelContext, defaultTimer: TimerData) {
+        guard let timerToDelete = timerToDelete else { return }
         
         do {
             // Smazat časovač z kontextu
-            context.delete(casovacKeZruseni)
+            context.delete(timerToDelete)
             try context.save()
             
             // Resetovat výchozí časovač pokud byl načten
-            let intervalyShodne = casovacKeZruseni.intervals.count == vychoziCasovac.intervals.count &&
-                                zip(casovacKeZruseni.intervals, vychoziCasovac.intervals).allSatisfy { ulozeny, aktualni in
-                                    ulozeny.value == aktualni.value && ulozeny.name == aktualni.name
+            let intervalsMatch = timerToDelete.intervals.count == defaultTimer.intervals.count &&
+                                zip(timerToDelete.intervals, defaultTimer.intervals).allSatisfy { stored, current in
+                                    stored.value == current.value && stored.name == current.name
                                 }
             
-            if intervalyShodne {
+            if intervalsMatch {
                 // Reset na výchozí stav
-                vychoziCasovac.intervals = [
+                defaultTimer.intervals = [
                     IntervalData(value: 30, name: "Práce"),
                     IntervalData(value: 15, name: "Odpočinek")
                 ]
-                vychoziCasovac.isLoop = true
+                defaultTimer.isLoop = true
                 try context.save()
             }
             
@@ -162,86 +159,32 @@ class SettingsViewModel: ObservableObject {
     
     // MARK: - Správa intervalů časovače
     /// Přidání intervalu k časovači
-    func pridatInterval(k timerData: TimerData) {
+    func addInterval(to timerData: TimerData) {
         guard timerData.intervals.count < 5 else { return }
         timerData.intervals.append(IntervalData(value: 5, name: "Kolo \(timerData.intervals.count + 1)"))
     }
     
     /// Odstranění intervalů podle indexu
-    func odstranit(at offsets: IndexSet, z timerData: TimerData) {
+    func deleteInterval(at offsets: IndexSet, from timerData: TimerData) {
         timerData.intervals.remove(atOffsets: offsets)
     }
     
     /// Přesun intervalu na novou pozici
-    func presunoutInterval(z source: IndexSet, na destination: Int, v timerData: TimerData) {
+    func moveInterval(from source: IndexSet, to destination: Int, in timerData: TimerData) {
         timerData.intervals.move(fromOffsets: source, toOffset: destination)
     }
     
     /// Aktualizace jména intervalu
-    func aktualizovatJmenoIntervalu(_ name: String, pro intervalId: UUID, v timerData: TimerData) {
+    func updateIntervalName(_ name: String, for intervalId: UUID, in timerData: TimerData) {
         if let index = timerData.intervals.firstIndex(where: { $0.id == intervalId }) {
             timerData.intervals[index].name = name
         }
     }
     
     /// Aktualizace hodnoty intervalu
-    func aktualizovatHodnotuIntervalu(_ value: Int, pro intervalId: UUID, v timerData: TimerData) {
+    func updateIntervalValue(_ value: Int, for intervalId: UUID, in timerData: TimerData) {
         if let index = timerData.intervals.firstIndex(where: { $0.id == intervalId }) {
             timerData.intervals[index].value = value
         }
-    }
-}
-
-// MARK: - Kompatibilita se starými názvy metod (pro Views)
-extension SettingsViewModel {
-    /// Kompatibilita pro checkCurrentMonth
-    func checkCurrentMonth() { zkontrolovatAktualniMesic() }
-    
-    /// Kompatibilita pro loadTimerData
-    func loadTimerData(_ timer: TimerData) { nacistDataCasovace(timer) }
-    
-    /// Kompatibilita pro saveTimerData
-    func saveTimerData() { ulozitDataCasovace() }
-    
-    /// Kompatibilita pro performSaveTimerData
-    func performSaveTimerData(context: ModelContext, defaultTimer: TimerData) {
-        provesesUlozeniCasovace(context: context, vychoziCasovac: defaultTimer)
-    }
-    
-    /// Kompatibilita pro deleteTimerData
-    func deleteTimerData(_ timer: TimerData) { smazatDataCasovace(timer) }
-    
-    /// Kompatibilita pro performDeleteTimerData
-    func performDeleteTimerData(context: ModelContext, defaultTimer: TimerData) {
-        provesesSmazaniCasovace(context: context, vychoziCasovac: defaultTimer)
-    }
-    
-    /// Kompatibilita pro getChallengeText
-    func getChallengeText() -> LocalizedStringKey { ziskatTextVyzvy() }
-    
-    /// Kompatibilita pro incrementMonthlyCounter
-    func incrementMonthlyCounter() { zvysitPocitadloVyzvy() }
-    
-    /// Kompatibilita pro addInterval
-    func addInterval(to timerData: TimerData) { pridatInterval(k: timerData) }
-    
-    /// Kompatibilita pro deleteInterval
-    func deleteInterval(at offsets: IndexSet, from timerData: TimerData) {
-        odstranit(at: offsets, z: timerData)
-    }
-    
-    /// Kompatibilita pro moveInterval
-    func moveInterval(from source: IndexSet, to destination: Int, in timerData: TimerData) {
-        presunoutInterval(z: source, na: destination, v: timerData)
-    }
-    
-    /// Kompatibilita pro updateIntervalName
-    func updateIntervalName(_ name: String, for intervalId: UUID, in timerData: TimerData) {
-        aktualizovatJmenoIntervalu(name, pro: intervalId, v: timerData)
-    }
-    
-    /// Kompatibilita pro updateIntervalValue
-    func updateIntervalValue(_ value: Int, for intervalId: UUID, in timerData: TimerData) {
-        aktualizovatHodnotuIntervalu(value, pro: intervalId, v: timerData)
     }
 }

@@ -12,7 +12,7 @@ import AVKit
 import AVFoundation
 import SwiftData
 
-/// ViewModel pro správu časovače - zjednodušená verze
+/// ViewModel pro správu časovače - zjednodušená verze s českými komentáři
 class TimerViewModel: ObservableObject {
     // MARK: - Konfigurace
     let maxTimers = AppConfig.maxTimerCount
@@ -43,10 +43,10 @@ class TimerViewModel: ObservableObject {
     var activeTimerIndex: Int = 0  // Veřejné pro přístup z ProgressArrayView
     private var timer: AnyCancellable?
     private var modelContext: ModelContext?
-    private var currentTenths: Int = 0  // Počítadlo desetin sekund
+    private var currentTenths: Int = 0  // Počítadlo desetin sekund - sjednocená verze
     
     // MARK: - Vypočítané vlastnosti
-    /// Aktuální čas v sekundách
+    /// Aktuální čas v sekundách (počítaný z desetin)
     var count: Int { currentTenths / 10 }
     
     /// Pokrok aktivního časovače (0.0 - 1.0)
@@ -59,11 +59,11 @@ class TimerViewModel: ObservableObject {
     
     // MARK: - Inicializace
     init() {
-        nastavitVychoziCasovace()
+        setupDefaultTimers()
     }
     
     /// Nastavení výchozích časovačů
-    private func nastavitVychoziCasovace() {
+    private func setupDefaultTimers() {
         timers = [
             IntervalData(value: 60, name: "Práce"),
             IntervalData(value: 30, name: "Odpočinek")
@@ -74,17 +74,17 @@ class TimerViewModel: ObservableObject {
     /// Nastavení kontextu pro práci s daty
     func setModelContext(_ context: ModelContext) {
         modelContext = context
-        nacistCasovace()
+        loadTimers()
     }
     
     // MARK: - Logika časovače
     /// Spustí nebo zastaví časovač
     func startStopTimer() {
-        isTimerRunning ? zastavitCasovac() : spustitCasovac()
+        isTimerRunning ? stopTimer() : startTimer()
     }
     
     /// Spuštění časovače
-    private func spustitCasovac() {
+    private func startTimer() {
         if round == 0 { round = 1 }
         
         // Zajistit, že máme platnou hodnotu
@@ -97,126 +97,124 @@ class TimerViewModel: ObservableObject {
             .publish(every: 0.1, on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
-                self?.aktualizovatCasovac()
+                self?.updateTimer()
             }
     }
     
     /// Zastavení časovače
-    private func zastavitCasovac() {
+    private func stopTimer() {
         UIApplication.shared.isIdleTimerDisabled = false
         isTimerRunning = false
         timer = nil
         stopCounter += 1
     }
     
-    
     /// Aktualizace časovače každých 0.1 sekundy
-    private func aktualizovatCasovac() {
+    private func updateTimer() {
         currentTenths -= 1
         
         // Pokud čas vyprší, přejdi na další časovač
         if currentTenths <= 0 {
-            prejitNaDalsiCasovac()
+            switchToNextTimer()
         }
     }
     
     /// Přechod na další časovač v sekvenci
-    private func prejitNaDalsiCasovac() {
+    private func switchToNextTimer() {
         activeTimerIndex += 1
         
         if activeTimerIndex >= timers.count {
             // Konec kola
-            dokoncitKolo()
+            handleRoundCompletion()
         } else {
             // Další časovač v kole
-            vibrace()
-            prehratZvuk()
+            vibrate()
+            playSound()
             currentTenths = timers[activeTimerIndex].value * 10
             
             // Přeskočit časovače s nulovou délkou
             if timers[activeTimerIndex].value <= 0 {
-                prejitNaDalsiCasovac()
+                switchToNextTimer()
             }
         }
     }
     
-    
     /// Dokončení aktuálního kola
-    private func dokoncitKolo() {
+    private func handleRoundCompletion() {
         activeTimerIndex = 0
         
         if isLooping {
             // Pokračovat v dalším kole
-            vibraceKolo()
-            prehratZvuk()
+            vibrateRound()
+            playSound()
             round += 1
             currentTenths = timers[0].value * 10
         } else {
             // Ukončit časovač
-            vibraceKonec()
-            prehratZvuk()
-            resetovatCasovac()
+            vibrateEnd()
+            playSound()
+            resetTimer()
         }
     }
     
     /// Reset časovače do výchozího stavu
-    func resetovatCasovac() {
-        zastavitCasovac()
+    func resetTimer() {
+        stopTimer()
         round = 0
         timer = nil
         activeTimerIndex = 0
         isTimerRunning = false
         currentTenths = timers[0].value * 10
         startedFromDeeplink = false
-        nacistCasovace()
+        loadTimers()
     }
     
     /// Přeskočit aktuální časovač
-    func preskocitCasovac() {
+    func skipLap() {
         currentTenths = 0
     }
     
     // MARK: - Správa časovačů
     /// Přidání nového časovače
-    func pridatCasovac() {
+    func addTimer() {
         guard !isTimerFull else { return }
         timers.append(IntervalData(value: 5, name: "Kolo \(timers.count + 1)"))
-        ulozitCasovace()
+        saveTimers()
     }
     
     /// Odstranění časovačů podle indexu
-    func odstranit(at offsets: IndexSet) {
+    func removeTimer(at offsets: IndexSet) {
         timers.remove(atOffsets: offsets)
-        ulozitCasovace()
+        saveTimers()
     }
     
     /// Odstranění konkrétního časovače
-    func odstranit(index: Int) {
+    func removeTimer(index: Int) {
         guard index < timers.count else { return }
         timers.remove(at: index)
-        ulozitCasovace()
+        saveTimers()
     }
     
     // MARK: - Progress bar a zobrazení
     /// Výpočet šířky progress baru pro konkrétní časovač
-    func sirkaProgressBaru(geometry: GeometryProxy, timerIndex: Int) -> Double {
+    func getProgressBarWidth(geometry: GeometryProxy, timerIndex: Int) -> Double {
         guard timerIndex < timers.count else { return 0.0 }
         
         let totalWidth = geometry.size.width - (CGFloat(timers.count - 1) * 5)
-        let ratio = pomerCasu(for: timerIndex)
+        let ratio = getTimeRatio(for: timerIndex)
         return totalWidth * ratio
     }
     
     /// Výpočet poměru času pro jednotlivé časovače
-    private func pomerCasu(for timerIndex: Int) -> Double {
-        let celkovyCas = Double(timers.reduce(0) { $0 + $1.value })
-        guard celkovyCas > 0, timerIndex < timers.count else { return 0 }
-        return Double(timers[timerIndex].value) / celkovyCas
+    private func getTimeRatio(for timerIndex: Int) -> Double {
+        let totalTime = Double(timers.reduce(0) { $0 + $1.value })
+        guard totalTime > 0, timerIndex < timers.count else { return 0 }
+        return Double(timers[timerIndex].value) / totalTime
     }
     
     // MARK: - Formátování času
     /// Formátování času z celkových sekund
-    func formatovatCas(from totalSeconds: Int) -> String {
+    func formattedTime(from totalSeconds: Int) -> String {
         let minutes = totalSeconds / 60
         let seconds = totalSeconds % 60
         
@@ -226,7 +224,7 @@ class TimerViewModel: ObservableObject {
     }
     
     /// Formátování aktuálního času podle nastaveného formátu
-    func formatovatAktualniCas() -> String {
+    func formattedCurrentTime() -> String {
         switch timeDisplayFormat {
         case .seconds:
             return "\(count)"
@@ -245,35 +243,35 @@ class TimerViewModel: ObservableObject {
     }
     
     /// Zobrazení/skrytí nastavení
-    func prepnoutNastaveni() {
+    func toggleSheet() {
         showingSheet.toggle()
-        resetovatCasovac()
+        resetTimer()
     }
     
     // MARK: - Zpětná vazba (vibrace a zvuky)
     /// Lehká vibrace při přechodu mezi časovači
-    private func vibrace() {
+    private func vibrate() {
         guard isVibrating && isTimerRunning else { return }
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()
     }
     
     /// Vibrace při dokončení kola
-    private func vibraceKolo() {
+    private func vibrateRound() {
         guard isVibrating && isTimerRunning else { return }
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
     }
     
     /// Vibrace při ukončení časovače
-    private func vibraceKonec() {
+    private func vibrateEnd() {
         guard isVibrating && isTimerRunning else { return }
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.error)
     }
     
     /// Přehrání zvuku podle situace
-    private func prehratZvuk() {
+    private func playSound() {
         guard isSoundEnabled && isTimerRunning else { return }
         
         if count == 0 && timers[activeTimerIndex].value > 1 {
@@ -285,7 +283,7 @@ class TimerViewModel: ObservableObject {
     
     // MARK: - Co je nového
     /// Zobrazení okna s novinkami
-    func zobrazitCoJeNoveho() {
+    func showWhatsNew() {
         if whatsNewVersion < AppConfig.version {
             showingWhatsNew = true
             whatsNewVersion = AppConfig.version
@@ -294,7 +292,7 @@ class TimerViewModel: ObservableObject {
     
     // MARK: - Odkazy z aplikací (Deep Links)  
     /// Zpracování odkazu z jiné aplikace
-    func zpracovatOdkaz(url: URL) {
+    func handleDeepLink(url: URL) {
         guard url.scheme == "gustavtimerapp",
               let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
               let host = components.host else { return }
@@ -303,33 +301,33 @@ class TimerViewModel: ObservableObject {
         case "whatsnew":
             showingWhatsNew = true
         case "timer":
-            zpracovatTimerOdkaz(components: components)
+            handleTimerDeepLink(components: components)
         default:
             print("Neznámý deep link: \(host)")
         }
     }
     
     /// Zpracování odkazu s časovačem
-    private func zpracovatTimerOdkaz(components: URLComponents) {
-        let puvodnyCasovace = timers
-        var noveCasovace: [IntervalData] = []
+    private func handleTimerDeepLink(components: URLComponents) {
+        let originalTimers = timers
+        var newTimers: [IntervalData] = []
         
         if let queryItems = components.queryItems {
             for item in queryItems {
                 if let value = item.value, let intValue = Int(value) {
-                    noveCasovace.append(IntervalData(value: intValue, name: item.name))
+                    newTimers.append(IntervalData(value: intValue, name: item.name))
                 }
             }
         }
         
-        if !noveCasovace.isEmpty {
-            timers = noveCasovace
+        if !newTimers.isEmpty {
+            timers = newTimers
             startedFromDeeplink = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.showingSheet = true
             }
         } else {
-            timers = puvodnyCasovace
+            timers = originalTimers
         }
     }
 }
@@ -337,9 +335,9 @@ class TimerViewModel: ObservableObject {
 // MARK: - Správa dat
 extension TimerViewModel {
     /// Načtení časovačů z databáze
-    private func nacistCasovace() {
+    private func loadTimers() {
         guard let context = modelContext else {
-            nastavitVychoziCasovace()
+            setupDefaultTimers()
             return
         }
         
@@ -353,16 +351,16 @@ extension TimerViewModel {
                     currentTenths = timers[0].value * 10
                 }
             } else {
-                vytvoriaUlozitVychoziCasovace()
+                createAndSaveDefaultTimers()
             }
         } catch {
             print("Chyba při načítání časovačů: \(error)")
-            nastavitVychoziCasovace()
+            setupDefaultTimers()
         }
     }
     
     /// Uložení časovačů do databáze
-    private func ulozitCasovace() {
+    private func saveTimers() {
         guard let context = modelContext else { return }
         
         do {
@@ -385,46 +383,8 @@ extension TimerViewModel {
     }
     
     /// Vytvoření a uložení výchozích časovačů
-    private func vytvoriaUlozitVychoziCasovace() {
-        nastavitVychoziCasovace()
-        ulozitCasovace()
+    private func createAndSaveDefaultTimers() {
+        setupDefaultTimers()
+        saveTimers()
     }
-}
-
-// MARK: - Kompatibilita se starými názvy metod (pro Views)
-extension TimerViewModel {
-    /// Kompatibilita pro resetTimer 
-    func resetTimer() { resetovatCasovac() }
-    
-    /// Kompatibilita pro addTimer
-    func addTimer() { pridatCasovac() }
-    
-    /// Kompatibilita pro removeTimer
-    func removeTimer(at offsets: IndexSet) { odstranit(at: offsets) }
-    
-    /// Kompatibilita pro removeTimer s indexem
-    func removeTimer(index: Int) { odstranit(index: index) }
-    
-    /// Kompatibilita pro skipLap
-    func skipLap() { preskocitCasovac() }
-    
-    /// Kompatibilita pro formattedTime
-    func formattedTime(from totalSeconds: Int) -> String { formatovatCas(from: totalSeconds) }
-    
-    /// Kompatibilita pro formattedCurrentTime
-    func formattedCurrentTime() -> String { formatovatAktualniCas() }
-    
-    /// Kompatibilita pro toggleSheet
-    func toggleSheet() { prepnoutNastaveni() }
-    
-    /// Kompatibilita pro getProgressBarWidth
-    func getProgressBarWidth(geometry: GeometryProxy, timerIndex: Int) -> Double {
-        sirkaProgressBaru(geometry: geometry, timerIndex: timerIndex)
-    }
-    
-    /// Kompatibilita pro showWhatsNew
-    func showWhatsNew() { zobrazitCoJeNoveho() }
-    
-    /// Kompatibilita pro handleDeepLink
-    func handleDeepLink(url: URL) { zpracovatOdkaz(url: url) }
 }
