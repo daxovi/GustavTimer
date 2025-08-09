@@ -25,6 +25,7 @@ class SettingsViewModel: ObservableObject {
     @AppStorage("isVibrating") var isVibrating: Bool = false
     @AppStorage("selectedSound") var selectedSound: String = "beep"
     @AppStorage("isSoundEnabled") var isSoundEnabled: Bool = true
+    @AppStorage("timeDisplayFormat") var timeDisplayFormat: TimeDisplayFormat = .seconds
     
     init() {
         checkCurrentMonth()
