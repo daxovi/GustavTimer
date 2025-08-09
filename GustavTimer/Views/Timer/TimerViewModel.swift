@@ -168,7 +168,6 @@ class TimerViewModel: ObservableObject {
         isTimerRunning = false
         currentTenths = timers[0].value * 10
         startedFromDeeplink = false
-        loadTimers()
     }
     
     /// Přeskočit aktuální časovač
