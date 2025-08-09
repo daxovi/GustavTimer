@@ -222,16 +222,16 @@ class TimerViewModel: ObservableObject {
         case .seconds:
             return "\(count)"
         case .minutesSecondsHundredths:
-            let totalHundredths = tenthsCounter
-            let minutes = totalHundredths / 600  // 600 hundredths = 1 minute
-            let remainingHundredths = totalHundredths % 600
-            let seconds = remainingHundredths / 10
-            let hundredths = remainingHundredths % 10
+            let totalTenths = tenthsCounter
+            let minutes = totalTenths / 600  // 600 tenths = 1 minute
+            let remainingTenths = totalTenths % 600
+            let seconds = remainingTenths / 10
+            let tenths = remainingTenths % 10
             
             if minutes > 0 {
-                return String(format: "%d:%02d.%01d", minutes, seconds, hundredths)
+                return String(format: "%d:%02d.%01d", minutes, seconds, tenths)
             } else {
-                return String(format: "%d.%01d", seconds, hundredths)
+                return String(format: "%d.%01d", seconds, tenths)
             }
         }
     }
