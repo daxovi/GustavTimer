@@ -390,3 +390,41 @@ extension TimerViewModel {
         ulozitCasovace()
     }
 }
+
+// MARK: - Kompatibilita se starými názvy metod (pro Views)
+extension TimerViewModel {
+    /// Kompatibilita pro resetTimer 
+    func resetTimer() { resetovatCasovac() }
+    
+    /// Kompatibilita pro addTimer
+    func addTimer() { pridatCasovac() }
+    
+    /// Kompatibilita pro removeTimer
+    func removeTimer(at offsets: IndexSet) { odstranit(at: offsets) }
+    
+    /// Kompatibilita pro removeTimer s indexem
+    func removeTimer(index: Int) { odstranit(index: index) }
+    
+    /// Kompatibilita pro skipLap
+    func skipLap() { preskocitCasovac() }
+    
+    /// Kompatibilita pro formattedTime
+    func formattedTime(from totalSeconds: Int) -> String { formatovatCas(from: totalSeconds) }
+    
+    /// Kompatibilita pro formattedCurrentTime
+    func formattedCurrentTime() -> String { formatovatAktualniCas() }
+    
+    /// Kompatibilita pro toggleSheet
+    func toggleSheet() { prepnoutNastaveni() }
+    
+    /// Kompatibilita pro getProgressBarWidth
+    func getProgressBarWidth(geometry: GeometryProxy, timerIndex: Int) -> Double {
+        sirkaProgressBaru(geometry: geometry, timerIndex: timerIndex)
+    }
+    
+    /// Kompatibilita pro showWhatsNew
+    func showWhatsNew() { zobrazitCoJeNoveho() }
+    
+    /// Kompatibilita pro handleDeepLink
+    func handleDeepLink(url: URL) { zpracovatOdkaz(url: url) }
+}

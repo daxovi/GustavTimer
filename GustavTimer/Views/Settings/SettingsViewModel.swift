@@ -191,3 +191,57 @@ class SettingsViewModel: ObservableObject {
         }
     }
 }
+
+// MARK: - Kompatibilita se starými názvy metod (pro Views)
+extension SettingsViewModel {
+    /// Kompatibilita pro checkCurrentMonth
+    func checkCurrentMonth() { zkontrolovatAktualniMesic() }
+    
+    /// Kompatibilita pro loadTimerData
+    func loadTimerData(_ timer: TimerData) { nacistDataCasovace(timer) }
+    
+    /// Kompatibilita pro saveTimerData
+    func saveTimerData() { ulozitDataCasovace() }
+    
+    /// Kompatibilita pro performSaveTimerData
+    func performSaveTimerData(context: ModelContext, defaultTimer: TimerData) {
+        provesesUlozeniCasovace(context: context, vychoziCasovac: defaultTimer)
+    }
+    
+    /// Kompatibilita pro deleteTimerData
+    func deleteTimerData(_ timer: TimerData) { smazatDataCasovace(timer) }
+    
+    /// Kompatibilita pro performDeleteTimerData
+    func performDeleteTimerData(context: ModelContext, defaultTimer: TimerData) {
+        provesesSmazaniCasovace(context: context, vychoziCasovac: defaultTimer)
+    }
+    
+    /// Kompatibilita pro getChallengeText
+    func getChallengeText() -> LocalizedStringKey { ziskatTextVyzvy() }
+    
+    /// Kompatibilita pro incrementMonthlyCounter
+    func incrementMonthlyCounter() { zvysitPocitadloVyzvy() }
+    
+    /// Kompatibilita pro addInterval
+    func addInterval(to timerData: TimerData) { pridatInterval(k: timerData) }
+    
+    /// Kompatibilita pro deleteInterval
+    func deleteInterval(at offsets: IndexSet, from timerData: TimerData) {
+        odstranit(at: offsets, z: timerData)
+    }
+    
+    /// Kompatibilita pro moveInterval
+    func moveInterval(from source: IndexSet, to destination: Int, in timerData: TimerData) {
+        presunoutInterval(z: source, na: destination, v: timerData)
+    }
+    
+    /// Kompatibilita pro updateIntervalName
+    func updateIntervalName(_ name: String, for intervalId: UUID, in timerData: TimerData) {
+        aktualizovatJmenoIntervalu(name, pro: intervalId, v: timerData)
+    }
+    
+    /// Kompatibilita pro updateIntervalValue
+    func updateIntervalValue(_ value: Int, for intervalId: UUID, in timerData: TimerData) {
+        aktualizovatHodnotuIntervalu(value, pro: intervalId, v: timerData)
+    }
+}
