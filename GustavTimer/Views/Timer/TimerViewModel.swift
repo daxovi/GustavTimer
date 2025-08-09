@@ -74,12 +74,12 @@ class TimerViewModel: ObservableObject {
     /// Nastavení kontextu pro práci s daty
     func setModelContext(_ context: ModelContext) {
         modelContext = context
-        loadTimers()
+        loadTimers(resetCurrentState: true)
     }
     
-    /// Znovu načte časovače z databáze
+    /// Znovu načte časovače z databáze (bez resetování aktuálního stavu)
     func reloadTimers() {
-        loadTimers()
+        loadTimers(resetCurrentState: false)
     }
     
     // MARK: - Logika časovače
@@ -341,7 +341,7 @@ class TimerViewModel: ObservableObject {
 // MARK: - Správa dat
 extension TimerViewModel {
     /// Načtení časovačů z databáze
-    private func loadTimers() {
+    private func loadTimers(resetCurrentState: Bool = true) {
         guard let context = modelContext else {
             setupDefaultTimers()
             return
@@ -353,7 +353,8 @@ extension TimerViewModel {
             
             if let timerData = timerDataArray.first {
                 timers = timerData.intervals
-                if !timers.isEmpty {
+                // Resetuj currentTenths pouze při explicitním požadavku (např. při inicializaci)
+                if resetCurrentState && !timers.isEmpty {
                     currentTenths = timers[0].value * 10
                 }
             } else {

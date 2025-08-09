@@ -44,7 +44,6 @@ struct TimerView: View {
                 // SettingsView se zavřelo, znovu načti data z databáze
                 viewModel.reloadTimers()
             }
-            viewModel.resetTimer()
         }
         .sheet(isPresented: $viewModel.showingWhatsNew) {
             whatsNewSheet
