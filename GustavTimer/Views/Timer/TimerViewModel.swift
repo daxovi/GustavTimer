@@ -87,8 +87,10 @@ class TimerViewModel: ObservableObject {
     private func startTimer() {
         if round == 0 { round = 1 }
         
-        // Zajistit, že máme platnou hodnotu
-        currentTenths = count * 10
+        // Pokud se časovač spouští poprvé nebo po resetu, inicializuj currentTenths
+        if currentTenths <= 0 {
+            currentTenths = timers[activeTimerIndex].value * 10
+        }
         
         UIApplication.shared.isIdleTimerDisabled = true
         isTimerRunning = true
@@ -265,18 +267,18 @@ class TimerViewModel: ObservableObject {
     
     /// Vibrace při ukončení časovače
     private func vibrateEnd() {
-        guard isVibrating && isTimerRunning else { return }
+        guard isVibrating else { return }  // Removed isTimerRunning check for end vibration
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.error)
     }
     
     /// Přehrání zvuku podle situace
     private func playSound() {
-        guard isSoundEnabled && isTimerRunning else { return }
+        guard isSoundEnabled else { return }
         
         if count == 0 && timers[activeTimerIndex].value > 1 {
             SoundManager.instance.playSound(sound: .final, theme: selectedSound)
-        } else if count == 3 && count > 0 && timers[activeTimerIndex].value > 9 {
+        } else if count == 3 && count > 0 && timers[activeTimerIndex].value > 9 && isTimerRunning {
             SoundManager.instance.playSound(sound: .countdown, theme: selectedSound)
         }
     }
