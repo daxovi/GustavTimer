@@ -348,7 +348,10 @@ extension TimerViewModel {
         }
         
         do {
-            let descriptor = FetchDescriptor<TimerData>()
+            // Vždy načteme konkrétně časovač s id: 0 (výchozí časovač)
+            let descriptor = FetchDescriptor<TimerData>(
+                predicate: #Predicate<TimerData> { $0.id == 0 }
+            )
             let timerDataArray = try context.fetch(descriptor)
             
             if let timerData = timerDataArray.first {
@@ -371,7 +374,10 @@ extension TimerViewModel {
         guard let context = modelContext else { return }
         
         do {
-            let descriptor = FetchDescriptor<TimerData>()
+            // Vždy pracujeme s časovačem s id: 0 (výchozí časovač)
+            let descriptor = FetchDescriptor<TimerData>(
+                predicate: #Predicate<TimerData> { $0.id == 0 }
+            )
             let timerDataArray = try context.fetch(descriptor)
             
             let timerData: TimerData
