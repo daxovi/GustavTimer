@@ -41,8 +41,8 @@ struct TimerView: View {
         }
         .onChange(of: showSettings) { _, newValue in
             if !newValue {
-                // SettingsView se zavřelo, znovu načti data z databáze
-                viewModel.reloadTimers()
+                // SettingsView se zavřelo, znovu načti data z databáze a resetuj časovač
+                viewModel.reloadTimers(resetCurrentState: true)
             }
         }
         .sheet(isPresented: $viewModel.showingWhatsNew) {

@@ -77,9 +77,9 @@ class TimerViewModel: ObservableObject {
         loadTimers(resetCurrentState: true)
     }
     
-    /// Znovu načte časovače z databáze (bez resetování aktuálního stavu)
-    func reloadTimers() {
-        loadTimers(resetCurrentState: false)
+    /// Znovu načte časovače z databáze s volitelným resetováním aktuálního stavu
+    func reloadTimers(resetCurrentState: Bool = false) {
+        loadTimers(resetCurrentState: resetCurrentState)
     }
     
     // MARK: - Logika časovače
