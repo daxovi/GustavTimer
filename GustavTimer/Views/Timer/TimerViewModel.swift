@@ -54,7 +54,10 @@ class TimerViewModel: ObservableObject {
         guard activeTimerIndex < timers.count else { return 0.0 }
         let totalTenths = Double(timers[activeTimerIndex].value * 10)
         let elapsed = totalTenths - Double(currentTenths)
-        return totalTenths > 0 ? elapsed / totalTenths : 0.0
+        guard totalTenths > 0 else { return 0.0 }
+        let progressValue = elapsed / totalTenths
+        // Zajistit, že progress je vždy mezi 0.0 a 1.0
+        return max(0.0, min(1.0, progressValue))
     }
     
     // MARK: - Inicializace
@@ -109,7 +112,7 @@ class TimerViewModel: ObservableObject {
     }
     
     /// Zastavení časovače
-    private func stopTimer() {
+    func stopTimer() {
         UIApplication.shared.isIdleTimerDisabled = false
         isTimerRunning = false
         timer = nil
@@ -251,6 +254,7 @@ class TimerViewModel: ObservableObject {
     /// Zobrazení/skrytí nastavení
     func toggleSheet() {
         showingSheet.toggle()
+        stopTimer()  // Zastavit časovač při otevření nastavení
         resetTimer()
     }
     

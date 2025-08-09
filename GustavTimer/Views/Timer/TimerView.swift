@@ -40,7 +40,10 @@ struct TimerView: View {
             setupViewModel()
         }
         .onChange(of: showSettings) { _, newValue in
-            if !newValue {
+            if newValue {
+                // SettingsView se otevírá, zastavit časovač
+                viewModel.stopTimer()
+            } else {
                 // SettingsView se zavřelo, znovu načti data z databáze a resetuj časovač
                 viewModel.reloadTimers(resetCurrentState: true)
             }

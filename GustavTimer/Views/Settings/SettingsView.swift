@@ -11,7 +11,7 @@ import _AVKit_SwiftUI
 import SwiftData
 
 struct SettingsView: View {
-    @Query var timerData: [TimerData]
+    @Query(sort: \TimerData.id, order: .reverse) var timerData: [TimerData]
     @StateObject var viewModel = SettingsViewModel()
     @State private var scrollPosition: CGFloat = 500.0
     @State private var showVideo = false
