@@ -21,7 +21,6 @@ struct ProgressBar: View {
                 Color("StartColor")
                     .frame(width: proxy.size.width * progress)
                     .cornerRadius(cornerRadius)
-                    .animation(.linear(duration: 1.0), value: progress)
                     .clipShape(Capsule())
             }
         }
