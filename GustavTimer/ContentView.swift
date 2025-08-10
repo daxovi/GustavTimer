@@ -29,6 +29,9 @@ struct ContentView: View {
         // Setup repository
         let repository = TimersRepositorySwiftData(modelContext: modelContext)
         
+        // Seed sample data if empty (for development/demo purposes)
+        SampleDataSeeder.seedSampleData(repository: repository)
+        
         // Setup services
         let audioService = AudioServiceImpl()
         let hapticsService = HapticsServiceImpl()
