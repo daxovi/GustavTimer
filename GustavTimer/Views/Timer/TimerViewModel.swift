@@ -12,25 +12,25 @@ import AVKit
 import AVFoundation
 import SwiftData
 
+/// ViewModel pro správu časovače - zjednodušená verze s českými komentáři
 class TimerViewModel: ObservableObject {
-    // MARK: - Configuration
+    // MARK: - Konfigurace
     let maxTimers = AppConfig.maxTimerCount
     let maxCountdownValue = AppConfig.maxTimerValue
     
+    /// Kontrola zda je dosaženo maximálního počtu časovačů
     var isTimerFull: Bool { timers.count >= maxTimers }
     
-    // MARK: - Published Properties
+    // MARK: - Publikované vlastnosti
     @Published var round: Int = 0
-    @Published var count: Int = 0
     @Published var showingSheet = false
     @Published var showingWhatsNew: Bool = false
     @Published var timers: [IntervalData] = []
     @Published var isTimerRunning = false
-    @Published var progress: Double = 0.0
     @Published var editMode = EditMode.inactive
     @Published var startedFromDeeplink: Bool = false
     
-    // MARK: - Settings
+    // MARK: - Nastavení (AppStorage)
     @AppStorage("isLooping") var isLooping: Bool = true
     @AppStorage("stopCounter") var stopCounter: Int = 0
     @AppStorage("whatsNewVersion") var whatsNewVersion: Int = 0
@@ -39,41 +39,66 @@ class TimerViewModel: ObservableObject {
     @AppStorage("isVibrating") var isVibrating: Bool = false
     @AppStorage("timeDisplayFormat") var timeDisplayFormat: TimeDisplayFormat = .seconds
     
-    // MARK: - Private Properties
-    var activeTimerIndex: Int = 0  // Public for ProgressArrayView access
+    // MARK: - Soukromé vlastnosti
+    var activeTimerIndex: Int = 0  // Veřejné pro přístup z ProgressArrayView
     private var timer: AnyCancellable?
     private var modelContext: ModelContext?
-    private var tenthsCounter: Int = 0  // Counter for tenths of seconds
+    @Published private var currentTenths: Int = 0  // Počítadlo desetin sekund - sjednocená verze
     
-    // MARK: - Initialization
+    // MARK: - Vypočítané vlastnosti
+    /// Aktuální čas v sekundách (počítaný z desetin)
+    var count: Int { currentTenths / 10 }
+    
+    /// Pokrok aktivního časovače (0.0 - 1.0)
+    var progress: Double {
+        guard activeTimerIndex < timers.count else { return 0.0 }
+        let totalTenths = Double(timers[activeTimerIndex].value * 10)
+        let elapsed = totalTenths - Double(currentTenths)
+        guard totalTenths > 0 else { return 0.0 }
+        let progressValue = elapsed / totalTenths
+        // Zajistit, že progress je vždy mezi 0.0 a 1.0
+        return max(0.0, min(1.0, progressValue))
+    }
+    
+    // MARK: - Inicializace
     init() {
         setupDefaultTimers()
     }
     
+    /// Nastavení výchozích časovačů
     private func setupDefaultTimers() {
         timers = [
-            IntervalData(value: 60, name: "Work"),
-            IntervalData(value: 30, name: "Rest")
+            IntervalData(value: 60, name: "Práce"),
+            IntervalData(value: 30, name: "Odpočinek")
         ]
-        count = timers[0].value
-        tenthsCounter = count * 10
+        currentTenths = timers[0].value * 10
     }
     
+    /// Nastavení kontextu pro práci s daty
     func setModelContext(_ context: ModelContext) {
         modelContext = context
-        loadTimers()
+        loadTimers(resetCurrentState: true)
     }
     
-    // MARK: - Timer Logic
+    /// Znovu načte časovače z databáze s volitelným resetováním aktuálního stavu
+    func reloadTimers(resetCurrentState: Bool = false) {
+        loadTimers(resetCurrentState: resetCurrentState)
+    }
+    
+    // MARK: - Logika časovače
+    /// Spustí nebo zastaví časovač
     func startStopTimer() {
         isTimerRunning ? stopTimer() : startTimer()
     }
     
+    /// Spuštění časovače
     private func startTimer() {
         if round == 0 { round = 1 }
         
-        tenthsCounter = count * 10  // Initialize tenths counter
-        updateProgress()
+        // Pokud se časovač spouští poprvé nebo po resetu, inicializuj currentTenths
+        if currentTenths <= 0 {
+            currentTenths = timers[activeTimerIndex].value * 10
+        }
         
         UIApplication.shared.isIdleTimerDisabled = true
         isTimerRunning = true
@@ -86,130 +111,118 @@ class TimerViewModel: ObservableObject {
             }
     }
     
-    private func stopTimer() {
+    /// Zastavení časovače
+    func stopTimer() {
         UIApplication.shared.isIdleTimerDisabled = false
         isTimerRunning = false
         timer = nil
         stopCounter += 1
     }
     
+    /// Aktualizace časovače každých 0.1 sekundy
     private func updateTimer() {
-        tenthsCounter -= 1
+        currentTenths -= 1
         
-        // Update count every 10 tenths (1 second)
-        let newCount = tenthsCounter / 10
-        
-        // Play sound only when crossing second boundaries
-        if newCount != count {
-            count = newCount
-        }
-        
-
-        if tenthsCounter <= 0 {
-            count = 0
+        // Pokud čas vyprší, přejdi na další časovač
+        if currentTenths <= 0 {
             switchToNextTimer()
-        } else {
         }
-        updateProgress()
     }
     
-    private func updateProgress() {
-        let activeTimerTotalTenths = Double(timers[activeTimerIndex].value * 10)
-        let currentTenths = Double(tenthsCounter)
-        let progressTenths = activeTimerTotalTenths - currentTenths
-        progress = progressTenths / activeTimerTotalTenths
-        print("DEBUG: progress: \(progress)")
-    }
-    
+    /// Přechod na další časovač v sekvenci
     private func switchToNextTimer() {
-        
         activeTimerIndex += 1
+        
         if activeTimerIndex >= timers.count {
+            // Konec kola
             handleRoundCompletion()
         } else {
+            // Další časovač v kole
             vibrate()
             playSound()
-            count = timers[activeTimerIndex].value
-            tenthsCounter = count * 10
-
-            if count <= 0 {
-                switchToNextTimer() // Skip zero-duration timers
+            currentTenths = timers[activeTimerIndex].value * 10
+            
+            // Přeskočit časovače s nulovou délkou
+            if timers[activeTimerIndex].value <= 0 {
+                switchToNextTimer()
             }
         }
     }
     
+    /// Dokončení aktuálního kola
     private func handleRoundCompletion() {
         activeTimerIndex = 0
-        progress = 0.0
         
         if isLooping {
+            // Pokračovat v dalším kole
             vibrateRound()
             playSound()
             round += 1
-            count = timers[0].value
-            tenthsCounter = count * 10
-//            updateProgress()
-
+            currentTenths = timers[0].value * 10
         } else {
-            vibrateFinish()
+            // Ukončit časovač
+            vibrateEnd()
             playSound()
             resetTimer()
         }
     }
     
+    /// Reset časovače do výchozího stavu
     func resetTimer() {
         stopTimer()
         round = 0
         timer = nil
         activeTimerIndex = 0
-        progress = 0.0
         isTimerRunning = false
-        count = timers[0].value
-        tenthsCounter = count * 10
+        currentTenths = timers[0].value * 10
         startedFromDeeplink = false
-        loadTimers()
     }
     
+    /// Přeskočit aktuální časovač
     func skipLap() {
-        progress = 1.0
-        count = 0
-        tenthsCounter = 0
+        currentTenths = 0
     }
     
-    // MARK: - Timer Management
+    // MARK: - Správa časovačů
+    /// Přidání nového časovače
     func addTimer() {
         guard !isTimerFull else { return }
-        timers.append(IntervalData(value: 5, name: "Lap \(timers.count + 1)"))
+        timers.append(IntervalData(value: 5, name: "Kolo \(timers.count + 1)"))
         saveTimers()
     }
     
+    /// Odstranění časovačů podle indexu
     func removeTimer(at offsets: IndexSet) {
         timers.remove(atOffsets: offsets)
         saveTimers()
     }
     
+    /// Odstranění konkrétního časovače
     func removeTimer(index: Int) {
         guard index < timers.count else { return }
         timers.remove(at: index)
         saveTimers()
     }
     
-    // MARK: - Progress Bar
+    // MARK: - Progress bar a zobrazení
+    /// Výpočet šířky progress baru pro konkrétní časovač
     func getProgressBarWidth(geometry: GeometryProxy, timerIndex: Int) -> Double {
         guard timerIndex < timers.count else { return 0.0 }
         
         let totalWidth = geometry.size.width - (CGFloat(timers.count - 1) * 5)
-        let ratio = progressRatio(for: timerIndex)
+        let ratio = getTimeRatio(for: timerIndex)
         return totalWidth * ratio
     }
     
-    private func progressRatio(for timerIndex: Int) -> Double {
+    /// Výpočet poměru času pro jednotlivé časovače
+    private func getTimeRatio(for timerIndex: Int) -> Double {
         let totalTime = Double(timers.reduce(0) { $0 + $1.value })
         guard totalTime > 0, timerIndex < timers.count else { return 0 }
         return Double(timers[timerIndex].value) / totalTime
     }
     
-    // MARK: - Utility
+    // MARK: - Formátování času
+    /// Formátování času z celkových sekund
     func formattedTime(from totalSeconds: Int) -> String {
         let minutes = totalSeconds / 60
         let seconds = totalSeconds % 60
@@ -219,14 +232,14 @@ class TimerViewModel: ObservableObject {
             : String(format: "%d", seconds)
     }
     
+    /// Formátování aktuálního času podle nastaveného formátu
     func formattedCurrentTime() -> String {
         switch timeDisplayFormat {
         case .seconds:
             return "\(count)"
         case .minutesSecondsHundredths:
-            let totalTenths = tenthsCounter
-            let minutes = totalTenths / 600  // 600 tenths = 1 minute
-            let remainingTenths = totalTenths % 600
+            let minutes = currentTenths / 600  // 600 desetin = 1 minuta
+            let remainingTenths = currentTenths % 600
             let seconds = remainingTenths / 10
             let tenths = remainingTenths % 10
             
@@ -238,41 +251,48 @@ class TimerViewModel: ObservableObject {
         }
     }
     
+    /// Zobrazení/skrytí nastavení
     func toggleSheet() {
         showingSheet.toggle()
+        stopTimer()  // Zastavit časovač při otevření nastavení
         resetTimer()
     }
     
-    // MARK: - Feedback
+    // MARK: - Zpětná vazba (vibrace a zvuky)
+    /// Lehká vibrace při přechodu mezi časovači
     private func vibrate() {
         guard isVibrating && isTimerRunning else { return }
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()
     }
     
+    /// Vibrace při dokončení kola
     private func vibrateRound() {
         guard isVibrating && isTimerRunning else { return }
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
     }
     
-    private func vibrateFinish() {
-        guard isVibrating && isTimerRunning else { return }
+    /// Vibrace při ukončení časovače
+    private func vibrateEnd() {
+        guard isVibrating else { return }  // Removed isTimerRunning check for end vibration
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.error)
     }
     
+    /// Přehrání zvuku podle situace
     private func playSound() {
-        guard isSoundEnabled && isTimerRunning else { return }
+        guard isSoundEnabled else { return }
         
         if count == 0 && timers[activeTimerIndex].value > 1 {
             SoundManager.instance.playSound(sound: .final, theme: selectedSound)
-        } else if count == 3 && count > 0 && timers[activeTimerIndex].value > 9 {
+        } else if count == 3 && count > 0 && timers[activeTimerIndex].value > 9 && isTimerRunning {
             SoundManager.instance.playSound(sound: .countdown, theme: selectedSound)
         }
     }
     
-    // MARK: - What's New
+    // MARK: - Co je nového
+    /// Zobrazení okna s novinkami
     func showWhatsNew() {
         if whatsNewVersion < AppConfig.version {
             showingWhatsNew = true
@@ -280,7 +300,8 @@ class TimerViewModel: ObservableObject {
         }
     }
     
-    // MARK: - Deep Links
+    // MARK: - Odkazy z aplikací (Deep Links)  
+    /// Zpracování odkazu z jiné aplikace
     func handleDeepLink(url: URL) {
         guard url.scheme == "gustavtimerapp",
               let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
@@ -289,15 +310,14 @@ class TimerViewModel: ObservableObject {
         switch host {
         case "whatsnew":
             showingWhatsNew = true
-            
         case "timer":
             handleTimerDeepLink(components: components)
-            
         default:
-            print("Unknown deeplink host: \(host)")
+            print("Neznámý deep link: \(host)")
         }
     }
     
+    /// Zpracování odkazu s časovačem
     private func handleTimerDeepLink(components: URLComponents) {
         let originalTimers = timers
         var newTimers: [IntervalData] = []
@@ -322,55 +342,64 @@ class TimerViewModel: ObservableObject {
     }
 }
 
-// MARK: - Data Management
+// MARK: - Správa dat
 extension TimerViewModel {
-    private func loadTimers() {
+    /// Načtení časovačů z databáze
+    private func loadTimers(resetCurrentState: Bool = true) {
         guard let context = modelContext else {
             setupDefaultTimers()
             return
         }
         
         do {
-            let descriptor = FetchDescriptor<TimerData>()
+            // Vždy načteme konkrétně časovač s id: 0 (výchozí časovač)
+            let descriptor = FetchDescriptor<TimerData>(
+                predicate: #Predicate<TimerData> { $0.id == 0 }
+            )
             let timerDataArray = try context.fetch(descriptor)
             
             if let timerData = timerDataArray.first {
                 timers = timerData.intervals
-                if !timers.isEmpty {
-                    count = timers[0].value
-                    tenthsCounter = count * 10
+                // Resetuj currentTenths pouze při explicitním požadavku (např. při inicializaci)
+                if resetCurrentState && !timers.isEmpty {
+                    currentTenths = timers[0].value * 10
                 }
             } else {
                 createAndSaveDefaultTimers()
             }
         } catch {
-            print("Error loading timers: \(error)")
+            print("Chyba při načítání časovačů: \(error)")
             setupDefaultTimers()
         }
     }
     
+    /// Uložení časovačů do databáze
     private func saveTimers() {
         guard let context = modelContext else { return }
         
         do {
-            let descriptor = FetchDescriptor<TimerData>()
+            // Vždy pracujeme s časovačem s id: 0 (výchozí časovač)
+            let descriptor = FetchDescriptor<TimerData>(
+                predicate: #Predicate<TimerData> { $0.id == 0 }
+            )
             let timerDataArray = try context.fetch(descriptor)
             
             let timerData: TimerData
             if let existingData = timerDataArray.first {
                 timerData = existingData
             } else {
-                timerData = TimerData(id: 0, name: "Default Timer")
+                timerData = TimerData(id: 0, name: "Výchozí časovač")
                 context.insert(timerData)
             }
             
             timerData.intervals = timers
             try context.save()
         } catch {
-            print("Error saving timers: \(error)")
+            print("Chyba při ukládání časovačů: \(error)")
         }
     }
     
+    /// Vytvoření a uložení výchozích časovačů
     private func createAndSaveDefaultTimers() {
         setupDefaultTimers()
         saveTimers()
