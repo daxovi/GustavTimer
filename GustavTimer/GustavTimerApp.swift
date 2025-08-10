@@ -1,20 +1,17 @@
-//
-//  GustavTimerApp.swift
-//  GustavTimer
-//
-//  Created by Dalibor Janeček on 19.04.2023.
-//
-
 import SwiftUI
 import SwiftData
 
 @main
 struct GustavTimerApp: App {
-    
+    let container: ModelContainer = {
+        let schema = Schema([TimerTemplate.self, IntervalItem.self])
+        return try! ModelContainer(for: schema)
+    }()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView(viewModel: TimerViewModel(repository: TimersRepositorySwiftData(context: container.mainContext), audio: AudioServiceProd(), haptics: HapticsServiceProd()))
+                .environment(\.modelContext, container.mainContext)
         }
-        .modelContainer(for: TimerModel.self)
     }
 }
