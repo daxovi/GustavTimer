@@ -78,8 +78,8 @@ final class TimersRepositorySwiftData: TimersRepository {
         updatedIntervals.move(fromOffsets: sourceIndices, toOffset: destinationIndex)
         
         // Update order property for all intervals
-        for (index, interval) in updatedIntervals.enumerated() {
-            interval.order = index
+        for index in updatedIntervals.indices {
+            updatedIntervals[index].order = index
         }
         
         timer.intervals = updatedIntervals
