@@ -134,8 +134,8 @@ struct HomeView: View {
                     // Favorite Toggle
                     if let currentTimer = timerViewModel.currentTimer {
                         Button(action: {
-                            // Toggle favorite status would go here
-                            // This would require repository access - could be handled through a callback
+                            currentTimer.isFavorite.toggle()
+                            timerViewModel.repository.updateTimer(currentTimer)
                         }) {
                             Image(systemName: currentTimer.isFavorite ? "heart.fill" : "heart")
                                 .foregroundColor(currentTimer.isFavorite ? .red : .secondary)

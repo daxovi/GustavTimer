@@ -311,7 +311,7 @@ final class TimerViewModel {
     }
     
     var formattedRemainingTime: String {
-        formatDuration(remainingInCurrentInterval)
+        remainingInCurrentInterval.formatted(timeFormat: timeFormat)
     }
     
     var progress: Double {
@@ -333,15 +333,7 @@ final class TimerViewModel {
     
     // MARK: - Helper Methods
     private func formatDuration(_ duration: Duration) -> String {
-        let seconds = Int(duration.components.seconds)
-        let minutes = seconds / 60
-        let remainingSeconds = seconds % 60
-        
-        if timeFormat == "ss" {
-            return String(format: "%d", seconds)
-        } else {
-            return String(format: "%d:%02d", minutes, remainingSeconds)
-        }
+        duration.formatted(timeFormat: timeFormat)
     }
 }
 

@@ -69,15 +69,7 @@ struct SettingsView: View {
     
     private func formatPreviewTime() -> String {
         let sampleDuration = Duration.seconds(125) // 2:05 or 125s
-        let seconds = Int(sampleDuration.components.seconds)
-        let minutes = seconds / 60
-        let remainingSeconds = seconds % 60
-        
-        if timeFormat == "ss" {
-            return String(format: "%d", seconds)
-        } else {
-            return String(format: "%d:%02d", minutes, remainingSeconds)
-        }
+        return sampleDuration.formatted(timeFormat: timeFormat)
     }
 }
 

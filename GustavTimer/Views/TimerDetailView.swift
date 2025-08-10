@@ -110,25 +110,20 @@ struct TimerDetailView: View {
     }
     
     private var isValid: Bool {
-        // Timer name must be at least 1 character
-        guard !timerName.trimmingCharacters(in: .whitespaces).isEmpty else { return false }
-        
-        // Must have 1-6 intervals
-        guard intervals.count >= 1 && intervals.count <= 6 else { return false }
-        
-        // All intervals must have valid names and durations
-        for interval in intervals {
-            if interval.title.trimmingCharacters(in: .whitespaces).isEmpty {
-                return false
-            }
-            
-            let seconds = interval.duration.components.seconds
-            if seconds < 1 || seconds > 600 { // 1 second to 10 minutes
-                return false
-            }
+        let intervalItems = intervals.map { editItem in
+            IntervalItem(
+                title: editItem.title.trimmingCharacters(in: .whitespaces),
+                duration: editItem.duration,
+                order: editItem.order
+            )
         }
         
-        return true
+        let validation = TimerValidation.validateTimer(
+            name: timerName.trimmingCharacters(in: .whitespaces),
+            intervals: intervalItems
+        )
+        
+        return validation.isValid
     }
     
     private func addInterval() {
@@ -194,18 +189,20 @@ struct TimerDetailView: View {
     }
     
     private func showValidationError() {
-        if timerName.trimmingCharacters(in: .whitespaces).isEmpty {
-            validationMessage = "Timer name cannot be empty"
-        } else if intervals.count < 1 || intervals.count > 6 {
-            validationMessage = "Timer must have 1-6 intervals"
-        } else if intervals.contains(where: { $0.title.trimmingCharacters(in: .whitespaces).isEmpty }) {
-            validationMessage = "All intervals must have a name"
-        } else if intervals.contains(where: { $0.duration.components.seconds < 1 || $0.duration.components.seconds > 600 }) {
-            validationMessage = "Interval duration must be between 1 second and 10 minutes"
-        } else {
-            validationMessage = "Please check your input"
+        let intervalItems = intervals.map { editItem in
+            IntervalItem(
+                title: editItem.title.trimmingCharacters(in: .whitespaces),
+                duration: editItem.duration,
+                order: editItem.order
+            )
         }
         
+        let validation = TimerValidation.validateTimer(
+            name: timerName.trimmingCharacters(in: .whitespaces),
+            intervals: intervalItems
+        )
+        
+        validationMessage = validation.errorMessage ?? "Please check your input"
         showingValidationError = true
     }
 }

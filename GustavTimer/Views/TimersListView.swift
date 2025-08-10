@@ -202,14 +202,6 @@ struct TimerRowView: View {
     }
     
     private func formatDuration(_ duration: Duration) -> String {
-        let seconds = Int(duration.components.seconds)
-        let minutes = seconds / 60
-        let remainingSeconds = seconds % 60
-        
-        if minutes > 0 {
-            return "\(minutes)m \(remainingSeconds)s"
-        } else {
-            return "\(remainingSeconds)s"
-        }
+        duration.shortDescription
     }
 }
