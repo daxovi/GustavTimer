@@ -29,6 +29,7 @@ class TimerViewModel: ObservableObject {
     @Published var isTimerRunning = false
     @Published var editMode = EditMode.inactive
     @Published var startedFromDeeplink: Bool = false
+    @Published private var orientation = UIDeviceOrientation.unknown
     
     // MARK: - Nastavení (AppStorage)
     @AppStorage("isLooping") var isLooping: Bool = true
@@ -48,7 +49,7 @@ class TimerViewModel: ObservableObject {
     // MARK: - Vypočítané vlastnosti
     /// Aktuální čas v sekundách
     var count: Int {
-        min(Int(remainingTime.components.seconds) + 1, Int(timers[activeTimerIndex].duration.components.seconds))
+        min(Int(remainingTime.components.seconds), Int(timers[activeTimerIndex].duration.components.seconds))
     }
     
     /// Pokrok aktivního časovače (0.0 - 1.0)
@@ -281,7 +282,7 @@ class TimerViewModel: ObservableObject {
     }
     
     /// Formátování aktuálního času podle nastaveného formátu
-    func formattedCurrentTime() -> String {
+    func formattedCurrentTime(timeDisplayFormat: TimeDisplayFormat) -> String {
         switch timeDisplayFormat {
         case .seconds:
             return "\(count)"

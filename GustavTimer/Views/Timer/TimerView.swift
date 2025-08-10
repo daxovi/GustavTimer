@@ -7,34 +7,24 @@
 
 import SwiftUI
 import SwiftData
+import UIKit
 
 struct TimerView: View {
     @Binding var showSettings: Bool
     @Environment(\.modelContext) var context
     @Environment(\.theme) var theme
     @StateObject var viewModel = TimerViewModel()
+    @State private var orientation = UIDeviceOrientation.unknown
+
     
     var body: some View {
         ZStack {
             BackgroundImageView()
-            
-            VStack {
-                ProgressArrayView(viewModel: viewModel)
-                    .padding(.top)
-                
-                headerSection
-                
-                Spacer()
-                
-                counterDisplay
-                
-                Spacer()
-                
-                controlButtons
+            if orientation.isLandscape {
+                landscapeTimerView
+            } else {
+                portraitTimerView
             }
-            .ignoresSafeArea(edges: .bottom)
-            .statusBar(hidden: true)
-            .persistentSystemOverlays(.hidden)
         }
         .onAppear {
             setupViewModel()
@@ -48,11 +38,77 @@ struct TimerView: View {
                 viewModel.reloadTimers(resetCurrentState: true)
             }
         }
+        .onAppear {
+            // Nastavíme počáteční orientaci
+            orientation = UIDevice.current.orientation
+            // Zaregistrujeme se pro notifikace o změně orientace
+            NotificationCenter.default.addObserver(
+                forName: UIDevice.orientationDidChangeNotification,
+                object: nil,
+                queue: .main) { _ in
+                    if UIDevice.current.orientation.isValidInterfaceOrientation {
+                        orientation = UIDevice.current.orientation
+                    }
+                }
+        }
+        .onDisappear {
+            // Odregistrujeme notifikace
+            NotificationCenter.default.removeObserver(
+                self,
+                name: UIDevice.orientationDidChangeNotification,
+                object: nil)
+        }
         .sheet(isPresented: $viewModel.showingWhatsNew) {
             whatsNewSheet
         }
         .onOpenURL { url in
             viewModel.handleDeepLink(url: url)
+        }
+    }
+}
+
+// MARK: - Orientation Handling
+private extension TimerView {
+    
+    
+    var portraitTimerView: some View {
+        VStack {
+            ProgressArrayView(viewModel: viewModel)
+                .padding(.top)
+            
+            headerSection
+            
+            Spacer()
+            
+            counterDisplay(timeDisplayFormat: .seconds)
+            
+            Spacer()
+            
+            horizontalControlButtons
+        }
+        .ignoresSafeArea(edges: .bottom)
+        .statusBar(hidden: true)
+        .persistentSystemOverlays(.hidden)
+    }
+    
+    var landscapeTimerView: some View {
+        VStack {
+            //            ProgressArrayView(viewModel: viewModel)
+            //                .padding(.top)
+            
+            //            headerSection
+            
+            Spacer()
+            
+            counterDisplay(timeDisplayFormat: .minutesSecondsHundredths)
+            
+            Spacer()
+        }
+        //        .ignoresSafeArea(edges: .bottom)
+        .statusBar(hidden: true)
+        .persistentSystemOverlays(.hidden)
+        .onTapGesture {
+            viewModel.startStopTimer()
         }
     }
 }
@@ -84,17 +140,29 @@ private extension TimerView {
         }
     }
     
-    var counterDisplay: some View {
-        Text(viewModel.formattedCurrentTime())
+    func counterDisplay(timeDisplayFormat: TimeDisplayFormat) -> some View {
+        Text(viewModel.formattedCurrentTime(timeDisplayFormat: timeDisplayFormat))
             .font(theme.fonts.timerCounter)
             .minimumScaleFactor(0.01)
             .foregroundColor(Color("StartColor"))
     }
     
-    var controlButtons: some View {
+    var horizontalControlButtons: some View {
         HStack(spacing: 16) {
             startStopButton
             secondaryButton
+                .frame(width: 100)
+        }
+        .animation(.easeInOut, value: viewModel.isTimerRunning)
+        .frame(maxWidth: .infinity)
+        .padding()
+    }
+    
+    var verticalControlButtons: some View {
+        VStack(spacing: 16) {
+            startStopButton
+            secondaryButton
+                .frame(width: 100)
         }
         .animation(.easeInOut, value: viewModel.isTimerRunning)
         .frame(maxWidth: .infinity)
@@ -105,7 +173,7 @@ private extension TimerView {
         ControlButton(
             action: viewModel.startStopTimer,
             label: viewModel.isTimerRunning ? "STOP" : "START",
-            description: startButtonDescription.map { LocalizedStringKey($0) },
+            description: orientation.isLandscape ? nil : startButtonDescription.map { LocalizedStringKey($0) },
             color: viewModel.isTimerRunning ? .stop : .start
         )
     }
@@ -116,7 +184,6 @@ private extension TimerView {
             riveAnimation: viewModel.isTimerRunning ? theme.animations.reset : theme.animations.reset,
             color: .reset
         )
-        .frame(width: 100)
     }
     
     var settingsButton: some View {
