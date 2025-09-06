@@ -18,16 +18,19 @@ struct Theme {
         let volt = Color.start
         let pink = Color.stop
         let neutral = Color.reset
+        let light = Color.light
     }
     
     struct Fonts {
         let body = Font.custom("SpaceGrotesk-Regular", size: 17, relativeTo: .body)
         let buttonLabel = Font.custom("SpaceGrotesk-SemiBold", size: 20, relativeTo: .title3)
+        let buttonLabelSmall = Font.custom("SpaceGrotesk-SemiBold", size: 17, relativeTo: .body)
         let buttonDescription = Font.custom("SpaceGrotesk-Regular", size: 20, relativeTo: .title3)
         let timerCounter = Font.custom("SpaceMono-Bold", size: 800)
         let headUpDisplay = Font.custom("SpaceGrotesk-Bold", size: 17, relativeTo: .headline)
         let settingsButtonBold = Font.custom("SpaceGrotesk-Bold", size: 33, relativeTo: .largeTitle)
         let settingsCaption = Font.custom("SpaceGrotesk-Regular", size: 14, relativeTo: .caption2)
+        let settingsLabelLarge = Font.custom("SpaceGrotesk-SemiBold", size: 24, relativeTo: .title2)
     }
     
     struct Layout {

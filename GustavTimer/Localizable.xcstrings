@@ -11,16 +11,6 @@
         }
       }
     },
-    "%@: %lld s" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@: %2$lld s"
-          }
-        }
-      }
-    },
     "%lld" : {
 
     },
@@ -162,14 +152,14 @@
       "localizations" : {
         "cs" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "+ přidat interval"
+            "state" : "needs_review",
+            "value" : "přidat interval"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "+ add interval"
+            "value" : "add interval"
           }
         }
       }
@@ -180,7 +170,7 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "+ přidat interval"
+            "value" : "přidat interval"
           }
         },
         "en" : {
@@ -195,14 +185,7 @@
 
     },
     "April challenge" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dubnová výzva"
-          }
-        }
-      }
+
     },
     "Are you sure you want to delete '%@'?" : {
 
@@ -676,6 +659,9 @@
       }
     },
     "Save Timer" : {
+
+    },
+    "save your first timer to favourites or save our tabata or extended stretch" : {
 
     },
     "September challenge" : {
