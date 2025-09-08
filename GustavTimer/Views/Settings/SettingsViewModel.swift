@@ -55,6 +55,23 @@ class SettingsViewModel: ObservableObject {
         }
     }
     
+    func areTimersEqual(_ timer1: TimerData, _ defaultTimer: TimerData) -> Bool {
+        let intervalsMatch = timer1.intervals.count == defaultTimer.intervals.count &&
+        zip(timer1.intervals, defaultTimer.intervals).allSatisfy { stored, current in
+            stored.value == current.value && stored.name == current.name
+        }
+        
+        // Porovnání efektivního zvuku (nil pokud je vypnutý, jinak selectedSound)
+        let effectiveSound1 = timer1.selectedSound != nil ? timer1.selectedSound : nil
+        let effectiveSound2 = isSoundEnabled ? selectedSound : nil
+        
+        return intervalsMatch &&
+               timer1.isLooping == isLooping &&
+               timer1.isVibrating == isVibrating &&
+               effectiveSound1 == effectiveSound2
+    }
+
+    
     /// Získání textu pro měsíční výzvu
     func getChallengeText() -> LocalizedStringKey {
         let challengeTexts: [LocalizedStringKey] = [
@@ -100,11 +117,10 @@ class SettingsViewModel: ObservableObject {
             let newId = (existingTimers.first?.id ?? 0) + 1
             
             // Vytvořit nový časovač s kopií dat z výchozího
-            let newTimer = TimerData(id: newId, name: newTimerName.trimmingCharacters(in: .whitespacesAndNewlines))
+            let newTimer = TimerData(id: newId, name: newTimerName.trimmingCharacters(in: .whitespacesAndNewlines), isLooping: isLooping, selectedSound: isSoundEnabled ? selectedSound : nil, isVibrating: isVibrating)
             newTimer.intervals = defaultTimer.intervals.map { interval in
                 IntervalData(value: interval.value, name: interval.name)
             }
-            newTimer.isLoop = defaultTimer.isLoop
             
             context.insert(newTimer)
             try context.save()
@@ -146,7 +162,7 @@ class SettingsViewModel: ObservableObject {
                     IntervalData(value: 30, name: "Práce"),
                     IntervalData(value: 15, name: "Odpočinek")
                 ]
-                defaultTimer.isLoop = true
+                defaultTimer.isLooping = true
                 try context.save()
             }
             

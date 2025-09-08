@@ -35,7 +35,7 @@ struct ContentView: View {
     
     private func initializeDataIfNeeded() {
         if timerData.isEmpty {
-            let defaultTimer = TimerData(id: defaultTimerId, name: "Default Timer")
+            let defaultTimer = TimerData(id: defaultTimerId, name: "Default Timer", isLooping: true, selectedSound: "beep", isVibrating: true)
             context.insert(defaultTimer)
             try? context.save()
         }

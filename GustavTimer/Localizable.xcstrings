@@ -182,7 +182,20 @@
       }
     },
     "ADD_TIMER_TO_FAVOURITES" : {
-
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Přidat timer k oblíbeným"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add timer to favourites"
+          }
+        }
+      }
     },
     "April challenge" : {
 
@@ -329,7 +342,20 @@
       }
     },
     "FAVOURITE_INTERVALS" : {
-
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Oblíbené timery"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favourite timers"
+          }
+        }
+      }
     },
     "February challenge" : {
       "localizations" : {
@@ -412,6 +438,9 @@
           }
         }
       }
+    },
+    "IS_SOUND_ENABLED" : {
+
     },
     "January challenge" : {
       "localizations" : {
@@ -536,6 +565,7 @@
       }
     },
     "MUTE" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -829,6 +859,9 @@
           }
         }
       }
+    },
+    "whatsnew-title" : {
+
     },
     "Work-Rest" : {
       "extractionState" : "stale",

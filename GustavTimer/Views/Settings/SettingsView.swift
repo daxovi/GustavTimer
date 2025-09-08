@@ -75,7 +75,11 @@ struct SettingsView: View {
             ForEach(currentTimerData.intervals) { interval in
                 intervalRow(for: interval)
             }
-            .onDelete { viewModel.deleteInterval(at: $0, from: currentTimerData) }
+            .onDelete { indexSet in
+                if currentTimerData.intervals.count > 1 {
+                    viewModel.deleteInterval(at: indexSet, from: currentTimerData)
+                }
+            }
             .onMove { viewModel.moveInterval(from: $0, to: $1, in: currentTimerData) }
         } header: {
                 Text("INTERVALS")
@@ -101,7 +105,11 @@ struct SettingsView: View {
         }
         if !savedTimers.isEmpty {
             ForEach(savedTimers) { timer in
-                FavouritesItemView(timer: timer, onDelete: {
+                FavouritesItemView(timer: timer, isSelected: .init(get: {
+                    viewModel.areTimersEqual(timer, currentTimerData)
+                }, set: { _ in
+                    // No action needed on set
+                }), onDelete: {
                     viewModel.deleteTimerData(timer)
                 }, onSelect: {
                     viewModel.loadTimerData(timer)
@@ -122,7 +130,7 @@ struct SettingsView: View {
                 .tint(Color("StartColor"))
             
             NavigationLink {
-                SoundSelectorView()
+                SoundSelectorView(isSoundEnabled: $viewModel.isSoundEnabled, selectedSound: $viewModel.selectedSound)
             } label: {
                 ListButton(name: "Sound", value: "\(viewModel.isSoundEnabled ? viewModel.selectedSound : "MUTE")")
             }
@@ -217,7 +225,7 @@ struct SettingsView: View {
         if let existing = timerData.first(where: { $0.id == 0 }) {
             return existing
         } else {
-            let newData = TimerData(id: 0, name: "Default Timer")
+            let newData = TimerData(id: 0, name: "Default Timer", isLooping: true, selectedSound: nil, isVibrating: false)
             context.insert(newData)
             return newData
         }
@@ -230,8 +238,18 @@ struct SettingsView: View {
         defaultTimer.intervals = timerToLoad.intervals.map { interval in
             IntervalData(value: interval.value, name: interval.name)
         }
-        defaultTimer.isLoop = timerToLoad.isLoop
         
+        viewModel.isLooping = timerToLoad.isLooping
+        
+        viewModel.isVibrating = timerToLoad.isVibrating
+        
+        if let selectedSound = timerToLoad.selectedSound {
+            viewModel.selectedSound = selectedSound
+            viewModel.isSoundEnabled = true
+        } else {
+            viewModel.isSoundEnabled = false
+        }
+                    
         do {
             try context.save()
         } catch {

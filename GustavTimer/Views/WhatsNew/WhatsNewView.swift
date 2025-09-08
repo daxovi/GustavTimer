@@ -19,39 +19,7 @@ struct WhatsNewView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-                ZStack {
-                    GeometryReader { proxy in
-                        VideoPlayer(player: player)
-                            .ignoresSafeArea()
-                            .frame(height: proxy.size.height + 500)
-                            .position(x: proxy.size.width / 2, y: proxy.size.height / 2)
-                            .onAppear() {
-                                player.isMuted = true
-                                player.play()
-                                setUpLoop(for: player)
-                            }
-                            .allowsHitTesting(false)
-
-                        HStack {
-                            ForEach(tags, id: \.self) { tag in
-                                Tag(tag)
-                            }
-                            Spacer()
-                            Image(systemName: "xmark")
-                                .font(.system(size: 24))
-                                .foregroundStyle(.stop)
-                                .onTapGesture { dismiss() }
-                        }
-                        .safeAreaPadding()
-                    }
-                }
-                .ignoresSafeArea()
-                ControlButton(action: {
-                    dismiss()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        action()
-                    }
-                }, label: buttonLabel, color: .start)
+                Text("whatsnew-title")
             }
         .ignoresSafeArea()
     }

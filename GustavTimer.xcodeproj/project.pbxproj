@@ -22,15 +22,6 @@
 		CF70037D2C8DE816009F1531 /* HintButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70037C2C8DE816009F1531 /* HintButton.swift */; };
 		CF70037F2C8DED37009F1531 /* BackgroundSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70037E2C8DED37009F1531 /* BackgroundSelectorView.swift */; };
 		CF7B1B412C8F6BD3005D4664 /* IntervalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7B1B402C8F6BD3005D4664 /* IntervalData.swift */; };
-		CF7B2C742D90416900D12684 /* jumplunges.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF7B2C6E2D90416900D12684 /* jumplunges.mp4 */; };
-		CF7B2C752D90416900D12684 /* glutebridges.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF7B2C6D2D90416900D12684 /* glutebridges.mp4 */; };
-		CF7B2C762D90416900D12684 /* wallrun.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF7B2C732D90416900D12684 /* wallrun.mp4 */; };
-		CF7B2C772D90416900D12684 /* legraises.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF7B2C6F2D90416900D12684 /* legraises.mp4 */; };
-		CF7B2C782D90416900D12684 /* burpees.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF7B2C6B2D90416900D12684 /* burpees.mp4 */; };
-		CF7B2C792D90416900D12684 /* squatjump.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF7B2C712D90416900D12684 /* squatjump.mp4 */; };
-		CF7B2C7A2D90416900D12684 /* plank.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF7B2C702D90416900D12684 /* plank.mp4 */; };
-		CF7B2C7B2D90416900D12684 /* superman.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF7B2C722D90416900D12684 /* superman.mp4 */; };
-		CF7B2C7C2D90416900D12684 /* duckwalk.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF7B2C6C2D90416900D12684 /* duckwalk.mp4 */; };
 		CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */; };
 		CF8C07B22E3D5AED0083ED1D /* SpaceGrotesk-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07AF2E3D5AED0083ED1D /* SpaceGrotesk-Medium.ttf */; };
 		CF8C07B32E3D5AED0083ED1D /* SpaceGrotesk-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07B12E3D5AED0083ED1D /* SpaceGrotesk-SemiBold.ttf */; };
@@ -71,10 +62,6 @@
 		CFF207D82E6CA9F900D0C369 /* FavouritesItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF207D72E6CA9F300D0C369 /* FavouritesItemView.swift */; };
 		CFF71ACC2B8B99BC00884E82 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */; };
 		CFFEC2B62D184F9800E4C157 /* MonthlyConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFEC2B52D184F8B00E4C157 /* MonthlyConfig.swift */; };
-		CFFEC2CE2D1C483400E4C157 /* whatsnew.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFFEC2CD2D1C483400E4C157 /* whatsnew.mp4 */; };
-		CFFEC2D22D1C4D8C00E4C157 /* jumpingjack.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFFEC2CF2D1C4D8C00E4C157 /* jumpingjack.mp4 */; };
-		CFFEC2D32D1C4D8C00E4C157 /* mountainclimbers.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFFEC2D02D1C4D8C00E4C157 /* mountainclimbers.mp4 */; };
-		CFFEC2D42D1C4D8C00E4C157 /* wallsit.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFFEC2D12D1C4D8C00E4C157 /* wallsit.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,15 +82,6 @@
 		CF70037C2C8DE816009F1531 /* HintButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintButton.swift; sourceTree = "<group>"; };
 		CF70037E2C8DED37009F1531 /* BackgroundSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSelectorView.swift; sourceTree = "<group>"; };
 		CF7B1B402C8F6BD3005D4664 /* IntervalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalData.swift; sourceTree = "<group>"; };
-		CF7B2C6B2D90416900D12684 /* burpees.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = burpees.mp4; sourceTree = "<group>"; };
-		CF7B2C6C2D90416900D12684 /* duckwalk.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = duckwalk.mp4; sourceTree = "<group>"; };
-		CF7B2C6D2D90416900D12684 /* glutebridges.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = glutebridges.mp4; sourceTree = "<group>"; };
-		CF7B2C6E2D90416900D12684 /* jumplunges.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = jumplunges.mp4; sourceTree = "<group>"; };
-		CF7B2C6F2D90416900D12684 /* legraises.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = legraises.mp4; sourceTree = "<group>"; };
-		CF7B2C702D90416900D12684 /* plank.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = plank.mp4; sourceTree = "<group>"; };
-		CF7B2C712D90416900D12684 /* squatjump.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = squatjump.mp4; sourceTree = "<group>"; };
-		CF7B2C722D90416900D12684 /* superman.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = superman.mp4; sourceTree = "<group>"; };
-		CF7B2C732D90416900D12684 /* wallrun.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = wallrun.mp4; sourceTree = "<group>"; };
 		CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageModel.swift; sourceTree = "<group>"; };
 		CF8C07AD2E3D5AED0083ED1D /* SpaceGrotesk-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceGrotesk-Bold.ttf"; sourceTree = "<group>"; };
 		CF8C07AE2E3D5AED0083ED1D /* SpaceGrotesk-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceGrotesk-Light.ttf"; sourceTree = "<group>"; };
@@ -143,10 +121,6 @@
 		CFF207D72E6CA9F300D0C369 /* FavouritesItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesItemView.swift; sourceTree = "<group>"; };
 		CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		CFFEC2B52D184F8B00E4C157 /* MonthlyConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyConfig.swift; sourceTree = "<group>"; };
-		CFFEC2CD2D1C483400E4C157 /* whatsnew.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = whatsnew.mp4; sourceTree = "<group>"; };
-		CFFEC2CF2D1C4D8C00E4C157 /* jumpingjack.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = jumpingjack.mp4; sourceTree = "<group>"; };
-		CFFEC2D02D1C4D8C00E4C157 /* mountainclimbers.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = mountainclimbers.mp4; sourceTree = "<group>"; };
-		CFFEC2D12D1C4D8C00E4C157 /* wallsit.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = wallsit.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,7 +167,6 @@
 				CF21843329F052590060706C /* GustavTimerApp.swift */,
 				CF21843529F052590060706C /* ContentView.swift */,
 				CF8C07B92E3DFD990083ED1D /* Theme.swift */,
-				CFC4C18A2D04B5E30086CEBB /* Video */,
 				CF93EB002C5E679700A98ABD /* PrivacyInfo.xcprivacy */,
 				CF21843729F0525E0060706C /* Assets.xcassets */,
 				CF21843929F0525E0060706C /* Preview Content */,
@@ -340,26 +313,6 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		CFC4C18A2D04B5E30086CEBB /* Video */ = {
-			isa = PBXGroup;
-			children = (
-				CF7B2C6B2D90416900D12684 /* burpees.mp4 */,
-				CF7B2C6C2D90416900D12684 /* duckwalk.mp4 */,
-				CF7B2C6D2D90416900D12684 /* glutebridges.mp4 */,
-				CF7B2C6E2D90416900D12684 /* jumplunges.mp4 */,
-				CF7B2C6F2D90416900D12684 /* legraises.mp4 */,
-				CF7B2C702D90416900D12684 /* plank.mp4 */,
-				CF7B2C712D90416900D12684 /* squatjump.mp4 */,
-				CF7B2C722D90416900D12684 /* superman.mp4 */,
-				CF7B2C732D90416900D12684 /* wallrun.mp4 */,
-				CFFEC2CF2D1C4D8C00E4C157 /* jumpingjack.mp4 */,
-				CFFEC2D02D1C4D8C00E4C157 /* mountainclimbers.mp4 */,
-				CFFEC2D12D1C4D8C00E4C157 /* wallsit.mp4 */,
-				CFFEC2CD2D1C483400E4C157 /* whatsnew.mp4 */,
-			);
-			path = Video;
-			sourceTree = "<group>";
-		};
 		CFCE3C702C43104100D33AE3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -450,28 +403,15 @@
 				CF93EAF52C5E4F6200A98ABD /* bell-final.mp3 in Resources */,
 				CF93EAF32C5E4C6B00A98ABD /* 90s-countdown.mp3 in Resources */,
 				CF93EAFF2C5E569400A98ABD /* game-final.mp3 in Resources */,
-				CF7B2C742D90416900D12684 /* jumplunges.mp4 in Resources */,
-				CF7B2C752D90416900D12684 /* glutebridges.mp4 in Resources */,
-				CF7B2C762D90416900D12684 /* wallrun.mp4 in Resources */,
 				CF8C07BF2E3E04250083ED1D /* SpaceMono-Regular.ttf in Resources */,
 				CF8C07C02E3E04250083ED1D /* SpaceMono-Italic.ttf in Resources */,
 				CF8C07C12E3E04250083ED1D /* SpaceMono-BoldItalic.ttf in Resources */,
 				CF8C07C22E3E04250083ED1D /* SpaceMono-Bold.ttf in Resources */,
-				CF7B2C772D90416900D12684 /* legraises.mp4 in Resources */,
-				CF7B2C782D90416900D12684 /* burpees.mp4 in Resources */,
-				CF7B2C792D90416900D12684 /* squatjump.mp4 in Resources */,
-				CF7B2C7A2D90416900D12684 /* plank.mp4 in Resources */,
-				CF7B2C7B2D90416900D12684 /* superman.mp4 in Resources */,
 				CF8C07CD2E3E673C0083ED1D /* reset.riv in Resources */,
-				CF7B2C7C2D90416900D12684 /* duckwalk.mp4 in Resources */,
 				CF93EB012C5E679700A98ABD /* PrivacyInfo.xcprivacy in Resources */,
-				CFFEC2CE2D1C483400E4C157 /* whatsnew.mp4 in Resources */,
 				CF21843829F0525E0060706C /* Assets.xcassets in Resources */,
 				CF93EAFA2C5E551600A98ABD /* beep-countdown.mp3 in Resources */,
 				CF93EAF22C5E4C6B00A98ABD /* 90s-final.mp3 in Resources */,
-				CFFEC2D22D1C4D8C00E4C157 /* jumpingjack.mp4 in Resources */,
-				CFFEC2D32D1C4D8C00E4C157 /* mountainclimbers.mp4 in Resources */,
-				CFFEC2D42D1C4D8C00E4C157 /* wallsit.mp4 in Resources */,
 				CF8C07B22E3D5AED0083ED1D /* SpaceGrotesk-Medium.ttf in Resources */,
 				CF8C07B32E3D5AED0083ED1D /* SpaceGrotesk-SemiBold.ttf in Resources */,
 				CF8C07B42E3D5AED0083ED1D /* SpaceGrotesk-Bold.ttf in Resources */,

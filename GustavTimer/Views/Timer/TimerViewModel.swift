@@ -432,7 +432,7 @@ extension TimerViewModel {
             if let existingData = timerDataArray.first {
                 timerData = existingData
             } else {
-                timerData = TimerData(id: 0, name: "Výchozí časovač")
+                timerData = TimerData(id: 0, name: "Výchozí časovač", isLooping: true, selectedSound: "beep", isVibrating: true)
                 context.insert(timerData)
             }
             
