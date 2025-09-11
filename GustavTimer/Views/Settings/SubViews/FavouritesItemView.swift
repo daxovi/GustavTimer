@@ -41,7 +41,7 @@ struct FavouritesItemView: View {
                         .lineLimit(1)
                         .padding(.trailing, 4)
                     
-                    if timer.isLooping {
+                    if timer.rounds == -1 {
                         theme.icons.loop
                             .frame(width: 22, height: 22)
                             .foregroundStyle(theme.colors.light)
@@ -94,7 +94,7 @@ struct FavouritesItemView: View {
 #Preview {
     List {
         FavouritesItemView(timer: {
-            let timer = TimerData(id: 4, name: "name", isLooping: true, selectedSound: nil, isVibrating: false)
+            let timer = AppConfig.defaultTimer
             timer.intervals = [
                 IntervalData(value: 30, name: "Work"),
                 IntervalData(value: 15, name: "Rest")

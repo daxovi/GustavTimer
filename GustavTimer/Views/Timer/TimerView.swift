@@ -128,10 +128,10 @@ private extension TimerView {
     var currentTimerInfo: some View {
         Group {
             if let currentTimer = currentTimer {
-                Text("\(currentTimer.name) (\(viewModel.round))")
+                Text("\(currentTimer.name) (\(viewModel.finishedRounds)\(viewModel.rounds == -1 ? "" : ("/" + String(viewModel.rounds))))")
                     .safeAreaPadding(.horizontal)
-                    .foregroundColor(Color("StartColor").opacity(viewModel.round == 0 ? 0.0 : 1.0))
-                    .animation(.easeInOut(duration: 0.2), value: viewModel.round)
+                    .foregroundColor(Color("StartColor").opacity(viewModel.finishedRounds == 0 ? 0.0 : 1.0))
+                    .animation(.easeInOut(duration: 0.2), value: viewModel.finishedRounds)
             } else {
                 Text("No Timer")
                     .safeAreaPadding(.horizontal)
@@ -201,7 +201,7 @@ private extension TimerView {
     
     var settingsIcons: some View {
         HStack {
-            if viewModel.isLooping {
+            if viewModel.rounds == -1 {
                 theme.icons.loop
                     .resizable()
                     .scaledToFit()

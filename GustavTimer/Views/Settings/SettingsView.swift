@@ -25,44 +25,41 @@ struct SettingsView: View {
     }
     
     var body: some View {
-        ZStack {
-            
-            NavigationStack {
-                List {
-                    intervalsSection
-                    timerSettingsSection
-                    favouritesSection
-                    aboutSection
-                }
-                .listSectionSpacing(.compact)
-                .navigationTitle("EDIT_TITLE")
-                .navigationBarTitleDisplayMode(.inline)
+        NavigationStack {
+            List {
+                intervalsSection
+                timerSettingsSection
+                favouritesSection
+                aboutSection
             }
-            .tint(Color("StopColor"))
-            .font(theme.fonts.body)
-            .alert("Save Timer", isPresented: $viewModel.showSaveAlert) {
-                TextField("Timer Name", text: $viewModel.newTimerName)
-                Button("Save") {
-                    viewModel.performSaveTimerData(context: context, defaultTimer: currentTimerData)
-                }
-                Button("Cancel", role: .cancel) { }
-            } message: {
-                Text("Enter a name for your timer configuration")
+            .listSectionSpacing(.compact)
+            .navigationTitle("EDIT_TITLE")
+            .navigationBarTitleDisplayMode(.inline)
+        }
+        .tint(Color("StopColor"))
+        .font(theme.fonts.body)
+        .alert("Save Timer", isPresented: $viewModel.showSaveAlert) {
+            TextField("Timer Name", text: $viewModel.newTimerName)
+            Button("Save") {
+                viewModel.performSaveTimerData(context: context, defaultTimer: currentTimerData)
             }
-            .alert("Delete Timer", isPresented: $viewModel.showDeleteAlert) {
-                Button("Delete", role: .destructive) {
-                    viewModel.performDeleteTimerData(context: context, defaultTimer: currentTimerData)
-                }
-                Button("Cancel", role: .cancel) { }
-            } message: {
-                if let timer = viewModel.timerToDelete {
-                    Text("Are you sure you want to delete '\(timer.name)'?")
-                }
+            Button("Cancel", role: .cancel) { }
+        } message: {
+            Text("Enter a name for your timer configuration")
+        }
+        .alert("Delete Timer", isPresented: $viewModel.showDeleteAlert) {
+            Button("Delete", role: .destructive) {
+                viewModel.performDeleteTimerData(context: context, defaultTimer: currentTimerData)
             }
-            .onReceive(NotificationCenter.default.publisher(for: .loadTimerData)) { notification in
-                if let timerToLoad = notification.object as? TimerData {
-                    loadTimerDataToDefault(timerToLoad)
-                }
+            Button("Cancel", role: .cancel) { }
+        } message: {
+            if let timer = viewModel.timerToDelete {
+                Text("Are you sure you want to delete '\(timer.name)'?")
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .loadTimerData)) { notification in
+            if let timerToLoad = notification.object as? TimerData {
+                loadTimerDataToDefault(timerToLoad)
             }
         }
     }
@@ -82,8 +79,8 @@ struct SettingsView: View {
             }
             .onMove { viewModel.moveInterval(from: $0, to: $1, in: currentTimerData) }
         } header: {
-                Text("INTERVALS")
-                    .font(theme.fonts.body)
+            Text("INTERVALS")
+                .font(theme.fonts.body)
         }
         
         if currentTimerData.intervals.count < 5 {
@@ -123,14 +120,19 @@ struct SettingsView: View {
     
     private var timerSettingsSection: some View {
         Section {
-            Toggle("LOOP", isOn: $viewModel.isLooping)
-                .tint(Color("StartColor"))
+            NavigationLink {
+                RoundsSettingsView(rounds: $viewModel.rounds)
+            } label: {
+                ListButton(name: "ROUNDS", value: "\(viewModel.rounds == -1 ? "∞" : String(viewModel.rounds))")
+            }
+            
+            
             
             Toggle("HAPTICS", isOn: $viewModel.isVibrating)
-                .tint(Color("StartColor"))
+                .tint(theme.colors.pink)
             
             NavigationLink {
-                SoundSelectorView(isSoundEnabled: $viewModel.isSoundEnabled, selectedSound: $viewModel.selectedSound)
+                SoundSettingsView(isSoundEnabled: $viewModel.isSoundEnabled, selectedSound: $viewModel.selectedSound)
             } label: {
                 ListButton(name: "Sound", value: "\(viewModel.isSoundEnabled ? viewModel.selectedSound : "MUTE")")
             }
@@ -225,7 +227,7 @@ struct SettingsView: View {
         if let existing = timerData.first(where: { $0.id == 0 }) {
             return existing
         } else {
-            let newData = TimerData(id: 0, name: "Default Timer", isLooping: true, selectedSound: nil, isVibrating: false)
+            let newData = AppConfig.defaultTimer
             context.insert(newData)
             return newData
         }
@@ -239,7 +241,7 @@ struct SettingsView: View {
             IntervalData(value: interval.value, name: interval.name)
         }
         
-        viewModel.isLooping = timerToLoad.isLooping
+        viewModel.rounds = timerToLoad.rounds
         
         viewModel.isVibrating = timerToLoad.isVibrating
         
@@ -249,7 +251,7 @@ struct SettingsView: View {
         } else {
             viewModel.isSoundEnabled = false
         }
-                    
+        
         do {
             try context.save()
         } catch {

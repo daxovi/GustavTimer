@@ -1,12 +1,12 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%@ (%lld)" : {
+    "%@ (%lld%@)" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "%1$@ (%2$lld)"
+            "value" : "%1$@ (%2$lld%3$@)"
           }
         }
       }
@@ -439,6 +439,9 @@
         }
       }
     },
+    "IS_LOOPING" : {
+
+    },
     "IS_SOUND_ENABLED" : {
 
     },
@@ -692,6 +695,12 @@
 
     },
     "save your first timer to favourites or save our tabata or extended stretch" : {
+
+    },
+    "SELECT_ROUNDS_NUMBER" : {
+
+    },
+    "SELECT_SOUND" : {
 
     },
     "September challenge" : {

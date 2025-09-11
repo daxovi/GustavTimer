@@ -43,7 +43,11 @@ struct AppConfig {
         BackgroundImageModel(image: "Lotos", author: "", source: "www.unsplash.com")
     ]
     
+    // Default timer
+    static let defaultTimer = TimerData(id: 0, name: "Gustav Timer", rounds: -1, selectedSound: soundThemes.first ?? nil, isVibrating: false)
+    
     static let soundThemes = ["beep", "90s", "bell", "trumpet", "game"]
     
+    static let roundsOptions: [Int] = Array(1...31)
     // Rozměry
 }

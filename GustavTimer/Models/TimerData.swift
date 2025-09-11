@@ -13,21 +13,21 @@ import SwiftUI
 class TimerData {
     var id: Int
     var name: String
-    var isLooping: Bool
     var isVibrating: Bool
     var selectedSound: String?
+    var rounds: Int
     
     var intervals: [IntervalData] = [
         IntervalData(value: 30, name: "Work"),
         IntervalData(value: 15, name: "Rest")
     ]
 
-    init(id: Int, name: String, isLooping: Bool, selectedSound: String?, isVibrating: Bool) {
+    init(id: Int, name: String, rounds: Int, selectedSound: String?, isVibrating: Bool) {
         self.id = id
         self.name = name
-        self.isLooping = isLooping
         self.selectedSound = selectedSound
         self.isVibrating = isVibrating
+        self.rounds = rounds
     }
 }
 

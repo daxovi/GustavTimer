@@ -69,7 +69,7 @@ struct VideoPlayerFullscreen: UIViewControllerRepresentable {
 
         deinit {
             // Odstranění pozorovatele při uvolnění koordinátoru
-            if let token = timeObserverToken {
+            if timeObserverToken != nil {
                 print("Removing observer")
                 timeObserverToken = nil
             }

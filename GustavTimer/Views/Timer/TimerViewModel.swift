@@ -22,7 +22,7 @@ class TimerViewModel: ObservableObject {
     var isTimerFull: Bool { timers.count >= maxTimers }
     
     // MARK: - Publikované vlastnosti
-    @Published var round: Int = 0
+    @Published var finishedRounds: Int = 0
     @Published var showingSheet = false
     @Published var showingWhatsNew: Bool = false
     @Published var timers: [IntervalData] = []
@@ -32,7 +32,7 @@ class TimerViewModel: ObservableObject {
     @Published private var orientation = UIDeviceOrientation.unknown
     
     // MARK: - Nastavení (AppStorage)
-    @AppStorage("isLooping") var isLooping: Bool = true
+    @AppStorage("rounds") var rounds: Int = -1 // -1 znamená nekonečno
     @AppStorage("stopCounter") var stopCounter: Int = 0
     @AppStorage("whatsNewVersion") var whatsNewVersion: Int = 0
     @AppStorage("selectedSound") var selectedSound: String = "beep"
@@ -109,7 +109,7 @@ class TimerViewModel: ObservableObject {
     /// Spuštění časovače
     private func startTimer() {
         // Pokud začínáme první kolo, nastavíme počítadlo na 1
-        if round == 0 { round = 1 }
+        if finishedRounds == 0 { finishedRounds = 1 }
         
         // Pokud se časovač spouští poprvé nebo po resetu, inicializuj remainingTime
         if remainingTime <= .zero {
@@ -198,11 +198,11 @@ class TimerViewModel: ObservableObject {
     private func handleRoundCompletion() {
         activeTimerIndex = 0
         
-        if isLooping {
+        if rounds == -1 || finishedRounds < rounds {
             // Pokračovat v dalším kole
             vibrateRound()
             playSound()
-            round += 1
+            finishedRounds += 1
             remainingTime = timers[0].duration
         } else {
             // Ukončit časovač
@@ -215,7 +215,7 @@ class TimerViewModel: ObservableObject {
     /// Reset časovače do výchozího stavu
     func resetTimer() {
         stopTimer()
-        round = 0
+        finishedRounds = 0
         timerTask = nil
         activeTimerIndex = 0
         isTimerRunning = false
@@ -432,7 +432,7 @@ extension TimerViewModel {
             if let existingData = timerDataArray.first {
                 timerData = existingData
             } else {
-                timerData = TimerData(id: 0, name: "Výchozí časovač", isLooping: true, selectedSound: "beep", isVibrating: true)
+                timerData = AppConfig.defaultTimer
                 context.insert(timerData)
             }
             

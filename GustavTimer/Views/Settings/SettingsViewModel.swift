@@ -23,7 +23,7 @@ class SettingsViewModel: ObservableObject {
     // MARK: - Nastavení (AppStorage)
     @AppStorage("actualMonth") var actualMonth: Int = 1
     @AppStorage("monthlyCounter") var monthlyCounter: Int = 0
-    @AppStorage("isLooping") var isLooping: Bool = true
+    @AppStorage("rounds") var rounds: Int = -1
     @AppStorage("isVibrating") var isVibrating: Bool = false
     @AppStorage("selectedSound") var selectedSound: String = "beep"
     @AppStorage("isSoundEnabled") var isSoundEnabled: Bool = true
@@ -66,7 +66,7 @@ class SettingsViewModel: ObservableObject {
         let effectiveSound2 = isSoundEnabled ? selectedSound : nil
         
         return intervalsMatch &&
-               timer1.isLooping == isLooping &&
+               timer1.rounds == rounds &&
                timer1.isVibrating == isVibrating &&
                effectiveSound1 == effectiveSound2
     }
@@ -117,7 +117,7 @@ class SettingsViewModel: ObservableObject {
             let newId = (existingTimers.first?.id ?? 0) + 1
             
             // Vytvořit nový časovač s kopií dat z výchozího
-            let newTimer = TimerData(id: newId, name: newTimerName.trimmingCharacters(in: .whitespacesAndNewlines), isLooping: isLooping, selectedSound: isSoundEnabled ? selectedSound : nil, isVibrating: isVibrating)
+            let newTimer = TimerData(id: newId, name: newTimerName.trimmingCharacters(in: .whitespacesAndNewlines), rounds: rounds, selectedSound: isSoundEnabled ? selectedSound : nil, isVibrating: isVibrating)
             newTimer.intervals = defaultTimer.intervals.map { interval in
                 IntervalData(value: interval.value, name: interval.name)
             }
@@ -158,11 +158,8 @@ class SettingsViewModel: ObservableObject {
             
             if intervalsMatch {
                 // Reset na výchozí stav
-                defaultTimer.intervals = [
-                    IntervalData(value: 30, name: "Práce"),
-                    IntervalData(value: 15, name: "Odpočinek")
-                ]
-                defaultTimer.isLooping = true
+                defaultTimer.intervals = AppConfig.defaultTimer.intervals
+                defaultTimer.rounds = -1
                 try context.save()
             }
             

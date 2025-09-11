@@ -13,7 +13,7 @@ struct WhatsNewView: View {
     var tags: [String] = []
     var action: () -> Void
     
-    private let player = AVPlayer(url: URL(fileURLWithPath: Bundle.main.path(forResource: "whatsnew", ofType: "mp4")!))
+//    private let player = AVPlayer(url: URL(fileURLWithPath: Bundle.main.path(forResource: "whatsnew", ofType: "mp4")!))
     
     @Environment(\.dismiss) var dismiss
     
@@ -24,17 +24,17 @@ struct WhatsNewView: View {
         .ignoresSafeArea()
     }
     
-    private func setUpLoop(for player: AVPlayer) {
-            // Přidání notifikace pro detekci konce videa
-            NotificationCenter.default.addObserver(
-                forName: .AVPlayerItemDidPlayToEndTime,
-                object: player.currentItem,
-                queue: .main
-            ) { _ in
-                player.seek(to: .zero) // Vrátí video na začátek
-                player.play() // Znovu spustí video
-            }
-        }
+//    private func setUpLoop(for player: AVPlayer) {
+//            // Přidání notifikace pro detekci konce videa
+//            NotificationCenter.default.addObserver(
+//                forName: .AVPlayerItemDidPlayToEndTime,
+//                object: player.currentItem,
+//                queue: .main
+//            ) { _ in
+//                player.seek(to: .zero) // Vrátí video na začátek
+//                player.play() // Znovu spustí video
+//            }
+//        }
 }
 
 #Preview {
