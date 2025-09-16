@@ -23,6 +23,9 @@
 		CF70037D2C8DE816009F1531 /* HintButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70037C2C8DE816009F1531 /* HintButton.swift */; };
 		CF70037F2C8DED37009F1531 /* BackgroundSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70037E2C8DED37009F1531 /* BackgroundSelectorView.swift */; };
 		CF7744ED2E7992EF00693351 /* FavouritesTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7744EC2E7992E900693351 /* FavouritesTabView.swift */; };
+		CF7744EF2E799B2700693351 /* SettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7744EE2E799B2300693351 /* SettingsTabView.swift */; };
+		CF7744F12E799FA100693351 /* IntervalRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7744F02E799F9A00693351 /* IntervalRowView.swift */; };
+		CF7744F32E79A06B00693351 /* IntervalsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7744F22E79A06600693351 /* IntervalsTabView.swift */; };
 		CF7B1B412C8F6BD3005D4664 /* IntervalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7B1B402C8F6BD3005D4664 /* IntervalData.swift */; };
 		CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */; };
 		CF8C07B22E3D5AED0083ED1D /* SpaceGrotesk-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07AF2E3D5AED0083ED1D /* SpaceGrotesk-Medium.ttf */; };
@@ -61,7 +64,7 @@
 		CFCD99D02CA068B00017BD0E /* ListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD99CF2CA068B00017BD0E /* ListButton.swift */; };
 		CFCE3C762C431EC900D33AE3 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE3C752C431EC900D33AE3 /* View+Extension.swift */; };
 		CFF207D62E6CA9BA00D0C369 /* FavouritesEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF207D52E6CA9B300D0C369 /* FavouritesEmptyView.swift */; };
-		CFF207D82E6CA9F900D0C369 /* FavouriteItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF207D72E6CA9F300D0C369 /* FavouriteItemView.swift */; };
+		CFF207D82E6CA9F900D0C369 /* FavouriteRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF207D72E6CA9F300D0C369 /* FavouriteRowView.swift */; };
 		CFF71ACC2B8B99BC00884E82 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */; };
 		CFFEC2B62D184F9800E4C157 /* MonthlyConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFEC2B52D184F8B00E4C157 /* MonthlyConfig.swift */; };
 /* End PBXBuildFile section */
@@ -85,6 +88,9 @@
 		CF70037C2C8DE816009F1531 /* HintButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintButton.swift; sourceTree = "<group>"; };
 		CF70037E2C8DED37009F1531 /* BackgroundSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSelectorView.swift; sourceTree = "<group>"; };
 		CF7744EC2E7992E900693351 /* FavouritesTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesTabView.swift; sourceTree = "<group>"; };
+		CF7744EE2E799B2300693351 /* SettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTabView.swift; sourceTree = "<group>"; };
+		CF7744F02E799F9A00693351 /* IntervalRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalRowView.swift; sourceTree = "<group>"; };
+		CF7744F22E79A06600693351 /* IntervalsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalsTabView.swift; sourceTree = "<group>"; };
 		CF7B1B402C8F6BD3005D4664 /* IntervalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalData.swift; sourceTree = "<group>"; };
 		CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageModel.swift; sourceTree = "<group>"; };
 		CF8C07AD2E3D5AED0083ED1D /* SpaceGrotesk-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceGrotesk-Bold.ttf"; sourceTree = "<group>"; };
@@ -122,7 +128,7 @@
 		CFCD99CF2CA068B00017BD0E /* ListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListButton.swift; sourceTree = "<group>"; };
 		CFCE3C752C431EC900D33AE3 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		CFF207D52E6CA9B300D0C369 /* FavouritesEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesEmptyView.swift; sourceTree = "<group>"; };
-		CFF207D72E6CA9F300D0C369 /* FavouriteItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteItemView.swift; sourceTree = "<group>"; };
+		CFF207D72E6CA9F300D0C369 /* FavouriteRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteRowView.swift; sourceTree = "<group>"; };
 		CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		CFFEC2B52D184F8B00E4C157 /* MonthlyConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -200,6 +206,8 @@
 		CF2222D22E353FE800A90265 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				CF7744F22E79A06600693351 /* IntervalsTabView.swift */,
+				CF7744EE2E799B2300693351 /* SettingsTabView.swift */,
 				CF7744EC2E7992E900693351 /* FavouritesTabView.swift */,
 				CF2222D52E354A1900A90265 /* SubViews */,
 				CF2222D32E35402000A90265 /* SettingsViewModel.swift */,
@@ -211,8 +219,9 @@
 		CF2222D52E354A1900A90265 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				CF7744F02E799F9A00693351 /* IntervalRowView.swift */,
 				CF10D0552E73371800F84454 /* RoundsSettingsView.swift */,
-				CFF207D72E6CA9F300D0C369 /* FavouriteItemView.swift */,
+				CFF207D72E6CA9F300D0C369 /* FavouriteRowView.swift */,
 				CFF207D52E6CA9B300D0C369 /* FavouritesEmptyView.swift */,
 				CF3A14922E47251B00F734F4 /* TimeDisplayFormatView.swift */,
 				CF01945B2C8A20D700CAC1BD /* SoundSettingsView.swift */,
@@ -439,8 +448,10 @@
 				CF3A14912E47250800F734F4 /* TimeDisplayFormat.swift in Sources */,
 				CF10D0562E73371F00F84454 /* RoundsSettingsView.swift in Sources */,
 				CFC3A7722AAF8B1B00BB8CC2 /* ProgressBar.swift in Sources */,
-				CFF207D82E6CA9F900D0C369 /* FavouriteItemView.swift in Sources */,
+				CFF207D82E6CA9F900D0C369 /* FavouriteRowView.swift in Sources */,
 				CF2222D42E35402500A90265 /* SettingsViewModel.swift in Sources */,
+				CF7744F12E799FA100693351 /* IntervalRowView.swift in Sources */,
+				CF7744EF2E799B2700693351 /* SettingsTabView.swift in Sources */,
 				CF8E14672D17404900155BE8 /* VideoPlayerFullscreen.swift in Sources */,
 				CF01945C2C8A20D700CAC1BD /* SoundSettingsView.swift in Sources */,
 				CFADBCF42AC9DC7B00AE27D8 /* SettingsView.swift in Sources */,
@@ -465,6 +476,7 @@
 				CF21843429F052590060706C /* GustavTimerApp.swift in Sources */,
 				CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */,
 				CF279C4C2C31A8940084C43F /* SoundManager.swift in Sources */,
+				CF7744F32E79A06B00693351 /* IntervalsTabView.swift in Sources */,
 				CF7B1B412C8F6BD3005D4664 /* IntervalData.swift in Sources */,
 				CF2222DA2E355A8200A90265 /* TimerData.swift in Sources */,
 			);

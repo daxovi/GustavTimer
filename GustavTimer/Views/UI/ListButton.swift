@@ -8,17 +8,19 @@
 import SwiftUI
 
 struct ListButton: View {
-    var name: String
-    var value: String = ""
+    var name: LocalizedStringKey
+    var value: LocalizedStringKey?
     
     @Environment(\.theme) var theme
     
     var body: some View {
         HStack {
-            Text(NSLocalizedString(name, comment: ""))
+            Text(name)
             Spacer()
-            Text(NSLocalizedString(value, comment: ""))
-                .foregroundColor(Color("ResetColor"))
+            if let value {
+                Text(value)
+                    .foregroundColor(Color("ResetColor"))
+            }
         }
         .font(theme.fonts.body)
     }

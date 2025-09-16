@@ -405,7 +405,7 @@ extension TimerViewModel {
                 timers = timerData.intervals
                 // Resetuj remainingTime pouze při explicitním požadavku (např. při inicializaci)
                 if resetCurrentState && !timers.isEmpty {
-                    remainingTime = timers[0].duration
+                    resetTimer()
                 }
             } else {
                 createAndSaveDefaultTimers()

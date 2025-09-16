@@ -7,12 +7,14 @@
 
 import SwiftUI
 
-struct FavouriteItemView: View {
+struct FavouriteRowView: View {
     let timer: TimerData
-    let onDelete: (() -> Void)
-    let onSelect: (() -> Void)
     
     @Environment(\.theme) var theme
+    
+    var isMainTimer: Bool {
+        timer.id == AppConfig.defaultTimer.id
+    }
     
     var body: some View {
         Section {
@@ -22,7 +24,7 @@ struct FavouriteItemView: View {
                         ForEach(timer.intervals) { interval in
                             VStack(alignment: .leading) {
                                 Capsule()
-                                    .fill(theme.colors.volt)
+                                    .fill(isMainTimer ? theme.colors.light : theme.colors.volt)
                                     .frame(height: 5)
                                 Text(interval.name)
                                     .font(theme.fonts.settingsCaption)
@@ -35,8 +37,9 @@ struct FavouriteItemView: View {
                     }
                 }
                 HStack {
-                    Text(timer.name)
+                    Text(getTimerName())
                         .font(theme.fonts.settingsLabelLarge)
+                        .foregroundStyle(isMainTimer ? theme.colors.light : .black)
                         .lineLimit(1)
                         .padding(.trailing, 4)
                     
@@ -59,20 +62,19 @@ struct FavouriteItemView: View {
                     }
                     
                     Spacer()
-                    
-                    Image(systemName: "bin.xmark")
-                        .foregroundStyle(.red)
-                        .onTapGesture {
-                            onDelete()
-                        }
                 }
             }
             .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
             .padding()
             .contentShape(RoundedRectangle(cornerRadius: 10))
-            .onTapGesture {
-                onSelect()
-            }
+        }
+    }
+    
+    func getTimerName() -> LocalizedStringKey {
+        if isMainTimer {
+            "CURRENT_TIMER"
+        } else {
+            LocalizedStringKey(timer.name)
         }
     }
     
@@ -85,13 +87,13 @@ struct FavouriteItemView: View {
 
 #Preview {
     List {
-        FavouriteItemView(timer: {
+        FavouriteRowView(timer: {
             let timer = AppConfig.defaultTimer
             timer.intervals = [
                 IntervalData(value: 30, name: "Work"),
                 IntervalData(value: 15, name: "Rest")
             ]
             return timer
-        }(), onDelete: {}, onSelect: {})
+        }())
     }
 }
