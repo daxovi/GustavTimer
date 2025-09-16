@@ -31,6 +31,8 @@ struct Theme {
         let settingsButtonBold = Font.custom("SpaceGrotesk-Bold", size: 33, relativeTo: .largeTitle)
         let settingsCaption = Font.custom("SpaceGrotesk-Regular", size: 14, relativeTo: .caption2)
         let settingsLabelLarge = Font.custom("SpaceGrotesk-SemiBold", size: 24, relativeTo: .title2)
+        let settingsIntervalValue = Font.custom("SpaceMono-Bold", size: 33, relativeTo: .title3)
+        let settingsIntervalName = Font.custom("SpaceGrotesk-Regular", size: 33, relativeTo: .title3)
     }
     
     struct Layout {

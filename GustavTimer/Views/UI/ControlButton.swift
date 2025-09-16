@@ -33,11 +33,28 @@ struct ControlButton: View {
             riveViewModel.reset()
             action()
         }, label: {
-            color
-                .overlay( (riveAnimation != nil) ? AnyView(animationView) : AnyView(labelView) )
-                .overlay( buttonBorder )
-                .frame(height: theme.layout.controlHeight)
-                .clipShape(RoundedRectangle(cornerRadius: theme.layout.buttonRadius))
+                if riveAnimation != nil {
+                    Color.clear
+                        .frame(height: theme.layout.controlHeight)
+                        .glassEffect(.regular.tint(color).interactive())
+                        .overlay( (riveAnimation != nil) ? AnyView(animationView) : AnyView(labelView) )
+                            .contentShape(Rectangle())
+                } else {
+                    HStack {
+                        Text(label ?? "")
+                            .font(theme.fonts.buttonLabel)
+                            .foregroundStyle(color == .start ? .reset : .start)
+                        Text(description ?? "")
+                            .font(theme.fonts.buttonDescription)
+                            .foregroundStyle(color == .start ? .reset : .white)
+                            .textCase(.uppercase)
+                            .opacity(0.5)
+                    }
+                        .frame(height: theme.layout.controlHeight)
+                        .frame(maxWidth: .infinity)
+                        .glassEffect(.regular.tint(color).interactive())
+                            .contentShape(Rectangle())
+                }
         })
         .buttonStyle(.plain)
     }

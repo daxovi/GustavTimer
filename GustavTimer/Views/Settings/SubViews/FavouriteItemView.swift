@@ -7,9 +7,8 @@
 
 import SwiftUI
 
-struct FavouritesItemView: View {
+struct FavouriteItemView: View {
     let timer: TimerData
-    @Binding var isSelected: Bool
     let onDelete: (() -> Void)
     let onSelect: (() -> Void)
     
@@ -70,13 +69,6 @@ struct FavouritesItemView: View {
             }
             .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
             .padding()
-            .overlay(alignment: .leading, content: {
-                    if isSelected {
-                        RoundedRectangle(cornerRadius: 10)
-                        .stroke(theme.colors.volt, lineWidth: 5)
-                    }
-            })
-            .animation(.easeInOut, value: isSelected)
             .contentShape(RoundedRectangle(cornerRadius: 10))
             .onTapGesture {
                 onSelect()
@@ -93,13 +85,13 @@ struct FavouritesItemView: View {
 
 #Preview {
     List {
-        FavouritesItemView(timer: {
+        FavouriteItemView(timer: {
             let timer = AppConfig.defaultTimer
             timer.intervals = [
                 IntervalData(value: 30, name: "Work"),
                 IntervalData(value: 15, name: "Rest")
             ]
             return timer
-        }(), isSelected: .constant(true), onDelete: {}, onSelect: {})
+        }(), onDelete: {}, onSelect: {})
     }
 }

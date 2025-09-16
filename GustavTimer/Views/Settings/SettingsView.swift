@@ -1,4 +1,3 @@
-//
 //  SettingsView.swift
 //  GustavTimer
 //
@@ -19,44 +18,37 @@ struct SettingsView: View {
     @Environment(\.modelContext) var context
     @Environment(\.theme) var theme
     
+    @State private var searchText: String = ""
+    
     // MARK: - Computed Properties
     private var currentTimerData: TimerData {
         getOrCreateTimerData()
     }
     
     var body: some View {
-        NavigationStack {
-            List {
-                intervalsSection
-                timerSettingsSection
-                favouritesSection
+        TabView {
+            Tab("INTERVALS_TAB", systemImage: "timer") {
+                intervalsTab
+            }
+            Tab("FAVOURITES_TAB", systemImage: "star.fill") {
+                FavouritesTabView()
+            }
+            Tab("SETTINGS_TAB", systemImage: "gearshape") {
+                settingsSection
+            }
+            Tab("ABOUT_TAB", systemImage: "iphone.app.switcher") {
                 aboutSection
             }
-            .listSectionSpacing(.compact)
-            .navigationTitle("EDIT_TITLE")
-            .navigationBarTitleDisplayMode(.inline)
+            Tab(role: .search) {
+                NavigationStack {
+                    Text("Search")
+                    Text(searchText)
+                }
+                .searchable(text: $searchText)
+            }
         }
-        .tint(Color("StopColor"))
+        .tint(theme.colors.pink)
         .font(theme.fonts.body)
-        .alert("Save Timer", isPresented: $viewModel.showSaveAlert) {
-            TextField("Timer Name", text: $viewModel.newTimerName)
-            Button("Save") {
-                viewModel.performSaveTimerData(context: context, defaultTimer: currentTimerData)
-            }
-            Button("Cancel", role: .cancel) { }
-        } message: {
-            Text("Enter a name for your timer configuration")
-        }
-        .alert("Delete Timer", isPresented: $viewModel.showDeleteAlert) {
-            Button("Delete", role: .destructive) {
-                viewModel.performDeleteTimerData(context: context, defaultTimer: currentTimerData)
-            }
-            Button("Cancel", role: .cancel) { }
-        } message: {
-            if let timer = viewModel.timerToDelete {
-                Text("Are you sure you want to delete '\(timer.name)'?")
-            }
-        }
         .onReceive(NotificationCenter.default.publisher(for: .loadTimerData)) { notification in
             if let timerToLoad = notification.object as? TimerData {
                 loadTimerDataToDefault(timerToLoad)
@@ -64,134 +56,174 @@ struct SettingsView: View {
         }
     }
     
-    // MARK: - Sections
-    
+    // MARK: - Tabs
     @ViewBuilder
-    private var intervalsSection: some View {
-        Section {
-            ForEach(currentTimerData.intervals) { interval in
-                intervalRow(for: interval)
-            }
-            .onDelete { indexSet in
-                if currentTimerData.intervals.count > 1 {
-                    viewModel.deleteInterval(at: indexSet, from: currentTimerData)
+    private var intervalsTab: some View {
+        NavigationStack {
+            List {
+                Section {
+                    ForEach(currentTimerData.intervals) { interval in
+                        if let index = currentTimerData.intervals.firstIndex(where: { $0.id == interval.id }) {
+                            HStack {
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text("INTERVAL")
+                                        .font(theme.fonts.settingsCaption)
+                                        .foregroundStyle(theme.colors.light)
+                                    TextField("Name", text: Binding(
+                                        get: { interval.name },
+                                        set: { newValue in
+                                            let limited = String(newValue.prefix(8))
+                                            viewModel.updateIntervalName(limited, for: interval.id, in: currentTimerData)
+                                        }
+                                    ))
+                                    .font(theme.fonts.settingsIntervalName)
+                                }
+                                
+                                Spacer(minLength: 50)
+                                
+                                VStack(alignment: .trailing, spacing: 4) {
+                                    Text("INTERVAL_VALUE")
+                                        .font(theme.fonts.settingsCaption)
+                                        .foregroundStyle(theme.colors.light)
+                                    TextField("1-\(AppConfig.maxTimerValue)", value: Binding(
+                                        get: { interval.value },
+                                        set: { newValue in
+                                            let clampedValue = min(max(newValue, 1), AppConfig.maxTimerValue)
+                                            viewModel.updateIntervalValue(clampedValue, for: interval.id, in: currentTimerData)
+                                        }
+                                    ), format: .number)
+                                    .keyboardType(.numberPad)
+                                    .font(theme.fonts.settingsIntervalValue)
+                                    .multilineTextAlignment(.trailing)
+                                }
+                                .frame(maxWidth: 100)
+                            }
+                        }
+                    }
+                    .onDelete { indexSet in
+                        if currentTimerData.intervals.count > 1 {
+                            viewModel.deleteInterval(at: indexSet, from: currentTimerData)
+                        }
+                    }
+                    .onMove { viewModel.moveInterval(from: $0, to: $1, in: currentTimerData) }
+                }
+                
+                if currentTimerData.intervals.count < AppConfig.maxTimerCount {
+                    Button("ADD_INTERVAL") {
+                        viewModel.addInterval(to: currentTimerData)
+                    }
                 }
             }
-            .onMove { viewModel.moveInterval(from: $0, to: $1, in: currentTimerData) }
-        } header: {
-            Text("INTERVALS")
-                .font(theme.fonts.body)
-        }
-        
-        if currentTimerData.intervals.count < 5 {
-            addIntervalButton
+            .navigationTitle("INTERVALS_TAB")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(role: .confirm) {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "checkmark")
+                    }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    EditButton()
+                }
+            }
         }
     }
     
-    @ViewBuilder
-    private var favouritesSection: some View {
-        let savedTimers = timerData.filter { $0.id != 0 }
-        Section("FAVOURITE_INTERVALS") {
-            Button(action: viewModel.saveTimerData) {
-                Text("ADD_TIMER_TO_FAVOURITES")
-                    .frame(maxWidth: .infinity)
-                    .font(theme.fonts.buttonLabelSmall)
-                    .foregroundStyle(theme.colors.neutral)
+    private var settingsSection: some View {
+        NavigationStack {
+            List {
+                Section {
+                    NavigationLink {
+                        RoundsSettingsView(rounds: $viewModel.rounds)
+                    } label: {
+                        ListButton(name: "ROUNDS", value: "\(viewModel.rounds == -1 ? "∞" : String(viewModel.rounds))")
+                    }
+                    
+                    Toggle("HAPTICS", isOn: $viewModel.isVibrating)
+                        .tint(theme.colors.pink)
+                    
+                    NavigationLink {
+                        SoundSettingsView(isSoundEnabled: $viewModel.isSoundEnabled, selectedSound: $viewModel.selectedSound)
+                    } label: {
+                        ListButton(name: "Sound", value: "\(viewModel.isSoundEnabled ? viewModel.selectedSound : "MUTE")")
+                    }
+                    
+                    //            NavigationLink {
+                    //                TimeDisplayFormatView()
+                    //            } label: {
+                    //                ListButton(name: "Time Format", value: viewModel.timeDisplayFormat.displayName)
+                    //            }
+                    //
+                    //            NavigationLink {
+                    //                BackgroundSelectorView()
+                    //            } label: {
+                    //                ListButton(name: "BACKGROUND")
+                    //            }
+                }
             }
-            .listRowBackground(theme.colors.volt)
+            .navigationTitle("SETTINGS_TAB")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(role: .confirm) {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "checkmark")
+                    }
+                    
+                }
+            }
         }
-        if !savedTimers.isEmpty {
-            ForEach(savedTimers) { timer in
-                FavouritesItemView(timer: timer, isSelected: .init(get: {
-                    viewModel.areTimersEqual(timer, currentTimerData)
-                }, set: { _ in
-                    // No action needed on set
-                }), onDelete: {
-                    viewModel.deleteTimerData(timer)
-                }, onSelect: {
-                    viewModel.loadTimerData(timer)
-                })
-            }
-        } else {
-            FavouritesEmptyView()
-        }
-        
-    }
-    
-    private var timerSettingsSection: some View {
-        Section {
-            NavigationLink {
-                RoundsSettingsView(rounds: $viewModel.rounds)
-            } label: {
-                ListButton(name: "ROUNDS", value: "\(viewModel.rounds == -1 ? "∞" : String(viewModel.rounds))")
-            }
-            
-            
-            
-            Toggle("HAPTICS", isOn: $viewModel.isVibrating)
-                .tint(theme.colors.pink)
-            
-            NavigationLink {
-                SoundSettingsView(isSoundEnabled: $viewModel.isSoundEnabled, selectedSound: $viewModel.selectedSound)
-            } label: {
-                ListButton(name: "Sound", value: "\(viewModel.isSoundEnabled ? viewModel.selectedSound : "MUTE")")
-            }
-            
-            //            NavigationLink {
-            //                TimeDisplayFormatView()
-            //            } label: {
-            //                ListButton(name: "Time Format", value: viewModel.timeDisplayFormat.displayName)
-            //            }
-            //
-            //            NavigationLink {
-            //                BackgroundSelectorView()
-            //            } label: {
-            //                ListButton(name: "BACKGROUND")
-            //            }
-        } header: {
-            Text("TIMER_SETTINGS")
-                .font(theme.fonts.body)
-        } footer: { Color.clear }
     }
     
     private var aboutSection: some View {
-        Section("ABOUT") {
-            Button("RATE") {
-                if let url = URL(string: AppConfig.reviewURL) {
-                    UIApplication.shared.open(url)
+        NavigationStack {
+            List {
+                Section() {
+                    Button("RATE") {
+                        if let url = URL(string: AppConfig.reviewURL) {
+                            UIApplication.shared.open(url)
+                        }
+                    }
+                    
+                    Button("Try Gustav Weights") {
+                        if let url = URL(string: AppConfig.weightsURL) {
+                            UIApplication.shared.open(url)
+                        }
+                    }
+                    
+                    Button("Follow Gustav on Instagram") {
+                        if let url = URL(string: "https://www.instagram.com/gustavtraining") {
+                            UIApplication.shared.open(url)
+                        }
+                    }
                 }
             }
-            
-            Button("Try Gustav Weights") {
-                if let url = URL(string: AppConfig.weightsURL) {
-                    UIApplication.shared.open(url)
-                }
-            }
-            
-            Button("Follow Gustav on Instagram") {
-                if let url = URL(string: "https://www.instagram.com/gustavtraining") {
-                    UIApplication.shared.open(url)
+            .navigationTitle("ABOUT_TAB")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(role: .confirm) {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "checkmark")
+                    }
+                    
                 }
             }
         }
     }
     
     // MARK: - Helper Views
-    private var addIntervalButton: some View {
+    private func addButton(label: LocalizedStringKey, action: @escaping () -> Void) -> some View {
         Button {
-            viewModel.addInterval(to: currentTimerData)
+            action()
         } label: {
-            Text("ADD_INTERVAL")
-                .font(theme.fonts.buttonLabelSmall)
-                .frame(maxWidth: .infinity, minHeight: 44)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .inset(by: 1)
-                        .stroke(theme.colors.light, style: StrokeStyle(lineWidth: 2, dash: [8, 8]))
-                    
-                )
+            Text(label)
+                .font(theme.fonts.body)
+                .underline()
         }
-        .foregroundStyle(theme.colors.light)
+        .foregroundStyle(theme.colors.pink)
+        .padding(.horizontal)
         .padding(.bottom, 18)
         .listRowBackground(Color.clear)
         .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
@@ -310,3 +342,4 @@ struct SettingsView: View {
 //        }
 //    }
 //}
+

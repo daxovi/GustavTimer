@@ -25,6 +25,5 @@ struct FavouritesEmptyView: View {
             .foregroundStyle(theme.colors.light)
             .listRowBackground(Color.clear)
             .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
-            .padding(.bottom, 18)
     }
 }

@@ -69,7 +69,6 @@ class TimerViewModel: ObservableObject {
         // Výpočet uplynulého času a progress hodnoty
         let elapsedMs = totalMs - remainingMs
         let progressValue = elapsedMs / totalMs
-        print("Progress: \(progressValue) for timer \(activeTimerIndex) with remaining time \(remainingTime.components.seconds) seconds")
         
         // Zajistit, že progress je vždy mezi 0.0 a 1.0
         return max(0.0, min(1.0, progressValue))

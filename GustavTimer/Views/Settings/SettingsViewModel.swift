@@ -173,7 +173,7 @@ class SettingsViewModel: ObservableObject {
     // MARK: - Správa intervalů časovače
     /// Přidání intervalu k časovači
     func addInterval(to timerData: TimerData) {
-        guard timerData.intervals.count < 5 else { return }
+        guard timerData.intervals.count < AppConfig.maxTimerCount else { return }
         timerData.intervals.append(IntervalData(value: 5, name: "Kolo \(timerData.intervals.count + 1)"))
     }
     

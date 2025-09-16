@@ -12,7 +12,7 @@ struct AppConfig {
     static let version = 140
     // Maximální hodnota timeru
     static let maxTimerValue: Int = 600
-    static let maxTimerCount: Int = 5
+    static let maxTimerCount: Int = 10
     
     // Odkazy
     static let reviewURL: String = "https://apps.apple.com/app/id6478176431?action=write-review"
