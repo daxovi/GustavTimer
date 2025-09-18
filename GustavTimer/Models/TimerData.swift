@@ -11,6 +11,7 @@ import SwiftUI
 
 @Model
 class TimerData {
+    
     var id: Int
     var name: String
     var isVibrating: Bool
@@ -29,5 +30,9 @@ class TimerData {
         self.isVibrating = isVibrating
         self.rounds = rounds
     }
+    
+//    static func == (lhs: TimerData, rhs: TimerData) -> Bool {
+//        return lhs.intervals == rhs.intervals
+//    }
 }
 

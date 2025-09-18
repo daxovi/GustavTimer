@@ -11,7 +11,6 @@ import SwiftData
 
 struct SettingsView: View {
     @Query(sort: \TimerData.id, order: .reverse) var timerData: [TimerData]
-//    @StateObject var viewModel = SettingsViewModel()
     
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) private var dismiss
@@ -22,24 +21,33 @@ struct SettingsView: View {
     
     var body: some View {
         TabView {
-            Tab("INTERVALS_TAB", systemImage: "timer") {
-                IntervalsTabView()
+            IntervalsTabView()
+            .tabItem {
+                Label("INTERVALS_TAB", systemImage: "timer")
             }
-            Tab("FAVOURITES_TAB", systemImage: "star.fill") {
-                FavouritesTabView()
+            
+            FavouritesTabView()
+            .tabItem {
+                Label("FAVOURITES_TAB", systemImage: "star.fill")
             }
-            Tab("SETTINGS_TAB", systemImage: "gearshape") {
-                SettingsTabView()
+            
+            SettingsTabView()
+            .tabItem {
+                Label("SETTINGS_TAB", systemImage: "gearshape")
             }
-            Tab("WHATSNEW_TAB", systemImage: "iphone.app.switcher") {
-                Text("Whats New")
-            }
-            Tab(role: .search) {
-                NavigationStack {
-                    Text("Search")
-                    Text(searchText)
+            
+            Text("Whats New")
+                .tabItem {
+                    Label("WHATSNEW_TAB", systemImage: "iphone.app.switcher")
                 }
-                .searchable(text: $searchText)
+            
+            NavigationStack {
+                Text("Search")
+                Text(searchText)
+            }
+            .searchable(text: $searchText)
+            .tabItem {
+                Label("Search", systemImage: "magnifyingglass")
             }
         }
         .tint(theme.colors.pink)
@@ -51,4 +59,3 @@ struct SettingsView: View {
     SettingsView()
         .modelContainer(for: [CustomImageModel.self, TimerData.self])
 }
-

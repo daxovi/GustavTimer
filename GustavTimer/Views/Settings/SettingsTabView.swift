@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct SettingsTabView: View {
-    @AppStorage("isVibrating") var isVibrating: Bool = false
-    @AppStorage("selectedSound") var selectedSound: String = "beep"
-    @AppStorage("isSoundEnabled") var isSoundEnabled: Bool = true
+    @ObservedObject var appSettings = AppSettings()
     
     @Environment(\.dismiss) var dismiss
     @Environment(\.theme) private var theme
@@ -19,13 +17,13 @@ struct SettingsTabView: View {
         NavigationStack {
             List {
                 Section {
-                    Toggle("HAPTICS", isOn: $isVibrating)
+                    Toggle("HAPTICS", isOn: $appSettings.isVibrating)
                         .tint(theme.colors.pink)
                     
                     NavigationLink {
-                        SoundSettingsView(isSoundEnabled: $isSoundEnabled, selectedSound: $selectedSound)
+                        SoundSettingsView(isSoundEnabled: $appSettings.isSoundEnabled, selectedSound: $appSettings.selectedSound)
                     } label: {
-                        ListButton(name: "SOUND", value: isSoundEnabled ? LocalizedStringKey(selectedSound) : "MUTE")
+                        ListButton(name: "SOUND", value: appSettings.isSoundEnabled ? LocalizedStringKey(appSettings.selectedSound) : "MUTE")
                     }
                     
                     //            NavigationLink {

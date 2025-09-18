@@ -32,4 +32,8 @@ struct IntervalData: Identifiable, Codable {
         self.value = Int(duration.components.seconds)
         self.name = name
     }
+    
+//    static func == (lhs: IntervalData, rhs: IntervalData) -> Bool {
+//        return lhs.value == rhs.value && lhs.name == rhs.name
+//    }
 }

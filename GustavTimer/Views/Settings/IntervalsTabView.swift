@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct IntervalsTabView: View {
-    @AppStorage("rounds") var rounds: Int = -1
+    @ObservedObject var appSettings = AppSettings()
 
     @Query(sort: \TimerData.id, order: .reverse) var timerData: [TimerData]
     @Environment(\.dismiss) private var dismiss
@@ -54,9 +54,9 @@ struct IntervalsTabView: View {
                 
                 Section {
                     NavigationLink {
-                        RoundsSettingsView(rounds: $rounds)
+                        RoundsSettingsView(rounds: $appSettings.rounds)
                     } label: {
-                        ListButton(name: "ROUNDS", value: "\(rounds == -1 ? "∞" : String(rounds))")
+                        ListButton(name: "ROUNDS", value: "\(appSettings.rounds == -1 ? "∞" : String(appSettings.rounds))")
                     }
                 }
             }
@@ -127,7 +127,7 @@ struct IntervalsTabView: View {
     private func saveTimer() {
         if let mainTimer = timerData.first(where: { $0.id == 0 }) {
             let newId = (timerData.map { $0.id }.max() ?? 0) + 1
-            let newTimer = TimerData(id: newId, name: newTimerName, rounds: mainTimer.rounds, selectedSound: mainTimer.selectedSound, isVibrating: mainTimer.isVibrating)
+            let newTimer = TimerData(id: newId, name: newTimerName, rounds: appSettings.rounds, selectedSound: appSettings.isSoundEnabled ? appSettings.selectedSound : nil, isVibrating: appSettings.isVibrating)
             newTimer.intervals = mainTimer.intervals
             context.insert(newTimer)
         }
