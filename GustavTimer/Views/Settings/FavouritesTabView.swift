@@ -75,6 +75,14 @@ struct FavouritesTabView: View {
             .animation(.spring, value: isEditing)
             .navigationTitle("FAVOURITES_TAB")
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(role: .close) {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                    }
+                }
+                
                 ToolbarItem {
                     Button {
                         let savedTimers = timerData.filter { $0.id != 0 }
@@ -93,16 +101,6 @@ struct FavouritesTabView: View {
                         isEditing.toggle()
                     } label: {
                         Image(systemName: "slider.horizontal.3")
-                    }
-                }
-                
-                ToolbarSpacer(.fixed)
-                
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(role: .close) {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
                     }
                 }
             }

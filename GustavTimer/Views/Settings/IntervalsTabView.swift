@@ -74,6 +74,14 @@ struct IntervalsTabView: View {
                 Text("Enter a name for your timer configuration.")
             }
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(role: .close) {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                    }
+                }
+
                 ToolbarItem {
                     Button {
                         if !isTimerAlreadySaved() {
@@ -104,14 +112,7 @@ struct IntervalsTabView: View {
                     }
                 }
                 
-                ToolbarSpacer(.fixed)
-                ToolbarItem {
-                    Button(role: .close) {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                    }
-                }
+                
             }
         }
     }

@@ -61,7 +61,7 @@ struct SettingsTabView: View {
             }
             .navigationTitle("SETTINGS_TAB")
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItem(placement: .navigationBarLeading) {
                     Button(role: .close) {
                         dismiss()
                     } label: {
