@@ -22,6 +22,7 @@ struct FavouritesTabView: View {
     @State var showDeleteAlert: Bool = false
     @State var timerToDelete: TimerData?
     @State var isEditing: Bool = false
+    @State var showAlreadySavedAlert: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -53,7 +54,7 @@ struct FavouritesTabView: View {
                         FavouritesEmptyView()
                     }
                 }
-                if let mainTimer = timerData.first(where: { $0.id == 0 }) {
+                if let mainTimer = timerData.first(where: { $0.id == 0 }), !savedTimers.contains(mainTimer) {
                     VStack(alignment: .leading, spacing: 0) {
                         FavouriteRowView(timer: mainTimer)
                         Button("ADD_TO_FAVOURITES") {
@@ -76,7 +77,12 @@ struct FavouritesTabView: View {
             .toolbar {
                 ToolbarItem {
                     Button {
-                        showSaveAlert.toggle()
+                        let savedTimers = timerData.filter { $0.id != 0 }
+                        if let mainTimer = timerData.first(where: { $0.id == 0 }), !savedTimers.contains(mainTimer) {
+                            showSaveAlert.toggle()
+                        } else {
+                            showAlreadySavedAlert.toggle()
+                        }
                     } label: {
                         Image(systemName: "plus")
                     }
@@ -119,6 +125,11 @@ struct FavouritesTabView: View {
             if let timer = timerToDelete {
                 Text("Are you sure you want to delete '\(timer.name)'?")
             }
+        }
+        .alert("Already Saved", isPresented: $showAlreadySavedAlert) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text("This timer configuration is already saved in your favourites.")
         }
     }
     

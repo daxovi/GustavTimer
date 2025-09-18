@@ -76,9 +76,11 @@ struct IntervalsTabView: View {
             .toolbar {
                 ToolbarItem {
                     Button {
-                        showSaveAlert = true
+                        if !isTimerAlreadySaved() {
+                            showSaveAlert = true
+                        }
                     } label: {
-                        Image(systemName: "star")
+                        Image(systemName: isTimerAlreadySaved() ? "star.fill" : "star")
                     }
                 }
                 
@@ -112,6 +114,14 @@ struct IntervalsTabView: View {
                 }
             }
         }
+    }
+    
+    private func isTimerAlreadySaved() -> Bool {
+        let savedTimers = timerData.filter { $0.id != 0 }
+        if let mainTimer = timerData.first(where: { $0.id == 0 }) {
+            return savedTimers.contains(mainTimer)
+        }
+        return false
     }
     
     private func getOrCreateTimerData() -> TimerData {

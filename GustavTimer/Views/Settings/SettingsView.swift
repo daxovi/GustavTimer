@@ -20,39 +20,30 @@ struct SettingsView: View {
     @State private var searchText: String = ""
     
     var body: some View {
-        TabView {
-            IntervalsTabView()
-            .tabItem {
-                Label("INTERVALS_TAB", systemImage: "timer")
-            }
-            
-            FavouritesTabView()
-            .tabItem {
-                Label("FAVOURITES_TAB", systemImage: "star.fill")
-            }
-            
-            SettingsTabView()
-            .tabItem {
-                Label("SETTINGS_TAB", systemImage: "gearshape")
-            }
-            
-            Text("Whats New")
-                .tabItem {
-                    Label("WHATSNEW_TAB", systemImage: "iphone.app.switcher")
+            TabView {
+                Tab("INTERVALS_TAB", systemImage: "timer") {
+                    IntervalsTabView()
                 }
-            
-            NavigationStack {
-                Text("Search")
-                Text(searchText)
+                Tab("FAVOURITES_TAB", systemImage: "star.fill") {
+                    FavouritesTabView()
+                }
+                Tab("SETTINGS_TAB", systemImage: "gearshape") {
+                    SettingsTabView()
+                }
+                Tab("WHATSNEW_TAB", systemImage: "iphone.app.switcher") {
+                    Text("Whats New")
+                }
+                Tab(role: .search) {
+                    NavigationStack {
+                        Text("Search")
+                        Text(searchText)
+                    }
+                    .searchable(text: $searchText)
+                }
             }
-            .searchable(text: $searchText)
-            .tabItem {
-                Label("Search", systemImage: "magnifyingglass")
-            }
+            .tint(theme.colors.pink)
+            .font(theme.fonts.body)
         }
-        .tint(theme.colors.pink)
-        .font(theme.fonts.body)
-    }
 }
 
 #Preview {

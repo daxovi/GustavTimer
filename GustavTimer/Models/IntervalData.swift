@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct IntervalData: Identifiable, Codable {
+struct IntervalData: Identifiable, Codable, Equatable {
     var id: UUID = UUID() // Unikátní identifikátor
     var value: Int // Zachováváme pro zpětnou kompatibilitu
     var name: String
@@ -33,7 +33,7 @@ struct IntervalData: Identifiable, Codable {
         self.name = name
     }
     
-//    static func == (lhs: IntervalData, rhs: IntervalData) -> Bool {
-//        return lhs.value == rhs.value && lhs.name == rhs.name
-//    }
+    static func == (lhs: IntervalData, rhs: IntervalData) -> Bool {
+        return lhs.value == rhs.value && lhs.name == rhs.name
+    }
 }

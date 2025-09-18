@@ -10,7 +10,7 @@ import SwiftData
 import SwiftUI
 
 @Model
-class TimerData {
+class TimerData: Equatable {
     
     var id: Int
     var name: String
@@ -31,8 +31,8 @@ class TimerData {
         self.rounds = rounds
     }
     
-//    static func == (lhs: TimerData, rhs: TimerData) -> Bool {
-//        return lhs.intervals == rhs.intervals
-//    }
+    static func == (lhs: TimerData, rhs: TimerData) -> Bool {
+        return lhs.intervals == rhs.intervals
+    }
 }
 
