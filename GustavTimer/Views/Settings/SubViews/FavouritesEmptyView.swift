@@ -11,7 +11,7 @@ struct FavouritesEmptyView: View {
     @Environment(\.theme) var theme
     
     var body: some View {
-        Text("save your first timer to favourites or save our tabata or extended stretch")
+        Text("FAVOURITES_EMPTY_MESSAGE")
             .multilineTextAlignment(.center)
             .padding()
             .frame(height: 120)

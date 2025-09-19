@@ -18,6 +18,8 @@ class TimerData: Equatable {
     var selectedSound: String?
     var rounds: Int
     var order: Int
+    var createdAt: Date = Date()
+    var usedCount: Int = 0
     
     var intervals: [IntervalData] = [
         IntervalData(value: 30, name: "Work"),
@@ -32,8 +34,21 @@ class TimerData: Equatable {
         self.rounds = rounds
     }
     
+    init(order: Int, name: String, rounds: Int, selectedSound: String?, isVibrating: Bool, intervals: [IntervalData]) {
+        self.order = order
+        self.name = name
+        self.selectedSound = selectedSound
+        self.isVibrating = isVibrating
+        self.rounds = rounds
+        self.intervals = intervals
+    }
+    
     static func == (lhs: TimerData, rhs: TimerData) -> Bool {
         return lhs.intervals == rhs.intervals
+    }
+    
+    func selected() {
+        usedCount += 1
     }
 }
 

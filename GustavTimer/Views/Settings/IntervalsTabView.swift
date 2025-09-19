@@ -20,6 +20,7 @@ struct IntervalsTabView: View {
     @State var isEditing = false
     @State var newTimerName = ""
     @State var showSaveAlert = false
+    @State var showAlreadySavedAlert = false
     
     private var currentTimerData: TimerData {
         getOrCreateTimerData()
@@ -33,7 +34,7 @@ struct IntervalsTabView: View {
                         IntervalRowView(intervalName: Binding(
                             get: { interval.name },
                             set: { newValue in
-                                let limited = String(newValue.prefix(8))
+                                let limited = String(newValue.prefix(AppConfig.maxTimerName))
                                 updateIntervalName(limited, for: interval.id, in: currentTimerData)
                             }
                         ), intervalValue: Binding(
@@ -62,18 +63,20 @@ struct IntervalsTabView: View {
             }
             .environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive))
             .animation(.spring, value: isEditing)
-            .navigationTitle("INTERVALS_TAB")
             .animation(.easeInOut, value: currentTimerData.intervals.count)
-            .alert("Save Timer", isPresented: $showSaveAlert) {
-                TextField("Timer Name", text: $newTimerName)
-                Button("Save") {
-                    saveTimer()
-                }
-                Button("Cancel", role: .cancel) { }
-            } message: {
-                Text("Enter a name for your timer configuration.")
-            }
+            .saveTimerAlert(isPresented: $showSaveAlert, timerName: $newTimerName, onSave: saveTimer)
+            .alreadySavedAlert(isPresented: $showAlreadySavedAlert)
+            .navigationBarTitleDisplayMode(.automatic)
             .toolbar {
+                ToolbarItem(placement: .largeTitle) {
+                    HStack {
+                        Text("INTERVALS_TAB")
+                            .font(theme.fonts.settingsLargeTitle)
+                        Spacer()
+                    }
+                    .padding(.vertical)
+                }
+                
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(role: .close) {
                         dismiss()
@@ -86,6 +89,8 @@ struct IntervalsTabView: View {
                     Button {
                         if !isTimerAlreadySaved() {
                             showSaveAlert = true
+                        } else {
+                            showAlreadySavedAlert = true
                         }
                     } label: {
                         Image(systemName: isTimerAlreadySaved() ? "star.fill" : "star")

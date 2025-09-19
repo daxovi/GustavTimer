@@ -23,12 +23,12 @@ struct IntervalRowView: View {
                     Text("INTERVAL")
                         .font(theme.fonts.settingsCaption)
                         .foregroundStyle(theme.colors.light)
-                    TextField("Name", text: $intervalName)
+                    TextField("INTERVAL_NAME_PROMPT", text: $intervalName)
                         .font(theme.fonts.settingsIntervalName)
                         .focused($nameIsFocused)
                 }
                 
-                Spacer(minLength: 50)
+//                Spacer(minLength: 50)
                 
                 VStack(alignment: .trailing, spacing: 4) {
                     Text("INTERVAL_VALUE")

@@ -46,21 +46,30 @@ struct SettingsTabView: View {
                         }
                     }
                     
-                    Button("Try Gustav Weights") {
+                    Button("TRY_WEIGHTS") {
                         if let url = URL(string: AppConfig.weightsURL) {
                             UIApplication.shared.open(url)
                         }
                     }
                     
-                    Button("Follow Gustav on Instagram") {
+                    Button("FOLLOW_INSTAGRAM") {
                         if let url = URL(string: "https://www.instagram.com/gustavtraining") {
                             UIApplication.shared.open(url)
                         }
                     }
                 }
             }
-            .navigationTitle("SETTINGS_TAB")
+            .navigationBarTitleDisplayMode(.automatic)
             .toolbar {
+                ToolbarItem(placement: .largeTitle) {
+                    HStack {
+                        Text("SETTINGS_TAB")
+                            .font(theme.fonts.settingsLargeTitle)
+                        Spacer()
+                    }
+                    .padding(.vertical)
+                }
+
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(role: .close) {
                         dismiss()

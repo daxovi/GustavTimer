@@ -9,11 +9,12 @@ import SwiftUI
 
 struct FavouriteRowView: View {
     let timer: TimerData
+    let selected: Bool
     
     @Environment(\.theme) var theme
     
     var isMainTimer: Bool {
-        timer.id == AppConfig.defaultTimer.id
+        timer.order == AppConfig.defaultTimer.order
     }
     
     var body: some View {
@@ -39,7 +40,7 @@ struct FavouriteRowView: View {
                 HStack {
                     Text(getTimerName())
                         .font(theme.fonts.settingsLabelLarge)
-                        .foregroundStyle(isMainTimer ? theme.colors.light : .black)
+                        .foregroundStyle(isMainTimer ? theme.colors.light : .primary)
                         .lineLimit(1)
                         .padding(.trailing, 4)
                     
@@ -66,6 +67,7 @@ struct FavouriteRowView: View {
             }
             .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
             .padding()
+            .background(selected ? theme.colors.volt.opacity(0.2) : nil)
             .contentShape(RoundedRectangle(cornerRadius: 10))
         }
     }
@@ -87,13 +89,32 @@ struct FavouriteRowView: View {
 
 #Preview {
     List {
+        Section {
+            FavouriteRowView(timer: {
+                let timer = TimerData(order: 2, name: "My Favourite Timer", rounds: 5, selectedSound: "Bell", isVibrating: true)
+                timer.intervals = [
+                    IntervalData(value: 30, name: "Work"),
+                    IntervalData(value: 15, name: "Rest")
+                ]
+                return timer
+            }(), selected: true)
+            FavouriteRowView(timer: {
+                let timer = TimerData(order: 2, name: "My Favourite Timer", rounds: 5, selectedSound: "Bell", isVibrating: true)
+                timer.intervals = [
+                    IntervalData(value: 30, name: "Work"),
+                    IntervalData(value: 15, name: "Rest")
+                ]
+                return timer
+            }(), selected: false)
+        }
         FavouriteRowView(timer: {
             let timer = AppConfig.defaultTimer
+            timer.order = 11
             timer.intervals = [
                 IntervalData(value: 30, name: "Work"),
                 IntervalData(value: 15, name: "Rest")
             ]
             return timer
-        }())
+        }(), selected: false)
     }
 }

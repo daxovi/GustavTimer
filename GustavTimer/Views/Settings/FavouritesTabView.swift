@@ -24,6 +24,7 @@ struct FavouritesTabView: View {
     @State var isEditing: Bool = false
     @State var showAlreadySavedAlert: Bool = false
     
+    
     var body: some View {
         NavigationStack {
             List {
@@ -31,7 +32,7 @@ struct FavouritesTabView: View {
                 Section {
                     if !savedTimers.isEmpty {
                         ForEach(savedTimers) { timer in
-                            FavouriteRowView(timer: timer)
+                            FavouriteRowView(timer: timer, selected: isTimerSelected(timer: timer))
                                 .onTapGesture {
                                     selectTimer(timer: timer)
                                 }
@@ -49,7 +50,7 @@ struct FavouritesTabView: View {
                 }
                 if let mainTimer = timerData.first(where: { $0.order == 0 }), !savedTimers.contains(mainTimer) {
                     VStack(alignment: .leading, spacing: 0) {
-                        FavouriteRowView(timer: mainTimer)
+                        FavouriteRowView(timer: mainTimer, selected: false)
                         Button("ADD_TO_FAVOURITES") {
                             showSaveAlert.toggle()
                         }
@@ -66,8 +67,18 @@ struct FavouritesTabView: View {
             }
             .environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive))
             .animation(.spring, value: isEditing)
-            .navigationTitle("FAVOURITES_TAB")
+            .navigationBarTitleDisplayMode(.automatic)
             .toolbar {
+                
+                ToolbarItem(placement: .largeTitle) {
+                    HStack {
+                        Text("FAVOURITES_TAB")
+                            .font(theme.fonts.settingsLargeTitle)
+                        Spacer()
+                    }
+                    .padding(.vertical)
+                }
+                
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(role: .close) {
                         dismiss()
@@ -98,30 +109,15 @@ struct FavouritesTabView: View {
                 }
             }
         }
-        .alert("Save Timer", isPresented: $showSaveAlert) {
-            TextField("Timer Name", text: $newTimerName)
-            Button("Save") {
-                saveTimer()
-            }
-            Button("Cancel", role: .cancel) { }
-        } message: {
-            Text("Enter a name for your timer configuration.")
+        .saveTimerAlert(isPresented: $showSaveAlert, timerName: $newTimerName, onSave: saveTimer)
+        .alreadySavedAlert(isPresented: $showAlreadySavedAlert)
+    }
+    
+    private func isTimerSelected(timer: TimerData) -> Bool {
+        if let mainTimer = timerData.first(where: { $0.order == 0 }) {
+            return mainTimer == timer
         }
-        .alert("Delete Timer", isPresented: $showDeleteAlert) {
-            Button("Delete", role: .destructive) {
-                deleteTimer()
-            }
-            Button("Cancel", role: .cancel) { }
-        } message: {
-            if let timer = timerToDelete {
-                Text("Are you sure you want to delete '\(timer.name)'?")
-            }
-        }
-        .alert("Already Saved", isPresented: $showAlreadySavedAlert) {
-            Button("OK", role: .cancel) { }
-        } message: {
-            Text("This timer configuration is already saved in your favourites.")
-        }
+        return false
     }
     
     private func moveTimer(from indices: IndexSet, to newOffset: Int) {

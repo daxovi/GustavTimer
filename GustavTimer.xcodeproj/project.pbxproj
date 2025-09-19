@@ -17,9 +17,9 @@
 		CF2222D02E353EA600A90265 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2222CF2E353EA300A90265 /* TimerView.swift */; };
 		CF2222DA2E355A8200A90265 /* TimerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2222D92E355A8000A90265 /* TimerData.swift */; };
 		CF228F502E7C52B9000DEF21 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF228F4F2E7C52B5000DEF21 /* AppSettings.swift */; };
+		CF228F542E7D7ED4000DEF21 /* SearchTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF228F532E7D7ECF000DEF21 /* SearchTabView.swift */; };
 		CF279C4C2C31A8940084C43F /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF279C4B2C31A8940084C43F /* SoundManager.swift */; };
 		CF3A14912E47250800F734F4 /* TimeDisplayFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A14902E47250800F734F4 /* TimeDisplayFormat.swift */; };
-		CF3A14932E47251B00F734F4 /* TimeDisplayFormatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A14922E47251B00F734F4 /* TimeDisplayFormatView.swift */; };
 		CF70037D2C8DE816009F1531 /* HintButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70037C2C8DE816009F1531 /* HintButton.swift */; };
 		CF70037F2C8DED37009F1531 /* BackgroundSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70037E2C8DED37009F1531 /* BackgroundSelectorView.swift */; };
 		CF7744ED2E7992EF00693351 /* FavouritesTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7744EC2E7992E900693351 /* FavouritesTabView.swift */; };
@@ -41,7 +41,6 @@
 		CF8C07C72E3E64100083ED1D /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = CF8C07C62E3E64100083ED1D /* RiveRuntime */; };
 		CF8C07CD2E3E673C0083ED1D /* reset.riv in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07CC2E3E673C0083ED1D /* reset.riv */; };
 		CF8E14672D17404900155BE8 /* VideoPlayerFullscreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E14662D17403900155BE8 /* VideoPlayerFullscreen.swift */; };
-		CF8E146B2D1745DB00155BE8 /* MonthlyMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E146A2D1745CC00155BE8 /* MonthlyMenuItem.swift */; };
 		CF93EAF22C5E4C6B00A98ABD /* 90s-final.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF93EAF02C5E4C6B00A98ABD /* 90s-final.mp3 */; };
 		CF93EAF32C5E4C6B00A98ABD /* 90s-countdown.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF93EAF12C5E4C6B00A98ABD /* 90s-countdown.mp3 */; };
 		CF93EAF52C5E4F6200A98ABD /* bell-final.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF93EAF42C5E4F6200A98ABD /* bell-final.mp3 */; };
@@ -66,7 +65,6 @@
 		CFF207D62E6CA9BA00D0C369 /* FavouritesEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF207D52E6CA9B300D0C369 /* FavouritesEmptyView.swift */; };
 		CFF207D82E6CA9F900D0C369 /* FavouriteRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF207D72E6CA9F300D0C369 /* FavouriteRowView.swift */; };
 		CFF71ACC2B8B99BC00884E82 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */; };
-		CFFEC2B62D184F9800E4C157 /* MonthlyConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFEC2B52D184F8B00E4C157 /* MonthlyConfig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,9 +79,9 @@
 		CF2222CF2E353EA300A90265 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		CF2222D92E355A8000A90265 /* TimerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerData.swift; sourceTree = "<group>"; };
 		CF228F4F2E7C52B5000DEF21 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		CF228F532E7D7ECF000DEF21 /* SearchTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTabView.swift; sourceTree = "<group>"; };
 		CF279C4B2C31A8940084C43F /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		CF3A14902E47250800F734F4 /* TimeDisplayFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDisplayFormat.swift; sourceTree = "<group>"; };
-		CF3A14922E47251B00F734F4 /* TimeDisplayFormatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDisplayFormatView.swift; sourceTree = "<group>"; };
 		CF5B11122AD33CE500F42131 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CF70037C2C8DE816009F1531 /* HintButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintButton.swift; sourceTree = "<group>"; };
 		CF70037E2C8DED37009F1531 /* BackgroundSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSelectorView.swift; sourceTree = "<group>"; };
@@ -105,7 +103,6 @@
 		CF8C07BE2E3E04250083ED1D /* SpaceMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceMono-Regular.ttf"; sourceTree = "<group>"; };
 		CF8C07CC2E3E673C0083ED1D /* reset.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = reset.riv; sourceTree = "<group>"; };
 		CF8E14662D17403900155BE8 /* VideoPlayerFullscreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerFullscreen.swift; sourceTree = "<group>"; };
-		CF8E146A2D1745CC00155BE8 /* MonthlyMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyMenuItem.swift; sourceTree = "<group>"; };
 		CF93EAF02C5E4C6B00A98ABD /* 90s-final.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "90s-final.mp3"; sourceTree = "<group>"; };
 		CF93EAF12C5E4C6B00A98ABD /* 90s-countdown.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "90s-countdown.mp3"; sourceTree = "<group>"; };
 		CF93EAF42C5E4F6200A98ABD /* bell-final.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bell-final.mp3"; sourceTree = "<group>"; };
@@ -130,7 +127,6 @@
 		CFF207D52E6CA9B300D0C369 /* FavouritesEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesEmptyView.swift; sourceTree = "<group>"; };
 		CFF207D72E6CA9F300D0C369 /* FavouriteRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteRowView.swift; sourceTree = "<group>"; };
 		CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		CFFEC2B52D184F8B00E4C157 /* MonthlyConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,7 +170,6 @@
 				CF5B11122AD33CE500F42131 /* Info.plist */,
 				CF9922AC2C8F84C9004186DF /* AppConfig.swift */,
 				CF8C07CE2E3E6AC80083ED1D /* RiveAnimations */,
-				CF8E14692D1745C300155BE8 /* MonthlyChallenge */,
 				CF21843329F052590060706C /* GustavTimerApp.swift */,
 				CF21843529F052590060706C /* ContentView.swift */,
 				CF8C07B92E3DFD990083ED1D /* Theme.swift */,
@@ -207,6 +202,7 @@
 		CF2222D22E353FE800A90265 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				CF228F532E7D7ECF000DEF21 /* SearchTabView.swift */,
 				CF7744F22E79A06600693351 /* IntervalsTabView.swift */,
 				CF7744EE2E799B2300693351 /* SettingsTabView.swift */,
 				CF7744EC2E7992E900693351 /* FavouritesTabView.swift */,
@@ -223,7 +219,6 @@
 				CF10D0552E73371800F84454 /* RoundsSettingsView.swift */,
 				CFF207D72E6CA9F300D0C369 /* FavouriteRowView.swift */,
 				CFF207D52E6CA9B300D0C369 /* FavouritesEmptyView.swift */,
-				CF3A14922E47251B00F734F4 /* TimeDisplayFormatView.swift */,
 				CF01945B2C8A20D700CAC1BD /* SoundSettingsView.swift */,
 				CF70037E2C8DED37009F1531 /* BackgroundSelectorView.swift */,
 			);
@@ -309,15 +304,6 @@
 				CF8C07CC2E3E673C0083ED1D /* reset.riv */,
 			);
 			path = RiveAnimations;
-			sourceTree = "<group>";
-		};
-		CF8E14692D1745C300155BE8 /* MonthlyChallenge */ = {
-			isa = PBXGroup;
-			children = (
-				CFFEC2B52D184F8B00E4C157 /* MonthlyConfig.swift */,
-				CF8E146A2D1745CC00155BE8 /* MonthlyMenuItem.swift */,
-			);
-			path = MonthlyChallenge;
 			sourceTree = "<group>";
 		};
 		CF9922BA2C9766DC004186DF /* Managers */ = {
@@ -455,9 +441,7 @@
 				CF01945C2C8A20D700CAC1BD /* SoundSettingsView.swift in Sources */,
 				CFADBCF42AC9DC7B00AE27D8 /* SettingsView.swift in Sources */,
 				CF9922B12C959AC1004186DF /* ControlButton.swift in Sources */,
-				CF8E146B2D1745DB00155BE8 /* MonthlyMenuItem.swift in Sources */,
 				CF228F502E7C52B9000DEF21 /* AppSettings.swift in Sources */,
-				CF3A14932E47251B00F734F4 /* TimeDisplayFormatView.swift in Sources */,
 				CFC4C1852D04766D0086CEBB /* Tag.swift in Sources */,
 				CFADBCF22AC9C8AE00AE27D8 /* ProgressArrayView.swift in Sources */,
 				CFC4C1872D047C1D0086CEBB /* WhatsNewView.swift in Sources */,
@@ -469,7 +453,6 @@
 				CFCE3C762C431EC900D33AE3 /* View+Extension.swift in Sources */,
 				CF70037F2C8DED37009F1531 /* BackgroundSelectorView.swift in Sources */,
 				CFF207D62E6CA9BA00D0C369 /* FavouritesEmptyView.swift in Sources */,
-				CFFEC2B62D184F9800E4C157 /* MonthlyConfig.swift in Sources */,
 				CF7744ED2E7992EF00693351 /* FavouritesTabView.swift in Sources */,
 				CF8C07BA2E3DFD9B0083ED1D /* Theme.swift in Sources */,
 				CF2222D02E353EA600A90265 /* TimerView.swift in Sources */,
@@ -479,6 +462,7 @@
 				CF7744F32E79A06B00693351 /* IntervalsTabView.swift in Sources */,
 				CF7B1B412C8F6BD3005D4664 /* IntervalData.swift in Sources */,
 				CF2222DA2E355A8200A90265 /* TimerData.swift in Sources */,
+				CF228F542E7D7ED4000DEF21 /* SearchTabView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

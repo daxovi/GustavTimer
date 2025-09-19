@@ -35,11 +35,8 @@ struct SettingsView: View {
                     Text("Whats New")
                 }
                 Tab(value: 4, role: .search) {
-                    NavigationStack {
-                        Text("Search")
-                        Text(searchText)
-                    }
-                    .searchable(text: $searchText)
+                    SearchTabView(searchText: $searchText)
+                        .searchable(text: $searchText)
                 }
             }
             .tint(theme.colors.pink)

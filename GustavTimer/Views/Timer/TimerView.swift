@@ -125,18 +125,17 @@ private extension TimerView {
         .font(theme.fonts.headUpDisplay)
     }
     
+    @ViewBuilder
     var currentTimerInfo: some View {
-        Group {
-            if let currentTimer = currentTimer {
-                Text("\(currentTimer.name) (\(viewModel.finishedRounds)\(viewModel.rounds == -1 ? "" : ("/" + String(viewModel.rounds))))")
-                    .safeAreaPadding(.horizontal)
-                    .foregroundColor(Color("StartColor").opacity(viewModel.finishedRounds == 0 ? 0.0 : 1.0))
-                    .animation(.easeInOut(duration: 0.2), value: viewModel.finishedRounds)
-            } else {
-                Text("No Timer")
-                    .safeAreaPadding(.horizontal)
-                    .foregroundColor(Color("StartColor").opacity(0.5))
-            }
+        if let currentTimer = currentTimer {
+            Text("\(currentTimer.name) (\(viewModel.finishedRounds)\(viewModel.rounds == -1 ? "" : ("/" + String(viewModel.rounds))))")
+                .safeAreaPadding(.horizontal)
+                .foregroundColor(Color("StartColor").opacity(viewModel.finishedRounds == 0 ? 0.0 : 1.0))
+                .animation(.easeInOut(duration: 0.2), value: viewModel.finishedRounds)
+        } else {
+            Text("No Timer")
+                .safeAreaPadding(.horizontal)
+                .foregroundColor(Color("StartColor").opacity(0.5))
         }
     }
     
