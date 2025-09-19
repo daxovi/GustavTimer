@@ -12,19 +12,20 @@ import SwiftUI
 @Model
 class TimerData: Equatable {
     
-    var id: Int
+    var id: UUID = UUID()
     var name: String
     var isVibrating: Bool
     var selectedSound: String?
     var rounds: Int
+    var order: Int
     
     var intervals: [IntervalData] = [
         IntervalData(value: 30, name: "Work"),
         IntervalData(value: 15, name: "Rest")
     ]
 
-    init(id: Int, name: String, rounds: Int, selectedSound: String?, isVibrating: Bool) {
-        self.id = id
+    init(order: Int, name: String, rounds: Int, selectedSound: String?, isVibrating: Bool) {
+        self.order = order
         self.name = name
         self.selectedSound = selectedSound
         self.isVibrating = isVibrating

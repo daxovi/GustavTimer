@@ -10,7 +10,7 @@ import SwiftData
 
 struct FavouritesTabView: View {
     
-    @Query(sort: \TimerData.id, order: .reverse) var timerData: [TimerData]
+    @Query(sort: \TimerData.order, order: .reverse) var timerData: [TimerData]
     @Environment(\.modelContext) var context
     @Environment(\.theme) var theme
     @Environment(\.dismiss) var dismiss
@@ -27,7 +27,7 @@ struct FavouritesTabView: View {
     var body: some View {
         NavigationStack {
             List {
-                let savedTimers = timerData.filter { $0.id != 0 }
+                let savedTimers = timerData.filter { $0.order != 0 }
                 Section {
                     if !savedTimers.isEmpty {
                         ForEach(savedTimers) { timer in
@@ -42,19 +42,12 @@ struct FavouritesTabView: View {
                                 deleteTimer()
                             }
                         }
-                        .onMove(perform: { indices, newOffset in
-                                var s = timerData.sorted(by: { $0.id < $1.id })
-                                s.move(fromOffsets: indices, toOffset: newOffset)
-                                for (index, item) in s.enumerated() {
-                                        item.id = index
-                                }
-                                try? self.context.save()
-                         })
+                        .onMove(perform: moveTimer)
                     } else {
                         FavouritesEmptyView()
                     }
                 }
-                if let mainTimer = timerData.first(where: { $0.id == 0 }), !savedTimers.contains(mainTimer) {
+                if let mainTimer = timerData.first(where: { $0.order == 0 }), !savedTimers.contains(mainTimer) {
                     VStack(alignment: .leading, spacing: 0) {
                         FavouriteRowView(timer: mainTimer)
                         Button("ADD_TO_FAVOURITES") {
@@ -85,8 +78,8 @@ struct FavouritesTabView: View {
                 
                 ToolbarItem {
                     Button {
-                        let savedTimers = timerData.filter { $0.id != 0 }
-                        if let mainTimer = timerData.first(where: { $0.id == 0 }), !savedTimers.contains(mainTimer) {
+                        let savedTimers = timerData.filter { $0.order != 0 }
+                        if let mainTimer = timerData.first(where: { $0.order == 0 }), !savedTimers.contains(mainTimer) {
                             showSaveAlert.toggle()
                         } else {
                             showAlreadySavedAlert.toggle()
@@ -131,6 +124,28 @@ struct FavouritesTabView: View {
         }
     }
     
+    private func moveTimer(from indices: IndexSet, to newOffset: Int) {
+        // Získáme pouze uložené časovače (bez hlavního časovače)
+        let savedTimers = timerData.filter { $0.order != 0 }
+        
+        // Vytvoříme kopii časovačů, se kterou můžeme pracovat
+        var movedTimers = savedTimers
+        
+        // Provedeme přesun v naší kopii
+        movedTimers.move(fromOffsets: indices, toOffset: newOffset)
+        
+        // Přiřadíme nová ID pro zachování pořadí
+        // Začínáme od 1, protože 0 je rezervováno pro hlavní časovač
+        for i in 0..<movedTimers.count {
+            let timer = movedTimers[i]
+            // Nastavíme nové ID, které určuje pořadí (vyšší ID = novější časovač)
+            timer.order = movedTimers.count - i
+        }
+        
+        // Uložíme změny do databáze
+        try? context.save()
+    }
+    
     private func addButton(label: LocalizedStringKey, action: @escaping () -> Void) -> some View {
         Button {
             action()
@@ -153,16 +168,16 @@ struct FavouritesTabView: View {
     }
     
     private func saveTimer() {
-        if let mainTimer = timerData.first(where: { $0.id == 0 }) {
-            let newId = (timerData.map { $0.id }.max() ?? 0) + 1
-            let newTimer = TimerData(id: newId, name: newTimerName, rounds: appSettings.rounds, selectedSound: appSettings.isSoundEnabled ? appSettings.selectedSound : nil, isVibrating: appSettings.isVibrating)
+        if let mainTimer = timerData.first(where: { $0.order == 0 }) {
+            let newId = (timerData.map { $0.order }.max() ?? 0) + 1
+            let newTimer = TimerData(order: newId, name: newTimerName, rounds: appSettings.rounds, selectedSound: appSettings.isSoundEnabled ? appSettings.selectedSound : nil, isVibrating: appSettings.isVibrating)
             newTimer.intervals = mainTimer.intervals
             context.insert(newTimer)
         }
     }
     
     private func selectTimer(timer: TimerData) {
-        if let mainTimer = timerData.first(where: { $0.id == 0 }) {
+        if let mainTimer = timerData.first(where: { $0.order == 0 }) {
             mainTimer.name = timer.name
             mainTimer.intervals = timer.intervals
             appSettings.save(from: timer)

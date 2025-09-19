@@ -118,15 +118,15 @@ struct IntervalsTabView: View {
     }
     
     private func isTimerAlreadySaved() -> Bool {
-        let savedTimers = timerData.filter { $0.id != 0 }
-        if let mainTimer = timerData.first(where: { $0.id == 0 }) {
+        let savedTimers = timerData.filter { $0.order != 0 }
+        if let mainTimer = timerData.first(where: { $0.order == 0 }) {
             return savedTimers.contains(mainTimer)
         }
         return false
     }
     
     private func getOrCreateTimerData() -> TimerData {
-        if let existing = timerData.first(where: { $0.id == 0 }) {
+        if let existing = timerData.first(where: { $0.order == 0 }) {
             return existing
         } else {
             let newData = AppConfig.defaultTimer
@@ -136,9 +136,9 @@ struct IntervalsTabView: View {
     }
     
     private func saveTimer() {
-        if let mainTimer = timerData.first(where: { $0.id == 0 }) {
-            let newId = (timerData.map { $0.id }.max() ?? 0) + 1
-            let newTimer = TimerData(id: newId, name: newTimerName, rounds: appSettings.rounds, selectedSound: appSettings.isSoundEnabled ? appSettings.selectedSound : nil, isVibrating: appSettings.isVibrating)
+        if let mainTimer = timerData.first(where: { $0.order == 0 }) {
+            let newOrder = (timerData.map { $0.order }.max() ?? 0) + 1
+            let newTimer = TimerData(order: newOrder, name: newTimerName, rounds: appSettings.rounds, selectedSound: appSettings.isSoundEnabled ? appSettings.selectedSound : nil, isVibrating: appSettings.isVibrating)
             newTimer.intervals = mainTimer.intervals
             context.insert(newTimer)
         }

@@ -44,7 +44,7 @@ struct AppConfig {
     ]
     
     // Default timer
-    static let defaultTimer = TimerData(id: 0, name: "Gustav Timer", rounds: -1, selectedSound: soundThemes.first ?? nil, isVibrating: false)
+    static let defaultTimer = TimerData(order: 0, name: "Gustav Timer", rounds: -1, selectedSound: soundThemes.first ?? nil, isVibrating: false)
     
     static let soundThemes = ["beep", "90s", "bell", "trumpet", "game"]
     
