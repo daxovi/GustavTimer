@@ -329,6 +329,7 @@
 
     },
     "enter challenge" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

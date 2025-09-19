@@ -58,8 +58,8 @@ struct TimerView: View {
                 name: UIDevice.orientationDidChangeNotification,
                 object: nil)
         }
-        .sheet(isPresented: $viewModel.showingWhatsNew) {
-            whatsNewSheet
+        .fullScreenCover(isPresented: $viewModel.showingWhatsNew) {
+            SettingsView(selectedTab: 3)
         }
         .onOpenURL { url in
             viewModel.handleDeepLink(url: url)
@@ -226,16 +226,6 @@ private extension TimerView {
             .resizable()
             .scaledToFit()
             .foregroundColor(Color(viewModel.isSoundEnabled ? .start : .reset))
-    }
-    
-    var whatsNewSheet: some View {
-        WhatsNewView(
-            buttonLabel: "enter challenge",
-            tags: ["#whatsnew", "V1.4"]
-        ) {
-            viewModel.showingWhatsNew = false
-            viewModel.showingSheet.toggle()
-        }
     }
 }
 

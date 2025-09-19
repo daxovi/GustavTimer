@@ -18,22 +18,23 @@ struct SettingsView: View {
     @Environment(\.theme) var theme
     
     @State private var searchText: String = ""
+    @State var selectedTab: Int = 0
     
     var body: some View {
-            TabView {
-                Tab("INTERVALS_TAB", systemImage: "timer") {
+            TabView(selection: $selectedTab) {
+                Tab("INTERVALS_TAB", systemImage: "timer", value: 0) {
                     IntervalsTabView()
                 }
-                Tab("FAVOURITES_TAB", systemImage: "star.fill") {
+                Tab("FAVOURITES_TAB", systemImage: "star.fill", value: 1) {
                     FavouritesTabView()
                 }
-                Tab("SETTINGS_TAB", systemImage: "gearshape") {
+                Tab("SETTINGS_TAB", systemImage: "gearshape", value: 2) {
                     SettingsTabView()
                 }
-                Tab("WHATSNEW_TAB", systemImage: "iphone.app.switcher") {
+                Tab("WHATSNEW_TAB", systemImage: "iphone.app.switcher", value: 3) {
                     Text("Whats New")
                 }
-                Tab(role: .search) {
+                Tab(value: 4, role: .search) {
                     NavigationStack {
                         Text("Search")
                         Text(searchText)
