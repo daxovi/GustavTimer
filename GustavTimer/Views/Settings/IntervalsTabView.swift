@@ -76,14 +76,6 @@ struct IntervalsTabView: View {
                     }
                     .padding(.vertical)
                 }
-                
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(role: .close) {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                    }
-                }
 
                 ToolbarItem {
                     Button {

@@ -13,17 +13,13 @@ struct BackgroundImageView: View {
     @Query var customImage: [CustomImageModel]
     
     var body: some View {
-        GeometryReader(content: { geometry in
-            getImage()
-                .resizable()
-                .scaledToFill()
-                .overlay {
-                    Color.black.opacity(0.3)
-                }
-                .grayscale(1.0)
-                .ignoresSafeArea()
-                .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
-        })
+        Color.white
+            .overlay(alignment: .bottom) {
+                getImage()
+                    .resizable()
+                    .scaledToFill()
+                    .clipped()
+            }
     }
     
     func getImage() -> Image {

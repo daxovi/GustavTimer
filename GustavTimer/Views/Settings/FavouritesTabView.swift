@@ -79,14 +79,6 @@ struct FavouritesTabView: View {
                     .padding(.vertical)
                 }
                 
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(role: .close) {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                    }
-                }
-                
                 ToolbarItem {
                     Button {
                         let savedTimers = timerData.filter { $0.order != 0 }

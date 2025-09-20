@@ -24,10 +24,7 @@ struct ContentView: View {
     private var defaultTimerId: Int = 0
     
     var body: some View {
-        TimerView(showSettings: $showSettings)
-            .fullScreenCover(isPresented: $showSettings) {
-                SettingsView()
-            }
+        SettingsView()
             .onAppear {
                 initializeDataIfNeeded()
             }

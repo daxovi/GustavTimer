@@ -56,14 +56,6 @@ struct SearchTabView: View {
             }
             .navigationBarTitleDisplayMode(.automatic)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(role: .close) {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                    }
-                }
-                
                 ToolbarItem(placement: .largeTitle) {
                     HStack {
                         Text("SEARCH_TAB")

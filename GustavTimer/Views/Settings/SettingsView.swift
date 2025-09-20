@@ -19,8 +19,11 @@ struct SettingsView: View {
     
     @State private var searchText: String = ""
     @State var selectedTab: Int = 0
+    @State var showTimer: Bool = false
     
+    @Namespace var animation
     var body: some View {
+        ZStack {
             TabView(selection: $selectedTab) {
                 Tab("INTERVALS_TAB", systemImage: "timer", value: 0) {
                     IntervalsTabView()
@@ -41,10 +44,78 @@ struct SettingsView: View {
             }
             .tint(theme.colors.pink)
             .font(theme.fonts.body)
+            .tabBarMinimizeBehavior(.onScrollDown)
+            .tabViewBottomAccessory {
+                ZStack {
+                    BackgroundImageView()
+                        .matchedGeometryEffect(id: "background", in: animation, isSource: !showTimer)
+
+                    HStack {
+                        Text("START")
+                            .font(theme.fonts.buttonLabel)
+                            .foregroundStyle(theme.colors.neutral)
+                            .frame(maxHeight: .infinity)
+                            .padding(.horizontal, 18)
+                            .glassEffect(.regular.tint(theme.colors.volt).interactive())
+                            .matchedGeometryEffect(id: "button", in: animation, isSource: !showTimer)
+                        .padding(4)
+                        Spacer()
+                        let mainTimer = timerData.first { $0.order == AppConfig.defaultTimer.order }
+                        Text(mainTimer?.intervals.first?.value.formatted() ?? "")
+                            .font(theme.fonts.timerCounter)
+                            .minimumScaleFactor(0.01)
+                            .foregroundStyle(theme.colors.volt)
+                            .padding(2)
+                            .padding(.trailing)
+                            .matchedGeometryEffect(id: "number", in: animation, isSource: !showTimer)
+                            
+                    }
+                }
+                    .onTapGesture {
+                        withAnimation(.spring(duration: 0.3)) {
+                            showTimer = true
+                        }
+                    }
+                    .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                    .clipped()
+            }
+            
+            if showTimer {
+                TimerView(namespace: animation, dismiss: {
+                    withAnimation(.spring(duration: 0.2)) {
+                        showTimer = false
+                    }
+                })
+//                .matchedGeometryEffect(id: "background", in: animation, isSource: true)
+                .ignoresSafeArea()
+            }
         }
+    }
 }
 
 #Preview {
     SettingsView()
         .modelContainer(for: [CustomImageModel.self, TimerData.self])
+}
+
+struct CustomAccessoryView: View {
+    @Environment(\.tabViewBottomAccessoryPlacement) var tabViewBottomAccessoryPlacement
+    var namespace: Namespace.ID
+
+    var body: some View {
+        switch tabViewBottomAccessoryPlacement {
+        case .expanded:
+            ZStack {
+                BackgroundImageView()
+                    .matchedGeometryEffect(id: "background", in: namespace, isSource: false)
+                ControlButton(action: {
+                    //
+                }, label: "START")
+                .padding(4)
+                .frame(width: 200)
+            }
+        default:
+            Text("Limited space")
+        }
+    }
 }
