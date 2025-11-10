@@ -58,9 +58,6 @@ struct TimerView: View {
                 name: UIDevice.orientationDidChangeNotification,
                 object: nil)
         }
-        .fullScreenCover(isPresented: $viewModel.showingWhatsNew) {
-            SettingsView(selectedTab: 3)
-        }
         .onOpenURL { url in
             viewModel.handleDeepLink(url: url)
         }

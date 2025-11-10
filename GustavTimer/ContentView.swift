@@ -25,8 +25,9 @@ struct ContentView: View {
     
     var body: some View {
         TimerView(showSettings: $showSettings)
-            .fullScreenCover(isPresented: $showSettings) {
-                SettingsView()
+            .sheet(isPresented: $showSettings) {
+//                SettingsView()
+                SettingsSheet()
             }
             .onAppear {
                 initializeDataIfNeeded()
