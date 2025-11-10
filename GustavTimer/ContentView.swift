@@ -27,7 +27,7 @@ struct ContentView: View {
         TimerView(showSettings: $showSettings)
             .sheet(isPresented: $showSettings) {
 //                SettingsView()
-                SettingsSheet()
+                SettingsView()
             }
             .onAppear {
                 initializeDataIfNeeded()

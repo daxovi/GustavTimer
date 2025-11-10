@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct SettingsSheet: View {
+struct SettingsView: View {
     @ObservedObject var appSettings = AppSettings()
 
     @Query(sort: \TimerData.id, order: .reverse) var timerData: [TimerData]
@@ -67,7 +67,6 @@ struct SettingsSheet: View {
             }
             .onMove { moveInterval(from: $0, to: $1, in: currentTimerData) }
         }
-        .animation(.easeInOut, value: currentTimerData.intervals.count)
     }
     
     var roundsView: some View {
@@ -213,17 +212,23 @@ struct SettingsSheet: View {
     
     private func addInterval(to timerData: TimerData) {
         guard timerData.intervals.count < AppConfig.maxTimerCount else { return }
-        timerData.intervals.append(IntervalData(value: 5, name: "Kolo \(timerData.intervals.count + 1)"))
+        withAnimation(.easeInOut) {
+            timerData.intervals.append(IntervalData(value: 5, name: "Kolo \(timerData.intervals.count + 1)"))
+        }
     }
     
     /// Odstranění intervalů podle indexu
     private func deleteInterval(at offsets: IndexSet, from timerData: TimerData) {
-        timerData.intervals.remove(atOffsets: offsets)
+        withAnimation(.easeInOut) {
+            timerData.intervals.remove(atOffsets: offsets)
+        }
     }
     
     /// Přesun intervalu na novou pozici
     private func moveInterval(from source: IndexSet, to destination: Int, in timerData: TimerData) {
-        timerData.intervals.move(fromOffsets: source, toOffset: destination)
+        withAnimation(.easeInOut) {
+            timerData.intervals.move(fromOffsets: source, toOffset: destination)
+        }
     }
 }
 

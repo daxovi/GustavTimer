@@ -24,7 +24,7 @@
 		CF70037F2C8DED37009F1531 /* BackgroundSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70037E2C8DED37009F1531 /* BackgroundSelectorView.swift */; };
 		CF7744F12E799FA100693351 /* IntervalRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7744F02E799F9A00693351 /* IntervalRowView.swift */; };
 		CF7B1B412C8F6BD3005D4664 /* IntervalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7B1B402C8F6BD3005D4664 /* IntervalData.swift */; };
-		CF7BAE252EC27A74002A4746 /* SettingsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BAE242EC27A6F002A4746 /* SettingsSheet.swift */; };
+		CF7BAE252EC27A74002A4746 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BAE242EC27A6F002A4746 /* SettingsView.swift */; };
 		CF7BAE272EC2823C002A4746 /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BAE262EC28238002A4746 /* FavouritesView.swift */; };
 		CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */; };
 		CF8C07B22E3D5AED0083ED1D /* SpaceGrotesk-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07AF2E3D5AED0083ED1D /* SpaceGrotesk-Medium.ttf */; };
@@ -85,7 +85,7 @@
 		CF70037E2C8DED37009F1531 /* BackgroundSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSelectorView.swift; sourceTree = "<group>"; };
 		CF7744F02E799F9A00693351 /* IntervalRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalRowView.swift; sourceTree = "<group>"; };
 		CF7B1B402C8F6BD3005D4664 /* IntervalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalData.swift; sourceTree = "<group>"; };
-		CF7BAE242EC27A6F002A4746 /* SettingsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSheet.swift; sourceTree = "<group>"; };
+		CF7BAE242EC27A6F002A4746 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CF7BAE262EC28238002A4746 /* FavouritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesView.swift; sourceTree = "<group>"; };
 		CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageModel.swift; sourceTree = "<group>"; };
 		CF8C07AD2E3D5AED0083ED1D /* SpaceGrotesk-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceGrotesk-Bold.ttf"; sourceTree = "<group>"; };
@@ -199,7 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				CF7BAE262EC28238002A4746 /* FavouritesView.swift */,
-				CF7BAE242EC27A6F002A4746 /* SettingsSheet.swift */,
+				CF7BAE242EC27A6F002A4746 /* SettingsView.swift */,
 				CF228F532E7D7ECF000DEF21 /* SearchTabView.swift */,
 				CF2222D52E354A1900A90265 /* SubViews */,
 			);
@@ -445,7 +445,7 @@
 				CFCD99D02CA068B00017BD0E /* ListButton.swift in Sources */,
 				CFCE3C762C431EC900D33AE3 /* View+Extension.swift in Sources */,
 				CF70037F2C8DED37009F1531 /* BackgroundSelectorView.swift in Sources */,
-				CF7BAE252EC27A74002A4746 /* SettingsSheet.swift in Sources */,
+				CF7BAE252EC27A74002A4746 /* SettingsView.swift in Sources */,
 				CFF207D62E6CA9BA00D0C369 /* FavouritesEmptyView.swift in Sources */,
 				CF8C07BA2E3DFD9B0083ED1D /* Theme.swift in Sources */,
 				CF2222D02E353EA600A90265 /* TimerView.swift in Sources */,
