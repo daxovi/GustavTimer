@@ -9,17 +9,17 @@ import SwiftUI
 import SwiftData
 
 struct SettingsView: View {
-    @ObservedObject var appSettings = AppSettings()
+    @ObservedObject private var appSettings = AppSettings()
 
-    @Query(sort: \TimerData.id, order: .reverse) var timerData: [TimerData]
+    @Query(sort: \TimerData.id, order: .reverse) private var timerData: [TimerData]
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.modelContext) var context
-    @Environment(\.theme) var theme
+    @Environment(\.modelContext) private var context
+    @Environment(\.theme) private var theme
     
     @State private var editMode: EditMode = .inactive
-    @State var newTimerName = ""
-    @State var showSaveAlert = false
-    @State var showAlreadySavedAlert = false
+    @State private var newTimerName = ""
+    @State private var showSaveAlert = false
+    @State private var showAlreadySavedAlert = false
     
     private var currentTimerData: TimerData {
         getOrCreateTimerData()
@@ -28,17 +28,41 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             List {
+                challenge
                 intervalsView
                 roundsView
                 favourites
                 appearance
-                links
+                more
+                about
             }
             .environment(\.editMode, $editMode)
             .saveTimerAlert(isPresented: $showSaveAlert, timerName: $newTimerName, onSave: saveTimer)
             .alreadySavedAlert(isPresented: $showAlreadySavedAlert)
-            .navigationBarTitleDisplayMode(.automatic)
             .toolbar { toolbar }
+        }
+    }
+    
+    @ViewBuilder
+    var challenge: some View {
+        SettingsSection(label: "CHALLENGE") {
+            Image(.wallsit)
+                .resizable()
+                .scaledToFit()
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+                .listRowInsets(.all, 0)
+                .overlay(alignment: .bottomLeading) {
+                    Image(.youtubeLogo)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 18)
+                        .padding()
+                }
+                .onTapGesture {
+                    if let url = URL(string: AppConfig.youtubeChallengeURL) {
+                        UIApplication.shared.open(url)
+                    }
+                }
         }
     }
     
@@ -66,6 +90,19 @@ struct SettingsView: View {
                 }
             }
             .onMove { moveInterval(from: $0, to: $1, in: currentTimerData) }
+        } header: {
+            Text("INTERVALS_TAB").font(theme.fonts.sectionHeader)
+        } footer: {
+            if currentTimerData.intervals.count < AppConfig.maxTimerCount {
+                HStack {
+                    Image(systemName: "plus")
+                    Text("ADD_INTERVAL")
+                }
+                .font(theme.fonts.sectionFooter)
+                .onTapGesture {
+                    addInterval(to: currentTimerData)
+                }
+            }
         }
     }
     
@@ -81,16 +118,18 @@ struct SettingsView: View {
     
     @ViewBuilder
     private var favourites: some View {
-        NavigationLink {
-            FavouritesView()
-        } label: {
-            Text("FAVOURITES")
+        SettingsSection(label: "FAVOURITES") {
+            NavigationLink {
+                FavouritesView()
+            } label: {
+                Text("FAVOURITES")
+            }
         }
     }
     
     @ViewBuilder
     private var appearance: some View {
-        Section {
+        SettingsSection(label: "APPEARANCE") {
             Toggle("HAPTICS", isOn: $appSettings.isVibrating)
                 .tint(theme.colors.pink)
             
@@ -109,26 +148,29 @@ struct SettingsView: View {
     }
     
     @ViewBuilder
-    private var links: some View {
-        Section {
+    private var more: some View {
+        SettingsSection(label: "MORE") {
             ButtonLink(label: "RATE", URLString: AppConfig.reviewURL)
             
             ButtonLink(label: "TRY_WEIGHTS", URLString: AppConfig.weightsURL)
             
             ButtonLink(label: "FOLLOW_INSTAGRAM", URLString: AppConfig.instagramURL)
+            
+            ButtonLink(label: "WATCH_ON_YOUTUBE", URLString: AppConfig.youtubeURL)
+        }
+    }
+    
+    @ViewBuilder
+    private var about: some View {
+        NavigationLink {
+            Text("About")
+        } label: {
+            Text("ABOUT_GUSTAV")
         }
     }
     
     @ToolbarContentBuilder
     var toolbar: some ToolbarContent {
-        ToolbarItem(placement: .largeTitle) {
-            HStack {
-                Text("INTERVALS_TAB")
-                    .font(theme.fonts.settingsLargeTitle)
-                Spacer()
-            }
-            .padding(.vertical)
-        }
         
         ToolbarItem(placement: .navigationBarLeading) {
             Button(role: .close) {
@@ -242,5 +284,16 @@ private struct ButtonLink: View {
                 UIApplication.shared.open(url)
             }
         }
+        .foregroundStyle(.stop)
     }
+}
+
+#Preview("Light") {
+    SettingsView()
+        .preferredColorScheme(.light)
+}
+
+#Preview("Dark") {
+    SettingsView()
+        .preferredColorScheme(.dark)
 }

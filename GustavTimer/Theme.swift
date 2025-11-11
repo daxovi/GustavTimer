@@ -34,8 +34,11 @@ struct Theme {
         
         let settingsLargeTitle = Font.custom("SpaceGrotesk-Bold", size: 33, relativeTo: .title3)
         
-        let settingsIntervalValue = Font.custom("SpaceMono-Bold", size: 24, relativeTo: .title2)
-        let settingsIntervalName = Font.custom("SpaceGrotesk-Regular", size: 24, relativeTo: .title2)
+        let settingsIntervalValue = Font.custom("SpaceMono-Bold", size: 28, relativeTo: .title2)
+        let settingsIntervalName = Font.custom("SpaceGrotesk-Regular", size: 28, relativeTo: .title2)
+        
+        let sectionHeader = Font.custom("SpaceGrotesk-Regular", size: 17, relativeTo: .body)
+        let sectionFooter = Font.custom("SpaceGrotesk-Regular", size: 17, relativeTo: .body)
     }
     
     struct Layout {

@@ -20,6 +20,7 @@
 		CF228F542E7D7ED4000DEF21 /* SearchTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF228F532E7D7ECF000DEF21 /* SearchTabView.swift */; };
 		CF279C4C2C31A8940084C43F /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF279C4B2C31A8940084C43F /* SoundManager.swift */; };
 		CF3A14912E47250800F734F4 /* TimeDisplayFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A14902E47250800F734F4 /* TimeDisplayFormat.swift */; };
+		CF52F0F62EC3B611002CA453 /* SettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF52F0F52EC3B60D002CA453 /* SettingsSection.swift */; };
 		CF70037D2C8DE816009F1531 /* HintButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70037C2C8DE816009F1531 /* HintButton.swift */; };
 		CF70037F2C8DED37009F1531 /* BackgroundSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70037E2C8DED37009F1531 /* BackgroundSelectorView.swift */; };
 		CF7744F12E799FA100693351 /* IntervalRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7744F02E799F9A00693351 /* IntervalRowView.swift */; };
@@ -80,6 +81,7 @@
 		CF228F532E7D7ECF000DEF21 /* SearchTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTabView.swift; sourceTree = "<group>"; };
 		CF279C4B2C31A8940084C43F /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		CF3A14902E47250800F734F4 /* TimeDisplayFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDisplayFormat.swift; sourceTree = "<group>"; };
+		CF52F0F52EC3B60D002CA453 /* SettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSection.swift; sourceTree = "<group>"; };
 		CF5B11122AD33CE500F42131 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CF70037C2C8DE816009F1531 /* HintButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintButton.swift; sourceTree = "<group>"; };
 		CF70037E2C8DED37009F1531 /* BackgroundSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSelectorView.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 		CF70037B2C8DE807009F1531 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				CF52F0F52EC3B60D002CA453 /* SettingsSection.swift */,
 				CFC3A7712AAF8B1B00BB8CC2 /* ProgressBar.swift */,
 				CF70037C2C8DE816009F1531 /* HintButton.swift */,
 				CF9922B02C959AC1004186DF /* ControlButton.swift */,
@@ -450,6 +453,7 @@
 				CF8C07BA2E3DFD9B0083ED1D /* Theme.swift in Sources */,
 				CF2222D02E353EA600A90265 /* TimerView.swift in Sources */,
 				CF21843429F052590060706C /* GustavTimerApp.swift in Sources */,
+				CF52F0F62EC3B611002CA453 /* SettingsSection.swift in Sources */,
 				CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */,
 				CF279C4C2C31A8940084C43F /* SoundManager.swift in Sources */,
 				CF7B1B412C8F6BD3005D4664 /* IntervalData.swift in Sources */,

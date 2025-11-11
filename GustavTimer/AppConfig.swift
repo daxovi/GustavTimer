@@ -18,6 +18,8 @@ struct AppConfig {
     static let reviewURL: String = "https://apps.apple.com/app/id6478176431?action=write-review"
     static let weightsURL: String = "https://apps.apple.com/us/app/gustav-weights/id6483001116"
     static let instagramURL: String = "https://www.instagram.com/gustavtraining"
+    static let youtubeChallengeURL: String = "https://youtube.com/playlist?list=PLi2Zd-0ICmgIoaWudLzSF8Jt5VKAWSvdR&si=NaYIwDYMCX9rsIFW"
+    static let youtubeURL: String = "https://www.youtube.com/@Gustavtraining"
     
     // Barvy
     static let primaryColor: Color = Color("PrimaryColor")
