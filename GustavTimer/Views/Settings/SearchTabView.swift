@@ -55,24 +55,6 @@ struct SearchTabView: View {
                     .listRowBackground(Color.clear)
             }
             .navigationBarTitleDisplayMode(.automatic)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(role: .close) {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                    }
-                }
-                
-                ToolbarItem(placement: .largeTitle) {
-                    HStack {
-                        Text("SEARCH_TAB")
-                            .font(theme.fonts.settingsLargeTitle)
-                        Spacer()
-                    }
-                    .padding(.vertical)
-                }
-            }
         }
     }
     

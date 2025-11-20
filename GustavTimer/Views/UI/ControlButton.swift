@@ -34,26 +34,55 @@ struct ControlButton: View {
             action()
         }, label: {
                 if riveAnimation != nil {
-                    Color.clear
-                        .frame(height: theme.layout.controlHeight)
-                        .glassEffect(.regular.tint(color).interactive())
-                        .overlay( (riveAnimation != nil) ? AnyView(animationView) : AnyView(labelView) )
+                    if #available(iOS 26.0, *) {
+                        Color.clear
+                            .frame(height: theme.layout.controlHeight)
+                            .glassEffect(.regular.tint(color).interactive())
+                            .overlay( (riveAnimation != nil) ? AnyView(animationView) : AnyView(labelView) )
                             .contentShape(Rectangle())
-                } else {
-                    HStack {
-                        Text(label ?? "")
-                            .font(theme.fonts.buttonLabel)
-                            .foregroundStyle(color == .start ? .reset : .start)
-                        Text(description ?? "")
-                            .font(theme.fonts.buttonDescription)
-                            .foregroundStyle(color == .start ? .reset : .white)
-                            .textCase(.uppercase)
-                            .opacity(0.5)
+                    } else {
+                        // Fallback on earlier versions
+                        Color.clear
+                            .frame(height: theme.layout.controlHeight)
+                            .background(color)
+                            .overlay( (riveAnimation != nil) ? AnyView(animationView) : AnyView(labelView) )
+                            .clipShape(Capsule())
+                            .contentShape(Rectangle())
                     }
+                } else {
+                    if #available(iOS 26.0, *) {
+                        HStack {
+                            Text(label ?? "")
+                                .font(theme.fonts.buttonLabel)
+                                .foregroundStyle(color == .start ? .reset : .start)
+                            Text(description ?? "")
+                                .font(theme.fonts.buttonDescription)
+                                .foregroundStyle(color == .start ? .reset : .white)
+                                .textCase(.uppercase)
+                                .opacity(0.5)
+                        }
                         .frame(height: theme.layout.controlHeight)
                         .frame(maxWidth: .infinity)
                         .glassEffect(.regular.tint(color).interactive())
-                            .contentShape(Rectangle())
+                        .contentShape(Rectangle())
+                    } else {
+                        // Fallback on earlier versions
+                        HStack {
+                            Text(label ?? "")
+                                .font(theme.fonts.buttonLabel)
+                                .foregroundStyle(color == .start ? .reset : .start)
+                            Text(description ?? "")
+                                .font(theme.fonts.buttonDescription)
+                                .foregroundStyle(color == .start ? .reset : .white)
+                                .textCase(.uppercase)
+                                .opacity(0.5)
+                        }
+                        .frame(height: theme.layout.controlHeight)
+                        .frame(maxWidth: .infinity)
+                        .background(color)
+                        .clipShape(Capsule())
+                        .contentShape(Rectangle())
+                    }
                 }
         })
         .buttonStyle(.plain)

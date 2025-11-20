@@ -44,15 +44,29 @@ struct IntervalRowView: View {
             }
             
             if nameIsFocused || valueIsFocused {
-                Button("DONE") {
-                    nameIsFocused = false
-                    valueIsFocused = false
+                if #available(iOS 26.0, *) {
+                    Button("DONE") {
+                        nameIsFocused = false
+                        valueIsFocused = false
+                    }
+                    .font(theme.fonts.settingsCaption)
+                    .foregroundStyle(.white)
+                    .padding(4)
+                    .padding(.horizontal, 10)
+                    .glassEffect(.regular.tint(theme.colors.pink).interactive())
+                } else {
+                    // Fallback on earlier versions
+                    Button("DONE") {
+                        nameIsFocused = false
+                        valueIsFocused = false
+                    }
+                    .font(theme.fonts.settingsCaption)
+                    .foregroundStyle(.white)
+                    .padding(4)
+                    .padding(.horizontal, 10)
+                    .background(theme.colors.pink)
+                    .clipShape(Capsule())
                 }
-                .font(theme.fonts.settingsCaption)
-                .foregroundStyle(.white)
-                .padding(4)
-                .padding(.horizontal, 10)
-                .glassEffect(.regular.tint(theme.colors.pink).interactive())
             }
         }
     }

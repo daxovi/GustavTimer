@@ -42,6 +42,7 @@ struct SettingsView: View {
             .alreadySavedAlert(isPresented: $showAlreadySavedAlert)
             .toolbar { toolbar }
         }
+        .tint(.navigationItems)
     }
     
     @ViewBuilder
@@ -51,7 +52,7 @@ struct SettingsView: View {
                 .resizable()
                 .scaledToFit()
                 .clipShape(RoundedRectangle(cornerRadius: 16))
-                .listRowInsets(.all, 0)
+                .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
                 .overlay(alignment: .bottomLeading) {
                     Image(.youtubeLogo)
                         .resizable()
@@ -183,10 +184,19 @@ struct SettingsView: View {
     var toolbar: some ToolbarContent {
         
         ToolbarItem(placement: .navigationBarLeading) {
-            Button(role: .close) {
-                dismiss()
-            } label: {
-                Image(systemName: "xmark")
+            if #available(iOS 26.0, *) {
+                Button(role: .close) {
+                    dismiss()
+                } label: {
+                    Image(systemName: "xmark")
+                }
+            } else {
+                // Fallback on earlier versions
+                Button(role: .destructive) {
+                    dismiss()
+                } label: {
+                    Image(systemName: "xmark")
+                }
             }
         }
 
@@ -202,7 +212,9 @@ struct SettingsView: View {
             }
         }
         
-        ToolbarSpacer(.fixed)
+        if #available(iOS 26.0, *) {
+            ToolbarSpacer(.fixed)
+        }
         
         if currentTimerData.intervals.count < AppConfig.maxTimerCount {
             ToolbarItem {

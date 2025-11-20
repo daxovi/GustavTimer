@@ -24,14 +24,14 @@ struct FavouritesView: View {
     @State private var editMode: EditMode = .inactive
     
     var body: some View {
-            List {
-                challenge
-                savedTimers
-                mainTimer
-            }
-            .navigationBarTitleDisplayMode(.automatic)
-            .toolbar { toolbar }
-            .environment(\.editMode, $editMode)
+        List {
+            challenge
+            savedTimers
+            mainTimer
+        }
+        .navigationBarTitleDisplayMode(.automatic)
+        .toolbar { toolbar }
+        .environment(\.editMode, $editMode)
         .saveTimerAlert(isPresented: $showSaveAlert, timerName: $newTimerName, onSave: saveTimer)
         .alreadySavedAlert(isPresented: $showAlreadySavedAlert)
     }
@@ -42,7 +42,7 @@ struct FavouritesView: View {
             .resizable()
             .scaledToFit()
             .clipShape(RoundedRectangle(cornerRadius: 16))
-            .listRowInsets(.all, 0)
+            .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
     }
     
     @ViewBuilder
@@ -76,16 +76,29 @@ struct FavouritesView: View {
         if let mainTimer = timerData.first(where: { $0.order == 0 }), !savedTimers.contains(mainTimer) {
             VStack(alignment: .leading, spacing: 0) {
                 FavouriteRowView(timer: mainTimer, selected: false)
-                Button("ADD_TO_FAVOURITES") {
-                    showSaveAlert.toggle()
+                if #available(iOS 26.0, *) {
+                    Button("ADD_TO_FAVOURITES") {
+                        showSaveAlert.toggle()
+                    }
+                    .font(theme.fonts.settingsCaption)
+                    .foregroundStyle(.white)
+                    .padding(4)
+                    .padding(.horizontal, 10)
+                    .glassEffect(.regular.tint(theme.colors.pink).interactive())
+                    .padding(.bottom)
+                    .padding(.horizontal)
+                } else {
+                    // Fallback on earlier versions
+                    Button("ADD_TO_FAVOURITES") {
+                        showSaveAlert.toggle()
+                    }
+                    .font(theme.fonts.settingsCaption)
+                    .foregroundStyle(.white)
+                    .padding(4)
+                    .padding(.horizontal, 10)
+                    .padding(.bottom)
+                    .padding(.horizontal)
                 }
-                .font(theme.fonts.settingsCaption)
-                .foregroundStyle(.white)
-                .padding(4)
-                .padding(.horizontal, 10)
-                .glassEffect(.regular.tint(theme.colors.pink).interactive())
-                .padding(.bottom)
-                .padding(.horizontal)
             }
             .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
         }
@@ -93,13 +106,22 @@ struct FavouritesView: View {
     
     @ToolbarContentBuilder
     private var toolbar: some ToolbarContent {
-        ToolbarItem(placement: .largeTitle) {
-            HStack {
-                Text("FAVOURITES_TAB")
-                    .font(theme.fonts.settingsLargeTitle)
-                Spacer()
+        if #available(iOS 26, *){
+            ToolbarItem(placement: .title) {
+                HStack {
+                    Text("FAVOURITES_TAB")
+                        .font(theme.fonts.settingsTitle)
+                }
+                .padding(.vertical)
             }
-            .padding(.vertical)
+        } else {
+            // Fallback to earlier versions
+            ToolbarItem(placement: .title) {
+                HStack {
+                    Text("FAVOURITES_TAB")
+                }
+                .padding(.vertical)
+            }
         }
         
         ToolbarItem {
