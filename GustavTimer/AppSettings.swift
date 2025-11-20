@@ -11,25 +11,18 @@ import Combine
 class AppSettings: ObservableObject {
     @AppStorage("rounds") var rounds: Int = -1
     @AppStorage("isVibrating") var isVibrating: Bool = false
-    @AppStorage("selectedSound") var selectedSound: String = "beep"
     @AppStorage("isSoundEnabled") var isSoundEnabled: Bool = true
     
-    func save(rounds: Int, isVibrating: Bool, selectedSound: String?) {
+    func save(rounds: Int, isVibrating: Bool, isSoundEnabled: Bool) {
         self.rounds = rounds
         self.isVibrating = isVibrating
-        if let sound = selectedSound {
-            self.selectedSound = sound
-            self.isSoundEnabled = true
-        } else {
-            self.isSoundEnabled = false
-        }
+        self.isSoundEnabled = isSoundEnabled
     }
     
     func save(from timerData: TimerData) {
         self.rounds = timerData.rounds
         self.isVibrating = timerData.isVibrating
-        if let sound = timerData.selectedSound {
-            self.selectedSound = sound
+        if timerData.selectedSound != nil {
             self.isSoundEnabled = true
         } else {
             self.isSoundEnabled = false

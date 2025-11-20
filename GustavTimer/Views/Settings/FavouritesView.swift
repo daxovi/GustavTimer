@@ -155,8 +155,9 @@ struct FavouritesView: View {
     private func saveTimer() {
         if let mainTimer = timerData.first(where: { $0.order == 0 }) {
             let newId = (timerData.map { $0.order }.max() ?? 0) + 1
-            let newTimer = TimerData(order: newId, name: newTimerName, rounds: appSettings.rounds, selectedSound: appSettings.isSoundEnabled ? appSettings.selectedSound : nil, isVibrating: appSettings.isVibrating)
+            let newTimer = TimerData(order: newId, name: newTimerName, rounds: appSettings.rounds, isVibrating: appSettings.isVibrating)
             newTimer.intervals = mainTimer.intervals
+            newTimer.selectedSound = mainTimer.selectedSound
             context.insert(newTimer)
         }
     }
@@ -165,6 +166,8 @@ struct FavouritesView: View {
         if let mainTimer = timerData.first(where: { $0.order == 0 }) {
             mainTimer.name = timer.name
             mainTimer.intervals = timer.intervals
+            mainTimer.selectedSound = timer.selectedSound
+            mainTimer.isVibrating = timer.isVibrating
             appSettings.save(from: timer)
         }
     }

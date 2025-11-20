@@ -49,34 +49,34 @@ struct AppConfig {
     // Default timer
     static let defaultTimer = TimerData(order: 0, name: "Gustav Timer", rounds: -1, selectedSound: soundThemes.first ?? nil, isVibrating: false)
     
-    static let soundThemes = ["beep", "90s", "bell", "trumpet", "game"]
+    static let soundThemes: [SoundModel] = SoundModel.allCases
     
     static let roundsOptions: [Int] = Array(1...31)
     
     static let predefinedTimers: [TimerData] = [
         // Meditation Timer
-        TimerData(order: -1, name: String(localized: "PT_5MIN_MEDITATION"), rounds: -1, selectedSound: "bell", isVibrating: false, intervals: [
+        TimerData(order: -1, name: String(localized: "PT_5MIN_MEDITATION"), rounds: -1, selectedSound: .beep, isVibrating: false, intervals: [
             IntervalData(value: 300, name: String(localized: "LAP_MEDITATION"))
         ]),
         // Tabata Timer
-        TimerData(order: -2, name: String(localized: "PT_TABATA"), rounds: 8, selectedSound: "beep", isVibrating: true, intervals: [
+        TimerData(order: -2, name: String(localized: "PT_TABATA"), rounds: 8, selectedSound: .beep, isVibrating: true, intervals: [
             IntervalData(value: 20, name: String(localized: "LAP_WORK")),
             IntervalData(value: 10, name: String(localized: "LAP_REST"))
         ]),
         // EMOM Timer
-        TimerData(order: -3, name: String(localized: "PT_EMOM_10MIN"), rounds: 10, selectedSound: "trumpet", isVibrating: true, intervals: [
+        TimerData(order: -3, name: String(localized: "PT_EMOM_10MIN"), rounds: 10, selectedSound: .nineties, isVibrating: true, intervals: [
             IntervalData(value: 40, name: String(localized: "LAP_WORK")),
             IntervalData(value: 20, name: String(localized: "LAP_REST"))
         ]),
         // HIIT trénink
-        TimerData(order: -4, name: String(localized: "PT_HIIT"), rounds: 10, selectedSound: "beep", isVibrating: true, intervals: [
+        TimerData(order: -4, name: String(localized: "PT_HIIT"), rounds: 10, selectedSound: .nineties, isVibrating: true, intervals: [
             IntervalData(value: 30, name: String(localized: "LAP_SPRINT")),
             IntervalData(value: 15, name: String(localized: "LAP_REST")),
             IntervalData(value: 30, name: String(localized: "LAP_SPRINT")),
             IntervalData(value: 15, name: String(localized: "LAP_REST"))
         ]),
         // AMRAP - As Many Rounds As Possible
-        TimerData(order: -5, name: String(localized: "PT_AMRAP"), rounds: 20, selectedSound: "bell", isVibrating: true, intervals: [
+        TimerData(order: -5, name: String(localized: "PT_AMRAP"), rounds: 20, selectedSound: .beep, isVibrating: true, intervals: [
             IntervalData(value: 60, name: String(localized: "LAP_MAX"))
         ])
     ]

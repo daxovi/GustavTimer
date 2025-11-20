@@ -59,6 +59,9 @@ struct Theme {
         let vibration = Image(.ngIconVibration)
             .renderingMode(.template)
             .resizable()
+        let sound = Image(.ngIconSound)
+            .renderingMode(.template)
+            .resizable()
     }
     
     struct Animations {

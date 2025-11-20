@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct SettingsView: View {
-    @ObservedObject private var appSettings = AppSettings()
+    @StateObject private var appSettings = AppSettings()
 
     @Query(sort: \TimerData.id, order: .reverse) private var timerData: [TimerData]
     @Environment(\.dismiss) private var dismiss
@@ -20,6 +20,7 @@ struct SettingsView: View {
     @State private var newTimerName = ""
     @State private var showSaveAlert = false
     @State private var showAlreadySavedAlert = false
+    @State private var selectedSoundTitle: String? = nil
     
     private var currentTimerData: TimerData {
         getOrCreateTimerData()
@@ -134,9 +135,18 @@ struct SettingsView: View {
                 .tint(theme.colors.pink)
             
             NavigationLink {
-                SoundSettingsView(isSoundEnabled: $appSettings.isSoundEnabled, selectedSound: $appSettings.selectedSound)
+                SoundSettingsView(selectedSound: .init(get: {
+                    selectedSoundTitle = currentTimerData.selectedSound?.title ?? nil
+                    return currentTimerData.selectedSound ?? nil
+                }, set: { sound in
+                    let timer = currentTimerData
+                    timer.selectedSound = sound
+                    selectedSoundTitle = sound?.title ?? nil
+                    context.insert(timer)
+                    try? context.save()
+                }))
             } label: {
-                ListButton(name: "SOUND", value: appSettings.isSoundEnabled ? LocalizedStringKey(appSettings.selectedSound) : "MUTE")
+                ListButton(name: "SOUND", value: LocalizedStringKey(selectedSoundTitle ?? "MUTE"))
             }
             
             NavigationLink {
@@ -234,8 +244,9 @@ struct SettingsView: View {
     private func saveTimer() {
         if let mainTimer = timerData.first(where: { $0.order == 0 }) {
             let newOrder = (timerData.map { $0.order }.max() ?? 0) + 1
-            let newTimer = TimerData(order: newOrder, name: newTimerName, rounds: appSettings.rounds, selectedSound: appSettings.isSoundEnabled ? appSettings.selectedSound : nil, isVibrating: appSettings.isVibrating)
+            let newTimer = TimerData(order: newOrder, name: newTimerName, rounds: appSettings.rounds, isVibrating: appSettings.isVibrating)
             newTimer.intervals = mainTimer.intervals
+            newTimer.selectedSound = mainTimer.selectedSound
             context.insert(newTimer)
         }
     }

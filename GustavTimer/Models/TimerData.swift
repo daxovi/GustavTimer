@@ -15,7 +15,7 @@ class TimerData: Equatable {
     var id: UUID = UUID()
     var name: String
     var isVibrating: Bool
-    var selectedSound: String?
+    var selectedSound: SoundModel?
     var rounds: Int
     var order: Int
     var createdAt: Date = Date()
@@ -26,7 +26,7 @@ class TimerData: Equatable {
         IntervalData(value: 15, name: "Rest")
     ]
 
-    init(order: Int, name: String, rounds: Int, selectedSound: String?, isVibrating: Bool) {
+    init(order: Int, name: String, rounds: Int, selectedSound: SoundModel? = nil, isVibrating: Bool) {
         self.order = order
         self.name = name
         self.selectedSound = selectedSound
@@ -34,7 +34,7 @@ class TimerData: Equatable {
         self.rounds = rounds
     }
     
-    init(order: Int, name: String, rounds: Int, selectedSound: String?, isVibrating: Bool, intervals: [IntervalData]) {
+    init(order: Int, name: String, rounds: Int, selectedSound: SoundModel? = nil, isVibrating: Bool, intervals: [IntervalData]) {
         self.order = order
         self.name = name
         self.selectedSound = selectedSound

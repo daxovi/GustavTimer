@@ -21,6 +21,9 @@
 		CF279C4C2C31A8940084C43F /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF279C4B2C31A8940084C43F /* SoundManager.swift */; };
 		CF3A14912E47250800F734F4 /* TimeDisplayFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A14902E47250800F734F4 /* TimeDisplayFormat.swift */; };
 		CF52F0F62EC3B611002CA453 /* SettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF52F0F52EC3B60D002CA453 /* SettingsSection.swift */; };
+		CF52F1102EC47085002CA453 /* SoundModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF52F10F2EC47081002CA453 /* SoundModel.swift */; };
+		CF52F1122EC4890B002CA453 /* squeeze-final.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF52F1112EC4890B002CA453 /* squeeze-final.mp3 */; };
+		CF52F1142EC48912002CA453 /* squeeze-countdown.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF52F1132EC48912002CA453 /* squeeze-countdown.mp3 */; };
 		CF70037D2C8DE816009F1531 /* HintButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70037C2C8DE816009F1531 /* HintButton.swift */; };
 		CF70037F2C8DED37009F1531 /* BackgroundSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70037E2C8DED37009F1531 /* BackgroundSelectorView.swift */; };
 		CF7744F12E799FA100693351 /* IntervalRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7744F02E799F9A00693351 /* IntervalRowView.swift */; };
@@ -82,6 +85,9 @@
 		CF279C4B2C31A8940084C43F /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		CF3A14902E47250800F734F4 /* TimeDisplayFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDisplayFormat.swift; sourceTree = "<group>"; };
 		CF52F0F52EC3B60D002CA453 /* SettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSection.swift; sourceTree = "<group>"; };
+		CF52F10F2EC47081002CA453 /* SoundModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundModel.swift; sourceTree = "<group>"; };
+		CF52F1112EC4890B002CA453 /* squeeze-final.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "squeeze-final.mp3"; sourceTree = "<group>"; };
+		CF52F1132EC48912002CA453 /* squeeze-countdown.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "squeeze-countdown.mp3"; sourceTree = "<group>"; };
 		CF5B11122AD33CE500F42131 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CF70037C2C8DE816009F1531 /* HintButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintButton.swift; sourceTree = "<group>"; };
 		CF70037E2C8DED37009F1531 /* BackgroundSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSelectorView.swift; sourceTree = "<group>"; };
@@ -242,6 +248,8 @@
 		CF279C462C31A0CF0084C43F /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				CF52F1132EC48912002CA453 /* squeeze-countdown.mp3 */,
+				CF52F1112EC4890B002CA453 /* squeeze-final.mp3 */,
 				CF93EAF12C5E4C6B00A98ABD /* 90s-countdown.mp3 */,
 				CF93EAF82C5E551600A98ABD /* beep-countdown.mp3 */,
 				CF93EAFC2C5E569400A98ABD /* game-countdown.mp3 */,
@@ -270,6 +278,7 @@
 		CF7B1B3F2C8F6BA9005D4664 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CF52F10F2EC47081002CA453 /* SoundModel.swift */,
 				CF3A14902E47250800F734F4 /* TimeDisplayFormat.swift */,
 				CF2222D92E355A8000A90265 /* TimerData.swift */,
 				CFB1394E2AE59ED900EE8B2C /* BackgroundImageModel.swift */,
@@ -396,8 +405,10 @@
 				CF93EAFB2C5E551600A98ABD /* beep-final.mp3 in Resources */,
 				CF21843B29F0525E0060706C /* Preview Assets.xcassets in Resources */,
 				CFF71ACC2B8B99BC00884E82 /* Localizable.xcstrings in Resources */,
+				CF52F1142EC48912002CA453 /* squeeze-countdown.mp3 in Resources */,
 				CF93EAF72C5E543100A98ABD /* trumpet-final.mp3 in Resources */,
 				CF93EAFE2C5E569400A98ABD /* game-countdown.mp3 in Resources */,
+				CF52F1122EC4890B002CA453 /* squeeze-final.mp3 in Resources */,
 				CF93EAF52C5E4F6200A98ABD /* bell-final.mp3 in Resources */,
 				CF93EAF32C5E4C6B00A98ABD /* 90s-countdown.mp3 in Resources */,
 				CF93EAFF2C5E569400A98ABD /* game-final.mp3 in Resources */,
@@ -457,6 +468,7 @@
 				CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */,
 				CF279C4C2C31A8940084C43F /* SoundManager.swift in Sources */,
 				CF7B1B412C8F6BD3005D4664 /* IntervalData.swift in Sources */,
+				CF52F1102EC47085002CA453 /* SoundModel.swift in Sources */,
 				CF2222DA2E355A8200A90265 /* TimerData.swift in Sources */,
 				CF228F542E7D7ED4000DEF21 /* SearchTabView.swift in Sources */,
 			);

@@ -12,6 +12,7 @@ import UIKit
 struct TimerView: View {
     @Binding var showSettings: Bool
     @Environment(\.modelContext) var context
+    @Query(sort: \TimerData.id, order: .reverse) private var timerData: [TimerData]
     @Environment(\.theme) var theme
     @StateObject var viewModel = TimerViewModel()
     @State private var orientation = UIDeviceOrientation.unknown
@@ -36,6 +37,7 @@ struct TimerView: View {
             } else {
                 // SettingsView se zavřelo, znovu načti data z databáze a resetuj časovač
                 viewModel.reloadTimers(resetCurrentState: true)
+                viewModel.setSound(sound: timerData.first(where: { $0.order == 0 })?.selectedSound)
             }
         }
         .onAppear {
@@ -199,7 +201,6 @@ private extension TimerView {
         HStack {
             if viewModel.rounds == -1 {
                 theme.icons.loop
-                    .resizable()
                     .scaledToFit()
                     .foregroundColor(theme.colors.volt)
             }
@@ -211,7 +212,9 @@ private extension TimerView {
             }
             
             if viewModel.isSoundEnabled {
-                soundIcon
+                theme.icons.sound
+                    .scaledToFit()
+                    .foregroundColor(theme.colors.volt)
             }
         }
         .frame(height: 20)
@@ -245,6 +248,7 @@ private extension TimerView {
     func setupViewModel() {
         viewModel.setModelContext(context)
         viewModel.showWhatsNew()
+        viewModel.setSound(sound: timerData.first(where: { $0.order == 0 })?.selectedSound)
     }
 }
 

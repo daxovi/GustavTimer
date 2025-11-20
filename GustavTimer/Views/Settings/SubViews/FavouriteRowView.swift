@@ -91,7 +91,7 @@ struct FavouriteRowView: View {
     List {
         Section {
             FavouriteRowView(timer: {
-                let timer = TimerData(order: 2, name: "My Favourite Timer", rounds: 5, selectedSound: "Bell", isVibrating: true)
+                let timer = TimerData(order: 2, name: "My Favourite Timer", rounds: 5, selectedSound: .beep, isVibrating: true)
                 timer.intervals = [
                     IntervalData(value: 30, name: "Work"),
                     IntervalData(value: 15, name: "Rest")
@@ -99,7 +99,7 @@ struct FavouriteRowView: View {
                 return timer
             }(), selected: true)
             FavouriteRowView(timer: {
-                let timer = TimerData(order: 2, name: "My Favourite Timer", rounds: 5, selectedSound: "Bell", isVibrating: true)
+                let timer = TimerData(order: 2, name: "My Favourite Timer", rounds: 5, selectedSound: .nineties, isVibrating: true)
                 timer.intervals = [
                     IntervalData(value: 30, name: "Work"),
                     IntervalData(value: 15, name: "Rest")

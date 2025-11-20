@@ -35,13 +35,13 @@ class TimerViewModel: ObservableObject {
     @AppStorage("rounds") var rounds: Int = -1 // -1 znamená nekonečno
     @AppStorage("stopCounter") var stopCounter: Int = 0
     @AppStorage("whatsNewVersion") var whatsNewVersion: Int = 0
-    @AppStorage("selectedSound") var selectedSound: String = "beep"
     @AppStorage("isSoundEnabled") var isSoundEnabled: Bool = true
     @AppStorage("isVibrating") var isVibrating: Bool = false
     @AppStorage("timeDisplayFormat") var timeDisplayFormat: TimeDisplayFormat = .seconds
     
     // MARK: - Soukromé vlastnosti
     var activeTimerIndex: Int = 0  // Veřejné pro přístup z ProgressArrayView
+    private var sound: SoundModel?
     private var timerTask: Task<Void, Never>?
     private var modelContext: ModelContext?
     @Published private var remainingTime: Duration = .seconds(0)
@@ -331,7 +331,13 @@ class TimerViewModel: ObservableObject {
     /// Přehrání zvuku podle situace
     private func playSound() {
         guard isSoundEnabled else { return }
-        SoundManager.instance.playSound(sound: .final, theme: selectedSound)
+        if let sound {
+            SoundManager.instance.playSound(sound: .final, soundModel: sound)
+        }
+    }
+    
+    func setSound(sound: SoundModel?) {
+        self.sound = sound
     }
     
     // MARK: - Co je nového

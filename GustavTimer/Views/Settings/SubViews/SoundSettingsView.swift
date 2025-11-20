@@ -9,28 +9,37 @@ import SwiftUI
 
 struct SoundSettingsView: View {
     
-    @Binding var isSoundEnabled: Bool
-    @Binding var selectedSound: String
-    
+    @Binding var selectedSound: SoundModel?
     @Environment(\.theme) private var theme
+    
+    @State var lastSelectedSound: SoundModel? = nil
     
     var body: some View {
             List {
                 Section {
-                    Toggle(isOn: $isSoundEnabled) {
+                    Toggle(isOn: .init(get: {
+                        selectedSound != nil
+                    }, set: { bool in
+                        if bool {
+                            selectedSound = lastSelectedSound ?? .beep
+                        } else {
+                            lastSelectedSound = selectedSound
+                            selectedSound = nil
+                        }
+                    })) {
                         Text("IS_SOUND_ENABLED")
                     }
                 }
                 
-                if isSoundEnabled {
+                if selectedSound != nil {
                     Section {
-                        ForEach(AppConfig.soundThemes, id: \.self) { soundTheme in
+                        ForEach(AppConfig.soundThemes, id: \.id) { soundTheme in
                             Button {
                                 selectedSound = soundTheme
-                                SoundManager.instance.playSound(sound: .final, theme: soundTheme)
+                                SoundManager.instance.playSound(sound: .final, soundModel: soundTheme)
                             } label: {
                                 HStack {
-                                    Text(soundTheme)
+                                    Text(soundTheme.title)
                                         .foregroundColor(.primary)
                                     Spacer()
                                     if selectedSound == soundTheme {
@@ -45,10 +54,10 @@ struct SoundSettingsView: View {
                     }
                 }
             }
-            .animation(.easeInOut, value: isSoundEnabled)
+            .animation(.easeInOut, value: selectedSound)
     }
 }
 
 #Preview {
-    SoundSettingsView(isSoundEnabled: .constant(true), selectedSound: .constant("Gustav"))
+    SoundSettingsView(selectedSound: .constant(AppConfig.soundThemes.first!))
 }
