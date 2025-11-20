@@ -137,7 +137,6 @@ struct SettingsView: View {
             
             NavigationLink {
                 SoundSettingsView(selectedSound: .init(get: {
-                    selectedSoundTitle = currentTimerData.selectedSound?.title ?? nil
                     return currentTimerData.selectedSound ?? nil
                 }, set: { sound in
                     let timer = currentTimerData
@@ -147,7 +146,7 @@ struct SettingsView: View {
                     try? context.save()
                 }))
             } label: {
-                ListButton(name: "SOUND", value: LocalizedStringKey(selectedSoundTitle ?? "MUTE"))
+                ListButton(name: "SOUND", value: LocalizedStringKey(currentTimerData.selectedSound?.title ?? "MUTE"))
             }
             
             NavigationLink {

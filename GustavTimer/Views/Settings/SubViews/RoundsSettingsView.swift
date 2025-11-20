@@ -23,6 +23,7 @@ struct RoundsSettingsView: View {
                 })) {
                     Text("IS_LOOPING")
                 }
+                .tint(theme.colors.pink)
             }
             
             if rounds != -1 {

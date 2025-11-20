@@ -29,6 +29,7 @@ struct SoundSettingsView: View {
                     })) {
                         Text("IS_SOUND_ENABLED")
                     }
+                    .tint(theme.colors.pink)
                 }
                 
                 if selectedSound != nil {
