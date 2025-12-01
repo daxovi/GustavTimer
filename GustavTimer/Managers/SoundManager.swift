@@ -33,9 +33,9 @@ class SoundManager {
         }
     }
     
-    func playSound(sound: SoundOption, soundModel: SoundModel) {
+    func playSound(soundModel: SoundModel) {
         
-        guard let url = Bundle.main.url(forResource: soundModel.fileName + "-" + sound.rawValue, withExtension: ".mp3") else { return }
+        guard let url = Bundle.main.url(forResource: soundModel.fileName, withExtension: ".mp3") else { return }
         
         do {
             player = try AVAudioPlayer(contentsOf: url)

@@ -37,7 +37,7 @@ struct SoundSettingsView: View {
                         ForEach(AppConfig.soundThemes, id: \.id) { soundTheme in
                             Button {
                                 selectedSound = soundTheme
-                                SoundManager.instance.playSound(sound: .final, soundModel: soundTheme)
+                                SoundManager.instance.playSound(soundModel: soundTheme)
                             } label: {
                                 HStack {
                                     Text(soundTheme.title)

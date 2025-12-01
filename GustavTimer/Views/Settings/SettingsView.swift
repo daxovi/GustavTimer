@@ -141,12 +141,16 @@ struct SettingsView: View {
                 }, set: { sound in
                     let timer = currentTimerData
                     timer.selectedSound = sound
-                    selectedSoundTitle = sound?.title ?? nil
+                    if let soundValue = sound {
+                        selectedSoundTitle = NSLocalizedString("\(soundValue.title)", comment: "")
+                    } else {
+                        selectedSoundTitle = nil
+                    }
                     context.insert(timer)
                     try? context.save()
                 }))
             } label: {
-                ListButton(name: "SOUND", value: LocalizedStringKey(currentTimerData.selectedSound?.title ?? "MUTE"))
+                ListButton(name: "SOUND", value: currentTimerData.selectedSound?.title ?? "MUTE")
             }
             
             NavigationLink {

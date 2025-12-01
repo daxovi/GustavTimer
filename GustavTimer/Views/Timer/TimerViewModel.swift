@@ -332,7 +332,7 @@ class TimerViewModel: ObservableObject {
     private func playSound() {
         guard isSoundEnabled else { return }
         if let sound {
-            SoundManager.instance.playSound(sound: .final, soundModel: sound)
+            SoundManager.instance.playSound(soundModel: sound)
         }
     }
     

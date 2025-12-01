@@ -64,12 +64,12 @@ struct AppConfig {
             IntervalData(value: 10, name: String(localized: "LAP_REST"))
         ]),
         // EMOM Timer
-        TimerData(order: -3, name: String(localized: "PT_EMOM_10MIN"), rounds: 10, selectedSound: .nineties, isVibrating: true, intervals: [
+        TimerData(order: -3, name: String(localized: "PT_EMOM_10MIN"), rounds: 10, selectedSound: .whistle, isVibrating: true, intervals: [
             IntervalData(value: 40, name: String(localized: "LAP_WORK")),
             IntervalData(value: 20, name: String(localized: "LAP_REST"))
         ]),
         // HIIT trénink
-        TimerData(order: -4, name: String(localized: "PT_HIIT"), rounds: 10, selectedSound: .nineties, isVibrating: true, intervals: [
+        TimerData(order: -4, name: String(localized: "PT_HIIT"), rounds: 10, selectedSound: .whistle, isVibrating: true, intervals: [
             IntervalData(value: 30, name: String(localized: "LAP_SPRINT")),
             IntervalData(value: 15, name: String(localized: "LAP_REST")),
             IntervalData(value: 30, name: String(localized: "LAP_SPRINT")),

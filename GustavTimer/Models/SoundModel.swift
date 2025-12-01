@@ -6,35 +6,50 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum SoundModel: String, Codable, CaseIterable, Equatable {
     case beep
-    case nineties
     case squeeze
+    case whistle
+    case hey
+    case game
+    case retro
+    case bicycle
+    case gong
+    case bell
+    case bubble
     
     var fileName: String {
-        switch self {
-        case .beep:
-            return "beep"
-        case .nineties:
-            return "90s"
-        case .squeeze:
-            return "squeeze"
-        }
+            return self.rawValue
     }
     
-    var title: String {
+    var title: LocalizedStringKey {
         switch self {
         case .beep:
-            return "Beep"
-        case .nineties:
-            return "Nineties"
+            return "BEEP"
         case .squeeze:
             return "RUBBER_DUCK"
+        case .whistle:
+            return "WHISTLE"
+        case .hey:
+            return "HEY"
+        case .game:
+            return "GAME"
+        case .retro:
+            return "RETRO"
+        case .bicycle:
+            return "BICYCLE"
+        case .gong:
+            return "GONG"
+        case .bell:
+            return "BELL"
+        case .bubble:
+            return "BUBBLE"
         }
     }
     
     var id: String {
-        return title + fileName
+        return fileName
     }
 }
