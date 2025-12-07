@@ -55,11 +55,11 @@ struct AppConfig {
     
     static let predefinedTimers: [TimerData] = [
         // Meditation Timer
-        TimerData(order: -1, name: String(localized: "PT_5MIN_MEDITATION"), rounds: -1, selectedSound: .beep, isVibrating: false, intervals: [
+        TimerData(order: -1, name: String(localized: "PT_5MIN_MEDITATION"), rounds: -1, selectedSound: .gong, isVibrating: false, intervals: [
             IntervalData(value: 300, name: String(localized: "LAP_MEDITATION"))
         ]),
         // Tabata Timer
-        TimerData(order: -2, name: String(localized: "PT_TABATA"), rounds: 8, selectedSound: .beep, isVibrating: true, intervals: [
+        TimerData(order: -2, name: String(localized: "PT_TABATA"), rounds: 8, selectedSound: .bicycle, isVibrating: true, intervals: [
             IntervalData(value: 20, name: String(localized: "LAP_WORK")),
             IntervalData(value: 10, name: String(localized: "LAP_REST"))
         ]),

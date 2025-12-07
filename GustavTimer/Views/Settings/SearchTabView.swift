@@ -47,7 +47,7 @@ struct SearchTabView: View {
                                 }
                         }
                     } header: {
-                        Text("PREDEFINED_TIMERS")
+                        Text("PRELOADED_TIMERS")
                     }
                 }
                 

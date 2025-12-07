@@ -19,6 +19,7 @@ struct Theme {
         let pink = Color.stop
         let neutral = Color.reset
         let light = Color.light
+        let white = Color.snow
     }
     
     struct Fonts {
@@ -40,6 +41,9 @@ struct Theme {
         
         let sectionHeader = Font.custom("SpaceGrotesk-Regular", size: 17, relativeTo: .body)
         let sectionFooter = Font.custom("SpaceGrotesk-Regular", size: 17, relativeTo: .body)
+        
+        let emptyLabel = Font.custom("SpaceGrotesk-SemiBold", size: 17, relativeTo: .body)
+        let emptySubtitle = Font.custom("SpaceGrotesk-Regular", size: 14, relativeTo: .body)
     }
     
     struct Layout {

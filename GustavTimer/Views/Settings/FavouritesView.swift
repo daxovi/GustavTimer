@@ -25,24 +25,15 @@ struct FavouritesView: View {
     
     var body: some View {
         List {
-            challenge
             savedTimers
-            mainTimer
+            preloadedTimers
+//            mainTimer
         }
         .navigationBarTitleDisplayMode(.automatic)
         .toolbar { toolbar }
         .environment(\.editMode, $editMode)
         .saveTimerAlert(isPresented: $showSaveAlert, timerName: $newTimerName, onSave: saveTimer)
         .alreadySavedAlert(isPresented: $showAlreadySavedAlert)
-    }
-    
-    @ViewBuilder
-    var challenge: some View {
-        Image(.wallsit)
-            .resizable()
-            .scaledToFit()
-            .clipShape(RoundedRectangle(cornerRadius: 16))
-            .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
     }
     
     @ViewBuilder
@@ -66,6 +57,24 @@ struct FavouritesView: View {
             } else {
                 FavouritesEmptyView()
             }
+        } header: {
+            Text("SAVED_TIMERS").font(theme.fonts.sectionHeader)
+        }
+        .animation(.spring, value: editMode)
+    }
+    
+    @ViewBuilder
+    private var preloadedTimers: some View {
+        Section {
+            let preloadedTimers = AppConfig.predefinedTimers
+                ForEach(preloadedTimers) { timer in
+                    FavouriteRowView(timer: timer, selected: isTimerSelected(timer: timer))
+                        .onTapGesture {
+                            selectTimer(timer: timer)
+                        }
+                }
+        } header: {
+            Text("PRELOADED_TIMERS").font(theme.fonts.sectionHeader)
         }
         .animation(.spring, value: editMode)
     }
@@ -74,33 +83,46 @@ struct FavouritesView: View {
     private var mainTimer: some View {
         let savedTimers = timerData.filter { $0.order != 0 }
         if let mainTimer = timerData.first(where: { $0.order == 0 }), !savedTimers.contains(mainTimer) {
-            VStack(alignment: .leading, spacing: 0) {
-                FavouriteRowView(timer: mainTimer, selected: false)
-                if #available(iOS 26.0, *) {
-                    Button("ADD_TO_FAVOURITES") {
-                        showSaveAlert.toggle()
+            VStack(alignment: .center, spacing: 16) {
+                
+                var timersText: String {
+                    var text = ""
+                    for (index, interval) in mainTimer.intervals.enumerated() {
+                        if index != 0 {
+                            text += ", "
+                        }
+                        text += "\(interval.name): \(interval.value)"
                     }
-                    .font(theme.fonts.settingsCaption)
-                    .foregroundStyle(.white)
-                    .padding(4)
-                    .padding(.horizontal, 10)
-                    .glassEffect(.regular.tint(theme.colors.pink).interactive())
-                    .padding(.bottom)
-                    .padding(.horizontal)
-                } else {
-                    // Fallback on earlier versions
-                    Button("ADD_TO_FAVOURITES") {
-                        showSaveAlert.toggle()
-                    }
-                    .font(theme.fonts.settingsCaption)
-                    .foregroundStyle(.white)
-                    .padding(4)
-                    .padding(.horizontal, 10)
-                    .padding(.bottom)
-                    .padding(.horizontal)
+                    return text
                 }
+                
+                Text(timersText)
+                    .font(theme.fonts.settingsCaption)
+                    .foregroundStyle(theme.colors.neutral)
+                addFavouriteButton
             }
-            .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+            .frame(maxWidth: .infinity)
+        }
+    }
+    
+    @ViewBuilder
+    private var addFavouriteButton: some View {
+        if #available(iOS 26.0, *) {
+            Button("SAVE_YOUR_FIRST_TIMER") {
+                showSaveAlert.toggle()
+            }
+            .font(theme.fonts.settingsCaption)
+            .foregroundStyle(.white)
+            .padding(4)
+            .padding(.horizontal, 10)
+            .glassEffect(.regular.tint(theme.colors.pink).interactive())
+        } else {
+            // Fallback on earlier versions
+            Button("SAVE_YOUR_FIRST_TIMER") {
+                showSaveAlert.toggle()
+            }
+            .font(theme.fonts.settingsCaption)
+            .foregroundStyle(.white)
         }
     }
     
@@ -138,10 +160,12 @@ struct FavouritesView: View {
         }
         
         ToolbarItem {
-            Button {
-                editMode = (editMode == .active ? .inactive : .active)
-            } label: {
-                Image(systemName: "slider.horizontal.3")
+            if timerData.count > 2 {
+                Button {
+                    editMode = (editMode == .active ? .inactive : .active)
+                } label: {
+                    Image(systemName: "slider.horizontal.3")
+                }
             }
         }
     }
@@ -202,3 +226,17 @@ struct FavouritesView: View {
     }
 }
 
+#Preview {
+    List {
+        FavouritesEmptyView()
+        FavouriteRowView(timer: {
+            let timer = AppConfig.defaultTimer
+            timer.order = 11
+            timer.intervals = [
+                IntervalData(value: 30, name: "Work"),
+                IntervalData(value: 15, name: "Rest")
+            ]
+            return timer
+        }(), selected: false)
+    }
+}
