@@ -28,7 +28,7 @@ struct FavouriteRowView: View {
                                     .fill(isMainTimer ? theme.colors.light : theme.colors.volt)
                                     .frame(height: 5)
                                 Text(interval.name)
-                                    .font(theme.fonts.settingsCaption)
+                                    .font(theme.fonts.savedRowIntervalName)
                                     .lineLimit(1)
                                     .padding(.trailing)
                                     .foregroundStyle(theme.colors.light)
@@ -39,7 +39,7 @@ struct FavouriteRowView: View {
                 }
                 HStack {
                     Text(getTimerName())
-                        .font(theme.fonts.settingsLabelLarge)
+                        .font(theme.fonts.savedRowTimerName)
                         .foregroundStyle(isMainTimer ? theme.colors.light : .primary)
                         .lineLimit(1)
                         .padding(.trailing, 4)

@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 import UIKit
+import Lottie
 
 struct TimerView: View {
     @Binding var showSettings: Bool
@@ -200,21 +201,30 @@ private extension TimerView {
     var settingsIcons: some View {
         HStack {
             if viewModel.rounds == -1 {
-                theme.icons.loop
-                    .scaledToFit()
-                    .foregroundColor(theme.colors.volt)
+                theme.lottie.loop
+                    .playbackMode(viewModel.loopIconAnimation)
+                    .animationDidFinish { _ in
+                        viewModel.loopIconAnimation = .paused
+                    }
+                    .frame(width: 20, height: 20)
             }
             
             if viewModel.isVibrating {
-                theme.icons.vibration
-                    .scaledToFit()
-                    .foregroundColor(theme.colors.volt)
+                theme.lottie.vibration
+                    .playbackMode(viewModel.appearanceIconAnimation)
+                    .animationDidFinish { _ in
+                        viewModel.appearanceIconAnimation = .paused
+                    }
+                    .frame(width: 20, height: 20)
             }
             
             if viewModel.isSoundEnabled {
-                theme.icons.sound
-                    .scaledToFit()
-                    .foregroundColor(theme.colors.volt)
+                theme.lottie.sound
+                    .playbackMode(viewModel.appearanceIconAnimation)
+                    .animationDidFinish { _ in
+                        viewModel.appearanceIconAnimation = .paused
+                    }
+                    .frame(width: 20, height: 20)
             }
         }
         .frame(height: 20)

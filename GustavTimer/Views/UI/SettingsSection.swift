@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct SettingsSection<Content: View>: View {
-    var label: LocalizedStringKey
+    var label: LocalizedStringKey? = nil
     @ViewBuilder let content: () -> Content
     @Environment(\.theme) private var theme
     
     var body: some View {
-        Section(header: Text(label).font(theme.fonts.sectionHeader)) {
-            content()
+        if let label {
+            Section(header: Text(label).font(theme.fonts.sectionHeader)) {
+                content()
+            }
+        } else {
+            Section {
+                content()
+            }
         }
     }
 }

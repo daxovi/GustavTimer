@@ -30,6 +30,16 @@
 		CF228F542E7D7ED4000DEF21 /* SearchTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF228F532E7D7ECF000DEF21 /* SearchTabView.swift */; };
 		CF279C4C2C31A8940084C43F /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF279C4B2C31A8940084C43F /* SoundManager.swift */; };
 		CF3A14912E47250800F734F4 /* TimeDisplayFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A14902E47250800F734F4 /* TimeDisplayFormat.swift */; };
+		CF4977802EECB22F00EE09B1 /* MartianGrotesk-CnMd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF49777E2EECB22F00EE09B1 /* MartianGrotesk-CnMd.ttf */; };
+		CF4977812EECB22F00EE09B1 /* MartianGrotesk-CnRg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF49777F2EECB22F00EE09B1 /* MartianGrotesk-CnRg.ttf */; };
+		CF4977822EECB22F00EE09B1 /* MartianGrotesk-CnBd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF49777C2EECB22F00EE09B1 /* MartianGrotesk-CnBd.ttf */; };
+		CF4977832EECB22F00EE09B1 /* MartianGrotesk-CnLt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF49777D2EECB22F00EE09B1 /* MartianGrotesk-CnLt.ttf */; };
+		CF4977852EECB30B00EE09B1 /* MartianMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF4977842EECB30B00EE09B1 /* MartianMono-Bold.ttf */; };
+		CF49778A2EECB3FC00EE09B1 /* MartianGrotesk-StdBd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF4977862EECB3FC00EE09B1 /* MartianGrotesk-StdBd.ttf */; };
+		CF49778B2EECB3FC00EE09B1 /* MartianGrotesk-StdLt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF4977872EECB3FC00EE09B1 /* MartianGrotesk-StdLt.ttf */; };
+		CF49778C2EECB3FC00EE09B1 /* MartianGrotesk-StdMd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF4977882EECB3FC00EE09B1 /* MartianGrotesk-StdMd.ttf */; };
+		CF49778D2EECB3FC00EE09B1 /* MartianGrotesk-StdRg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF4977892EECB3FC00EE09B1 /* MartianGrotesk-StdRg.ttf */; };
+		CF49778F2EECB5CE00EE09B1 /* MartianMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF49778E2EECB5CE00EE09B1 /* MartianMono-Regular.ttf */; };
 		CF52F0F62EC3B611002CA453 /* SettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF52F0F52EC3B60D002CA453 /* SettingsSection.swift */; };
 		CF52F1102EC47085002CA453 /* SoundModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF52F10F2EC47081002CA453 /* SoundModel.swift */; };
 		CF70037D2C8DE816009F1531 /* HintButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70037C2C8DE816009F1531 /* HintButton.swift */; };
@@ -39,16 +49,7 @@
 		CF7BAE252EC27A74002A4746 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BAE242EC27A6F002A4746 /* SettingsView.swift */; };
 		CF7BAE272EC2823C002A4746 /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BAE262EC28238002A4746 /* FavouritesView.swift */; };
 		CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */; };
-		CF8C07B22E3D5AED0083ED1D /* SpaceGrotesk-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07AF2E3D5AED0083ED1D /* SpaceGrotesk-Medium.ttf */; };
-		CF8C07B32E3D5AED0083ED1D /* SpaceGrotesk-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07B12E3D5AED0083ED1D /* SpaceGrotesk-SemiBold.ttf */; };
-		CF8C07B42E3D5AED0083ED1D /* SpaceGrotesk-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07AD2E3D5AED0083ED1D /* SpaceGrotesk-Bold.ttf */; };
-		CF8C07B52E3D5AED0083ED1D /* SpaceGrotesk-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07B02E3D5AED0083ED1D /* SpaceGrotesk-Regular.ttf */; };
-		CF8C07B62E3D5AED0083ED1D /* SpaceGrotesk-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07AE2E3D5AED0083ED1D /* SpaceGrotesk-Light.ttf */; };
 		CF8C07BA2E3DFD9B0083ED1D /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8C07B92E3DFD990083ED1D /* Theme.swift */; };
-		CF8C07BF2E3E04250083ED1D /* SpaceMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07BE2E3E04250083ED1D /* SpaceMono-Regular.ttf */; };
-		CF8C07C02E3E04250083ED1D /* SpaceMono-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07BD2E3E04250083ED1D /* SpaceMono-Italic.ttf */; };
-		CF8C07C12E3E04250083ED1D /* SpaceMono-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07BC2E3E04250083ED1D /* SpaceMono-BoldItalic.ttf */; };
-		CF8C07C22E3E04250083ED1D /* SpaceMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07BB2E3E04250083ED1D /* SpaceMono-Bold.ttf */; };
 		CF8C07C72E3E64100083ED1D /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = CF8C07C62E3E64100083ED1D /* RiveRuntime */; };
 		CF8C07CD2E3E673C0083ED1D /* reset.riv in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07CC2E3E673C0083ED1D /* reset.riv */; };
 		CF8E14672D17404900155BE8 /* VideoPlayerFullscreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E14662D17403900155BE8 /* VideoPlayerFullscreen.swift */; };
@@ -64,6 +65,10 @@
 		CFC4C1872D047C1D0086CEBB /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC4C1862D047C1D0086CEBB /* WhatsNewView.swift */; };
 		CFCD99D02CA068B00017BD0E /* ListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD99CF2CA068B00017BD0E /* ListButton.swift */; };
 		CFCE3C762C431EC900D33AE3 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE3C752C431EC900D33AE3 /* View+Extension.swift */; };
+		CFED39402EE5BE5C005954D6 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CFED393F2EE5BE5C005954D6 /* Lottie */; };
+		CFED39432EE5BEF7005954D6 /* ng-icon-vibration.json in Resources */ = {isa = PBXBuildFile; fileRef = CFED39422EE5BEF7005954D6 /* ng-icon-vibration.json */; };
+		CFED39452EE5C61F005954D6 /* ng-icon-sound.json in Resources */ = {isa = PBXBuildFile; fileRef = CFED39442EE5C61F005954D6 /* ng-icon-sound.json */; };
+		CFED39472EE5E341005954D6 /* ng-icon-loop.json in Resources */ = {isa = PBXBuildFile; fileRef = CFED39462EE5E341005954D6 /* ng-icon-loop.json */; };
 		CFF207D62E6CA9BA00D0C369 /* FavouritesEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF207D52E6CA9B300D0C369 /* FavouritesEmptyView.swift */; };
 		CFF207D82E6CA9F900D0C369 /* FavouriteRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF207D72E6CA9F300D0C369 /* FavouriteRowView.swift */; };
 		CFF71ACC2B8B99BC00884E82 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */; };
@@ -94,6 +99,16 @@
 		CF228F532E7D7ECF000DEF21 /* SearchTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTabView.swift; sourceTree = "<group>"; };
 		CF279C4B2C31A8940084C43F /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		CF3A14902E47250800F734F4 /* TimeDisplayFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDisplayFormat.swift; sourceTree = "<group>"; };
+		CF49777C2EECB22F00EE09B1 /* MartianGrotesk-CnBd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianGrotesk-CnBd.ttf"; sourceTree = "<group>"; };
+		CF49777D2EECB22F00EE09B1 /* MartianGrotesk-CnLt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianGrotesk-CnLt.ttf"; sourceTree = "<group>"; };
+		CF49777E2EECB22F00EE09B1 /* MartianGrotesk-CnMd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianGrotesk-CnMd.ttf"; sourceTree = "<group>"; };
+		CF49777F2EECB22F00EE09B1 /* MartianGrotesk-CnRg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianGrotesk-CnRg.ttf"; sourceTree = "<group>"; };
+		CF4977842EECB30B00EE09B1 /* MartianMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Bold.ttf"; sourceTree = "<group>"; };
+		CF4977862EECB3FC00EE09B1 /* MartianGrotesk-StdBd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianGrotesk-StdBd.ttf"; sourceTree = "<group>"; };
+		CF4977872EECB3FC00EE09B1 /* MartianGrotesk-StdLt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianGrotesk-StdLt.ttf"; sourceTree = "<group>"; };
+		CF4977882EECB3FC00EE09B1 /* MartianGrotesk-StdMd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianGrotesk-StdMd.ttf"; sourceTree = "<group>"; };
+		CF4977892EECB3FC00EE09B1 /* MartianGrotesk-StdRg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianGrotesk-StdRg.ttf"; sourceTree = "<group>"; };
+		CF49778E2EECB5CE00EE09B1 /* MartianMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Regular.ttf"; sourceTree = "<group>"; };
 		CF52F0F52EC3B60D002CA453 /* SettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSection.swift; sourceTree = "<group>"; };
 		CF52F10F2EC47081002CA453 /* SoundModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundModel.swift; sourceTree = "<group>"; };
 		CF5B11122AD33CE500F42131 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -104,16 +119,7 @@
 		CF7BAE242EC27A6F002A4746 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CF7BAE262EC28238002A4746 /* FavouritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesView.swift; sourceTree = "<group>"; };
 		CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageModel.swift; sourceTree = "<group>"; };
-		CF8C07AD2E3D5AED0083ED1D /* SpaceGrotesk-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceGrotesk-Bold.ttf"; sourceTree = "<group>"; };
-		CF8C07AE2E3D5AED0083ED1D /* SpaceGrotesk-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceGrotesk-Light.ttf"; sourceTree = "<group>"; };
-		CF8C07AF2E3D5AED0083ED1D /* SpaceGrotesk-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceGrotesk-Medium.ttf"; sourceTree = "<group>"; };
-		CF8C07B02E3D5AED0083ED1D /* SpaceGrotesk-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceGrotesk-Regular.ttf"; sourceTree = "<group>"; };
-		CF8C07B12E3D5AED0083ED1D /* SpaceGrotesk-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceGrotesk-SemiBold.ttf"; sourceTree = "<group>"; };
 		CF8C07B92E3DFD990083ED1D /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		CF8C07BB2E3E04250083ED1D /* SpaceMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceMono-Bold.ttf"; sourceTree = "<group>"; };
-		CF8C07BC2E3E04250083ED1D /* SpaceMono-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceMono-BoldItalic.ttf"; sourceTree = "<group>"; };
-		CF8C07BD2E3E04250083ED1D /* SpaceMono-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceMono-Italic.ttf"; sourceTree = "<group>"; };
-		CF8C07BE2E3E04250083ED1D /* SpaceMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceMono-Regular.ttf"; sourceTree = "<group>"; };
 		CF8C07CC2E3E673C0083ED1D /* reset.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = reset.riv; sourceTree = "<group>"; };
 		CF8E14662D17403900155BE8 /* VideoPlayerFullscreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerFullscreen.swift; sourceTree = "<group>"; };
 		CF93EB002C5E679700A98ABD /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
@@ -128,6 +134,9 @@
 		CFC4C1862D047C1D0086CEBB /* WhatsNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewView.swift; sourceTree = "<group>"; };
 		CFCD99CF2CA068B00017BD0E /* ListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListButton.swift; sourceTree = "<group>"; };
 		CFCE3C752C431EC900D33AE3 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		CFED39422EE5BEF7005954D6 /* ng-icon-vibration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "ng-icon-vibration.json"; sourceTree = "<group>"; };
+		CFED39442EE5C61F005954D6 /* ng-icon-sound.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "ng-icon-sound.json"; sourceTree = "<group>"; };
+		CFED39462EE5E341005954D6 /* ng-icon-loop.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "ng-icon-loop.json"; sourceTree = "<group>"; };
 		CFF207D52E6CA9B300D0C369 /* FavouritesEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesEmptyView.swift; sourceTree = "<group>"; };
 		CFF207D72E6CA9F300D0C369 /* FavouriteRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteRowView.swift; sourceTree = "<group>"; };
 		CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -139,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF8C07C72E3E64100083ED1D /* RiveRuntime in Frameworks */,
+				CFED39402EE5BE5C005954D6 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +174,7 @@
 		CF21843229F052590060706C /* GustavTimer */ = {
 			isa = PBXGroup;
 			children = (
+				CFED39412EE5BED2005954D6 /* LottieAnimation */,
 				CF228F4F2E7C52B5000DEF21 /* AppSettings.swift */,
 				CF9922BA2C9766DC004186DF /* Managers */,
 				CF7B1B422C8F6BE2005D4664 /* Fonts */,
@@ -291,15 +302,16 @@
 		CF7B1B422C8F6BE2005D4664 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				CF8C07AD2E3D5AED0083ED1D /* SpaceGrotesk-Bold.ttf */,
-				CF8C07AE2E3D5AED0083ED1D /* SpaceGrotesk-Light.ttf */,
-				CF8C07AF2E3D5AED0083ED1D /* SpaceGrotesk-Medium.ttf */,
-				CF8C07B02E3D5AED0083ED1D /* SpaceGrotesk-Regular.ttf */,
-				CF8C07B12E3D5AED0083ED1D /* SpaceGrotesk-SemiBold.ttf */,
-				CF8C07BB2E3E04250083ED1D /* SpaceMono-Bold.ttf */,
-				CF8C07BC2E3E04250083ED1D /* SpaceMono-BoldItalic.ttf */,
-				CF8C07BD2E3E04250083ED1D /* SpaceMono-Italic.ttf */,
-				CF8C07BE2E3E04250083ED1D /* SpaceMono-Regular.ttf */,
+				CF4977862EECB3FC00EE09B1 /* MartianGrotesk-StdBd.ttf */,
+				CF4977872EECB3FC00EE09B1 /* MartianGrotesk-StdLt.ttf */,
+				CF4977882EECB3FC00EE09B1 /* MartianGrotesk-StdMd.ttf */,
+				CF4977892EECB3FC00EE09B1 /* MartianGrotesk-StdRg.ttf */,
+				CF49778E2EECB5CE00EE09B1 /* MartianMono-Regular.ttf */,
+				CF4977842EECB30B00EE09B1 /* MartianMono-Bold.ttf */,
+				CF49777C2EECB22F00EE09B1 /* MartianGrotesk-CnBd.ttf */,
+				CF49777D2EECB22F00EE09B1 /* MartianGrotesk-CnLt.ttf */,
+				CF49777E2EECB22F00EE09B1 /* MartianGrotesk-CnMd.ttf */,
+				CF49777F2EECB22F00EE09B1 /* MartianGrotesk-CnRg.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -338,6 +350,16 @@
 				CF9922AE2C920C51004186DF /* Image+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CFED39412EE5BED2005954D6 /* LottieAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				CFED39462EE5E341005954D6 /* ng-icon-loop.json */,
+				CFED39442EE5C61F005954D6 /* ng-icon-sound.json */,
+				CFED39422EE5BEF7005954D6 /* ng-icon-vibration.json */,
+			);
+			path = LottieAnimation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -387,6 +409,7 @@
 			mainGroup = CF21842729F052590060706C;
 			packageReferences = (
 				CF8C07C52E3E64100083ED1D /* XCRemoteSwiftPackageReference "rive-ios" */,
+				CFED393E2EE5BE5C005954D6 /* XCRemoteSwiftPackageReference "lottie-spm" */,
 			);
 			productRefGroup = CF21843129F052590060706C /* Products */;
 			projectDirPath = "";
@@ -402,30 +425,34 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF4977802EECB22F00EE09B1 /* MartianGrotesk-CnMd.ttf in Resources */,
+				CF4977812EECB22F00EE09B1 /* MartianGrotesk-CnRg.ttf in Resources */,
+				CF4977822EECB22F00EE09B1 /* MartianGrotesk-CnBd.ttf in Resources */,
+				CF4977852EECB30B00EE09B1 /* MartianMono-Bold.ttf in Resources */,
+				CF4977832EECB22F00EE09B1 /* MartianGrotesk-CnLt.ttf in Resources */,
 				CF21843B29F0525E0060706C /* Preview Assets.xcassets in Resources */,
 				CF107C582EDE289E00A172E8 /* squeeze.mp3 in Resources */,
 				CF107C522EDE25B800A172E8 /* bicycle.mp3 in Resources */,
 				CF107C5C2EDE29BE00A172E8 /* bubble.mp3 in Resources */,
 				CF107C5A2EDE295A00A172E8 /* bell.mp3 in Resources */,
 				CF107C4A2EDE1C1400A172E8 /* whistle.mp3 in Resources */,
+				CF49778F2EECB5CE00EE09B1 /* MartianMono-Regular.ttf in Resources */,
+				CFED39472EE5E341005954D6 /* ng-icon-loop.json in Resources */,
+				CF49778A2EECB3FC00EE09B1 /* MartianGrotesk-StdBd.ttf in Resources */,
+				CF49778B2EECB3FC00EE09B1 /* MartianGrotesk-StdLt.ttf in Resources */,
+				CF49778C2EECB3FC00EE09B1 /* MartianGrotesk-StdMd.ttf in Resources */,
+				CF49778D2EECB3FC00EE09B1 /* MartianGrotesk-StdRg.ttf in Resources */,
 				CFF71ACC2B8B99BC00884E82 /* Localizable.xcstrings in Resources */,
-				CF8C07BF2E3E04250083ED1D /* SpaceMono-Regular.ttf in Resources */,
-				CF8C07C02E3E04250083ED1D /* SpaceMono-Italic.ttf in Resources */,
-				CF8C07C12E3E04250083ED1D /* SpaceMono-BoldItalic.ttf in Resources */,
-				CF8C07C22E3E04250083ED1D /* SpaceMono-Bold.ttf in Resources */,
 				CF8C07CD2E3E673C0083ED1D /* reset.riv in Resources */,
 				CF93EB012C5E679700A98ABD /* PrivacyInfo.xcprivacy in Resources */,
 				CF21843829F0525E0060706C /* Assets.xcassets in Resources */,
 				CF107C542EDE269A00A172E8 /* gong.mp3 in Resources */,
+				CFED39432EE5BEF7005954D6 /* ng-icon-vibration.json in Resources */,
 				CF107C562EDE27C000A172E8 /* beep.mp3 in Resources */,
 				CF107C4C2EDE211700A172E8 /* hey.mp3 in Resources */,
 				CF107C4E2EDE225E00A172E8 /* game.mp3 in Resources */,
-				CF8C07B22E3D5AED0083ED1D /* SpaceGrotesk-Medium.ttf in Resources */,
-				CF8C07B32E3D5AED0083ED1D /* SpaceGrotesk-SemiBold.ttf in Resources */,
-				CF8C07B42E3D5AED0083ED1D /* SpaceGrotesk-Bold.ttf in Resources */,
-				CF8C07B52E3D5AED0083ED1D /* SpaceGrotesk-Regular.ttf in Resources */,
 				CF107C502EDE24A700A172E8 /* retro.mp3 in Resources */,
-				CF8C07B62E3D5AED0083ED1D /* SpaceGrotesk-Light.ttf in Resources */,
+				CFED39452EE5C61F005954D6 /* ng-icon-sound.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -709,6 +736,14 @@
 				minimumVersion = 6.11.1;
 			};
 		};
+		CFED393E2EE5BE5C005954D6 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -716,6 +751,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CF8C07C52E3E64100083ED1D /* XCRemoteSwiftPackageReference "rive-ios" */;
 			productName = RiveRuntime;
+		};
+		CFED393F2EE5BE5C005954D6 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFED393E2EE5BE5C005954D6 /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

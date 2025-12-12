@@ -20,6 +20,7 @@ struct ListButton: View {
             if let value {
                 Text(value)
                     .foregroundColor(Color("ResetColor"))
+                    .font(theme.fonts.bodyNumber)
             }
         }
         .font(theme.fonts.body)

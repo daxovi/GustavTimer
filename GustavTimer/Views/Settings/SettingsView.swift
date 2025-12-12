@@ -41,6 +41,7 @@ struct SettingsView: View {
             .saveTimerAlert(isPresented: $showSaveAlert, timerName: $newTimerName, onSave: saveTimer)
             .alreadySavedAlert(isPresented: $showAlreadySavedAlert)
             .toolbar { toolbar }
+            .font(theme.fonts.body)
         }
         .tint(.navigationItems)
     }
@@ -113,7 +114,7 @@ struct SettingsView: View {
             NavigationLink {
                 RoundsSettingsView(rounds: $appSettings.rounds)
             } label: {
-                ListButton(name: "ROUNDS", value: "\(appSettings.rounds == -1 ? "∞" : String(appSettings.rounds))")
+                ListButton(name: "ROUNDS", value: "\(appSettings.rounds == -1 ? "LOOP" : String(appSettings.rounds))")
             }
         }
     }

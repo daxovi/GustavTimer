@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Lottie
 
 struct Theme {
     let colors = Colors()
@@ -13,6 +14,7 @@ struct Theme {
     let layout = Layout()
     let icons = Icons()
     let animations = Animations()
+    let lottie = Lottie()
     
     struct Colors {
         let volt = Color.start
@@ -23,27 +25,39 @@ struct Theme {
     }
     
     struct Fonts {
-        let body = Font.custom("SpaceGrotesk-Regular", size: 17, relativeTo: .body)
-        let buttonLabel = Font.custom("SpaceGrotesk-SemiBold", size: 20, relativeTo: .title3)
-        let buttonLabelSmall = Font.custom("SpaceGrotesk-SemiBold", size: 17, relativeTo: .body)
-        let buttonDescription = Font.custom("SpaceGrotesk-Regular", size: 20, relativeTo: .title3)
-        let timerCounter = Font.custom("SpaceMono-Bold", size: 800)
-        let headUpDisplay = Font.custom("SpaceGrotesk-Bold", size: 17, relativeTo: .headline)
-        let settingsButtonBold = Font.custom("SpaceGrotesk-Bold", size: 33, relativeTo: .largeTitle)
-        let settingsCaption = Font.custom("SpaceGrotesk-Regular", size: 14, relativeTo: .caption2)
-        let settingsLabelLarge = Font.custom("SpaceGrotesk-SemiBold", size: 24, relativeTo: .title2)
+        private static let bodySize = CGFloat(15)
+        private static let captionSize = CGFloat(13)
+        private static let timerButtonsSize: CGFloat = 20
         
-        let settingsLargeTitle = Font.custom("SpaceGrotesk-Bold", size: 33, relativeTo: .title3)
-        let settingsTitle = Font.custom("SpaceGrotesk-SemiBold", size: 20, relativeTo: .body)
+        // Timer
+        let buttonLabel = Font.custom("MartianGrotesk-StdMd", size: timerButtonsSize, relativeTo: .title3)
+        let buttonDescription = Font.custom("MartianGrotesk-CnRg", size: timerButtonsSize, relativeTo: .title3)
         
-        let settingsIntervalValue = Font.custom("SpaceMono-Bold", size: 28, relativeTo: .title2)
-        let settingsIntervalName = Font.custom("SpaceGrotesk-Regular", size: 28, relativeTo: .title2)
+        let timerCounter = Font.custom("MartianMono-Bold", size: 800)
         
-        let sectionHeader = Font.custom("SpaceGrotesk-Regular", size: 17, relativeTo: .body)
-        let sectionFooter = Font.custom("SpaceGrotesk-Regular", size: 17, relativeTo: .body)
+        let headUpDisplay = Font.custom("MartianGrotesk-StdRg", size: bodySize, relativeTo: .headline)
+
+        // Settings
+        let body = Font.custom("MartianGrotesk-StdLt", size: bodySize, relativeTo: .body)
+        let bodyNumber = Font.custom("MartianMono-Regular", size: bodySize, relativeTo: .body)
         
-        let emptyLabel = Font.custom("SpaceGrotesk-SemiBold", size: 17, relativeTo: .body)
-        let emptySubtitle = Font.custom("SpaceGrotesk-Regular", size: 14, relativeTo: .body)
+        let sectionHeader = Font.custom("MartianGrotesk-StdRg", size: captionSize, relativeTo: .body)
+        let sectionFooter = Font.custom("MartianGrotesk-StdRg", size: captionSize, relativeTo: .body)
+        
+        let settingsNavbarTitle = Font.custom("MartianGrotesk-StdMd", size: 18, relativeTo: .body)
+
+        // Settings: Intervals
+        let settingsIntervalValue = Font.custom("MartianMono-Regular", size: 28, relativeTo: .title2)
+        let settingsIntervalName = Font.custom("MartianGrotesk-StdRg", size: 28, relativeTo: .title2)
+        let settingsCaption = Font.custom("MartianGrotesk-CnLt", size: captionSize, relativeTo: .caption2)
+
+        // Favourites: Empty view
+        let emptyLabel = Font.custom("MartianGrotesk-StdMd", size: 17, relativeTo: .body)
+        let emptySubtitle = Font.custom("MartianGrotesk-StdRg", size: captionSize, relativeTo: .body)
+        
+        // Favourites: Saved Row
+        let savedRowIntervalName = Font.custom("MartianGrotesk-CnLt", size: captionSize, relativeTo: .caption2)
+        let savedRowTimerName = Font.custom("MartianGrotesk-StdRg", size: 24, relativeTo: .title2)
     }
     
     struct Layout {
@@ -70,9 +84,15 @@ struct Theme {
     }
     
     struct Animations {
+        // Rive files
         let reset = "reset"
         let skip = "skip"
-        
+    }
+    
+    struct Lottie {
+        let loop = LottieView(animation: .named("ng-icon-loop"))
+        let vibration = LottieView(animation: .named("ng-icon-vibration"))
+        let sound = LottieView(animation: .named("ng-icon-sound"))
     }
 }
 

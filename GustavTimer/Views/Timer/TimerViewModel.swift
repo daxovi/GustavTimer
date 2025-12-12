@@ -11,6 +11,7 @@ import SwiftUI
 import AVKit
 import AVFoundation
 import SwiftData
+import Lottie
 
 /// ViewModel pro správu časovače - zjednodušená verze s českými komentáři
 class TimerViewModel: ObservableObject {
@@ -38,6 +39,10 @@ class TimerViewModel: ObservableObject {
     @AppStorage("isSoundEnabled") var isSoundEnabled: Bool = true
     @AppStorage("isVibrating") var isVibrating: Bool = false
     @AppStorage("timeDisplayFormat") var timeDisplayFormat: TimeDisplayFormat = .seconds
+    
+    // MARK: Lottie animation state
+    @Published var appearanceIconAnimation = LottiePlaybackMode.paused(at: .frame(0))
+    @Published var loopIconAnimation = LottiePlaybackMode.paused(at: .frame(0))
     
     // MARK: - Soukromé vlastnosti
     var activeTimerIndex: Int = 0  // Veřejné pro přístup z ProgressArrayView
@@ -176,6 +181,7 @@ class TimerViewModel: ObservableObject {
     /// Přechod na další časovač v sekvenci
     private func switchToNextTimer() {
         activeTimerIndex += 1
+        appearanceIconAnimation = .playing(.fromProgress(0, toProgress: 1, loopMode: .playOnce))
         
         if activeTimerIndex >= timers.count {
             // Konec kola
@@ -203,6 +209,7 @@ class TimerViewModel: ObservableObject {
             playSound()
             finishedRounds += 1
             remainingTime = timers[0].duration
+            loopIconAnimation = .playing(.fromProgress(0, toProgress: 1, loopMode: .playOnce))
         } else {
             // Ukončit časovač
             vibrateEnd()

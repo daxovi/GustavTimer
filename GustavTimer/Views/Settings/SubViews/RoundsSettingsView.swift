@@ -22,6 +22,7 @@ struct RoundsSettingsView: View {
                     rounds = value ? -1 : lastRoundOption
                 })) {
                     Text("IS_LOOPING")
+                        .font(theme.fonts.body)
                 }
                 .tint(theme.colors.pink)
             }
@@ -36,6 +37,7 @@ struct RoundsSettingsView: View {
                             HStack {
                                 Text("\(roundOption)")
                                     .foregroundColor(.primary)
+                                    .font(theme.fonts.bodyNumber)
                                 Spacer()
                                 if rounds == roundOption {
                                     Image(systemName: "checkmark")
@@ -46,6 +48,7 @@ struct RoundsSettingsView: View {
                     }
                 } header: {
                     Text("SELECT_ROUNDS_NUMBER")
+                        .font(theme.fonts.sectionHeader)
                 }
             }
         }

@@ -16,7 +16,7 @@ struct SoundSettingsView: View {
     
     var body: some View {
             List {
-                Section {
+                SettingsSection {
                     Toggle(isOn: .init(get: {
                         selectedSound != nil
                     }, set: { bool in
@@ -33,7 +33,7 @@ struct SoundSettingsView: View {
                 }
                 
                 if selectedSound != nil {
-                    Section {
+                    SettingsSection(label: "SELECT_SOUND") {
                         ForEach(AppConfig.soundThemes, id: \.id) { soundTheme in
                             Button {
                                 selectedSound = soundTheme
@@ -50,13 +50,36 @@ struct SoundSettingsView: View {
                                 }
                             }
                         }
-                    } header: {
-                        Text("SELECT_SOUND")
                     }
                 }
             }
             .animation(.easeInOut, value: selectedSound)
+            .font(theme.fonts.body)
+            .toolbar{toolbar}
     }
+    
+    @ToolbarContentBuilder
+    private var toolbar: some ToolbarContent {
+        if #available(iOS 26, *){
+            ToolbarItem(placement: .title) {
+                HStack {
+                    Text("SOUND_TAB")
+                        .font(theme.fonts.settingsNavbarTitle)
+                }
+                .padding(.vertical)
+            }
+        } else {
+            // Fallback to earlier versions
+            ToolbarItem(placement: .title) {
+                HStack {
+                    Text("SOUND_TAB")
+                        .font(theme.fonts.settingsNavbarTitle)
+                }
+                .padding(.vertical)
+            }
+        }
+    }
+
 }
 
 #Preview {

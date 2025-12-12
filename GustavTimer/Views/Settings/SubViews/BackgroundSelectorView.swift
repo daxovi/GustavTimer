@@ -14,6 +14,8 @@ struct BackgroundSelectorView: View {
         GridItem(.adaptive(minimum: 120))
     ]
     
+    @Environment(\.theme) private var theme
+    
     @AppStorage("bgIndex") var bgIndex: Int = 0
     
     @Environment(\.modelContext) var context
@@ -23,7 +25,7 @@ struct BackgroundSelectorView: View {
     @State private var selectedPhotoData: Data?
     
     var body: some View {
-        ScrollView() {
+        ScrollView {
             LazyVGrid(columns: flexibleColumn, spacing: 15) {
                 ForEach(0..<AppConfig.backgroundImages.count, id: \.self) { index in
                     AppConfig.backgroundImages[index].getImage()
@@ -82,6 +84,29 @@ struct BackgroundSelectorView: View {
                     context.insert(customPhoto)
                     setBG(index: -1)
                 }
+            }
+        }
+        .toolbar {toolbar}
+    }
+    
+    @ToolbarContentBuilder
+    private var toolbar: some ToolbarContent {
+        if #available(iOS 26, *){
+            ToolbarItem(placement: .title) {
+                HStack {
+                    Text("BACKGROUND_TAB")
+                        .font(theme.fonts.settingsNavbarTitle)
+                }
+                .padding(.vertical)
+            }
+        } else {
+            // Fallback to earlier versions
+            ToolbarItem(placement: .title) {
+                HStack {
+                    Text("BACKGROUND_TAB")
+                        .font(theme.fonts.settingsNavbarTitle)
+                }
+                .padding(.vertical)
             }
         }
     }

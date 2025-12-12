@@ -132,7 +132,7 @@ struct FavouritesView: View {
             ToolbarItem(placement: .title) {
                 HStack {
                     Text("FAVOURITES_TAB")
-                        .font(theme.fonts.settingsTitle)
+                        .font(theme.fonts.settingsNavbarTitle)
                 }
                 .padding(.vertical)
             }
@@ -141,6 +141,7 @@ struct FavouritesView: View {
             ToolbarItem(placement: .title) {
                 HStack {
                     Text("FAVOURITES_TAB")
+                        .font(theme.fonts.settingsNavbarTitle)
                 }
                 .padding(.vertical)
             }

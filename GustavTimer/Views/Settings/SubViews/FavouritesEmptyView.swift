@@ -11,7 +11,7 @@ struct FavouritesEmptyView: View {
     @Environment(\.theme) var theme
     
     var body: some View {
-        VStack {
+        VStack(spacing: 8) {
             Text("FAVOURITES_EMPTY_LABEL")
                 .multilineTextAlignment(.center)
                 .font(theme.fonts.emptyLabel)
@@ -21,6 +21,7 @@ struct FavouritesEmptyView: View {
                 .font(theme.fonts.emptySubtitle)
                 .foregroundStyle(theme.colors.light)
         }
+        .padding()
         .frame(height: 150)
         .frame(maxWidth: .infinity, minHeight: 44)
         .listRowBackground(theme.colors.white)
