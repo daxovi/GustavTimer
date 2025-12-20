@@ -7,131 +7,143 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CF0194542C8A17C100CAC1BD /* MartianMonoCondensed-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF0194532C8A17C100CAC1BD /* MartianMonoCondensed-Bold.ttf */; };
-		CF0194562C8A186700CAC1BD /* MartianMonoSemiCondensed-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF0194552C8A186700CAC1BD /* MartianMonoSemiCondensed-Bold.ttf */; };
-		CF0194582C8A1A1E00CAC1BD /* MartianMonoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF0194572C8A1A1E00CAC1BD /* MartianMonoCondensed-Regular.ttf */; };
-		CF01945A2C8A1AB500CAC1BD /* MartianMonoSemiCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF0194592C8A1AB500CAC1BD /* MartianMonoSemiCondensed-Regular.ttf */; };
-		CF01945C2C8A20D700CAC1BD /* SoundSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF01945B2C8A20D700CAC1BD /* SoundSelectorView.swift */; };
+		CF01945C2C8A20D700CAC1BD /* SoundSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF01945B2C8A20D700CAC1BD /* SoundSettingsView.swift */; };
+		CF107C4A2EDE1C1400A172E8 /* whistle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF107C492EDE1C1400A172E8 /* whistle.mp3 */; };
+		CF107C4C2EDE211700A172E8 /* hey.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF107C4B2EDE211700A172E8 /* hey.mp3 */; };
+		CF107C4E2EDE225E00A172E8 /* game.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF107C4D2EDE225E00A172E8 /* game.mp3 */; };
+		CF107C502EDE24A700A172E8 /* retro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF107C4F2EDE24A700A172E8 /* retro.mp3 */; };
+		CF107C522EDE25B800A172E8 /* bicycle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF107C512EDE25B800A172E8 /* bicycle.mp3 */; };
+		CF107C542EDE269A00A172E8 /* gong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF107C532EDE269A00A172E8 /* gong.mp3 */; };
+		CF107C562EDE27C000A172E8 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF107C552EDE27C000A172E8 /* beep.mp3 */; };
+		CF107C582EDE289E00A172E8 /* squeeze.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF107C572EDE289E00A172E8 /* squeeze.mp3 */; };
+		CF107C5A2EDE295A00A172E8 /* bell.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF107C592EDE295A00A172E8 /* bell.mp3 */; };
+		CF107C5C2EDE29BE00A172E8 /* bubble.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF107C5B2EDE29BE00A172E8 /* bubble.mp3 */; };
+		CF10D0562E73371F00F84454 /* RoundsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF10D0552E73371800F84454 /* RoundsSettingsView.swift */; };
 		CF21843429F052590060706C /* GustavTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF21843329F052590060706C /* GustavTimerApp.swift */; };
 		CF21843629F052590060706C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF21843529F052590060706C /* ContentView.swift */; };
 		CF21843829F0525E0060706C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF21843729F0525E0060706C /* Assets.xcassets */; };
 		CF21843B29F0525E0060706C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF21843A29F0525E0060706C /* Preview Assets.xcassets */; };
-		CF21844229F0528C0060706C /* GustavViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF21844129F0528C0060706C /* GustavViewModel.swift */; };
+		CF21844229F0528C0060706C /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF21844129F0528C0060706C /* TimerViewModel.swift */; };
+		CF2222D02E353EA600A90265 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2222CF2E353EA300A90265 /* TimerView.swift */; };
+		CF2222DA2E355A8200A90265 /* TimerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2222D92E355A8000A90265 /* TimerData.swift */; };
+		CF228F502E7C52B9000DEF21 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF228F4F2E7C52B5000DEF21 /* AppSettings.swift */; };
+		CF228F542E7D7ED4000DEF21 /* SearchTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF228F532E7D7ECF000DEF21 /* SearchTabView.swift */; };
 		CF279C4C2C31A8940084C43F /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF279C4B2C31A8940084C43F /* SoundManager.swift */; };
-		CF5B11142AD33D8900F42131 /* MartianMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF5B11132AD33D8900F42131 /* MartianMono-Bold.ttf */; };
-		CF5B11162AD33DE200F42131 /* MartianMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF5B11152AD33DE200F42131 /* MartianMono-Regular.ttf */; };
+		CF2D7C292EF35BC500E36BD9 /* ng-icon-reset-skip.json in Resources */ = {isa = PBXBuildFile; fileRef = CF2D7C282EF35BC500E36BD9 /* ng-icon-reset-skip.json */; };
+		CF3A14912E47250800F734F4 /* TimeDisplayFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A14902E47250800F734F4 /* TimeDisplayFormat.swift */; };
+		CF4977802EECB22F00EE09B1 /* MartianGrotesk-CnMd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF49777E2EECB22F00EE09B1 /* MartianGrotesk-CnMd.ttf */; };
+		CF4977812EECB22F00EE09B1 /* MartianGrotesk-CnRg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF49777F2EECB22F00EE09B1 /* MartianGrotesk-CnRg.ttf */; };
+		CF4977822EECB22F00EE09B1 /* MartianGrotesk-CnBd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF49777C2EECB22F00EE09B1 /* MartianGrotesk-CnBd.ttf */; };
+		CF4977832EECB22F00EE09B1 /* MartianGrotesk-CnLt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF49777D2EECB22F00EE09B1 /* MartianGrotesk-CnLt.ttf */; };
+		CF4977852EECB30B00EE09B1 /* MartianMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF4977842EECB30B00EE09B1 /* MartianMono-Bold.ttf */; };
+		CF49778A2EECB3FC00EE09B1 /* MartianGrotesk-StdBd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF4977862EECB3FC00EE09B1 /* MartianGrotesk-StdBd.ttf */; };
+		CF49778B2EECB3FC00EE09B1 /* MartianGrotesk-StdLt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF4977872EECB3FC00EE09B1 /* MartianGrotesk-StdLt.ttf */; };
+		CF49778C2EECB3FC00EE09B1 /* MartianGrotesk-StdMd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF4977882EECB3FC00EE09B1 /* MartianGrotesk-StdMd.ttf */; };
+		CF49778D2EECB3FC00EE09B1 /* MartianGrotesk-StdRg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF4977892EECB3FC00EE09B1 /* MartianGrotesk-StdRg.ttf */; };
+		CF49778F2EECB5CE00EE09B1 /* MartianMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF49778E2EECB5CE00EE09B1 /* MartianMono-Regular.ttf */; };
+		CF4977932EED67BB00EE09B1 /* BennerImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4977922EED67B700EE09B1 /* BennerImageModel.swift */; };
+		CF52F0F62EC3B611002CA453 /* SettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF52F0F52EC3B60D002CA453 /* SettingsSection.swift */; };
+		CF52F1102EC47085002CA453 /* SoundModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF52F10F2EC47081002CA453 /* SoundModel.swift */; };
 		CF70037D2C8DE816009F1531 /* HintButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70037C2C8DE816009F1531 /* HintButton.swift */; };
-		CF70037F2C8DED37009F1531 /* BGSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70037E2C8DED37009F1531 /* BGSelectorView.swift */; };
-		CF7B1B412C8F6BD3005D4664 /* TimerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7B1B402C8F6BD3005D4664 /* TimerData.swift */; };
-		CF7B2C742D90416900D12684 /* jumplunges.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF7B2C6E2D90416900D12684 /* jumplunges.mp4 */; };
-		CF7B2C752D90416900D12684 /* glutebridges.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF7B2C6D2D90416900D12684 /* glutebridges.mp4 */; };
-		CF7B2C762D90416900D12684 /* wallrun.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF7B2C732D90416900D12684 /* wallrun.mp4 */; };
-		CF7B2C772D90416900D12684 /* legraises.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF7B2C6F2D90416900D12684 /* legraises.mp4 */; };
-		CF7B2C782D90416900D12684 /* burpees.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF7B2C6B2D90416900D12684 /* burpees.mp4 */; };
-		CF7B2C792D90416900D12684 /* squatjump.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF7B2C712D90416900D12684 /* squatjump.mp4 */; };
-		CF7B2C7A2D90416900D12684 /* plank.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF7B2C702D90416900D12684 /* plank.mp4 */; };
-		CF7B2C7B2D90416900D12684 /* superman.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF7B2C722D90416900D12684 /* superman.mp4 */; };
-		CF7B2C7C2D90416900D12684 /* duckwalk.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CF7B2C6C2D90416900D12684 /* duckwalk.mp4 */; };
+		CF70037F2C8DED37009F1531 /* BackgroundSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70037E2C8DED37009F1531 /* BackgroundSelectorView.swift */; };
+		CF7744F12E799FA100693351 /* IntervalRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7744F02E799F9A00693351 /* IntervalRowView.swift */; };
+		CF7B1B412C8F6BD3005D4664 /* IntervalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7B1B402C8F6BD3005D4664 /* IntervalData.swift */; };
+		CF7BAE252EC27A74002A4746 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BAE242EC27A6F002A4746 /* SettingsView.swift */; };
+		CF7BAE272EC2823C002A4746 /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BAE262EC28238002A4746 /* FavouritesView.swift */; };
 		CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */; };
+		CF8C07BA2E3DFD9B0083ED1D /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8C07B92E3DFD990083ED1D /* Theme.swift */; };
+		CF8C07C72E3E64100083ED1D /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = CF8C07C62E3E64100083ED1D /* RiveRuntime */; };
+		CF8C07CD2E3E673C0083ED1D /* reset.riv in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07CC2E3E673C0083ED1D /* reset.riv */; };
 		CF8E14672D17404900155BE8 /* VideoPlayerFullscreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E14662D17403900155BE8 /* VideoPlayerFullscreen.swift */; };
-		CF8E146B2D1745DB00155BE8 /* MonthlyMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E146A2D1745CC00155BE8 /* MonthlyMenuItem.swift */; };
-		CF93EAF22C5E4C6B00A98ABD /* 90s-final.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF93EAF02C5E4C6B00A98ABD /* 90s-final.mp3 */; };
-		CF93EAF32C5E4C6B00A98ABD /* 90s-countdown.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF93EAF12C5E4C6B00A98ABD /* 90s-countdown.mp3 */; };
-		CF93EAF52C5E4F6200A98ABD /* bell-final.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF93EAF42C5E4F6200A98ABD /* bell-final.mp3 */; };
-		CF93EAF72C5E543100A98ABD /* trumpet-final.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF93EAF62C5E543100A98ABD /* trumpet-final.mp3 */; };
-		CF93EAFA2C5E551600A98ABD /* beep-countdown.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF93EAF82C5E551600A98ABD /* beep-countdown.mp3 */; };
-		CF93EAFB2C5E551600A98ABD /* beep-final.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF93EAF92C5E551600A98ABD /* beep-final.mp3 */; };
-		CF93EAFE2C5E569400A98ABD /* game-countdown.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF93EAFC2C5E569400A98ABD /* game-countdown.mp3 */; };
-		CF93EAFF2C5E569400A98ABD /* game-final.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF93EAFD2C5E569400A98ABD /* game-final.mp3 */; };
 		CF93EB012C5E679700A98ABD /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = CF93EB002C5E679700A98ABD /* PrivacyInfo.xcprivacy */; };
 		CF9922AD2C8F84C9004186DF /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9922AC2C8F84C9004186DF /* AppConfig.swift */; };
-		CF9922AF2C920C51004186DF /* BackgroundThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9922AE2C920C51004186DF /* BackgroundThumbnail.swift */; };
+		CF9922AF2C920C51004186DF /* Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9922AE2C920C51004186DF /* Image+Extension.swift */; };
 		CF9922B12C959AC1004186DF /* ControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9922B02C959AC1004186DF /* ControlButton.swift */; };
-		CF9922B72C976470004186DF /* ControlButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9922B62C976470004186DF /* ControlButtonsView.swift */; };
 		CFADBCF22AC9C8AE00AE27D8 /* ProgressArrayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADBCF12AC9C8AE00AE27D8 /* ProgressArrayView.swift */; };
-		CFADBCF42AC9DC7B00AE27D8 /* EditSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADBCF32AC9DC7B00AE27D8 /* EditSheetView.swift */; };
-		CFB1394D2AE572D300EE8B2C /* BGImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1394C2AE572D300EE8B2C /* BGImageView.swift */; };
-		CFB1394F2AE59ED900EE8B2C /* BGImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1394E2AE59ED900EE8B2C /* BGImageModel.swift */; };
+		CFB1394D2AE572D300EE8B2C /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1394C2AE572D300EE8B2C /* BackgroundImageView.swift */; };
+		CFB1394F2AE59ED900EE8B2C /* BackgroundImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1394E2AE59ED900EE8B2C /* BackgroundImageModel.swift */; };
 		CFC3A7722AAF8B1B00BB8CC2 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC3A7712AAF8B1B00BB8CC2 /* ProgressBar.swift */; };
 		CFC4C1852D04766D0086CEBB /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC4C1842D04766D0086CEBB /* Tag.swift */; };
 		CFC4C1872D047C1D0086CEBB /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC4C1862D047C1D0086CEBB /* WhatsNewView.swift */; };
-		CFC4C1892D0499010086CEBB /* MartianMono-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFC4C1882D0499010086CEBB /* MartianMono-Thin.ttf */; };
-		CFC81B022C5FF6F700F98E36 /* LapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC81B012C5FF6F700F98E36 /* LapDetailView.swift */; };
-		CFCD99CE2CA064CF0017BD0E /* QuickTimerBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD99CD2CA064CF0017BD0E /* QuickTimerBanner.swift */; };
 		CFCD99D02CA068B00017BD0E /* ListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD99CF2CA068B00017BD0E /* ListButton.swift */; };
-		CFCE3C742C43129B00D33AE3 /* LapsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE3C732C43129B00D33AE3 /* LapsView.swift */; };
-		CFCE3C762C431EC900D33AE3 /* HideKeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE3C752C431EC900D33AE3 /* HideKeyboardExtension.swift */; };
+		CFCE3C762C431EC900D33AE3 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE3C752C431EC900D33AE3 /* View+Extension.swift */; };
+		CFED39402EE5BE5C005954D6 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CFED393F2EE5BE5C005954D6 /* Lottie */; };
+		CFED39432EE5BEF7005954D6 /* ng-icon-vibration.json in Resources */ = {isa = PBXBuildFile; fileRef = CFED39422EE5BEF7005954D6 /* ng-icon-vibration.json */; };
+		CFED39452EE5C61F005954D6 /* ng-icon-sound.json in Resources */ = {isa = PBXBuildFile; fileRef = CFED39442EE5C61F005954D6 /* ng-icon-sound.json */; };
+		CFED39472EE5E341005954D6 /* ng-icon-loop.json in Resources */ = {isa = PBXBuildFile; fileRef = CFED39462EE5E341005954D6 /* ng-icon-loop.json */; };
+		CFF207D62E6CA9BA00D0C369 /* FavouritesEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF207D52E6CA9B300D0C369 /* FavouritesEmptyView.swift */; };
+		CFF207D82E6CA9F900D0C369 /* FavouriteRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF207D72E6CA9F300D0C369 /* FavouriteRowView.swift */; };
 		CFF71ACC2B8B99BC00884E82 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */; };
-		CFFEC2B62D184F9800E4C157 /* MonthlyConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFEC2B52D184F8B00E4C157 /* MonthlyConfig.swift */; };
-		CFFEC2CE2D1C483400E4C157 /* whatsnew.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFFEC2CD2D1C483400E4C157 /* whatsnew.mp4 */; };
-		CFFEC2D22D1C4D8C00E4C157 /* jumpingjack.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFFEC2CF2D1C4D8C00E4C157 /* jumpingjack.mp4 */; };
-		CFFEC2D32D1C4D8C00E4C157 /* mountainclimbers.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFFEC2D02D1C4D8C00E4C157 /* mountainclimbers.mp4 */; };
-		CFFEC2D42D1C4D8C00E4C157 /* wallsit.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFFEC2D12D1C4D8C00E4C157 /* wallsit.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CF0194532C8A17C100CAC1BD /* MartianMonoCondensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMonoCondensed-Bold.ttf"; sourceTree = "<group>"; };
-		CF0194552C8A186700CAC1BD /* MartianMonoSemiCondensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMonoSemiCondensed-Bold.ttf"; sourceTree = "<group>"; };
-		CF0194572C8A1A1E00CAC1BD /* MartianMonoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMonoCondensed-Regular.ttf"; sourceTree = "<group>"; };
-		CF0194592C8A1AB500CAC1BD /* MartianMonoSemiCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMonoSemiCondensed-Regular.ttf"; sourceTree = "<group>"; };
-		CF01945B2C8A20D700CAC1BD /* SoundSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundSelectorView.swift; sourceTree = "<group>"; };
+		CF01945B2C8A20D700CAC1BD /* SoundSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundSettingsView.swift; sourceTree = "<group>"; };
+		CF107C492EDE1C1400A172E8 /* whistle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = whistle.mp3; sourceTree = "<group>"; };
+		CF107C4B2EDE211700A172E8 /* hey.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hey.mp3; sourceTree = "<group>"; };
+		CF107C4D2EDE225E00A172E8 /* game.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = game.mp3; sourceTree = "<group>"; };
+		CF107C4F2EDE24A700A172E8 /* retro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = retro.mp3; sourceTree = "<group>"; };
+		CF107C512EDE25B800A172E8 /* bicycle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bicycle.mp3; sourceTree = "<group>"; };
+		CF107C532EDE269A00A172E8 /* gong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gong.mp3; sourceTree = "<group>"; };
+		CF107C552EDE27C000A172E8 /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep.mp3; sourceTree = "<group>"; };
+		CF107C572EDE289E00A172E8 /* squeeze.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = squeeze.mp3; sourceTree = "<group>"; };
+		CF107C592EDE295A00A172E8 /* bell.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bell.mp3; sourceTree = "<group>"; };
+		CF107C5B2EDE29BE00A172E8 /* bubble.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bubble.mp3; sourceTree = "<group>"; };
+		CF10D0552E73371800F84454 /* RoundsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundsSettingsView.swift; sourceTree = "<group>"; };
 		CF21843029F052590060706C /* GustavTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GustavTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF21843329F052590060706C /* GustavTimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavTimerApp.swift; sourceTree = "<group>"; };
 		CF21843529F052590060706C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CF21843729F0525E0060706C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF21843A29F0525E0060706C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		CF21844129F0528C0060706C /* GustavViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GustavViewModel.swift; sourceTree = "<group>"; };
+		CF21844129F0528C0060706C /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
+		CF2222CF2E353EA300A90265 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		CF2222D92E355A8000A90265 /* TimerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerData.swift; sourceTree = "<group>"; };
+		CF228F4F2E7C52B5000DEF21 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		CF228F532E7D7ECF000DEF21 /* SearchTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTabView.swift; sourceTree = "<group>"; };
 		CF279C4B2C31A8940084C43F /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		CF2D7C282EF35BC500E36BD9 /* ng-icon-reset-skip.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "ng-icon-reset-skip.json"; sourceTree = "<group>"; };
+		CF3A14902E47250800F734F4 /* TimeDisplayFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDisplayFormat.swift; sourceTree = "<group>"; };
+		CF49777C2EECB22F00EE09B1 /* MartianGrotesk-CnBd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianGrotesk-CnBd.ttf"; sourceTree = "<group>"; };
+		CF49777D2EECB22F00EE09B1 /* MartianGrotesk-CnLt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianGrotesk-CnLt.ttf"; sourceTree = "<group>"; };
+		CF49777E2EECB22F00EE09B1 /* MartianGrotesk-CnMd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianGrotesk-CnMd.ttf"; sourceTree = "<group>"; };
+		CF49777F2EECB22F00EE09B1 /* MartianGrotesk-CnRg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianGrotesk-CnRg.ttf"; sourceTree = "<group>"; };
+		CF4977842EECB30B00EE09B1 /* MartianMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Bold.ttf"; sourceTree = "<group>"; };
+		CF4977862EECB3FC00EE09B1 /* MartianGrotesk-StdBd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianGrotesk-StdBd.ttf"; sourceTree = "<group>"; };
+		CF4977872EECB3FC00EE09B1 /* MartianGrotesk-StdLt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianGrotesk-StdLt.ttf"; sourceTree = "<group>"; };
+		CF4977882EECB3FC00EE09B1 /* MartianGrotesk-StdMd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianGrotesk-StdMd.ttf"; sourceTree = "<group>"; };
+		CF4977892EECB3FC00EE09B1 /* MartianGrotesk-StdRg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianGrotesk-StdRg.ttf"; sourceTree = "<group>"; };
+		CF49778E2EECB5CE00EE09B1 /* MartianMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Regular.ttf"; sourceTree = "<group>"; };
+		CF4977922EED67B700EE09B1 /* BennerImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BennerImageModel.swift; sourceTree = "<group>"; };
+		CF52F0F52EC3B60D002CA453 /* SettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSection.swift; sourceTree = "<group>"; };
+		CF52F10F2EC47081002CA453 /* SoundModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundModel.swift; sourceTree = "<group>"; };
 		CF5B11122AD33CE500F42131 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		CF5B11132AD33D8900F42131 /* MartianMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Bold.ttf"; sourceTree = "<group>"; };
-		CF5B11152AD33DE200F42131 /* MartianMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Regular.ttf"; sourceTree = "<group>"; };
 		CF70037C2C8DE816009F1531 /* HintButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintButton.swift; sourceTree = "<group>"; };
-		CF70037E2C8DED37009F1531 /* BGSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGSelectorView.swift; sourceTree = "<group>"; };
-		CF7B1B402C8F6BD3005D4664 /* TimerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerData.swift; sourceTree = "<group>"; };
-		CF7B2C6B2D90416900D12684 /* burpees.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = burpees.mp4; sourceTree = "<group>"; };
-		CF7B2C6C2D90416900D12684 /* duckwalk.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = duckwalk.mp4; sourceTree = "<group>"; };
-		CF7B2C6D2D90416900D12684 /* glutebridges.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = glutebridges.mp4; sourceTree = "<group>"; };
-		CF7B2C6E2D90416900D12684 /* jumplunges.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = jumplunges.mp4; sourceTree = "<group>"; };
-		CF7B2C6F2D90416900D12684 /* legraises.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = legraises.mp4; sourceTree = "<group>"; };
-		CF7B2C702D90416900D12684 /* plank.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = plank.mp4; sourceTree = "<group>"; };
-		CF7B2C712D90416900D12684 /* squatjump.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = squatjump.mp4; sourceTree = "<group>"; };
-		CF7B2C722D90416900D12684 /* superman.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = superman.mp4; sourceTree = "<group>"; };
-		CF7B2C732D90416900D12684 /* wallrun.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = wallrun.mp4; sourceTree = "<group>"; };
+		CF70037E2C8DED37009F1531 /* BackgroundSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSelectorView.swift; sourceTree = "<group>"; };
+		CF7744F02E799F9A00693351 /* IntervalRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalRowView.swift; sourceTree = "<group>"; };
+		CF7B1B402C8F6BD3005D4664 /* IntervalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalData.swift; sourceTree = "<group>"; };
+		CF7BAE242EC27A6F002A4746 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		CF7BAE262EC28238002A4746 /* FavouritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesView.swift; sourceTree = "<group>"; };
 		CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageModel.swift; sourceTree = "<group>"; };
+		CF8C07B92E3DFD990083ED1D /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		CF8C07CC2E3E673C0083ED1D /* reset.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = reset.riv; sourceTree = "<group>"; };
 		CF8E14662D17403900155BE8 /* VideoPlayerFullscreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerFullscreen.swift; sourceTree = "<group>"; };
-		CF8E146A2D1745CC00155BE8 /* MonthlyMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyMenuItem.swift; sourceTree = "<group>"; };
-		CF93EAF02C5E4C6B00A98ABD /* 90s-final.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "90s-final.mp3"; sourceTree = "<group>"; };
-		CF93EAF12C5E4C6B00A98ABD /* 90s-countdown.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "90s-countdown.mp3"; sourceTree = "<group>"; };
-		CF93EAF42C5E4F6200A98ABD /* bell-final.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bell-final.mp3"; sourceTree = "<group>"; };
-		CF93EAF62C5E543100A98ABD /* trumpet-final.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "trumpet-final.mp3"; sourceTree = "<group>"; };
-		CF93EAF82C5E551600A98ABD /* beep-countdown.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "beep-countdown.mp3"; sourceTree = "<group>"; };
-		CF93EAF92C5E551600A98ABD /* beep-final.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "beep-final.mp3"; sourceTree = "<group>"; };
-		CF93EAFC2C5E569400A98ABD /* game-countdown.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "game-countdown.mp3"; sourceTree = "<group>"; };
-		CF93EAFD2C5E569400A98ABD /* game-final.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "game-final.mp3"; sourceTree = "<group>"; };
 		CF93EB002C5E679700A98ABD /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		CF9922AC2C8F84C9004186DF /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
-		CF9922AE2C920C51004186DF /* BackgroundThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundThumbnail.swift; sourceTree = "<group>"; };
+		CF9922AE2C920C51004186DF /* Image+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extension.swift"; sourceTree = "<group>"; };
 		CF9922B02C959AC1004186DF /* ControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButton.swift; sourceTree = "<group>"; };
-		CF9922B62C976470004186DF /* ControlButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButtonsView.swift; sourceTree = "<group>"; };
 		CFADBCF12AC9C8AE00AE27D8 /* ProgressArrayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressArrayView.swift; sourceTree = "<group>"; };
-		CFADBCF32AC9DC7B00AE27D8 /* EditSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSheetView.swift; sourceTree = "<group>"; };
-		CFB1394C2AE572D300EE8B2C /* BGImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGImageView.swift; sourceTree = "<group>"; };
-		CFB1394E2AE59ED900EE8B2C /* BGImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BGImageModel.swift; sourceTree = "<group>"; };
+		CFB1394C2AE572D300EE8B2C /* BackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
+		CFB1394E2AE59ED900EE8B2C /* BackgroundImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageModel.swift; sourceTree = "<group>"; };
 		CFC3A7712AAF8B1B00BB8CC2 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		CFC4C1842D04766D0086CEBB /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		CFC4C1862D047C1D0086CEBB /* WhatsNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewView.swift; sourceTree = "<group>"; };
-		CFC4C1882D0499010086CEBB /* MartianMono-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianMono-Thin.ttf"; sourceTree = "<group>"; };
-		CFC81B012C5FF6F700F98E36 /* LapDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapDetailView.swift; sourceTree = "<group>"; };
-		CFCD99CD2CA064CF0017BD0E /* QuickTimerBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerBanner.swift; sourceTree = "<group>"; };
 		CFCD99CF2CA068B00017BD0E /* ListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListButton.swift; sourceTree = "<group>"; };
-		CFCE3C732C43129B00D33AE3 /* LapsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapsView.swift; sourceTree = "<group>"; };
-		CFCE3C752C431EC900D33AE3 /* HideKeyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboardExtension.swift; sourceTree = "<group>"; };
+		CFCE3C752C431EC900D33AE3 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		CFED39422EE5BEF7005954D6 /* ng-icon-vibration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "ng-icon-vibration.json"; sourceTree = "<group>"; };
+		CFED39442EE5C61F005954D6 /* ng-icon-sound.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "ng-icon-sound.json"; sourceTree = "<group>"; };
+		CFED39462EE5E341005954D6 /* ng-icon-loop.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "ng-icon-loop.json"; sourceTree = "<group>"; };
+		CFF207D52E6CA9B300D0C369 /* FavouritesEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesEmptyView.swift; sourceTree = "<group>"; };
+		CFF207D72E6CA9F300D0C369 /* FavouriteRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteRowView.swift; sourceTree = "<group>"; };
 		CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		CFFEC2B52D184F8B00E4C157 /* MonthlyConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyConfig.swift; sourceTree = "<group>"; };
-		CFFEC2CD2D1C483400E4C157 /* whatsnew.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = whatsnew.mp4; sourceTree = "<group>"; };
-		CFFEC2CF2D1C4D8C00E4C157 /* jumpingjack.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = jumpingjack.mp4; sourceTree = "<group>"; };
-		CFFEC2D02D1C4D8C00E4C157 /* mountainclimbers.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = mountainclimbers.mp4; sourceTree = "<group>"; };
-		CFFEC2D12D1C4D8C00E4C157 /* wallsit.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = wallsit.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +151,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF8C07C72E3E64100083ED1D /* RiveRuntime in Frameworks */,
+				CFED39402EE5BE5C005954D6 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,22 +178,20 @@
 		CF21843229F052590060706C /* GustavTimer */ = {
 			isa = PBXGroup;
 			children = (
+				CFED39412EE5BED2005954D6 /* LottieAnimation */,
+				CF228F4F2E7C52B5000DEF21 /* AppSettings.swift */,
 				CF9922BA2C9766DC004186DF /* Managers */,
 				CF7B1B422C8F6BE2005D4664 /* Fonts */,
 				CF7B1B3F2C8F6BA9005D4664 /* Models */,
 				CFCE3C772C431EF400D33AE3 /* Extensions */,
-				CFCE3C702C43104100D33AE3 /* SubViews */,
+				CFCE3C702C43104100D33AE3 /* Views */,
 				CF279C462C31A0CF0084C43F /* Sound */,
 				CF5B11122AD33CE500F42131 /* Info.plist */,
 				CF9922AC2C8F84C9004186DF /* AppConfig.swift */,
-				CF8E14692D1745C300155BE8 /* MonthlyChallenge */,
+				CF8C07CE2E3E6AC80083ED1D /* RiveAnimations */,
 				CF21843329F052590060706C /* GustavTimerApp.swift */,
 				CF21843529F052590060706C /* ContentView.swift */,
-				CFC4C18A2D04B5E30086CEBB /* Video */,
-				CFC4C1862D047C1D0086CEBB /* WhatsNewView.swift */,
-				CFB1394C2AE572D300EE8B2C /* BGImageView.swift */,
-				CFADBCF32AC9DC7B00AE27D8 /* EditSheetView.swift */,
-				CF21844129F0528C0060706C /* GustavViewModel.swift */,
+				CF8C07B92E3DFD990083ED1D /* Theme.swift */,
 				CF93EB002C5E679700A98ABD /* PrivacyInfo.xcprivacy */,
 				CF21843729F0525E0060706C /* Assets.xcassets */,
 				CF21843929F0525E0060706C /* Preview Content */,
@@ -196,17 +208,71 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		CF2222D12E353FA100A90265 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				CF2222D62E354A3300A90265 /* SubViews */,
+				CF21844129F0528C0060706C /* TimerViewModel.swift */,
+				CF2222CF2E353EA300A90265 /* TimerView.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		CF2222D22E353FE800A90265 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				CF7BAE262EC28238002A4746 /* FavouritesView.swift */,
+				CF7BAE242EC27A6F002A4746 /* SettingsView.swift */,
+				CF228F532E7D7ECF000DEF21 /* SearchTabView.swift */,
+				CF2222D52E354A1900A90265 /* SubViews */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		CF2222D52E354A1900A90265 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				CF7744F02E799F9A00693351 /* IntervalRowView.swift */,
+				CF10D0552E73371800F84454 /* RoundsSettingsView.swift */,
+				CFF207D72E6CA9F300D0C369 /* FavouriteRowView.swift */,
+				CFF207D52E6CA9B300D0C369 /* FavouritesEmptyView.swift */,
+				CF01945B2C8A20D700CAC1BD /* SoundSettingsView.swift */,
+				CF70037E2C8DED37009F1531 /* BackgroundSelectorView.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		CF2222D62E354A3300A90265 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				CFADBCF12AC9C8AE00AE27D8 /* ProgressArrayView.swift */,
+				CF8E14662D17403900155BE8 /* VideoPlayerFullscreen.swift */,
+				CFB1394C2AE572D300EE8B2C /* BackgroundImageView.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		CF2222D72E354A6A00A90265 /* WhatsNew */ = {
+			isa = PBXGroup;
+			children = (
+				CFC4C1862D047C1D0086CEBB /* WhatsNewView.swift */,
+			);
+			path = WhatsNew;
+			sourceTree = "<group>";
+		};
 		CF279C462C31A0CF0084C43F /* Sound */ = {
 			isa = PBXGroup;
 			children = (
-				CF93EAF12C5E4C6B00A98ABD /* 90s-countdown.mp3 */,
-				CF93EAF82C5E551600A98ABD /* beep-countdown.mp3 */,
-				CF93EAFC2C5E569400A98ABD /* game-countdown.mp3 */,
-				CF93EAFD2C5E569400A98ABD /* game-final.mp3 */,
-				CF93EAF92C5E551600A98ABD /* beep-final.mp3 */,
-				CF93EAF62C5E543100A98ABD /* trumpet-final.mp3 */,
-				CF93EAF42C5E4F6200A98ABD /* bell-final.mp3 */,
-				CF93EAF02C5E4C6B00A98ABD /* 90s-final.mp3 */,
+				CF107C4D2EDE225E00A172E8 /* game.mp3 */,
+				CF107C5B2EDE29BE00A172E8 /* bubble.mp3 */,
+				CF107C4B2EDE211700A172E8 /* hey.mp3 */,
+				CF107C592EDE295A00A172E8 /* bell.mp3 */,
+				CF107C572EDE289E00A172E8 /* squeeze.mp3 */,
+				CF107C492EDE1C1400A172E8 /* whistle.mp3 */,
+				CF107C552EDE27C000A172E8 /* beep.mp3 */,
+				CF107C532EDE269A00A172E8 /* gong.mp3 */,
+				CF107C512EDE25B800A172E8 /* bicycle.mp3 */,
+				CF107C4F2EDE24A700A172E8 /* retro.mp3 */,
 			);
 			path = Sound;
 			sourceTree = "<group>";
@@ -214,6 +280,7 @@
 		CF70037B2C8DE807009F1531 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				CF52F0F52EC3B60D002CA453 /* SettingsSection.swift */,
 				CFC3A7712AAF8B1B00BB8CC2 /* ProgressBar.swift */,
 				CF70037C2C8DE816009F1531 /* HintButton.swift */,
 				CF9922B02C959AC1004186DF /* ControlButton.swift */,
@@ -226,8 +293,12 @@
 		CF7B1B3F2C8F6BA9005D4664 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CFB1394E2AE59ED900EE8B2C /* BGImageModel.swift */,
-				CF7B1B402C8F6BD3005D4664 /* TimerData.swift */,
+				CF4977922EED67B700EE09B1 /* BennerImageModel.swift */,
+				CF52F10F2EC47081002CA453 /* SoundModel.swift */,
+				CF3A14902E47250800F734F4 /* TimeDisplayFormat.swift */,
+				CF2222D92E355A8000A90265 /* TimerData.swift */,
+				CFB1394E2AE59ED900EE8B2C /* BackgroundImageModel.swift */,
+				CF7B1B402C8F6BD3005D4664 /* IntervalData.swift */,
 				CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */,
 			);
 			path = Models;
@@ -236,24 +307,26 @@
 		CF7B1B422C8F6BE2005D4664 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				CFC4C1882D0499010086CEBB /* MartianMono-Thin.ttf */,
-				CF5B11152AD33DE200F42131 /* MartianMono-Regular.ttf */,
-				CF0194572C8A1A1E00CAC1BD /* MartianMonoCondensed-Regular.ttf */,
-				CF0194552C8A186700CAC1BD /* MartianMonoSemiCondensed-Bold.ttf */,
-				CF0194592C8A1AB500CAC1BD /* MartianMonoSemiCondensed-Regular.ttf */,
-				CF5B11132AD33D8900F42131 /* MartianMono-Bold.ttf */,
-				CF0194532C8A17C100CAC1BD /* MartianMonoCondensed-Bold.ttf */,
+				CF4977862EECB3FC00EE09B1 /* MartianGrotesk-StdBd.ttf */,
+				CF4977872EECB3FC00EE09B1 /* MartianGrotesk-StdLt.ttf */,
+				CF4977882EECB3FC00EE09B1 /* MartianGrotesk-StdMd.ttf */,
+				CF4977892EECB3FC00EE09B1 /* MartianGrotesk-StdRg.ttf */,
+				CF49778E2EECB5CE00EE09B1 /* MartianMono-Regular.ttf */,
+				CF4977842EECB30B00EE09B1 /* MartianMono-Bold.ttf */,
+				CF49777C2EECB22F00EE09B1 /* MartianGrotesk-CnBd.ttf */,
+				CF49777D2EECB22F00EE09B1 /* MartianGrotesk-CnLt.ttf */,
+				CF49777E2EECB22F00EE09B1 /* MartianGrotesk-CnMd.ttf */,
+				CF49777F2EECB22F00EE09B1 /* MartianGrotesk-CnRg.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		CF8E14692D1745C300155BE8 /* MonthlyChallenge */ = {
+		CF8C07CE2E3E6AC80083ED1D /* RiveAnimations */ = {
 			isa = PBXGroup;
 			children = (
-				CFFEC2B52D184F8B00E4C157 /* MonthlyConfig.swift */,
-				CF8E146A2D1745CC00155BE8 /* MonthlyMenuItem.swift */,
+				CF8C07CC2E3E673C0083ED1D /* reset.riv */,
 			);
-			path = MonthlyChallenge;
+			path = RiveAnimations;
 			sourceTree = "<group>";
 		};
 		CF9922BA2C9766DC004186DF /* Managers */ = {
@@ -264,49 +337,35 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		CFC4C18A2D04B5E30086CEBB /* Video */ = {
-			isa = PBXGroup;
-			children = (
-				CF7B2C6B2D90416900D12684 /* burpees.mp4 */,
-				CF7B2C6C2D90416900D12684 /* duckwalk.mp4 */,
-				CF7B2C6D2D90416900D12684 /* glutebridges.mp4 */,
-				CF7B2C6E2D90416900D12684 /* jumplunges.mp4 */,
-				CF7B2C6F2D90416900D12684 /* legraises.mp4 */,
-				CF7B2C702D90416900D12684 /* plank.mp4 */,
-				CF7B2C712D90416900D12684 /* squatjump.mp4 */,
-				CF7B2C722D90416900D12684 /* superman.mp4 */,
-				CF7B2C732D90416900D12684 /* wallrun.mp4 */,
-				CFFEC2CF2D1C4D8C00E4C157 /* jumpingjack.mp4 */,
-				CFFEC2D02D1C4D8C00E4C157 /* mountainclimbers.mp4 */,
-				CFFEC2D12D1C4D8C00E4C157 /* wallsit.mp4 */,
-				CFFEC2CD2D1C483400E4C157 /* whatsnew.mp4 */,
-			);
-			path = Video;
-			sourceTree = "<group>";
-		};
-		CFCE3C702C43104100D33AE3 /* SubViews */ = {
+		CFCE3C702C43104100D33AE3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				CF70037B2C8DE807009F1531 /* UI */,
-				CFADBCF12AC9C8AE00AE27D8 /* ProgressArrayView.swift */,
-				CF8E14662D17403900155BE8 /* VideoPlayerFullscreen.swift */,
-				CFCE3C732C43129B00D33AE3 /* LapsView.swift */,
-				CFC81B012C5FF6F700F98E36 /* LapDetailView.swift */,
-				CF01945B2C8A20D700CAC1BD /* SoundSelectorView.swift */,
-				CF70037E2C8DED37009F1531 /* BGSelectorView.swift */,
-				CF9922B62C976470004186DF /* ControlButtonsView.swift */,
-				CFCD99CD2CA064CF0017BD0E /* QuickTimerBanner.swift */,
+				CF2222D12E353FA100A90265 /* Timer */,
+				CF2222D72E354A6A00A90265 /* WhatsNew */,
+				CF2222D22E353FE800A90265 /* Settings */,
 			);
-			path = SubViews;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		CFCE3C772C431EF400D33AE3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				CFCE3C752C431EC900D33AE3 /* HideKeyboardExtension.swift */,
-				CF9922AE2C920C51004186DF /* BackgroundThumbnail.swift */,
+				CFCE3C752C431EC900D33AE3 /* View+Extension.swift */,
+				CF9922AE2C920C51004186DF /* Image+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CFED39412EE5BED2005954D6 /* LottieAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				CF2D7C282EF35BC500E36BD9 /* ng-icon-reset-skip.json */,
+				CFED39462EE5E341005954D6 /* ng-icon-loop.json */,
+				CFED39442EE5C61F005954D6 /* ng-icon-sound.json */,
+				CFED39422EE5BEF7005954D6 /* ng-icon-vibration.json */,
+			);
+			path = LottieAnimation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -337,7 +396,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					CF21842F29F052590060706C = {
 						CreatedOnToolsVersion = 14.3;
@@ -354,6 +413,10 @@
 				cs,
 			);
 			mainGroup = CF21842729F052590060706C;
+			packageReferences = (
+				CF8C07C52E3E64100083ED1D /* XCRemoteSwiftPackageReference "rive-ios" */,
+				CFED393E2EE5BE5C005954D6 /* XCRemoteSwiftPackageReference "lottie-spm" */,
+			);
 			productRefGroup = CF21843129F052590060706C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -368,38 +431,35 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF93EAFB2C5E551600A98ABD /* beep-final.mp3 in Resources */,
+				CF4977802EECB22F00EE09B1 /* MartianGrotesk-CnMd.ttf in Resources */,
+				CF4977812EECB22F00EE09B1 /* MartianGrotesk-CnRg.ttf in Resources */,
+				CF4977822EECB22F00EE09B1 /* MartianGrotesk-CnBd.ttf in Resources */,
+				CF4977852EECB30B00EE09B1 /* MartianMono-Bold.ttf in Resources */,
+				CF4977832EECB22F00EE09B1 /* MartianGrotesk-CnLt.ttf in Resources */,
 				CF21843B29F0525E0060706C /* Preview Assets.xcassets in Resources */,
+				CF107C582EDE289E00A172E8 /* squeeze.mp3 in Resources */,
+				CF107C522EDE25B800A172E8 /* bicycle.mp3 in Resources */,
+				CF107C5C2EDE29BE00A172E8 /* bubble.mp3 in Resources */,
+				CF107C5A2EDE295A00A172E8 /* bell.mp3 in Resources */,
+				CF107C4A2EDE1C1400A172E8 /* whistle.mp3 in Resources */,
+				CF49778F2EECB5CE00EE09B1 /* MartianMono-Regular.ttf in Resources */,
+				CFED39472EE5E341005954D6 /* ng-icon-loop.json in Resources */,
+				CF49778A2EECB3FC00EE09B1 /* MartianGrotesk-StdBd.ttf in Resources */,
+				CF49778B2EECB3FC00EE09B1 /* MartianGrotesk-StdLt.ttf in Resources */,
+				CF49778C2EECB3FC00EE09B1 /* MartianGrotesk-StdMd.ttf in Resources */,
+				CF49778D2EECB3FC00EE09B1 /* MartianGrotesk-StdRg.ttf in Resources */,
 				CFF71ACC2B8B99BC00884E82 /* Localizable.xcstrings in Resources */,
-				CF0194562C8A186700CAC1BD /* MartianMonoSemiCondensed-Bold.ttf in Resources */,
-				CF93EAF72C5E543100A98ABD /* trumpet-final.mp3 in Resources */,
-				CF93EAFE2C5E569400A98ABD /* game-countdown.mp3 in Resources */,
-				CF0194582C8A1A1E00CAC1BD /* MartianMonoCondensed-Regular.ttf in Resources */,
-				CF93EAF52C5E4F6200A98ABD /* bell-final.mp3 in Resources */,
-				CF0194542C8A17C100CAC1BD /* MartianMonoCondensed-Bold.ttf in Resources */,
-				CF93EAF32C5E4C6B00A98ABD /* 90s-countdown.mp3 in Resources */,
-				CF93EAFF2C5E569400A98ABD /* game-final.mp3 in Resources */,
-				CFC4C1892D0499010086CEBB /* MartianMono-Thin.ttf in Resources */,
-				CF7B2C742D90416900D12684 /* jumplunges.mp4 in Resources */,
-				CF7B2C752D90416900D12684 /* glutebridges.mp4 in Resources */,
-				CF7B2C762D90416900D12684 /* wallrun.mp4 in Resources */,
-				CF7B2C772D90416900D12684 /* legraises.mp4 in Resources */,
-				CF7B2C782D90416900D12684 /* burpees.mp4 in Resources */,
-				CF7B2C792D90416900D12684 /* squatjump.mp4 in Resources */,
-				CF7B2C7A2D90416900D12684 /* plank.mp4 in Resources */,
-				CF7B2C7B2D90416900D12684 /* superman.mp4 in Resources */,
-				CF7B2C7C2D90416900D12684 /* duckwalk.mp4 in Resources */,
+				CF8C07CD2E3E673C0083ED1D /* reset.riv in Resources */,
 				CF93EB012C5E679700A98ABD /* PrivacyInfo.xcprivacy in Resources */,
-				CFFEC2CE2D1C483400E4C157 /* whatsnew.mp4 in Resources */,
 				CF21843829F0525E0060706C /* Assets.xcassets in Resources */,
-				CF93EAFA2C5E551600A98ABD /* beep-countdown.mp3 in Resources */,
-				CF5B11142AD33D8900F42131 /* MartianMono-Bold.ttf in Resources */,
-				CF5B11162AD33DE200F42131 /* MartianMono-Regular.ttf in Resources */,
-				CF93EAF22C5E4C6B00A98ABD /* 90s-final.mp3 in Resources */,
-				CFFEC2D22D1C4D8C00E4C157 /* jumpingjack.mp4 in Resources */,
-				CFFEC2D32D1C4D8C00E4C157 /* mountainclimbers.mp4 in Resources */,
-				CFFEC2D42D1C4D8C00E4C157 /* wallsit.mp4 in Resources */,
-				CF01945A2C8A1AB500CAC1BD /* MartianMonoSemiCondensed-Regular.ttf in Resources */,
+				CF2D7C292EF35BC500E36BD9 /* ng-icon-reset-skip.json in Resources */,
+				CF107C542EDE269A00A172E8 /* gong.mp3 in Resources */,
+				CFED39432EE5BEF7005954D6 /* ng-icon-vibration.json in Resources */,
+				CF107C562EDE27C000A172E8 /* beep.mp3 in Resources */,
+				CF107C4C2EDE211700A172E8 /* hey.mp3 in Resources */,
+				CF107C4E2EDE225E00A172E8 /* game.mp3 in Resources */,
+				CF107C502EDE24A700A172E8 /* retro.mp3 in Resources */,
+				CFED39452EE5C61F005954D6 /* ng-icon-sound.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,34 +470,42 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFB1394D2AE572D300EE8B2C /* BGImageView.swift in Sources */,
-				CFCE3C742C43129B00D33AE3 /* LapsView.swift in Sources */,
+				CFB1394D2AE572D300EE8B2C /* BackgroundImageView.swift in Sources */,
 				CF21843629F052590060706C /* ContentView.swift in Sources */,
-				CFB1394F2AE59ED900EE8B2C /* BGImageModel.swift in Sources */,
+				CFB1394F2AE59ED900EE8B2C /* BackgroundImageModel.swift in Sources */,
+				CF3A14912E47250800F734F4 /* TimeDisplayFormat.swift in Sources */,
+				CF10D0562E73371F00F84454 /* RoundsSettingsView.swift in Sources */,
 				CFC3A7722AAF8B1B00BB8CC2 /* ProgressBar.swift in Sources */,
+				CFF207D82E6CA9F900D0C369 /* FavouriteRowView.swift in Sources */,
+				CF7744F12E799FA100693351 /* IntervalRowView.swift in Sources */,
 				CF8E14672D17404900155BE8 /* VideoPlayerFullscreen.swift in Sources */,
-				CF01945C2C8A20D700CAC1BD /* SoundSelectorView.swift in Sources */,
-				CFADBCF42AC9DC7B00AE27D8 /* EditSheetView.swift in Sources */,
+				CF01945C2C8A20D700CAC1BD /* SoundSettingsView.swift in Sources */,
 				CF9922B12C959AC1004186DF /* ControlButton.swift in Sources */,
-				CF8E146B2D1745DB00155BE8 /* MonthlyMenuItem.swift in Sources */,
+				CF4977932EED67BB00EE09B1 /* BennerImageModel.swift in Sources */,
+				CF228F502E7C52B9000DEF21 /* AppSettings.swift in Sources */,
 				CFC4C1852D04766D0086CEBB /* Tag.swift in Sources */,
-				CFCD99CE2CA064CF0017BD0E /* QuickTimerBanner.swift in Sources */,
 				CFADBCF22AC9C8AE00AE27D8 /* ProgressArrayView.swift in Sources */,
 				CFC4C1872D047C1D0086CEBB /* WhatsNewView.swift in Sources */,
-				CF21844229F0528C0060706C /* GustavViewModel.swift in Sources */,
+				CF21844229F0528C0060706C /* TimerViewModel.swift in Sources */,
 				CF9922AD2C8F84C9004186DF /* AppConfig.swift in Sources */,
-				CF9922AF2C920C51004186DF /* BackgroundThumbnail.swift in Sources */,
+				CF9922AF2C920C51004186DF /* Image+Extension.swift in Sources */,
+				CF7BAE272EC2823C002A4746 /* FavouritesView.swift in Sources */,
 				CF70037D2C8DE816009F1531 /* HintButton.swift in Sources */,
 				CFCD99D02CA068B00017BD0E /* ListButton.swift in Sources */,
-				CF9922B72C976470004186DF /* ControlButtonsView.swift in Sources */,
-				CFCE3C762C431EC900D33AE3 /* HideKeyboardExtension.swift in Sources */,
-				CF70037F2C8DED37009F1531 /* BGSelectorView.swift in Sources */,
-				CFC81B022C5FF6F700F98E36 /* LapDetailView.swift in Sources */,
-				CFFEC2B62D184F9800E4C157 /* MonthlyConfig.swift in Sources */,
+				CFCE3C762C431EC900D33AE3 /* View+Extension.swift in Sources */,
+				CF70037F2C8DED37009F1531 /* BackgroundSelectorView.swift in Sources */,
+				CF7BAE252EC27A74002A4746 /* SettingsView.swift in Sources */,
+				CFF207D62E6CA9BA00D0C369 /* FavouritesEmptyView.swift in Sources */,
+				CF8C07BA2E3DFD9B0083ED1D /* Theme.swift in Sources */,
+				CF2222D02E353EA600A90265 /* TimerView.swift in Sources */,
 				CF21843429F052590060706C /* GustavTimerApp.swift in Sources */,
+				CF52F0F62EC3B611002CA453 /* SettingsSection.swift in Sources */,
 				CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */,
 				CF279C4C2C31A8940084C43F /* SoundManager.swift in Sources */,
-				CF7B1B412C8F6BD3005D4664 /* TimerData.swift in Sources */,
+				CF7B1B412C8F6BD3005D4664 /* IntervalData.swift in Sources */,
+				CF52F1102EC47085002CA453 /* SoundModel.swift in Sources */,
+				CF2222DA2E355A8200A90265 /* TimerData.swift in Sources */,
+				CF228F542E7D7ED4000DEF21 /* SearchTabView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +548,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = BY8G7HDNPV;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -502,6 +571,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -543,6 +613,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = BY8G7HDNPV;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -558,6 +629,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -573,7 +645,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GustavTimer/Preview Content\"";
-				DEVELOPMENT_TEAM = BY8G7HDNPV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GustavTimer/Info.plist;
@@ -583,23 +654,23 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.2;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cz.daliborjanecek.GustavTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -612,7 +683,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GustavTimer/Preview Content\"";
-				DEVELOPMENT_TEAM = BY8G7HDNPV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GustavTimer/Info.plist;
@@ -622,23 +692,23 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.2;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cz.daliborjanecek.GustavTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -664,6 +734,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CF8C07C52E3E64100083ED1D /* XCRemoteSwiftPackageReference "rive-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rive-app/rive-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.11.1;
+			};
+		};
+		CFED393E2EE5BE5C005954D6 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CF8C07C62E3E64100083ED1D /* RiveRuntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF8C07C52E3E64100083ED1D /* XCRemoteSwiftPackageReference "rive-ios" */;
+			productName = RiveRuntime;
+		};
+		CFED393F2EE5BE5C005954D6 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFED393E2EE5BE5C005954D6 /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CF21842829F052590060706C /* Project object */;
 }

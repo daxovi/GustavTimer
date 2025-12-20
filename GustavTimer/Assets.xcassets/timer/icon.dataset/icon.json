@@ -1,0 +1,70 @@
+{
+  "fill" : {
+    "linear-gradient" : [
+      "display-p3:0.38039,0.43137,0.47451,1.00000",
+      "srgb:0.23015,0.26272,0.29076,1.00000"
+    ],
+    "orientation" : {
+      "start" : {
+        "x" : 0.5,
+        "y" : 0
+      },
+      "stop" : {
+        "x" : 0.5,
+        "y" : 0.7
+      }
+    }
+  },
+  "groups" : [
+    {
+      "layers" : [
+        {
+          "blend-mode" : "normal",
+          "fill" : {
+            "solid" : "srgb:0.79608,1.00000,0.45098,1.00000"
+          },
+          "glass" : false,
+          "hidden" : false,
+          "image-name" : "Frame 13.png",
+          "name" : "Frame 13"
+        },
+        {
+          "glass" : false,
+          "image-name" : "Group 1.png",
+          "name" : "Group 1",
+          "opacity-specializations" : [
+            {
+              "value" : 0.5
+            },
+            {
+              "appearance" : "dark",
+              "value" : 0.8
+            },
+            {
+              "appearance" : "tinted",
+              "value" : 0.5
+            }
+          ],
+          "position" : {
+            "scale" : 1,
+            "translation-in-points" : [
+              255.5,
+              159.25
+            ]
+          }
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "squares" : "shared"
+  }
+}

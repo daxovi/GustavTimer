@@ -10,11 +10,10 @@ import SwiftData
 
 @main
 struct GustavTimerApp: App {
-    
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: [CustomImageModel.self])
+        .modelContainer(for: [CustomImageModel.self, TimerData.self])
     }
 }
