@@ -93,6 +93,7 @@ struct Theme {
         let loop = LottieView(animation: .named("ng-icon-loop"))
         let vibration = LottieView(animation: .named("ng-icon-vibration"))
         let sound = LottieView(animation: .named("ng-icon-sound"))
+        let resetSkip = LottieView(animation: .named("ng-icon-reset-skip"))
     }
 }
 

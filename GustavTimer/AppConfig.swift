@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AppConfig {
     
-    static let version = 140
+    static let version = 200
     // Maximální hodnota timeru
     static let maxTimerValue: Int = 600
     static let maxTimerCount: Int = 10
@@ -46,6 +46,13 @@ struct AppConfig {
         BackgroundImageModel(image: "Lotos", author: "", source: "www.unsplash.com")
     ]
     
+    static let bannerName: LocalizedStringKey = "CHALLENGE"
+    static let bannerImages: [BannerImageModel] = [
+        BannerImageModel(imageResource: .duckwalk, urlString: "https://youtu.be/C21zLk6bwyI"),
+        BannerImageModel(imageResource: .wallsit, urlString: "https://youtu.be/zg7vFGYauh8"),
+        BannerImageModel(imageResource: .mountainclimbers, urlString: "https://youtu.be/-LzQuHB1Bjs")
+    ]
+    
     // Default timer
     static let defaultTimer = TimerData(order: 0, name: "Gustav Timer", rounds: -1, selectedSound: soundThemes.first ?? nil, isVibrating: false)
     
@@ -65,13 +72,10 @@ struct AppConfig {
         ]),
         // EMOM Timer
         TimerData(order: -3, name: String(localized: "PT_EMOM_10MIN"), rounds: 10, selectedSound: .whistle, isVibrating: true, intervals: [
-            IntervalData(value: 40, name: String(localized: "LAP_WORK")),
-            IntervalData(value: 20, name: String(localized: "LAP_REST"))
+            IntervalData(value: 40, name: String(localized: "LAP_WORK"))
         ]),
         // HIIT trénink
         TimerData(order: -4, name: String(localized: "PT_HIIT"), rounds: 10, selectedSound: .whistle, isVibrating: true, intervals: [
-            IntervalData(value: 30, name: String(localized: "LAP_SPRINT")),
-            IntervalData(value: 15, name: String(localized: "LAP_REST")),
             IntervalData(value: 30, name: String(localized: "LAP_SPRINT")),
             IntervalData(value: 15, name: String(localized: "LAP_REST"))
         ]),

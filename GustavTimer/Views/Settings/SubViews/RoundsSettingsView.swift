@@ -52,6 +52,29 @@ struct RoundsSettingsView: View {
                 }
             }
         }
+        .toolbar{toolbar}
+    }
+    
+    @ToolbarContentBuilder
+    private var toolbar: some ToolbarContent {
+        if #available(iOS 26, *){
+            ToolbarItem(placement: .title) {
+                HStack {
+                    Text("ROUNDS")
+                        .font(theme.fonts.settingsNavbarTitle)
+                }
+                .padding(.vertical)
+            }
+        } else {
+            // Fallback to earlier versions
+            ToolbarItem(placement: .title) {
+                HStack {
+                    Text("ROUNDS")
+                        .font(theme.fonts.settingsNavbarTitle)
+                }
+                .padding(.vertical)
+            }
+        }
     }
 }
 

@@ -63,7 +63,7 @@ struct SoundSettingsView: View {
         if #available(iOS 26, *){
             ToolbarItem(placement: .title) {
                 HStack {
-                    Text("SOUND_TAB")
+                    Text("SOUND")
                         .font(theme.fonts.settingsNavbarTitle)
                 }
                 .padding(.vertical)
@@ -72,7 +72,7 @@ struct SoundSettingsView: View {
             // Fallback to earlier versions
             ToolbarItem(placement: .title) {
                 HStack {
-                    Text("SOUND_TAB")
+                    Text("SOUND")
                         .font(theme.fonts.settingsNavbarTitle)
                 }
                 .padding(.vertical)

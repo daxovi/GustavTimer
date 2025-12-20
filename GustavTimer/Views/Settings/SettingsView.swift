@@ -29,13 +29,13 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             List {
-                challenge
+                banner
                 intervalsView
                 roundsView
                 favourites
                 appearance
                 more
-                about
+//                about
             }
             .environment(\.editMode, $editMode)
             .saveTimerAlert(isPresented: $showSaveAlert, timerName: $newTimerName, onSave: saveTimer)
@@ -47,9 +47,11 @@ struct SettingsView: View {
     }
     
     @ViewBuilder
-    var challenge: some View {
-        SettingsSection(label: "CHALLENGE") {
-            Image(.wallsit)
+    var banner: some View {
+        SettingsSection(label: AppConfig.bannerName) {
+            let rn = Int.random(in: 0..<AppConfig.bannerImages.count)
+            
+            Image(AppConfig.bannerImages[rn].imageResource)
                 .resizable()
                 .scaledToFit()
                 .clipShape(RoundedRectangle(cornerRadius: 16))
@@ -62,7 +64,7 @@ struct SettingsView: View {
                         .padding()
                 }
                 .onTapGesture {
-                    if let url = URL(string: AppConfig.youtubeChallengeURL) {
+                    if let url = AppConfig.bannerImages[rn].getURL() {
                         UIApplication.shared.open(url)
                     }
                 }
@@ -94,7 +96,9 @@ struct SettingsView: View {
             }
             .onMove { moveInterval(from: $0, to: $1, in: currentTimerData) }
         } header: {
-            Text("INTERVALS_TAB").font(theme.fonts.sectionHeader)
+            Text("INTERVALS_TAB")
+                .font(theme.fonts.sectionHeader)
+                .foregroundStyle(theme.colors.neutral)
         } footer: {
             if currentTimerData.intervals.count < AppConfig.maxTimerCount {
                 HStack {
@@ -102,6 +106,7 @@ struct SettingsView: View {
                     Text("ADD_INTERVAL")
                 }
                 .font(theme.fonts.sectionFooter)
+                .foregroundStyle(theme.colors.neutral)
                 .onTapGesture {
                     addInterval(to: currentTimerData)
                 }

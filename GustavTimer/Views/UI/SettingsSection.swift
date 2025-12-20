@@ -14,7 +14,9 @@ struct SettingsSection<Content: View>: View {
     
     var body: some View {
         if let label {
-            Section(header: Text(label).font(theme.fonts.sectionHeader)) {
+            Section(header: Text(label)
+                .font(theme.fonts.sectionHeader)
+                .foregroundStyle(theme.colors.neutral)) {
                 content()
             }
         } else {

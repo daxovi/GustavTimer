@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "ikona.png",
+      "filename" : "gustav2icon.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -13,7 +13,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "Property 1=dark.png",
+      "filename" : "gustav2dark.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -25,7 +25,7 @@
           "value" : "tinted"
         }
       ],
-      "filename" : "Property 1=tinted-2.png",
+      "filename" : "gustav2tinted.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"

@@ -173,7 +173,8 @@ private extension TimerView {
             action: viewModel.startStopTimer,
             label: viewModel.isTimerRunning ? "STOP" : "START",
             description: orientation.isLandscape ? nil : startButtonDescription.map { LocalizedStringKey($0) },
-            color: viewModel.isTimerRunning ? .stop : .start
+            color: viewModel.isTimerRunning ? .stop : .start,
+            buttonType: .constant(.text)
         )
     }
     
@@ -181,7 +182,12 @@ private extension TimerView {
         ControlButton(
             action: viewModel.isTimerRunning ? viewModel.skipLap : viewModel.resetTimer,
             riveAnimation: viewModel.isTimerRunning ? theme.animations.reset : theme.animations.reset,
-            color: .reset
+            color: .reset,
+            buttonType: .init(get: {
+                viewModel.isTimerRunning ? .skip : .reset
+            }, set: { _ in
+                //
+            })
         )
     }
     

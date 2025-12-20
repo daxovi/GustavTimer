@@ -131,7 +131,7 @@ struct FavouritesView: View {
         if #available(iOS 26, *){
             ToolbarItem(placement: .title) {
                 HStack {
-                    Text("FAVOURITES_TAB")
+                    Text("FAVOURITES")
                         .font(theme.fonts.settingsNavbarTitle)
                 }
                 .padding(.vertical)
@@ -140,7 +140,7 @@ struct FavouritesView: View {
             // Fallback to earlier versions
             ToolbarItem(placement: .title) {
                 HStack {
-                    Text("FAVOURITES_TAB")
+                    Text("FAVOURITES")
                         .font(theme.fonts.settingsNavbarTitle)
                 }
                 .padding(.vertical)
