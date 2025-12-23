@@ -3,6 +3,16 @@
     {
       "filename" : "squat.jpg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "20251223_2222_Noční fitness záře_remix_01kd6hddjwf4hstjey15t3m2k2.png",
+      "idiom" : "universal"
     }
   ],
   "info" : {

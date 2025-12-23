@@ -3,6 +3,16 @@
     {
       "filename" : "boxer.jpg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "20251223_2217_Boxer ve Světle_remix_01kd6h5avkewasaz92ha1dbsng.png",
+      "idiom" : "universal"
     }
   ],
   "info" : {

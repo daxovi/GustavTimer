@@ -3,6 +3,16 @@
     {
       "filename" : "gym.jpg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "20251223_2212_Noční posilovna_remix_01kd6gvxs7fr19sfmbncq1e9cf.png",
+      "idiom" : "universal"
     }
   ],
   "info" : {

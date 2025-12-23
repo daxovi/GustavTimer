@@ -3,6 +3,16 @@
     {
       "filename" : "buddha.jpg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "20251223_2231_Noční atmosféra sošky_remix_01kd6hz0k7e1espwchypyb20mb.png",
+      "idiom" : "universal"
     }
   ],
   "info" : {
