@@ -38,7 +38,7 @@ struct FavouriteRowView: View {
                     }
                 }
                 HStack {
-                    Text(getTimerName())
+                    Text(intervalName)
                         .font(theme.fonts.savedRowTimerName)
                         .foregroundStyle(isMainTimer ? theme.colors.light : .primary)
                         .lineLimit(1)
@@ -51,7 +51,7 @@ struct FavouriteRowView: View {
                     }
                     
                     if timer.selectedSound != nil {
-                        Image(systemName: "speaker.wave.2.fill")
+                        theme.icons.sound
                             .frame(width: 22, height: 22)
                             .foregroundStyle(theme.colors.light)
                     }
@@ -72,11 +72,11 @@ struct FavouriteRowView: View {
         }
     }
     
-    func getTimerName() -> LocalizedStringKey {
+    var intervalName: LocalizedStringKey {
         if isMainTimer {
-            "CURRENT_TIMER"
+            return "CURRENT_TIMER"
         } else {
-            LocalizedStringKey(timer.name)
+            return LocalizedStringKey(timer.name)
         }
     }
     

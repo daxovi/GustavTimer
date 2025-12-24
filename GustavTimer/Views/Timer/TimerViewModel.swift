@@ -344,6 +344,7 @@ class TimerViewModel: ObservableObject {
     }
     
     func setSound(sound: SoundModel?) {
+        isSoundEnabled = sound != nil
         self.sound = sound
     }
     

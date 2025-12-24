@@ -29,7 +29,6 @@
 		CF228F502E7C52B9000DEF21 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF228F4F2E7C52B5000DEF21 /* AppSettings.swift */; };
 		CF228F542E7D7ED4000DEF21 /* SearchTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF228F532E7D7ECF000DEF21 /* SearchTabView.swift */; };
 		CF279C4C2C31A8940084C43F /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF279C4B2C31A8940084C43F /* SoundManager.swift */; };
-		CF2D7C292EF35BC500E36BD9 /* ng-icon-reset-skip.json in Resources */ = {isa = PBXBuildFile; fileRef = CF2D7C282EF35BC500E36BD9 /* ng-icon-reset-skip.json */; };
 		CF3A14912E47250800F734F4 /* TimeDisplayFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A14902E47250800F734F4 /* TimeDisplayFormat.swift */; };
 		CF4977802EECB22F00EE09B1 /* MartianGrotesk-CnMd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF49777E2EECB22F00EE09B1 /* MartianGrotesk-CnMd.ttf */; };
 		CF4977812EECB22F00EE09B1 /* MartianGrotesk-CnRg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF49777F2EECB22F00EE09B1 /* MartianGrotesk-CnRg.ttf */; };
@@ -59,6 +58,7 @@
 		CF9922AD2C8F84C9004186DF /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9922AC2C8F84C9004186DF /* AppConfig.swift */; };
 		CF9922AF2C920C51004186DF /* Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9922AE2C920C51004186DF /* Image+Extension.swift */; };
 		CF9922B12C959AC1004186DF /* ControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9922B02C959AC1004186DF /* ControlButton.swift */; };
+		CFA31BA62EFBEF360064A8A6 /* ng-icon-reset-skip.json in Resources */ = {isa = PBXBuildFile; fileRef = CFA31BA52EFBEF360064A8A6 /* ng-icon-reset-skip.json */; };
 		CFADBCF22AC9C8AE00AE27D8 /* ProgressArrayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADBCF12AC9C8AE00AE27D8 /* ProgressArrayView.swift */; };
 		CFB1394D2AE572D300EE8B2C /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1394C2AE572D300EE8B2C /* BackgroundImageView.swift */; };
 		CFB1394F2AE59ED900EE8B2C /* BackgroundImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1394E2AE59ED900EE8B2C /* BackgroundImageModel.swift */; };
@@ -100,7 +100,6 @@
 		CF228F4F2E7C52B5000DEF21 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		CF228F532E7D7ECF000DEF21 /* SearchTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTabView.swift; sourceTree = "<group>"; };
 		CF279C4B2C31A8940084C43F /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
-		CF2D7C282EF35BC500E36BD9 /* ng-icon-reset-skip.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "ng-icon-reset-skip.json"; sourceTree = "<group>"; };
 		CF3A14902E47250800F734F4 /* TimeDisplayFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDisplayFormat.swift; sourceTree = "<group>"; };
 		CF49777C2EECB22F00EE09B1 /* MartianGrotesk-CnBd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianGrotesk-CnBd.ttf"; sourceTree = "<group>"; };
 		CF49777D2EECB22F00EE09B1 /* MartianGrotesk-CnLt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MartianGrotesk-CnLt.ttf"; sourceTree = "<group>"; };
@@ -130,6 +129,7 @@
 		CF9922AC2C8F84C9004186DF /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		CF9922AE2C920C51004186DF /* Image+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extension.swift"; sourceTree = "<group>"; };
 		CF9922B02C959AC1004186DF /* ControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButton.swift; sourceTree = "<group>"; };
+		CFA31BA52EFBEF360064A8A6 /* ng-icon-reset-skip.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "ng-icon-reset-skip.json"; sourceTree = "<group>"; };
 		CFADBCF12AC9C8AE00AE27D8 /* ProgressArrayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressArrayView.swift; sourceTree = "<group>"; };
 		CFB1394C2AE572D300EE8B2C /* BackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
 		CFB1394E2AE59ED900EE8B2C /* BackgroundImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageModel.swift; sourceTree = "<group>"; };
@@ -360,7 +360,7 @@
 		CFED39412EE5BED2005954D6 /* LottieAnimation */ = {
 			isa = PBXGroup;
 			children = (
-				CF2D7C282EF35BC500E36BD9 /* ng-icon-reset-skip.json */,
+				CFA31BA52EFBEF360064A8A6 /* ng-icon-reset-skip.json */,
 				CFED39462EE5E341005954D6 /* ng-icon-loop.json */,
 				CFED39442EE5C61F005954D6 /* ng-icon-sound.json */,
 				CFED39422EE5BEF7005954D6 /* ng-icon-vibration.json */,
@@ -441,6 +441,7 @@
 				CF107C522EDE25B800A172E8 /* bicycle.mp3 in Resources */,
 				CF107C5C2EDE29BE00A172E8 /* bubble.mp3 in Resources */,
 				CF107C5A2EDE295A00A172E8 /* bell.mp3 in Resources */,
+				CFA31BA62EFBEF360064A8A6 /* ng-icon-reset-skip.json in Resources */,
 				CF107C4A2EDE1C1400A172E8 /* whistle.mp3 in Resources */,
 				CF49778F2EECB5CE00EE09B1 /* MartianMono-Regular.ttf in Resources */,
 				CFED39472EE5E341005954D6 /* ng-icon-loop.json in Resources */,
@@ -452,7 +453,6 @@
 				CF8C07CD2E3E673C0083ED1D /* reset.riv in Resources */,
 				CF93EB012C5E679700A98ABD /* PrivacyInfo.xcprivacy in Resources */,
 				CF21843829F0525E0060706C /* Assets.xcassets in Resources */,
-				CF2D7C292EF35BC500E36BD9 /* ng-icon-reset-skip.json in Resources */,
 				CF107C542EDE269A00A172E8 /* gong.mp3 in Resources */,
 				CFED39432EE5BEF7005954D6 /* ng-icon-vibration.json in Resources */,
 				CF107C562EDE27C000A172E8 /* beep.mp3 in Resources */,
@@ -661,7 +661,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = cz.daliborjanecek.GustavTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -699,7 +699,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.0;
+				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = cz.daliborjanecek.GustavTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

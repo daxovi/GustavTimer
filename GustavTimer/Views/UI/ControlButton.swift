@@ -171,7 +171,7 @@ struct ControlButton: View {
         case .skip:
             lottieAnimation = .playing(.fromFrame(60, toFrame: 120, loopMode: .playOnce))
         case .reset:
-            lottieAnimation = .playing(.fromFrame(180, toFrame: 299, loopMode: .playOnce))
+            lottieAnimation = .playing(.fromFrame(180, toFrame: 239, loopMode: .playOnce))
         }
     }
     
