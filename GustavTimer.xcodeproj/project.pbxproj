@@ -73,6 +73,8 @@
 		CFED39472EE5E341005954D6 /* ng-icon-loop.json in Resources */ = {isa = PBXBuildFile; fileRef = CFED39462EE5E341005954D6 /* ng-icon-loop.json */; };
 		CFF207D62E6CA9BA00D0C369 /* FavouritesEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF207D52E6CA9B300D0C369 /* FavouritesEmptyView.swift */; };
 		CFF207D82E6CA9F900D0C369 /* FavouriteRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF207D72E6CA9F300D0C369 /* FavouriteRowView.swift */; };
+		CFF3BAEB2EFD7D7D0069C610 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF3BAEA2EFD7D720069C610 /* OnboardingView.swift */; };
+		CFF3BAED2EFD7E8E0069C610 /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF3BAEC2EFD7E810069C610 /* OnboardingPageView.swift */; };
 		CFF71ACC2B8B99BC00884E82 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
@@ -143,6 +145,8 @@
 		CFED39462EE5E341005954D6 /* ng-icon-loop.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "ng-icon-loop.json"; sourceTree = "<group>"; };
 		CFF207D52E6CA9B300D0C369 /* FavouritesEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesEmptyView.swift; sourceTree = "<group>"; };
 		CFF207D72E6CA9F300D0C369 /* FavouriteRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteRowView.swift; sourceTree = "<group>"; };
+		CFF3BAEA2EFD7D720069C610 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		CFF3BAEC2EFD7E810069C610 /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
 		CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -340,6 +344,7 @@
 		CFCE3C702C43104100D33AE3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CFF3BAE92EFD7D6B0069C610 /* Onboarding */,
 				CF70037B2C8DE807009F1531 /* UI */,
 				CF2222D12E353FA100A90265 /* Timer */,
 				CF2222D72E354A6A00A90265 /* WhatsNew */,
@@ -366,6 +371,15 @@
 				CFED39422EE5BEF7005954D6 /* ng-icon-vibration.json */,
 			);
 			path = LottieAnimation;
+			sourceTree = "<group>";
+		};
+		CFF3BAE92EFD7D6B0069C610 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				CFF3BAEC2EFD7E810069C610 /* OnboardingPageView.swift */,
+				CFF3BAEA2EFD7D720069C610 /* OnboardingView.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -496,6 +510,7 @@
 				CF70037F2C8DED37009F1531 /* BackgroundSelectorView.swift in Sources */,
 				CF7BAE252EC27A74002A4746 /* SettingsView.swift in Sources */,
 				CFF207D62E6CA9BA00D0C369 /* FavouritesEmptyView.swift in Sources */,
+				CFF3BAEB2EFD7D7D0069C610 /* OnboardingView.swift in Sources */,
 				CF8C07BA2E3DFD9B0083ED1D /* Theme.swift in Sources */,
 				CF2222D02E353EA600A90265 /* TimerView.swift in Sources */,
 				CF21843429F052590060706C /* GustavTimerApp.swift in Sources */,
@@ -503,6 +518,7 @@
 				CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */,
 				CF279C4C2C31A8940084C43F /* SoundManager.swift in Sources */,
 				CF7B1B412C8F6BD3005D4664 /* IntervalData.swift in Sources */,
+				CFF3BAED2EFD7E8E0069C610 /* OnboardingPageView.swift in Sources */,
 				CF52F1102EC47085002CA453 /* SoundModel.swift in Sources */,
 				CF2222DA2E355A8200A90265 /* TimerData.swift in Sources */,
 				CF228F542E7D7ED4000DEF21 /* SearchTabView.swift in Sources */,
@@ -661,7 +677,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.1;
+				MARKETING_VERSION = 2.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cz.daliborjanecek.GustavTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -699,7 +715,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.1;
+				MARKETING_VERSION = 2.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cz.daliborjanecek.GustavTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

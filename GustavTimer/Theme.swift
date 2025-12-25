@@ -58,6 +58,9 @@ struct Theme {
         // Favourites: Saved Row
         let savedRowIntervalName = Font.custom("MartianGrotesk-CnLt", size: captionSize, relativeTo: .caption2)
         let savedRowTimerName = Font.custom("MartianGrotesk-StdRg", size: 24, relativeTo: .title2)
+        
+        // Onboarding
+        let onboardingTitle = Font.custom("MartianGrotesk-StdBd", size: 24, relativeTo: .title2)
     }
     
     struct Layout {
