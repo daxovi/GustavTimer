@@ -15,9 +15,7 @@ struct OnboardingPageView: View {
     var mediaFilename: String? = nil
     let actionLabel: LocalizedStringKey
     let action: () -> Void
-    
-    @Environment(\.theme) var theme
-    
+        
     var body: some View {
         ZStack {
             Color.black

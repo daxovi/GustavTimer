@@ -11,9 +11,7 @@ import GustavUI
 struct ListButton: View {
     var name: LocalizedStringKey
     var value: LocalizedStringKey?
-    
-    @Environment(\.theme) var theme
-    
+        
     var body: some View {
         HStack {
             Text(name)

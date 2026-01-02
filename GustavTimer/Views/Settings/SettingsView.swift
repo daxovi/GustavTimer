@@ -15,7 +15,6 @@ struct SettingsView: View {
     @Query(sort: \TimerData.id, order: .reverse) private var timerData: [TimerData]
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var context
-    @Environment(\.theme) private var theme
     
     @State private var editMode: EditMode = .inactive
     @State private var newTimerName = ""

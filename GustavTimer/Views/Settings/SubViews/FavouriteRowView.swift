@@ -6,13 +6,12 @@
 //
 
 import SwiftUI
+import GustavUI
 
 struct FavouriteRowView: View {
     let timer: TimerData
     let selected: Bool
-    
-    @Environment(\.theme) var theme
-    
+        
     var isMainTimer: Bool {
         timer.order == AppConfig.defaultTimer.order
     }
@@ -45,21 +44,15 @@ struct FavouriteRowView: View {
                         .padding(.trailing, 4)
                     
                     if timer.rounds == -1 {
-                        theme.icons.loop
-                            .frame(width: 22, height: 22)
-                            .foregroundStyle(Color.gustavLight)
+                        GustavIcon(.loop, size: 22, color: Color.gustavLight)
                     }
                     
                     if timer.selectedSound != nil {
-                        theme.icons.sound
-                            .frame(width: 22, height: 22)
-                            .foregroundStyle(Color.gustavLight)
+                        GustavIcon(.sound, size: 22, color: Color.gustavLight)
                     }
                     
                     if timer.isVibrating {
-                        theme.icons.vibration
-                            .frame(width: 22, height: 22)
-                            .foregroundStyle(Color.gustavLight)
+                        GustavIcon(.vibration, size: 22, color: Color.gustavLight)
                     }
                     
                     Spacer()

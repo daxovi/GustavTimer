@@ -13,7 +13,6 @@ struct FavouritesView: View {
     
     @Query(sort: \TimerData.order, order: .reverse) var timerData: [TimerData]
     @Environment(\.modelContext) var context
-    @Environment(\.theme) var theme
     
     @ObservedObject var appSettings = AppSettings()
     

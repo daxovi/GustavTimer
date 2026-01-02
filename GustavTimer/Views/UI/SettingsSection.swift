@@ -11,7 +11,6 @@ import GustavUI
 struct SettingsSection<Content: View>: View {
     var label: LocalizedStringKey? = nil
     @ViewBuilder let content: () -> Content
-    @Environment(\.theme) private var theme
     
     var body: some View {
         if let label {

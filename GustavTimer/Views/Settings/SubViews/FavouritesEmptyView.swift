@@ -9,8 +9,6 @@ import SwiftUI
 import GustavUI
 
 struct FavouritesEmptyView: View {
-    @Environment(\.theme) var theme
-    
     var body: some View {
         VStack(spacing: 8) {
             Text("FAVOURITES_EMPTY_LABEL")

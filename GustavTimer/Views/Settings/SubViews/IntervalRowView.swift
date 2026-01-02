@@ -11,9 +11,7 @@ import GustavUI
 struct IntervalRowView: View {
     @Binding var intervalName: String
     @Binding var intervalValue: Int
-    
-    @Environment(\.theme) private var theme
-    
+        
     @FocusState private var nameIsFocused: Bool
     @FocusState private var valueIsFocused: Bool
     

@@ -11,9 +11,7 @@ import GustavUI
 struct RoundsSettingsView: View {
     @Binding var rounds: Int
     @State var lastRoundOption: Int = 1
-    
-    @Environment(\.theme) private var theme
-    
+        
     var body: some View {
         List {
             Section {

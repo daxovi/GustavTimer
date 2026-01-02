@@ -15,7 +15,6 @@ struct TimerView: View {
     @Binding var showSettings: Bool
     @Environment(\.modelContext) var context
     @Query(sort: \TimerData.id, order: .reverse) private var timerData: [TimerData]
-    @Environment(\.theme) var theme
     @StateObject var viewModel = TimerViewModel()
     @State private var orientation = UIDeviceOrientation.unknown
 
@@ -182,7 +181,7 @@ private extension TimerView {
     var secondaryButton: some View {
         ControlButton(
             action: viewModel.isTimerRunning ? viewModel.skipLap : viewModel.resetTimer,
-            riveAnimation: viewModel.isTimerRunning ? theme.animations.reset : theme.animations.reset,
+            riveAnimation: "",
             color: .gustavNeutral,
             buttonType: .init(get: {
                 viewModel.isTimerRunning ? .skip : .reset
@@ -208,29 +207,17 @@ private extension TimerView {
     var settingsIcons: some View {
         HStack {
             if viewModel.rounds == -1 {
-                theme.lottie.loop
-                    .playbackMode(viewModel.loopIconAnimation)
-                    .animationDidFinish { _ in
-                        viewModel.loopIconAnimation = .paused
-                    }
+                GustavAnimationView(.loop, mode: $viewModel.loopIconAnimation)
                     .frame(width: 20, height: 20)
             }
             
             if viewModel.isVibrating {
-                theme.lottie.vibration
-                    .playbackMode(viewModel.appearanceIconAnimation)
-                    .animationDidFinish { _ in
-                        viewModel.appearanceIconAnimation = .paused
-                    }
+                GustavAnimationView(.vibration, mode: $viewModel.appearanceIconAnimation)
                     .frame(width: 20, height: 20)
             }
             
             if viewModel.isSoundEnabled {
-                theme.lottie.sound
-                    .playbackMode(viewModel.appearanceIconAnimation)
-                    .animationDidFinish { _ in
-                        viewModel.appearanceIconAnimation = .paused
-                    }
+                GustavAnimationView(.sound, mode: $viewModel.appearanceIconAnimation)
                     .frame(width: 20, height: 20)
             }
         }

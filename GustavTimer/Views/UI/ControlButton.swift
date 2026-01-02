@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import RiveRuntime
 import Lottie
 import GustavUI
 
@@ -16,99 +15,87 @@ struct ControlButton: View {
     var riveAnimation: String?
     var description: LocalizedStringKey? = nil
     let color: Color
-    @StateObject private var riveViewModel: RiveViewModel
-    @State var lottieAnimation = LottiePlaybackMode.paused(at: .frame(0))
+    @State var lottiePlayback = LottiePlaybackMode.paused(at: .frame(0))
     @Binding var buttonType: ButtonType
-
-    @Environment(\.theme) var theme
-    
+        
     init(action: @escaping () -> (), label: LocalizedStringKey? = nil, riveAnimation: String? = nil, description: LocalizedStringKey? = nil, color: Color = .gustavVolt, buttonType: Binding<ButtonType>) {
         self.action = action
         self.label = label
         self.riveAnimation = riveAnimation
         self.description = description
         self.color = color
-        self._riveViewModel = StateObject(wrappedValue: RiveViewModel(fileName: riveAnimation ?? "reset"))
         self._buttonType = buttonType
     }
-
+    
     var body: some View {
         Button(action: {
             playLottieAnimation()
             action()
         }, label: {
-                if riveAnimation != nil {
-                    if #available(iOS 26.0, *) {
-                        Color.clear
-                            .frame(height: theme.layout.controlHeight)
-                            .glassEffect(.regular.tint(color).interactive())
-                            .overlay(
-                                theme.lottie.resetSkip
-                                    .playbackMode(lottieAnimation)
-                                    .animationDidFinish { _ in
-                                        lottieAnimation = .paused
-                                    }
-                                    .padding(24)
-                            )
-                            .contentShape(Rectangle())
-                            .onAppear {
-                                lottieAnimation = .playing(.fromFrame(240, toFrame: 299, loopMode: .playOnce))
-                            }
-                    } else {
-                        // Fallback on earlier versions
-                        Color.clear
-                            .frame(height: theme.layout.controlHeight)
-                            .background(color)
-                            .overlay(
-                                theme.lottie.resetSkip
-                                    .playbackMode(lottieAnimation)
-                                    .animationDidFinish { _ in
-                                        lottieAnimation = .paused
-                                    }
-                                    .padding(24)
-                            )
-                            .contentShape(Rectangle())
-                            .onAppear {
-                                lottieAnimation = .playing(.fromFrame(240, toFrame: 299, loopMode: .playOnce))
-                            }
-                            .clipShape(Capsule())
-                            .contentShape(Rectangle())
-                    }
-                } else {
-                    if #available(iOS 26.0, *) {
-                        HStack {
-                            Text(label ?? "")
-                                .font(.buttonLabel)
-                                .foregroundStyle(color == .gustavVolt ? Color.gustavNeutral : Color.gustavVolt)
-                            Text(description ?? "")
-                                .font(.buttonDescription)
-                                .foregroundStyle(color == .gustavVolt ? Color.gustavNeutral : Color.gustavVolt)
-                                .textCase(.uppercase)
-                                .opacity(0.5)
-                        }
-                        .frame(height: theme.layout.controlHeight)
-                        .frame(maxWidth: .infinity)
+            if riveAnimation != nil {
+                if #available(iOS 26.0, *) {
+                    Color.clear
+                        .frame(height: GustavLayout.controlHeight)
                         .glassEffect(.regular.tint(color).interactive())
+                        .overlay(
+                            GustavAnimationView(.resetSkip, mode: $lottiePlayback)
+                                .padding(24)
+                        )
                         .contentShape(Rectangle())
-                    } else {
-                        // Fallback on earlier versions
-                        HStack {
-                            Text(label ?? "")
-                                .font(.buttonLabel)
-                                .foregroundStyle(color == .gustavVolt ? Color.gustavNeutral : Color.gustavVolt)
-                            Text(description ?? "")
-                                .font(.buttonDescription)
-                                .foregroundStyle(color == .gustavVolt ? Color.gustavNeutral : Color.gustavVolt)
-                                .textCase(.uppercase)
-                                .opacity(0.5)
+                        .onAppear {
+                            lottiePlayback = LottiePlaybackMode.gustav(.appear)
                         }
-                        .frame(height: theme.layout.controlHeight)
-                        .frame(maxWidth: .infinity)
+                } else {
+                    // Fallback on earlier versions
+                    Color.clear
+                        .frame(height: GustavLayout.controlHeight)
                         .background(color)
+                        .overlay(
+                            GustavAnimationView(.resetSkip, mode: $lottiePlayback)
+                                .padding(24)
+                        )
+                        .contentShape(Rectangle())
+                        .onAppear {
+                            lottiePlayback = LottiePlaybackMode.gustav(.appear)
+                        }
                         .clipShape(Capsule())
                         .contentShape(Rectangle())
-                    }
                 }
+            } else {
+                if #available(iOS 26.0, *) {
+                    HStack {
+                        Text(label ?? "")
+                            .font(.buttonLabel)
+                            .foregroundStyle(color == .gustavVolt ? Color.gustavNeutral : Color.gustavVolt)
+                        Text(description ?? "")
+                            .font(.buttonDescription)
+                            .foregroundStyle(color == .gustavVolt ? Color.gustavNeutral : Color.gustavVolt)
+                            .textCase(.uppercase)
+                            .opacity(0.5)
+                    }
+                    .frame(height: GustavLayout.controlHeight)
+                    .frame(maxWidth: .infinity)
+                    .glassEffect(.regular.tint(color).interactive())
+                    .contentShape(Rectangle())
+                } else {
+                    // Fallback on earlier versions
+                    HStack {
+                        Text(label ?? "")
+                            .font(.buttonLabel)
+                            .foregroundStyle(color == .gustavVolt ? Color.gustavNeutral : Color.gustavVolt)
+                        Text(description ?? "")
+                            .font(.buttonDescription)
+                            .foregroundStyle(color == .gustavVolt ? Color.gustavNeutral : Color.gustavVolt)
+                            .textCase(.uppercase)
+                            .opacity(0.5)
+                    }
+                    .frame(height: GustavLayout.controlHeight)
+                    .frame(maxWidth: .infinity)
+                    .background(color)
+                    .clipShape(Capsule())
+                    .contentShape(Rectangle())
+                }
+            }
         })
         .buttonStyle(.plain)
         .onChange(of: buttonType) {
@@ -117,26 +104,24 @@ struct ControlButton: View {
     }
     
     private func playLottieAnimation() {
-        lottieAnimation = .paused
         switch buttonType {
         case .text:
             return
         case .skip:
-            lottieAnimation = .playing(.fromFrame(120, toFrame: 180, loopMode: .playOnce))
+            lottiePlayback = LottiePlaybackMode.gustav(.clickSkip) // Hraje 120-180
         case .reset:
-            lottieAnimation = .playing(.fromFrame(0, toFrame: 60, loopMode: .playOnce))
+            lottiePlayback = LottiePlaybackMode.gustav(.clickReset) // Hraje 0-60
         }
     }
     
     private func buttonTypeChanged() {
-        lottieAnimation = .paused
         switch buttonType {
         case .text:
             return
         case .skip:
-            lottieAnimation = .playing(.fromFrame(60, toFrame: 120, loopMode: .playOnce))
+            lottiePlayback = LottiePlaybackMode.gustav(.transitionToSkip) // Hraje 60-120
         case .reset:
-            lottieAnimation = .playing(.fromFrame(180, toFrame: 239, loopMode: .playOnce))
+            lottiePlayback = LottiePlaybackMode.gustav(.transitionToReset) // Hraje 180-239
         }
     }
     

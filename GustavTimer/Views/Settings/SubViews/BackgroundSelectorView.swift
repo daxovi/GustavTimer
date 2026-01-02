@@ -13,9 +13,7 @@ struct BackgroundSelectorView: View {
     private let flexibleColumn = [
         GridItem(.adaptive(minimum: 120))
     ]
-    
-    @Environment(\.theme) private var theme
-    
+        
     @AppStorage("bgIndex") var bgIndex: Int = 0
     
     @Environment(\.modelContext) var context

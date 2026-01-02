@@ -7,9 +7,14 @@
 
 import SwiftUI
 import SwiftData
+import GustavUI
 
 @main
 struct GustavTimerApp: App {
+    
+    init() {
+        GustavDesign.registerFonts()
+    }
     var body: some Scene {
         WindowGroup {
             ContentView()

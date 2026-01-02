@@ -10,9 +10,7 @@ import GustavUI
 
 struct SoundSettingsView: View {
     
-    @Binding var selectedSound: SoundModel?
-    @Environment(\.theme) private var theme
-    
+    @Binding var selectedSound: SoundModel?    
     @State var lastSelectedSound: SoundModel? = nil
     
     var body: some View {

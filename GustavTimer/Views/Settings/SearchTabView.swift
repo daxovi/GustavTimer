@@ -14,7 +14,6 @@ struct SearchTabView: View {
     @Binding var searchText: String
     @FocusState private var isFocused: Bool
     @Query(sort: \TimerData.order, order: .reverse) var timerData: [TimerData]
-    @Environment(\.theme) var theme
     @Environment(\.dismiss) var dismiss
     
     var body: some View {

@@ -15,18 +15,5 @@
 			</array>
 		</dict>
 	</array>
-	<key>UIAppFonts</key>
-	<array>
-		<string>MartianMono-Bold.ttf</string>
-		<string>MartianGrotesk-CnBd.ttf</string>
-		<string>MartianGrotesk-CnLt.ttf</string>
-		<string>MartianGrotesk-CnMd.ttf</string>
-		<string>MartianGrotesk-CnRg.ttf</string>
-		<string>MartianGrotesk-StdBd.ttf</string>
-		<string>MartianGrotesk-StdLt.ttf</string>
-		<string>MartianGrotesk-StdMd.ttf</string>
-		<string>MartianGrotesk-StdRg.ttf</string>
-		<string>MartianMono-Regular.ttf</string>
-	</array>
 </dict>
 </plist>
