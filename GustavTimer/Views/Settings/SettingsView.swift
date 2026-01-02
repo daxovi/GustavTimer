@@ -316,7 +316,7 @@ private struct ButtonLink: View {
                 UIApplication.shared.open(url)
             }
         }
-        .foregroundStyle(.stop)
+        .foregroundStyle(Color.gustavPink)
     }
 }
 
