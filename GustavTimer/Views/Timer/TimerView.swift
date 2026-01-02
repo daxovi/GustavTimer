@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 import UIKit
 import Lottie
+import GustavUI
 
 struct TimerView: View {
     @Binding var showSettings: Bool
@@ -122,7 +123,7 @@ private extension TimerView {
             Spacer()
             settingsButton
         }
-        .font(theme.fonts.headUpDisplay)
+        .font(.headUpDisplay)
     }
     
     @ViewBuilder
@@ -130,20 +131,20 @@ private extension TimerView {
         if let currentTimer = currentTimer {
             Text("\(currentTimer.name) (\(viewModel.finishedRounds)\(viewModel.rounds == -1 ? "" : ("/" + String(viewModel.rounds))))")
                 .safeAreaPadding(.horizontal)
-                .foregroundColor(Color("StartColor").opacity(viewModel.finishedRounds == 0 ? 0.0 : 1.0))
+                .foregroundColor(Color.gustavVolt.opacity(viewModel.finishedRounds == 0 ? 0.0 : 1.0))
                 .animation(.easeInOut(duration: 0.2), value: viewModel.finishedRounds)
         } else {
             Text("No Timer")
                 .safeAreaPadding(.horizontal)
-                .foregroundColor(Color("StartColor").opacity(0.5))
+                .foregroundColor(Color.gustavVolt.opacity(0.5))
         }
     }
     
     func counterDisplay(timeDisplayFormat: TimeDisplayFormat) -> some View {
         Text(viewModel.formattedCurrentTime(timeDisplayFormat: timeDisplayFormat))
-            .font(theme.fonts.timerCounter)
+            .font(.timerCounter)
             .minimumScaleFactor(0.01)
-            .foregroundColor(Color("StartColor"))
+            .foregroundColor(Color.gustavVolt)
     }
     
     var horizontalControlButtons: some View {
@@ -173,7 +174,7 @@ private extension TimerView {
             action: viewModel.startStopTimer,
             label: viewModel.isTimerRunning ? "STOP" : "START",
             description: orientation.isLandscape ? nil : startButtonDescription.map { LocalizedStringKey($0) },
-            color: viewModel.isTimerRunning ? .stop : .start,
+            color: viewModel.isTimerRunning ? .gustavPink : .gustavVolt,
             buttonType: .constant(.text)
         )
     }
@@ -182,7 +183,7 @@ private extension TimerView {
         ControlButton(
             action: viewModel.isTimerRunning ? viewModel.skipLap : viewModel.resetTimer,
             riveAnimation: viewModel.isTimerRunning ? theme.animations.reset : theme.animations.reset,
-            color: .reset,
+            color: .gustavNeutral,
             buttonType: .init(get: {
                 viewModel.isTimerRunning ? .skip : .reset
             }, set: { _ in
@@ -199,7 +200,7 @@ private extension TimerView {
                 settingsIcons
                 Text("EDIT")
             }
-            .foregroundColor(Color("StartColor"))
+            .foregroundColor(Color.gustavVolt)
         }
         .safeAreaPadding(.horizontal)
     }
@@ -240,7 +241,7 @@ private extension TimerView {
         Image(systemName: viewModel.isSoundEnabled ? "speaker.wave.2.circle.fill" : "speaker.slash.circle.fill")
             .resizable()
             .scaledToFit()
-            .foregroundColor(Color(viewModel.isSoundEnabled ? .start : .reset))
+            .foregroundColor(Color(viewModel.isSoundEnabled ? Color.gustavVolt : Color.gustavNeutral))
     }
 }
 

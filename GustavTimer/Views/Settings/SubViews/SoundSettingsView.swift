@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GustavUI
 
 struct SoundSettingsView: View {
     
@@ -29,7 +30,7 @@ struct SoundSettingsView: View {
                     })) {
                         Text("IS_SOUND_ENABLED")
                     }
-                    .tint(theme.colors.pink)
+                    .tint(Color.gustavPink)
                 }
                 
                 if selectedSound != nil {
@@ -45,7 +46,7 @@ struct SoundSettingsView: View {
                                     Spacer()
                                     if selectedSound == soundTheme {
                                         Image(systemName: "checkmark")
-                                            .foregroundColor(theme.colors.pink)
+                                            .foregroundColor(Color.gustavPink)
                                     }
                                 }
                             }
@@ -54,7 +55,7 @@ struct SoundSettingsView: View {
                 }
             }
             .animation(.easeInOut, value: selectedSound)
-            .font(theme.fonts.body)
+            .font(.gustavBody)
             .toolbar{toolbar}
     }
     
@@ -64,7 +65,7 @@ struct SoundSettingsView: View {
             ToolbarItem(placement: .title) {
                 HStack {
                     Text("SOUND")
-                        .font(theme.fonts.settingsNavbarTitle)
+                        .font(.settingsNavbarTitle)
                 }
                 .padding(.vertical)
             }
@@ -73,7 +74,7 @@ struct SoundSettingsView: View {
             ToolbarItem(placement: .title) {
                 HStack {
                     Text("SOUND")
-                        .font(theme.fonts.settingsNavbarTitle)
+                        .font(.settingsNavbarTitle)
                 }
                 .padding(.vertical)
             }

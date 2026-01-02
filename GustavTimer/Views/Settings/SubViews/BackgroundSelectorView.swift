@@ -34,7 +34,7 @@ struct BackgroundSelectorView: View {
                         .overlay {
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke(style: .init(lineWidth: (bgIndex == index) ? 4 : 0))
-                                .fill(Color("StartColor"))
+                                .fill(Color.gustavVolt)
                                 .animation(.easeInOut, value: bgIndex)
                         }
                         .padding(1)
@@ -52,7 +52,7 @@ struct BackgroundSelectorView: View {
                                                 .overlay {
                                                     RoundedRectangle(cornerRadius: 10)
                                                         .stroke(style: .init(lineWidth: (bgIndex == -1) ? 4 : 0))
-                                                        .fill(Color("StartColor"))
+                                                        .fill(Color.gustavVolt)
                                                         .animation(.easeInOut, value: bgIndex)
                                                 }
                                         }
@@ -63,11 +63,11 @@ struct BackgroundSelectorView: View {
                 }
                 PhotosPicker(selection: $selectedPhoto) {
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(Color("ResetColor"))
+                        .fill(Color.gustavNeutral)
                         .aspectRatio(1, contentMode: .fill)
                         .overlay(alignment: .center) {
                             Image(systemName: "photo")
-                                .foregroundStyle(Color("StartColor"))
+                                .foregroundStyle(Color.gustavVolt)
                                 .font(.title)
                                 .padding()
                         }
@@ -95,7 +95,7 @@ struct BackgroundSelectorView: View {
             ToolbarItem(placement: .title) {
                 HStack {
                     Text("BACKGROUND_TAB")
-                        .font(theme.fonts.settingsNavbarTitle)
+                        .font(.settingsNavbarTitle)
                 }
                 .padding(.vertical)
             }
@@ -104,7 +104,7 @@ struct BackgroundSelectorView: View {
             ToolbarItem(placement: .title) {
                 HStack {
                     Text("BACKGROUND_TAB")
-                        .font(theme.fonts.settingsNavbarTitle)
+                        .font(.settingsNavbarTitle)
                 }
                 .padding(.vertical)
             }

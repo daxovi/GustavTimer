@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import GustavUI
 
 struct FavouritesView: View {
     
@@ -27,7 +28,6 @@ struct FavouritesView: View {
         List {
             savedTimers
             preloadedTimers
-//            mainTimer
         }
         .navigationBarTitleDisplayMode(.automatic)
         .toolbar { toolbar }
@@ -58,7 +58,7 @@ struct FavouritesView: View {
                 FavouritesEmptyView()
             }
         } header: {
-            Text("SAVED_TIMERS").font(theme.fonts.sectionHeader)
+            Text("SAVED_TIMERS").font(.sectionHeader)
         }
         .animation(.spring, value: editMode)
     }
@@ -74,56 +74,9 @@ struct FavouritesView: View {
                         }
                 }
         } header: {
-            Text("PRELOADED_TIMERS").font(theme.fonts.sectionHeader)
+            Text("PRELOADED_TIMERS").font(.sectionHeader)
         }
         .animation(.spring, value: editMode)
-    }
-    
-    @ViewBuilder
-    private var mainTimer: some View {
-        let savedTimers = timerData.filter { $0.order != 0 }
-        if let mainTimer = timerData.first(where: { $0.order == 0 }), !savedTimers.contains(mainTimer) {
-            VStack(alignment: .center, spacing: 16) {
-                
-                var timersText: String {
-                    var text = ""
-                    for (index, interval) in mainTimer.intervals.enumerated() {
-                        if index != 0 {
-                            text += ", "
-                        }
-                        text += "\(interval.name): \(interval.value)"
-                    }
-                    return text
-                }
-                
-                Text(timersText)
-                    .font(theme.fonts.settingsCaption)
-                    .foregroundStyle(theme.colors.neutral)
-                addFavouriteButton
-            }
-            .frame(maxWidth: .infinity)
-        }
-    }
-    
-    @ViewBuilder
-    private var addFavouriteButton: some View {
-        if #available(iOS 26.0, *) {
-            Button("SAVE_YOUR_FIRST_TIMER") {
-                showSaveAlert.toggle()
-            }
-            .font(theme.fonts.settingsCaption)
-            .foregroundStyle(.white)
-            .padding(4)
-            .padding(.horizontal, 10)
-            .glassEffect(.regular.tint(theme.colors.pink).interactive())
-        } else {
-            // Fallback on earlier versions
-            Button("SAVE_YOUR_FIRST_TIMER") {
-                showSaveAlert.toggle()
-            }
-            .font(theme.fonts.settingsCaption)
-            .foregroundStyle(.white)
-        }
     }
     
     @ToolbarContentBuilder
@@ -132,7 +85,7 @@ struct FavouritesView: View {
             ToolbarItem(placement: .title) {
                 HStack {
                     Text("FAVOURITES")
-                        .font(theme.fonts.settingsNavbarTitle)
+                        .font(.settingsNavbarTitle)
                 }
                 .padding(.vertical)
             }
@@ -141,7 +94,7 @@ struct FavouritesView: View {
             ToolbarItem(placement: .title) {
                 HStack {
                     Text("FAVOURITES")
-                        .font(theme.fonts.settingsNavbarTitle)
+                        .font(.settingsNavbarTitle)
                 }
                 .padding(.vertical)
             }

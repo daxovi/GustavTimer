@@ -21,10 +21,10 @@ struct ListButton: View {
             if let value {
                 Text(value)
                     .foregroundColor(Color.gustavNeutral)
-                    .font(theme.fonts.bodyNumber)
+                    .font(.bodyNumber)
             }
         }
-        .font(theme.fonts.body)
+        .font(.gustavBody)
     }
 }
 

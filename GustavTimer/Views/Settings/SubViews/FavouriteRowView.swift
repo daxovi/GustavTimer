@@ -25,13 +25,13 @@ struct FavouriteRowView: View {
                         ForEach(timer.intervals) { interval in
                             VStack(alignment: .leading) {
                                 Capsule()
-                                    .fill(isMainTimer ? theme.colors.light : theme.colors.volt)
+                                    .fill(isMainTimer ? Color.gustavLight : Color.gustavVolt)
                                     .frame(height: 5)
                                 Text(interval.name)
-                                    .font(theme.fonts.savedRowIntervalName)
+                                    .font(.savedRowIntervalName)
                                     .lineLimit(1)
                                     .padding(.trailing)
-                                    .foregroundStyle(theme.colors.light)
+                                    .foregroundStyle(Color.gustavLight)
                             }
                             .frame(width: getIntervalWidth(interval: interval, viewWidth: geometry.size.width))
                         }
@@ -39,27 +39,27 @@ struct FavouriteRowView: View {
                 }
                 HStack {
                     Text(intervalName)
-                        .font(theme.fonts.savedRowTimerName)
-                        .foregroundStyle(isMainTimer ? theme.colors.light : .primary)
+                        .font(.savedRowTimerName)
+                        .foregroundStyle(isMainTimer ? Color.gustavLight : .primary)
                         .lineLimit(1)
                         .padding(.trailing, 4)
                     
                     if timer.rounds == -1 {
                         theme.icons.loop
                             .frame(width: 22, height: 22)
-                            .foregroundStyle(theme.colors.light)
+                            .foregroundStyle(Color.gustavLight)
                     }
                     
                     if timer.selectedSound != nil {
                         theme.icons.sound
                             .frame(width: 22, height: 22)
-                            .foregroundStyle(theme.colors.light)
+                            .foregroundStyle(Color.gustavLight)
                     }
                     
                     if timer.isVibrating {
                         theme.icons.vibration
                             .frame(width: 22, height: 22)
-                            .foregroundStyle(theme.colors.light)
+                            .foregroundStyle(Color.gustavLight)
                     }
                     
                     Spacer()
@@ -67,7 +67,7 @@ struct FavouriteRowView: View {
             }
             .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
             .padding()
-            .background(selected ? theme.colors.volt.opacity(0.2) : nil)
+            .background(selected ? Color.gustavVolt.opacity(0.2) : nil)
             .contentShape(RoundedRectangle(cornerRadius: 10))
         }
     }

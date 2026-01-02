@@ -21,10 +21,6 @@ struct AppConfig {
     static let youtubeChallengeURL: String = "https://youtube.com/playlist?list=PLi2Zd-0ICmgIoaWudLzSF8Jt5VKAWSvdR&si=NaYIwDYMCX9rsIFW"
     static let youtubeURL: String = "https://www.youtube.com/@Gustavtraining"
     
-    // Barvy
-    static let primaryColor: Color = Color("PrimaryColor")
-    static let secondaryColor: Color = Color("SecondaryColor")
-    
     // Velikosti fontů
     static let largeFontSize: CGFloat = 30
     static let smallFontSize: CGFloat = 15

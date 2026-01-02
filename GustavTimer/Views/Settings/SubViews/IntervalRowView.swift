@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GustavUI
 
 struct IntervalRowView: View {
     @Binding var intervalName: String
@@ -21,10 +22,10 @@ struct IntervalRowView: View {
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("INTERVAL")
-                        .font(theme.fonts.settingsCaption)
-                        .foregroundStyle(theme.colors.light)
+                        .font(.settingsCaption)
+                        .foregroundStyle(Color.gustavLight)
                     TextField("INTERVAL_NAME_PROMPT", text: $intervalName)
-                        .font(theme.fonts.settingsIntervalName)
+                        .font(.settingsIntervalName)
                         .focused($nameIsFocused)
                 }
                 
@@ -32,11 +33,11 @@ struct IntervalRowView: View {
                 
                 VStack(alignment: .trailing, spacing: 4) {
                     Text("INTERVAL_VALUE")
-                        .font(theme.fonts.settingsCaption)
-                        .foregroundStyle(theme.colors.light)
+                        .font(.settingsCaption)
+                        .foregroundStyle(Color.gustavLight)
                     TextField("1-\(AppConfig.maxTimerValue)", value: $intervalValue, format: .number)
                         .keyboardType(.numberPad)
-                        .font(theme.fonts.settingsIntervalValue)
+                        .font(.settingsIntervalValue)
                         .multilineTextAlignment(.trailing)
                         .focused($valueIsFocused)
                 }
@@ -49,22 +50,22 @@ struct IntervalRowView: View {
                         nameIsFocused = false
                         valueIsFocused = false
                     }
-                    .font(theme.fonts.settingsCaption)
-                    .foregroundStyle(.white)
+                    .font(.settingsCaption)
+                    .foregroundStyle(Color.gustavWhite)
                     .padding(4)
                     .padding(.horizontal, 10)
-                    .glassEffect(.regular.tint(theme.colors.pink).interactive())
+                    .glassEffect(.regular.tint(Color.gustavPink).interactive())
                 } else {
                     // Fallback on earlier versions
                     Button("DONE") {
                         nameIsFocused = false
                         valueIsFocused = false
                     }
-                    .font(theme.fonts.settingsCaption)
-                    .foregroundStyle(.white)
+                    .font(.settingsCaption)
+                    .foregroundStyle(Color.gustavWhite)
                     .padding(4)
                     .padding(.horizontal, 10)
-                    .background(theme.colors.pink)
+                    .background(Color.gustavPink)
                     .clipShape(Capsule())
                 }
             }

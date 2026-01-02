@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import GustavUI
 
 struct SettingsView: View {
     @StateObject private var appSettings = AppSettings()
@@ -41,9 +42,9 @@ struct SettingsView: View {
             .saveTimerAlert(isPresented: $showSaveAlert, timerName: $newTimerName, onSave: saveTimer)
             .alreadySavedAlert(isPresented: $showAlreadySavedAlert)
             .toolbar { toolbar }
-            .font(theme.fonts.body)
+            .font(.gustavBody)
         }
-        .tint(.navigationItems)
+        .tint(Color.gustavNavigationItemsColor)
     }
     
     @ViewBuilder
@@ -97,16 +98,16 @@ struct SettingsView: View {
             .onMove { moveInterval(from: $0, to: $1, in: currentTimerData) }
         } header: {
             Text("INTERVALS_TAB")
-                .font(theme.fonts.sectionHeader)
-                .foregroundStyle(theme.colors.neutral)
+                .font(.sectionHeader)
+                .foregroundStyle(Color.gustavNeutral)
         } footer: {
             if currentTimerData.intervals.count < AppConfig.maxTimerCount {
                 HStack {
                     Image(systemName: "plus")
                     Text("ADD_INTERVAL")
                 }
-                .font(theme.fonts.sectionFooter)
-                .foregroundStyle(theme.colors.neutral)
+                .font(.sectionFooter)
+                .foregroundStyle(Color.gustavNeutral)
                 .onTapGesture {
                     addInterval(to: currentTimerData)
                 }
@@ -139,7 +140,7 @@ struct SettingsView: View {
     private var appearance: some View {
         SettingsSection(label: "APPEARANCE") {
             Toggle("HAPTICS", isOn: $appSettings.isVibrating)
-                .tint(theme.colors.pink)
+                .tint(Color.gustavPink)
             
             NavigationLink {
                 SoundSettingsView(selectedSound: .init(get: {

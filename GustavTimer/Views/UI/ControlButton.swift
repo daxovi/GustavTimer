@@ -8,6 +8,7 @@
 import SwiftUI
 import RiveRuntime
 import Lottie
+import GustavUI
 
 struct ControlButton: View {
     let action: () -> ()
@@ -21,7 +22,7 @@ struct ControlButton: View {
 
     @Environment(\.theme) var theme
     
-    init(action: @escaping () -> (), label: LocalizedStringKey? = nil, riveAnimation: String? = nil, description: LocalizedStringKey? = nil, color: Color = .start, buttonType: Binding<ButtonType>) {
+    init(action: @escaping () -> (), label: LocalizedStringKey? = nil, riveAnimation: String? = nil, description: LocalizedStringKey? = nil, color: Color = .gustavVolt, buttonType: Binding<ButtonType>) {
         self.action = action
         self.label = label
         self.riveAnimation = riveAnimation
@@ -77,11 +78,11 @@ struct ControlButton: View {
                     if #available(iOS 26.0, *) {
                         HStack {
                             Text(label ?? "")
-                                .font(theme.fonts.buttonLabel)
-                                .foregroundStyle(color == .start ? .reset : .start)
+                                .font(.buttonLabel)
+                                .foregroundStyle(color == .gustavVolt ? Color.gustavNeutral : Color.gustavVolt)
                             Text(description ?? "")
-                                .font(theme.fonts.buttonDescription)
-                                .foregroundStyle(color == .start ? .reset : .white)
+                                .font(.buttonDescription)
+                                .foregroundStyle(color == .gustavVolt ? Color.gustavNeutral : Color.gustavVolt)
                                 .textCase(.uppercase)
                                 .opacity(0.5)
                         }
@@ -93,11 +94,11 @@ struct ControlButton: View {
                         // Fallback on earlier versions
                         HStack {
                             Text(label ?? "")
-                                .font(theme.fonts.buttonLabel)
-                                .foregroundStyle(color == .start ? .reset : .start)
+                                .font(.buttonLabel)
+                                .foregroundStyle(color == .gustavVolt ? Color.gustavNeutral : Color.gustavVolt)
                             Text(description ?? "")
-                                .font(theme.fonts.buttonDescription)
-                                .foregroundStyle(color == .start ? .reset : .white)
+                                .font(.buttonDescription)
+                                .foregroundStyle(color == .gustavVolt ? Color.gustavNeutral : Color.gustavVolt)
                                 .textCase(.uppercase)
                                 .opacity(0.5)
                         }
@@ -113,42 +114,6 @@ struct ControlButton: View {
         .onChange(of: buttonType) {
             buttonTypeChanged()
         }
-    }
-    
-    @ViewBuilder
-    private var labelView: some View {
-        if let label {
-            HStack{
-                Text(label)
-                    .foregroundStyle(color == .start ? .reset : .start)
-                    .font(theme.fonts.buttonLabel)
-                    .textCase(.uppercase)
-                if let description {
-                    Text(description)
-                        .foregroundStyle(color == .start ? .reset : .white)
-                        .font(theme.fonts.buttonDescription)
-                        .textCase(.uppercase)
-                        .opacity(0.5)
-                }
-            }
-        }
-    }
-    
-    @ViewBuilder
-    private var animationView: some View {
-        if (riveAnimation != nil) {
-            riveViewModel.view()
-                .padding(30)
-        }
-    }
-    
-    private var buttonBorder: some View {
-        RoundedRectangle(cornerRadius: theme.layout.buttonRadius)
-            .inset(by: 1)
-            .stroke(
-                LinearGradient(colors: [.white.opacity(1), .white.opacity(0), .white.opacity(1)], startPoint: .top, endPoint: .bottom),
-                lineWidth: 3)
-            .opacity(0.15)
     }
     
     private func playLottieAnimation() {

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AVKit
+import GustavUI
 
 struct OnboardingPageView: View {
     var title: LocalizedStringKey? = nil
@@ -38,7 +39,7 @@ struct OnboardingPageView: View {
                 
                 if let title {
                     Text(title)
-                        .font(theme.fonts.onboardingTitle)
+                        .font(.onboardingTitle)
                 }
                 
                 if let description {
@@ -49,16 +50,16 @@ struct OnboardingPageView: View {
                     HStack {
                         Text(actionLabel)
                             .textCase(.uppercase)
-                            .font(theme.fonts.onboardingButtonLabel)
+                            .font(.onboardingButtonLabel)
                         Spacer()
                     }
                 }
                 .padding(.vertical)
             }
             .padding(24)
-            .font(theme.fonts.body)
+            .font(.gustavBody)
             .lineSpacing(4)
-            .foregroundStyle(.white)
+            .foregroundStyle(Color.gustavWhite)
         }
     }
 }
