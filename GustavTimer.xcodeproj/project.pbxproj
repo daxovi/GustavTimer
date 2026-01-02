@@ -19,6 +19,7 @@
 		CF107C5A2EDE295A00A172E8 /* bell.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF107C592EDE295A00A172E8 /* bell.mp3 */; };
 		CF107C5C2EDE29BE00A172E8 /* bubble.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CF107C5B2EDE29BE00A172E8 /* bubble.mp3 */; };
 		CF10D0562E73371F00F84454 /* RoundsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF10D0552E73371800F84454 /* RoundsSettingsView.swift */; };
+		CF17ADD82F083A6B00A92841 /* GustavUI in Frameworks */ = {isa = PBXBuildFile; productRef = CF17ADD72F083A6B00A92841 /* GustavUI */; };
 		CF21843429F052590060706C /* GustavTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF21843329F052590060706C /* GustavTimerApp.swift */; };
 		CF21843629F052590060706C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF21843529F052590060706C /* ContentView.swift */; };
 		CF21843829F0525E0060706C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF21843729F0525E0060706C /* Assets.xcassets */; };
@@ -63,7 +64,6 @@
 		CFB1394D2AE572D300EE8B2C /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1394C2AE572D300EE8B2C /* BackgroundImageView.swift */; };
 		CFB1394F2AE59ED900EE8B2C /* BackgroundImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1394E2AE59ED900EE8B2C /* BackgroundImageModel.swift */; };
 		CFC3A7722AAF8B1B00BB8CC2 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC3A7712AAF8B1B00BB8CC2 /* ProgressBar.swift */; };
-		CFC4C1852D04766D0086CEBB /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC4C1842D04766D0086CEBB /* Tag.swift */; };
 		CFC4C1872D047C1D0086CEBB /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC4C1862D047C1D0086CEBB /* WhatsNewView.swift */; };
 		CFCD99D02CA068B00017BD0E /* ListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD99CF2CA068B00017BD0E /* ListButton.swift */; };
 		CFCE3C762C431EC900D33AE3 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE3C752C431EC900D33AE3 /* View+Extension.swift */; };
@@ -75,6 +75,7 @@
 		CFF207D82E6CA9F900D0C369 /* FavouriteRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF207D72E6CA9F300D0C369 /* FavouriteRowView.swift */; };
 		CFF3BAEB2EFD7D7D0069C610 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF3BAEA2EFD7D720069C610 /* OnboardingView.swift */; };
 		CFF3BAED2EFD7E8E0069C610 /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF3BAEC2EFD7E810069C610 /* OnboardingPageView.swift */; };
+		CFF3BAF42EFD91D30069C610 /* fristensky.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFF3BAF32EFD91D30069C610 /* fristensky.mp4 */; };
 		CFF71ACC2B8B99BC00884E82 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
@@ -136,7 +137,6 @@
 		CFB1394C2AE572D300EE8B2C /* BackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
 		CFB1394E2AE59ED900EE8B2C /* BackgroundImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageModel.swift; sourceTree = "<group>"; };
 		CFC3A7712AAF8B1B00BB8CC2 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
-		CFC4C1842D04766D0086CEBB /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		CFC4C1862D047C1D0086CEBB /* WhatsNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewView.swift; sourceTree = "<group>"; };
 		CFCD99CF2CA068B00017BD0E /* ListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListButton.swift; sourceTree = "<group>"; };
 		CFCE3C752C431EC900D33AE3 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
@@ -147,6 +147,7 @@
 		CFF207D72E6CA9F300D0C369 /* FavouriteRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteRowView.swift; sourceTree = "<group>"; };
 		CFF3BAEA2EFD7D720069C610 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		CFF3BAEC2EFD7E810069C610 /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
+		CFF3BAF32EFD91D30069C610 /* fristensky.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = fristensky.mp4; sourceTree = "<group>"; };
 		CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,16 +158,25 @@
 			files = (
 				CF8C07C72E3E64100083ED1D /* RiveRuntime in Frameworks */,
 				CFED39402EE5BE5C005954D6 /* Lottie in Frameworks */,
+				CF17ADD82F083A6B00A92841 /* GustavUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF17ADD62F083A6100A92841 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CF21842729F052590060706C = {
 			isa = PBXGroup;
 			children = (
 				CF21843229F052590060706C /* GustavTimer */,
+				CF17ADD62F083A6100A92841 /* Frameworks */,
 				CF21843129F052590060706C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -182,6 +192,7 @@
 		CF21843229F052590060706C /* GustavTimer */ = {
 			isa = PBXGroup;
 			children = (
+				CFF3BAEE2EFD8EAC0069C610 /* Media */,
 				CFED39412EE5BED2005954D6 /* LottieAnimation */,
 				CF228F4F2E7C52B5000DEF21 /* AppSettings.swift */,
 				CF9922BA2C9766DC004186DF /* Managers */,
@@ -289,7 +300,6 @@
 				CF70037C2C8DE816009F1531 /* HintButton.swift */,
 				CF9922B02C959AC1004186DF /* ControlButton.swift */,
 				CFCD99CF2CA068B00017BD0E /* ListButton.swift */,
-				CFC4C1842D04766D0086CEBB /* Tag.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -382,6 +392,14 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		CFF3BAEE2EFD8EAC0069C610 /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				CFF3BAF32EFD91D30069C610 /* fristensky.mp4 */,
+			);
+			path = Media;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -446,6 +464,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF4977802EECB22F00EE09B1 /* MartianGrotesk-CnMd.ttf in Resources */,
+				CFF3BAF42EFD91D30069C610 /* fristensky.mp4 in Resources */,
 				CF4977812EECB22F00EE09B1 /* MartianGrotesk-CnRg.ttf in Resources */,
 				CF4977822EECB22F00EE09B1 /* MartianGrotesk-CnBd.ttf in Resources */,
 				CF4977852EECB30B00EE09B1 /* MartianMono-Bold.ttf in Resources */,
@@ -497,7 +516,6 @@
 				CF9922B12C959AC1004186DF /* ControlButton.swift in Sources */,
 				CF4977932EED67BB00EE09B1 /* BennerImageModel.swift in Sources */,
 				CF228F502E7C52B9000DEF21 /* AppSettings.swift in Sources */,
-				CFC4C1852D04766D0086CEBB /* Tag.swift in Sources */,
 				CFADBCF22AC9C8AE00AE27D8 /* ProgressArrayView.swift in Sources */,
 				CFC4C1872D047C1D0086CEBB /* WhatsNewView.swift in Sources */,
 				CF21844229F0528C0060706C /* TimerViewModel.swift in Sources */,
@@ -771,6 +789,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CF17ADD72F083A6B00A92841 /* GustavUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GustavUI;
+		};
 		CF8C07C62E3E64100083ED1D /* RiveRuntime */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CF8C07C52E3E64100083ED1D /* XCRemoteSwiftPackageReference "rive-ios" */;

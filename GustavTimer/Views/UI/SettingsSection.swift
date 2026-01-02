@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GustavUI
 
 struct SettingsSection<Content: View>: View {
     var label: LocalizedStringKey? = nil
@@ -16,7 +17,7 @@ struct SettingsSection<Content: View>: View {
         if let label {
             Section(header: Text(label)
                 .font(theme.fonts.sectionHeader)
-                .foregroundStyle(theme.colors.neutral)) {
+                .foregroundStyle(Color.gustavNeutral)) {
                 content()
             }
         } else {

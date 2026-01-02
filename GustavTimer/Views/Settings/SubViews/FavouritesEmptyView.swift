@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GustavUI
 
 struct FavouritesEmptyView: View {
     @Environment(\.theme) var theme
@@ -15,16 +16,16 @@ struct FavouritesEmptyView: View {
             Text("FAVOURITES_EMPTY_LABEL")
                 .multilineTextAlignment(.center)
                 .font(theme.fonts.emptyLabel)
-                .foregroundStyle(theme.colors.light)
+                .foregroundStyle(Color.gustavLight)
             Text("FAVOURITES_EMPTY_SUBTITLE")
                 .multilineTextAlignment(.center)
                 .font(theme.fonts.emptySubtitle)
-                .foregroundStyle(theme.colors.light)
+                .foregroundStyle(Color.gustavLight)
         }
         .padding()
         .frame(height: 150)
         .frame(maxWidth: .infinity, minHeight: 44)
-        .listRowBackground(theme.colors.white)
+        .listRowBackground(Color.gustavWhite)
         .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
     }
 }

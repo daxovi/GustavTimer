@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GustavUI
 
 struct ProgressBar: View {
     @Binding var progress: Double
@@ -15,10 +16,10 @@ struct ProgressBar: View {
     var body: some View {
         GeometryReader { proxy in
             ZStack(alignment: .leading) {
-                Color("ResetColor")
+                Color.gustavNeutral
                     .cornerRadius(cornerRadius)
                     .clipShape(Capsule())
-                Color("StartColor")
+                Color.gustavVolt
                     .frame(width: proxy.size.width * progress)
                     .cornerRadius(cornerRadius)
                     .clipShape(Capsule())

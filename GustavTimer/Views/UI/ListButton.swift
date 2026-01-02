@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GustavUI
 
 struct ListButton: View {
     var name: LocalizedStringKey
@@ -19,7 +20,7 @@ struct ListButton: View {
             Spacer()
             if let value {
                 Text(value)
-                    .foregroundColor(Color("ResetColor"))
+                    .foregroundColor(Color.gustavNeutral)
                     .font(theme.fonts.bodyNumber)
             }
         }

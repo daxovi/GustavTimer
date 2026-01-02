@@ -9,20 +9,20 @@ import SwiftUI
 import Lottie
 
 struct Theme {
-    let colors = Colors()
+//    let colors = Colors()
     let fonts = Fonts()
     let layout = Layout()
     let icons = Icons()
     let animations = Animations()
     let lottie = Lottie()
     
-    struct Colors {
-        let volt = Color.start
-        let pink = Color.stop
-        let neutral = Color.reset
-        let light = Color.light
-        let white = Color.snow
-    }
+//    struct Colors {
+//        let volt = Color.start
+//        let pink = Color.stop
+//        let neutral = Color.reset
+//        let light = Color.light
+//        let white = Color.snow
+//    }
     
     struct Fonts {
         private static let bodySize = CGFloat(15)
@@ -61,6 +61,7 @@ struct Theme {
         
         // Onboarding
         let onboardingTitle = Font.custom("MartianGrotesk-StdBd", size: 24, relativeTo: .title2)
+        let onboardingButtonLabel = Font.custom("MartianGrotesk-StdBd", size: bodySize, relativeTo: .body)
     }
     
     struct Layout {

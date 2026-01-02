@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GustavUI
 
 struct RoundsSettingsView: View {
     @Binding var rounds: Int
@@ -24,7 +25,7 @@ struct RoundsSettingsView: View {
                     Text("IS_LOOPING")
                         .font(theme.fonts.body)
                 }
-                .tint(theme.colors.pink)
+                .tint(Color.gustavPink)
             }
             
             if rounds != -1 {
@@ -41,7 +42,7 @@ struct RoundsSettingsView: View {
                                 Spacer()
                                 if rounds == roundOption {
                                     Image(systemName: "checkmark")
-                                        .foregroundColor(theme.colors.pink)
+                                        .foregroundColor(Color.gustavPink)
                                 }
                             }
                         }

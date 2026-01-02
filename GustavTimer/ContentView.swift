@@ -20,14 +20,17 @@ struct ContentView: View {
     @AppStorage("isSoundEnabled") private var isSoundEnabled: Bool = true
     
     @State private var showSettings = false
+    @State private var showOnboarding: Bool = true
     
     private var defaultTimerId: Int = 0
     
     var body: some View {
         TimerView(showSettings: $showSettings)
             .sheet(isPresented: $showSettings) {
-//                SettingsView()
                 SettingsView()
+            }
+            .sheet(isPresented: $showOnboarding) {
+                OnboardingView()
             }
             .onAppear {
                 initializeDataIfNeeded()
