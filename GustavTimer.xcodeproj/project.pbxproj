@@ -41,13 +41,11 @@
 		CF7BAE252EC27A74002A4746 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BAE242EC27A6F002A4746 /* SettingsView.swift */; };
 		CF7BAE272EC2823C002A4746 /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BAE262EC28238002A4746 /* FavouritesView.swift */; };
 		CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */; };
-		CF8C07CD2E3E673C0083ED1D /* reset.riv in Resources */ = {isa = PBXBuildFile; fileRef = CF8C07CC2E3E673C0083ED1D /* reset.riv */; };
 		CF8E14672D17404900155BE8 /* VideoPlayerFullscreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E14662D17403900155BE8 /* VideoPlayerFullscreen.swift */; };
 		CF93EB012C5E679700A98ABD /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = CF93EB002C5E679700A98ABD /* PrivacyInfo.xcprivacy */; };
 		CF9922AD2C8F84C9004186DF /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9922AC2C8F84C9004186DF /* AppConfig.swift */; };
 		CF9922AF2C920C51004186DF /* Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9922AE2C920C51004186DF /* Image+Extension.swift */; };
 		CF9922B12C959AC1004186DF /* ControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9922B02C959AC1004186DF /* ControlButton.swift */; };
-		CFA31BA62EFBEF360064A8A6 /* ng-icon-reset-skip.json in Resources */ = {isa = PBXBuildFile; fileRef = CFA31BA52EFBEF360064A8A6 /* ng-icon-reset-skip.json */; };
 		CFADBCF22AC9C8AE00AE27D8 /* ProgressArrayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADBCF12AC9C8AE00AE27D8 /* ProgressArrayView.swift */; };
 		CFB1394D2AE572D300EE8B2C /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1394C2AE572D300EE8B2C /* BackgroundImageView.swift */; };
 		CFB1394F2AE59ED900EE8B2C /* BackgroundImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB1394E2AE59ED900EE8B2C /* BackgroundImageModel.swift */; };
@@ -55,9 +53,6 @@
 		CFC4C1872D047C1D0086CEBB /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC4C1862D047C1D0086CEBB /* WhatsNewView.swift */; };
 		CFCD99D02CA068B00017BD0E /* ListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD99CF2CA068B00017BD0E /* ListButton.swift */; };
 		CFCE3C762C431EC900D33AE3 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE3C752C431EC900D33AE3 /* View+Extension.swift */; };
-		CFED39432EE5BEF7005954D6 /* ng-icon-vibration.json in Resources */ = {isa = PBXBuildFile; fileRef = CFED39422EE5BEF7005954D6 /* ng-icon-vibration.json */; };
-		CFED39452EE5C61F005954D6 /* ng-icon-sound.json in Resources */ = {isa = PBXBuildFile; fileRef = CFED39442EE5C61F005954D6 /* ng-icon-sound.json */; };
-		CFED39472EE5E341005954D6 /* ng-icon-loop.json in Resources */ = {isa = PBXBuildFile; fileRef = CFED39462EE5E341005954D6 /* ng-icon-loop.json */; };
 		CFF207D62E6CA9BA00D0C369 /* FavouritesEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF207D52E6CA9B300D0C369 /* FavouritesEmptyView.swift */; };
 		CFF207D82E6CA9F900D0C369 /* FavouriteRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF207D72E6CA9F300D0C369 /* FavouriteRowView.swift */; };
 		CFF3BAEB2EFD7D7D0069C610 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF3BAEA2EFD7D720069C610 /* OnboardingView.swift */; };
@@ -102,13 +97,11 @@
 		CF7BAE242EC27A6F002A4746 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CF7BAE262EC28238002A4746 /* FavouritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesView.swift; sourceTree = "<group>"; };
 		CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageModel.swift; sourceTree = "<group>"; };
-		CF8C07CC2E3E673C0083ED1D /* reset.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = reset.riv; sourceTree = "<group>"; };
 		CF8E14662D17403900155BE8 /* VideoPlayerFullscreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerFullscreen.swift; sourceTree = "<group>"; };
 		CF93EB002C5E679700A98ABD /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		CF9922AC2C8F84C9004186DF /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		CF9922AE2C920C51004186DF /* Image+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extension.swift"; sourceTree = "<group>"; };
 		CF9922B02C959AC1004186DF /* ControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButton.swift; sourceTree = "<group>"; };
-		CFA31BA52EFBEF360064A8A6 /* ng-icon-reset-skip.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "ng-icon-reset-skip.json"; sourceTree = "<group>"; };
 		CFADBCF12AC9C8AE00AE27D8 /* ProgressArrayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressArrayView.swift; sourceTree = "<group>"; };
 		CFB1394C2AE572D300EE8B2C /* BackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
 		CFB1394E2AE59ED900EE8B2C /* BackgroundImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageModel.swift; sourceTree = "<group>"; };
@@ -116,9 +109,6 @@
 		CFC4C1862D047C1D0086CEBB /* WhatsNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewView.swift; sourceTree = "<group>"; };
 		CFCD99CF2CA068B00017BD0E /* ListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListButton.swift; sourceTree = "<group>"; };
 		CFCE3C752C431EC900D33AE3 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
-		CFED39422EE5BEF7005954D6 /* ng-icon-vibration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "ng-icon-vibration.json"; sourceTree = "<group>"; };
-		CFED39442EE5C61F005954D6 /* ng-icon-sound.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "ng-icon-sound.json"; sourceTree = "<group>"; };
-		CFED39462EE5E341005954D6 /* ng-icon-loop.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "ng-icon-loop.json"; sourceTree = "<group>"; };
 		CFF207D52E6CA9B300D0C369 /* FavouritesEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesEmptyView.swift; sourceTree = "<group>"; };
 		CFF207D72E6CA9F300D0C369 /* FavouriteRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteRowView.swift; sourceTree = "<group>"; };
 		CFF3BAEA2EFD7D720069C610 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -167,7 +157,6 @@
 			isa = PBXGroup;
 			children = (
 				CFF3BAEE2EFD8EAC0069C610 /* Media */,
-				CFED39412EE5BED2005954D6 /* LottieAnimation */,
 				CF228F4F2E7C52B5000DEF21 /* AppSettings.swift */,
 				CF9922BA2C9766DC004186DF /* Managers */,
 				CF7B1B3F2C8F6BA9005D4664 /* Models */,
@@ -176,7 +165,6 @@
 				CF279C462C31A0CF0084C43F /* Sound */,
 				CF5B11122AD33CE500F42131 /* Info.plist */,
 				CF9922AC2C8F84C9004186DF /* AppConfig.swift */,
-				CF8C07CE2E3E6AC80083ED1D /* RiveAnimations */,
 				CF21843329F052590060706C /* GustavTimerApp.swift */,
 				CF21843529F052590060706C /* ContentView.swift */,
 				CF93EB002C5E679700A98ABD /* PrivacyInfo.xcprivacy */,
@@ -290,14 +278,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		CF8C07CE2E3E6AC80083ED1D /* RiveAnimations */ = {
-			isa = PBXGroup;
-			children = (
-				CF8C07CC2E3E673C0083ED1D /* reset.riv */,
-			);
-			path = RiveAnimations;
-			sourceTree = "<group>";
-		};
 		CF9922BA2C9766DC004186DF /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -325,17 +305,6 @@
 				CF9922AE2C920C51004186DF /* Image+Extension.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		CFED39412EE5BED2005954D6 /* LottieAnimation */ = {
-			isa = PBXGroup;
-			children = (
-				CFA31BA52EFBEF360064A8A6 /* ng-icon-reset-skip.json */,
-				CFED39462EE5E341005954D6 /* ng-icon-loop.json */,
-				CFED39442EE5C61F005954D6 /* ng-icon-sound.json */,
-				CFED39422EE5BEF7005954D6 /* ng-icon-vibration.json */,
-			);
-			path = LottieAnimation;
 			sourceTree = "<group>";
 		};
 		CFF3BAE92EFD7D6B0069C610 /* Onboarding */ = {
@@ -423,20 +392,15 @@
 				CF107C522EDE25B800A172E8 /* bicycle.mp3 in Resources */,
 				CF107C5C2EDE29BE00A172E8 /* bubble.mp3 in Resources */,
 				CF107C5A2EDE295A00A172E8 /* bell.mp3 in Resources */,
-				CFA31BA62EFBEF360064A8A6 /* ng-icon-reset-skip.json in Resources */,
 				CF107C4A2EDE1C1400A172E8 /* whistle.mp3 in Resources */,
-				CFED39472EE5E341005954D6 /* ng-icon-loop.json in Resources */,
 				CFF71ACC2B8B99BC00884E82 /* Localizable.xcstrings in Resources */,
-				CF8C07CD2E3E673C0083ED1D /* reset.riv in Resources */,
 				CF93EB012C5E679700A98ABD /* PrivacyInfo.xcprivacy in Resources */,
 				CF21843829F0525E0060706C /* Assets.xcassets in Resources */,
 				CF107C542EDE269A00A172E8 /* gong.mp3 in Resources */,
-				CFED39432EE5BEF7005954D6 /* ng-icon-vibration.json in Resources */,
 				CF107C562EDE27C000A172E8 /* beep.mp3 in Resources */,
 				CF107C4C2EDE211700A172E8 /* hey.mp3 in Resources */,
 				CF107C4E2EDE225E00A172E8 /* game.mp3 in Resources */,
 				CF107C502EDE24A700A172E8 /* retro.mp3 in Resources */,
-				CFED39452EE5C61F005954D6 /* ng-icon-sound.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
