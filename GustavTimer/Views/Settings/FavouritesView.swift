@@ -162,6 +162,7 @@ struct FavouritesView: View {
     }
     
     private func selectTimer(timer: TimerData) {
+        timer.selected()
         if let mainTimer = timerData.first(where: { $0.order == 0 }) {
             mainTimer.name = timer.name
             mainTimer.intervals = timer.intervals

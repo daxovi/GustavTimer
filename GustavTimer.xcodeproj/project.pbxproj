@@ -32,6 +32,8 @@
 		CF279C4C2C31A8940084C43F /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF279C4B2C31A8940084C43F /* SoundManager.swift */; };
 		CF3A14912E47250800F734F4 /* TimeDisplayFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A14902E47250800F734F4 /* TimeDisplayFormat.swift */; };
 		CF4977932EED67BB00EE09B1 /* BennerImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4977922EED67B700EE09B1 /* BennerImageModel.swift */; };
+		CF4DB2832F09511B007D5692 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4DB2822F095116007D5692 /* String+Extension.swift */; };
+		CF4DB2852F098208007D5692 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4DB2842F098203007D5692 /* Int+Extension.swift */; };
 		CF52F0F62EC3B611002CA453 /* SettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF52F0F52EC3B60D002CA453 /* SettingsSection.swift */; };
 		CF52F1102EC47085002CA453 /* SoundModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF52F10F2EC47081002CA453 /* SoundModel.swift */; };
 		CF70037D2C8DE816009F1531 /* HintButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70037C2C8DE816009F1531 /* HintButton.swift */; };
@@ -56,7 +58,6 @@
 		CFF207D62E6CA9BA00D0C369 /* FavouritesEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF207D52E6CA9B300D0C369 /* FavouritesEmptyView.swift */; };
 		CFF207D82E6CA9F900D0C369 /* FavouriteRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF207D72E6CA9F300D0C369 /* FavouriteRowView.swift */; };
 		CFF3BAEB2EFD7D7D0069C610 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF3BAEA2EFD7D720069C610 /* OnboardingView.swift */; };
-		CFF3BAED2EFD7E8E0069C610 /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF3BAEC2EFD7E810069C610 /* OnboardingPageView.swift */; };
 		CFF3BAF42EFD91D30069C610 /* fristensky.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFF3BAF32EFD91D30069C610 /* fristensky.mp4 */; };
 		CFF71ACC2B8B99BC00884E82 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
@@ -87,6 +88,8 @@
 		CF279C4B2C31A8940084C43F /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		CF3A14902E47250800F734F4 /* TimeDisplayFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDisplayFormat.swift; sourceTree = "<group>"; };
 		CF4977922EED67B700EE09B1 /* BennerImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BennerImageModel.swift; sourceTree = "<group>"; };
+		CF4DB2822F095116007D5692 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		CF4DB2842F098203007D5692 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		CF52F0F52EC3B60D002CA453 /* SettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSection.swift; sourceTree = "<group>"; };
 		CF52F10F2EC47081002CA453 /* SoundModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundModel.swift; sourceTree = "<group>"; };
 		CF5B11122AD33CE500F42131 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -112,7 +115,6 @@
 		CFF207D52E6CA9B300D0C369 /* FavouritesEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesEmptyView.swift; sourceTree = "<group>"; };
 		CFF207D72E6CA9F300D0C369 /* FavouriteRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteRowView.swift; sourceTree = "<group>"; };
 		CFF3BAEA2EFD7D720069C610 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
-		CFF3BAEC2EFD7E810069C610 /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
 		CFF3BAF32EFD91D30069C610 /* fristensky.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = fristensky.mp4; sourceTree = "<group>"; };
 		CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -301,6 +303,8 @@
 		CFCE3C772C431EF400D33AE3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CF4DB2842F098203007D5692 /* Int+Extension.swift */,
+				CF4DB2822F095116007D5692 /* String+Extension.swift */,
 				CFCE3C752C431EC900D33AE3 /* View+Extension.swift */,
 				CF9922AE2C920C51004186DF /* Image+Extension.swift */,
 			);
@@ -310,7 +314,6 @@
 		CFF3BAE92EFD7D6B0069C610 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				CFF3BAEC2EFD7E810069C610 /* OnboardingPageView.swift */,
 				CFF3BAEA2EFD7D720069C610 /* OnboardingView.swift */,
 			);
 			path = Onboarding;
@@ -418,6 +421,7 @@
 				CF10D0562E73371F00F84454 /* RoundsSettingsView.swift in Sources */,
 				CFC3A7722AAF8B1B00BB8CC2 /* ProgressBar.swift in Sources */,
 				CFF207D82E6CA9F900D0C369 /* FavouriteRowView.swift in Sources */,
+				CF4DB2852F098208007D5692 /* Int+Extension.swift in Sources */,
 				CF7744F12E799FA100693351 /* IntervalRowView.swift in Sources */,
 				CF8E14672D17404900155BE8 /* VideoPlayerFullscreen.swift in Sources */,
 				CF01945C2C8A20D700CAC1BD /* SoundSettingsView.swift in Sources */,
@@ -439,11 +443,11 @@
 				CFF3BAEB2EFD7D7D0069C610 /* OnboardingView.swift in Sources */,
 				CF2222D02E353EA600A90265 /* TimerView.swift in Sources */,
 				CF21843429F052590060706C /* GustavTimerApp.swift in Sources */,
+				CF4DB2832F09511B007D5692 /* String+Extension.swift in Sources */,
 				CF52F0F62EC3B611002CA453 /* SettingsSection.swift in Sources */,
 				CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */,
 				CF279C4C2C31A8940084C43F /* SoundManager.swift in Sources */,
 				CF7B1B412C8F6BD3005D4664 /* IntervalData.swift in Sources */,
-				CFF3BAED2EFD7E8E0069C610 /* OnboardingPageView.swift in Sources */,
 				CF52F1102EC47085002CA453 /* SoundModel.swift in Sources */,
 				CF2222DA2E355A8200A90265 /* TimerData.swift in Sources */,
 				CF228F542E7D7ED4000DEF21 /* SearchTabView.swift in Sources */,

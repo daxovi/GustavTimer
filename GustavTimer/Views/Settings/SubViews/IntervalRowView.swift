@@ -43,28 +43,9 @@ struct IntervalRowView: View {
             }
             
             if nameIsFocused || valueIsFocused {
-                if #available(iOS 26.0, *) {
-                    Button("DONE") {
-                        nameIsFocused = false
-                        valueIsFocused = false
-                    }
-                    .font(.settingsCaption)
-                    .foregroundStyle(Color.gustavWhite)
-                    .padding(4)
-                    .padding(.horizontal, 10)
-                    .glassEffect(.regular.tint(Color.gustavPink).interactive())
-                } else {
-                    // Fallback on earlier versions
-                    Button("DONE") {
-                        nameIsFocused = false
-                        valueIsFocused = false
-                    }
-                    .font(.settingsCaption)
-                    .foregroundStyle(Color.gustavWhite)
-                    .padding(4)
-                    .padding(.horizontal, 10)
-                    .background(Color.gustavPink)
-                    .clipShape(Capsule())
+                GustavSmallPillButton(label: "DONE") {
+                    nameIsFocused = false
+                    valueIsFocused = false
                 }
             }
         }

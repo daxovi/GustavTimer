@@ -21,6 +21,7 @@ struct SettingsView: View {
     @State private var showSaveAlert = false
     @State private var showAlreadySavedAlert = false
     @State private var selectedSoundTitle: String? = nil
+    @State private var cachedLastSavedTimers: [TimerData] = []
     
     private var currentTimerData: TimerData {
         getOrCreateTimerData()
@@ -33,15 +34,18 @@ struct SettingsView: View {
                 intervalsView
                 roundsView
                 favourites
+                feedback
                 appearance
                 more
 //                about
             }
+//            .listSectionSpacing(26)
             .environment(\.editMode, $editMode)
             .saveTimerAlert(isPresented: $showSaveAlert, timerName: $newTimerName, onSave: saveTimer)
             .alreadySavedAlert(isPresented: $showAlreadySavedAlert)
             .toolbar { toolbar }
             .font(.gustavBody)
+            .onAppear { refreshLastSavedTimers() }
         }
         .tint(Color.gustavNavigationItemsColor)
     }
@@ -100,16 +104,26 @@ struct SettingsView: View {
                 .font(.sectionHeader)
                 .foregroundStyle(Color.gustavNeutral)
         } footer: {
-            if currentTimerData.intervals.count < AppConfig.maxTimerCount {
-                HStack {
-                    Image(systemName: "plus")
-                    Text("ADD_INTERVAL")
+            HStack (alignment: .top, spacing: 16) {
+
+                
+                if currentTimerData.intervals.count < AppConfig.maxTimerCount {
+                    GustavSmallPillButton(label: "ADD_INTERVAL") {
+                        addInterval(to: currentTimerData)
+                    }
+                    .padding(.leading, -16)
+                    Spacer()
+                    Text(summaryText)
+                        .font(.sectionFooter)
+                        .foregroundStyle(Color.gustavNeutral)
+                        .multilineTextAlignment(.trailing)
+                } else {
+                    Text(summaryText + " " + String(format: NSLocalizedString("MAX_LIMIT_REACHED", comment: ""), AppConfig.maxTimerCount))
+                        .font(.sectionFooter)
+                        .foregroundStyle(Color.gustavNeutral)
+                    Spacer()
                 }
-                .font(.sectionFooter)
-                .foregroundStyle(Color.gustavNeutral)
-                .onTapGesture {
-                    addInterval(to: currentTimerData)
-                }
+                
             }
         }
     }
@@ -127,17 +141,31 @@ struct SettingsView: View {
     @ViewBuilder
     private var favourites: some View {
         SettingsSection(label: "FAVOURITES") {
+            let lastSavedTimers = cachedLastSavedTimers.prefix(3)
+            if !lastSavedTimers.isEmpty {
+                ForEach(lastSavedTimers) { timer in
+                    let isSelected = timer == currentTimerData
+                    FavouriteRowView(timer: timer, selected: isSelected, isMinimized: true)
+                        .onTapGesture {
+                            DispatchQueue.main.async {
+                                withAnimation {
+                                    selectTimer(timer: timer)
+                                }
+                            }
+                        }
+                }
+            }
             NavigationLink {
                 FavouritesView()
             } label: {
-                Text("FAVOURITES")
+                Text("ALL_FAVOURITES")
             }
         }
     }
     
     @ViewBuilder
-    private var appearance: some View {
-        SettingsSection(label: "APPEARANCE") {
+    private var feedback: some View {
+        SettingsSection(label: "FEEDBACK", footer: "FEEDBACK_DESCRIPTION") {
             Toggle("HAPTICS", isOn: $appSettings.isVibrating)
                 .tint(Color.gustavPink)
             
@@ -158,7 +186,12 @@ struct SettingsView: View {
             } label: {
                 ListButton(name: "SOUND", value: currentTimerData.selectedSound?.title ?? "MUTE")
             }
-            
+        }
+    }
+    
+    @ViewBuilder
+    private var appearance: some View {
+        SettingsSection(label: "APPEARANCE") {
             NavigationLink {
                 BackgroundSelectorView()
             } label: {
@@ -262,6 +295,13 @@ struct SettingsView: View {
         }
     }
     
+    private func refreshLastSavedTimers() {
+        let saved = timerData
+            .filter { $0.order != 0 }
+            .sorted(by: { ($0.lastUsed ?? .distantPast) > ($1.lastUsed ?? .distantPast) })
+        cachedLastSavedTimers = Array(saved)
+    }
+    
     private func saveTimer() {
         if let mainTimer = timerData.first(where: { $0.order == 0 }) {
             let newOrder = (timerData.map { $0.order }.max() ?? 0) + 1
@@ -302,6 +342,34 @@ struct SettingsView: View {
     private func moveInterval(from source: IndexSet, to destination: Int, in timerData: TimerData) {
         withAnimation(.easeInOut) {
             timerData.intervals.move(fromOffsets: source, toOffset: destination)
+        }
+    }
+    
+    private func selectTimer(timer: TimerData) {
+        timer.selected()
+        if let mainTimer = timerData.first(where: { $0.order == 0 }) {
+            mainTimer.name = timer.name
+            mainTimer.intervals = timer.intervals
+            mainTimer.selectedSound = timer.selectedSound
+            mainTimer.isVibrating = timer.isVibrating
+            appSettings.save(from: timer)
+        }
+    }
+    
+    var summaryText: String {
+        let roundTime = currentTimerData.intervals.reduce(0) { $0 + $1.value }
+        var totalTime: Int? {
+            if appSettings.rounds > 1 {
+                return roundTime * appSettings.rounds
+            } else {
+                return nil
+            }
+        }
+        
+        if let totalTime {
+            return String(format: NSLocalizedString("SUM_ROUND_AND_TIMER_DESCRIPTION", comment: ""), roundTime.asTime(), totalTime.asTime())
+        } else {
+            return String(format: NSLocalizedString("SUM_ROUND_DESCRIPTION", comment: ""), roundTime.asTime())
         }
     }
 }

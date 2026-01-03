@@ -6,56 +6,18 @@
 //
 
 import SwiftUI
+import GustavUI
 
 struct OnboardingView: View {
-    @State private var selection: Int = 0
-    @Environment(\.dismiss) var dismiss
+    
+    let onboardingItems: [GustavOnboardingItem] = [
+        GustavOnboardingItem(title: "OB_TIMER_TITLE".localized, description: "OB_TIMER_DESCRIPTION".localized, mediaFileName: nil, buttonLabel: nil),
+        GustavOnboardingItem(title: "OB_FAVOURITES_TITLE".localized, description: "OB_FAVOURITES_DESCRIPTION".localized, mediaFileName: nil, buttonLabel: nil),
+        GustavOnboardingItem(title: "OB_GUSTAV_TITLE".localized, description: "OB_GUSTAV_DESCRIPTION".localized, mediaFileName: "fristensky", buttonLabel: "OB_FINISH".localized)
+    ]
     
     var body: some View {
-        TabView(selection: $selection) {
-            OnboardingPageView(
-                title: "OB_TIMER_TITLE",
-                description: "OB_TIMER_DESCRIPTION",
-                mediaFilename: nil,
-                actionLabel: "OB_CONTINUE") {
-                    next()
-                }
-                .tag(0)
-            
-            OnboardingPageView(
-                title: "OB_FAVOURITES_TITLE",
-                description: "OB_FAVOURITES_DESCRIPTION",
-                mediaFilename: nil,
-                actionLabel: "OB_CONTINUE") {
-                    next()
-                }
-                .tag(1)
-            
-            OnboardingPageView(
-                title: "OB_GUSTAV_TITLE",
-                description: "OB_GUSTAV_DESCRIPTION",
-                mediaFilename: "fristensky",
-                actionLabel: "OB_FINISH") {
-                    next()
-                }
-                .tag(2)
-            
-        }
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-        .ignoresSafeArea()
-        .background {
-            Color.black.ignoresSafeArea()
-        }
-    }
-    
-    func next() {
-        if selection < 2 {
-            withAnimation {
-                selection += 1
-            }
-        } else {
-            dismiss()
-        }
+        GustavOnboardingView(onboardingItems: onboardingItems)
     }
 }
 

@@ -11,6 +11,7 @@ import GustavUI
 struct FavouriteRowView: View {
     let timer: TimerData
     let selected: Bool
+    var isMinimized: Bool = false
         
     var isMainTimer: Bool {
         timer.order == AppConfig.defaultTimer.order
@@ -18,19 +19,21 @@ struct FavouriteRowView: View {
     
     var body: some View {
         Section {
-            VStack(alignment: .leading, spacing: 36) {
+            VStack(alignment: .leading, spacing: isMinimized ? 4 : 36) {
                 GeometryReader { geometry in
                     HStack(alignment: .top, spacing: 5) {
                         ForEach(timer.intervals) { interval in
                             VStack(alignment: .leading) {
                                 Capsule()
                                     .fill(isMainTimer ? Color.gustavLight : Color.gustavVolt)
-                                    .frame(height: 5)
-                                Text(interval.name)
-                                    .font(.savedRowIntervalName)
-                                    .lineLimit(1)
-                                    .padding(.trailing)
-                                    .foregroundStyle(Color.gustavLight)
+                                    .frame(height: isMinimized ? 4 : 5)
+                                if !isMinimized {
+                                    Text(interval.name)
+                                        .font(.savedRowIntervalName)
+                                        .lineLimit(1)
+                                        .padding(.trailing)
+                                        .foregroundStyle(Color.gustavLight)
+                                }
                             }
                             .frame(width: getIntervalWidth(interval: interval, viewWidth: geometry.size.width))
                         }
@@ -38,21 +41,23 @@ struct FavouriteRowView: View {
                 }
                 HStack {
                     Text(intervalName)
-                        .font(.savedRowTimerName)
+                        .font(isMinimized ? .savedRowTimerNameMinimized : .savedRowTimerName)
                         .foregroundStyle(isMainTimer ? Color.gustavLight : .primary)
                         .lineLimit(1)
                         .padding(.trailing, 4)
                     
-                    if timer.rounds == -1 {
-                        GustavIcon(.loop, size: 22, color: Color.gustavLight)
-                    }
-                    
-                    if timer.selectedSound != nil {
-                        GustavIcon(.sound, size: 22, color: Color.gustavLight)
-                    }
-                    
-                    if timer.isVibrating {
-                        GustavIcon(.vibration, size: 22, color: Color.gustavLight)
+                    if !isMinimized {
+                        if timer.rounds == -1 {
+                            GustavIcon(.loop, size: 22, color: Color.gustavLight)
+                        }
+                        
+                        if timer.selectedSound != nil {
+                            GustavIcon(.sound, size: 22, color: Color.gustavLight)
+                        }
+                        
+                        if timer.isVibrating {
+                            GustavIcon(.vibration, size: 22, color: Color.gustavLight)
+                        }
                     }
                     
                     Spacer()
@@ -99,6 +104,24 @@ struct FavouriteRowView: View {
                 ]
                 return timer
             }(), selected: false)
+        }
+        Section {
+            FavouriteRowView(timer: {
+                let timer = TimerData(order: 2, name: "My Favourite Timer", rounds: 5, selectedSound: .beep, isVibrating: true)
+                timer.intervals = [
+                    IntervalData(value: 30, name: "Work"),
+                    IntervalData(value: 15, name: "Rest")
+                ]
+                return timer
+            }(), selected: true, isMinimized: true)
+            FavouriteRowView(timer: {
+                let timer = TimerData(order: 2, name: "My Favourite Timer", rounds: 5, selectedSound: .whistle, isVibrating: true)
+                timer.intervals = [
+                    IntervalData(value: 30, name: "Work"),
+                    IntervalData(value: 15, name: "Rest")
+                ]
+                return timer
+            }(), selected: false, isMinimized: true)
         }
         FavouriteRowView(timer: {
             let timer = AppConfig.defaultTimer

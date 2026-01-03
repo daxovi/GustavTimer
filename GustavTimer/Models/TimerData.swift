@@ -20,6 +20,7 @@ class TimerData: Equatable {
     var order: Int
     var createdAt: Date = Date()
     var usedCount: Int = 0
+    var lastUsed: Date? = nil
     
     var intervals: [IntervalData] = [
         IntervalData(value: 30, name: "Work"),
@@ -49,6 +50,7 @@ class TimerData: Equatable {
     
     func selected() {
         usedCount += 1
+        lastUsed = Date()
     }
 }
 
