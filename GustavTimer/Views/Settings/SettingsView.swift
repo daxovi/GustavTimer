@@ -39,7 +39,7 @@ struct SettingsView: View {
                 more
 //                about
             }
-//            .listSectionSpacing(26)
+            .listSectionSpacing(24)
             .environment(\.editMode, $editMode)
             .saveTimerAlert(isPresented: $showSaveAlert, timerName: $newTimerName, onSave: saveTimer)
             .alreadySavedAlert(isPresented: $showAlreadySavedAlert)
@@ -167,7 +167,7 @@ struct SettingsView: View {
     private var feedback: some View {
         SettingsSection(label: "FEEDBACK", footer: "FEEDBACK_DESCRIPTION") {
             Toggle("HAPTICS", isOn: $appSettings.isVibrating)
-                .tint(Color.gustavPink)
+                .tint(Color.gustavVolt)
             
             NavigationLink {
                 SoundSettingsView(selectedSound: .init(get: {

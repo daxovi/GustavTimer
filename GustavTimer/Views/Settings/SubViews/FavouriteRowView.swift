@@ -18,56 +18,52 @@ struct FavouriteRowView: View {
     }
     
     var body: some View {
-        Section {
-            VStack(alignment: .leading, spacing: isMinimized ? 4 : 36) {
-                GeometryReader { geometry in
-                    HStack(alignment: .top, spacing: 5) {
-                        ForEach(timer.intervals) { interval in
-                            VStack(alignment: .leading) {
-                                Capsule()
-                                    .fill(isMainTimer ? Color.gustavLight : Color.gustavVolt)
-                                    .frame(height: isMinimized ? 4 : 5)
-                                if !isMinimized {
-                                    Text(interval.name)
-                                        .font(.savedRowIntervalName)
-                                        .lineLimit(1)
-                                        .padding(.trailing)
-                                        .foregroundStyle(Color.gustavLight)
+        GustavSelectableListRow(selected: selected) {
+                VStack(alignment: .leading, spacing: isMinimized ? 4 : 36) {
+                    GeometryReader { geometry in
+                        HStack(alignment: .top, spacing: 5) {
+                            ForEach(timer.intervals) { interval in
+                                VStack(alignment: .leading) {
+                                    Capsule()
+                                        .fill(progressBarColor)
+                                        .frame(height: isMinimized ? 4 : 5)
+                                    if !isMinimized {
+                                        Text(interval.name)
+                                            .font(.savedRowIntervalName)
+                                            .lineLimit(1)
+                                            .padding(.trailing)
+                                            .foregroundStyle(Color.gustavLight)
+                                    }
                                 }
+                                .frame(width: getIntervalWidth(interval: interval, viewWidth: geometry.size.width))
                             }
-                            .frame(width: getIntervalWidth(interval: interval, viewWidth: geometry.size.width))
                         }
                     }
-                }
-                HStack {
-                    Text(intervalName)
-                        .font(isMinimized ? .savedRowTimerNameMinimized : .savedRowTimerName)
-                        .foregroundStyle(isMainTimer ? Color.gustavLight : .primary)
-                        .lineLimit(1)
-                        .padding(.trailing, 4)
-                    
-                    if !isMinimized {
-                        if timer.rounds == -1 {
-                            GustavIcon(.loop, size: 22, color: Color.gustavLight)
+                    HStack {
+                        Text(intervalName)
+                            .font(isMinimized ? .savedRowTimerNameMinimized : .savedRowTimerName)
+                            .opacity(isMainTimer ? 0.4 : 1)
+                            .lineLimit(1)
+                            .padding(.trailing, 4)
+                        
+                        if !isMinimized {
+                            if timer.rounds == -1 {
+                                GustavIcon(.loop, size: 22, color: Color.gustavLight)
+                            }
+                            
+                            if timer.selectedSound != nil {
+                                GustavIcon(.sound, size: 22, color: Color.gustavLight)
+                            }
+                            
+                            if timer.isVibrating {
+                                GustavIcon(.vibration, size: 22, color: Color.gustavLight)
+                            }
                         }
                         
-                        if timer.selectedSound != nil {
-                            GustavIcon(.sound, size: 22, color: Color.gustavLight)
-                        }
-                        
-                        if timer.isVibrating {
-                            GustavIcon(.vibration, size: 22, color: Color.gustavLight)
-                        }
+                        Spacer()
                     }
-                    
-                    Spacer()
                 }
             }
-            .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
-            .padding()
-            .background(selected ? Color.gustavVolt.opacity(0.2) : nil)
-            .contentShape(RoundedRectangle(cornerRadius: 10))
-        }
     }
     
     var intervalName: LocalizedStringKey {
@@ -76,6 +72,20 @@ struct FavouriteRowView: View {
         } else {
             return LocalizedStringKey(timer.name)
         }
+    }
+    
+    var selectedCornerRadius: CGFloat {
+        if #available(iOS 26, *) {
+            return 24
+        } else {
+            return 8
+        }
+    }
+    
+    var progressBarColor: Color {
+        guard !isMinimized else { return Color.gustavLight }
+        guard !selected else { return Color.gustavLight }
+        return isMainTimer ? Color.gustavLight : Color.gustavVolt
     }
     
     func getIntervalWidth(interval: IntervalData, viewWidth: CGFloat) -> CGFloat {

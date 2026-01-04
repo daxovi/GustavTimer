@@ -10,51 +10,48 @@ import GustavUI
 
 struct SoundSettingsView: View {
     
-    @Binding var selectedSound: SoundModel?    
+    @Binding var selectedSound: SoundModel?
     @State var lastSelectedSound: SoundModel? = nil
     
     var body: some View {
-            List {
-                SettingsSection {
-                    Toggle(isOn: .init(get: {
-                        selectedSound != nil
-                    }, set: { bool in
-                        if bool {
-                            selectedSound = lastSelectedSound ?? .beep
-                        } else {
-                            lastSelectedSound = selectedSound
-                            selectedSound = nil
-                        }
-                    })) {
-                        Text("IS_SOUND_ENABLED")
+        List {
+            SettingsSection {
+                Toggle(isOn: .init(get: {
+                    selectedSound != nil
+                }, set: { bool in
+                    if bool {
+                        selectedSound = lastSelectedSound ?? .beep
+                    } else {
+                        lastSelectedSound = selectedSound
+                        selectedSound = nil
                     }
-                    .tint(Color.gustavPink)
+                })) {
+                    Text("IS_SOUND_ENABLED")
                 }
-                
-                if selectedSound != nil {
-                    SettingsSection(label: "SELECT_SOUND") {
-                        ForEach(AppConfig.soundThemes, id: \.id) { soundTheme in
+                .tint(Color.gustavVolt)
+            }
+            
+            if selectedSound != nil {
+                SettingsSection(label: "SELECT_SOUND") {
+                    ForEach(AppConfig.soundThemes, id: \.id) { soundTheme in
+                        GustavSelectableListRow(selected: selectedSound == soundTheme) {
                             Button {
                                 selectedSound = soundTheme
                                 SoundManager.instance.playSound(soundModel: soundTheme)
                             } label: {
                                 HStack {
                                     Text(soundTheme.title)
-                                        .foregroundColor(.primary)
                                     Spacer()
-                                    if selectedSound == soundTheme {
-                                        Image(systemName: "checkmark")
-                                            .foregroundColor(Color.gustavPink)
-                                    }
                                 }
                             }
                         }
                     }
                 }
             }
-            .animation(.easeInOut, value: selectedSound)
-            .font(.gustavBody)
-            .toolbar{toolbar}
+        }
+//        .animation(.easeInOut, value: selectedSound)
+        .font(.gustavBody)
+        .toolbar{toolbar}
     }
     
     @ToolbarContentBuilder
@@ -78,7 +75,7 @@ struct SoundSettingsView: View {
             }
         }
     }
-
+    
 }
 
 #Preview {

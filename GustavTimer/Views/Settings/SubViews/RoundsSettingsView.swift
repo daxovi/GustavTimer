@@ -23,24 +23,21 @@ struct RoundsSettingsView: View {
                     Text("IS_LOOPING")
                         .font(.gustavBody)
                 }
-                .tint(Color.gustavPink)
+                .tint(Color.gustavVolt)
             }
             
             if rounds != -1 {
                 Section {
                     ForEach(AppConfig.roundsOptions, id: \.self) { roundOption in
-                        Button {
-                            rounds = roundOption
-                            lastRoundOption = roundOption
-                        } label: {
-                            HStack {
-                                Text("\(roundOption)")
-                                    .foregroundColor(.primary)
-                                    .font(.bodyNumber)
-                                Spacer()
-                                if rounds == roundOption {
-                                    Image(systemName: "checkmark")
-                                        .foregroundColor(Color.gustavPink)
+                        GustavSelectableListRow(selected: rounds == roundOption) {
+                            Button {
+                                rounds = roundOption
+                                lastRoundOption = roundOption
+                            } label: {
+                                HStack {
+                                    Text("\(roundOption)")
+                                        .font(.bodyNumber)
+                                    Spacer()
                                 }
                             }
                         }
