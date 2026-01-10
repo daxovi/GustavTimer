@@ -10,6 +10,7 @@ import SwiftUI
 struct AppConfig {
     
     static let version = 201
+    static let onboardingVersion = 201
     // Maximální hodnota timeru
     static let maxTimerValue: Int = 600
     static let maxTimerCount: Int = 10

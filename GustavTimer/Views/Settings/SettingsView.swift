@@ -108,15 +108,16 @@ struct SettingsView: View {
 
                 
                 if currentTimerData.intervals.count < AppConfig.maxTimerCount {
+                    Text(summaryText)
+                        .font(.sectionFooter)
+                        .foregroundStyle(Color.gustavNeutral)
+                        .multilineTextAlignment(.leading)
+                    Spacer()
                     GustavSmallPillButton(label: "ADD_INTERVAL") {
                         addInterval(to: currentTimerData)
                     }
                     .padding(.leading, -16)
-                    Spacer()
-                    Text(summaryText)
-                        .font(.sectionFooter)
-                        .foregroundStyle(Color.gustavNeutral)
-                        .multilineTextAlignment(.trailing)
+                    
                 } else {
                     Text(summaryText + " " + String(format: NSLocalizedString("MAX_LIMIT_REACHED", comment: ""), AppConfig.maxTimerCount))
                         .font(.sectionFooter)

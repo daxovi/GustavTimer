@@ -12,6 +12,7 @@ class AppSettings: ObservableObject {
     @AppStorage("rounds") var rounds: Int = -1
     @AppStorage("isVibrating") var isVibrating: Bool = false
     @AppStorage("isSoundEnabled") var isSoundEnabled: Bool = true
+
     
     func save(rounds: Int, isVibrating: Bool, isSoundEnabled: Bool) {
         self.rounds = rounds

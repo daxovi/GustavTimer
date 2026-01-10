@@ -12,8 +12,11 @@ struct IntervalRowView: View {
     @Binding var intervalName: String
     @Binding var intervalValue: Int
         
-    @FocusState private var nameIsFocused: Bool
-    @FocusState private var valueIsFocused: Bool
+    @FocusState private var focusedField: Field?
+    
+    private enum Field: Int, CaseIterable {
+            case name, value
+        }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -24,7 +27,11 @@ struct IntervalRowView: View {
                         .foregroundStyle(Color.gustavLight)
                     TextField("INTERVAL_NAME_PROMPT", text: $intervalName)
                         .font(.settingsIntervalName)
-                        .focused($nameIsFocused)
+                        .focused($focusedField, equals: .name)
+                        .onSubmit {
+                            //
+                        }
+                        .submitLabel(.done)
                 }
                 
 //                Spacer(minLength: 50)
@@ -37,17 +44,19 @@ struct IntervalRowView: View {
                         .keyboardType(.numberPad)
                         .font(.settingsIntervalValue)
                         .multilineTextAlignment(.trailing)
-                        .focused($valueIsFocused)
+                        .focused($focusedField, equals: .value)
+                        .onSubmit {
+                            //
+                        }
+                        .submitLabel(.done)
                 }
                 .frame(maxWidth: 120)
             }
-            
-            if nameIsFocused || valueIsFocused {
-                GustavSmallPillButton(label: "DONE") {
-                    nameIsFocused = false
-                    valueIsFocused = false
-                }
-            }
+//            if focusedField != nil {
+//                GustavSmallPillButton(label: "DONE", color: Color.gustavLight) {
+//                    focusedField = nil
+//                }
+//            }
         }
     }
 }

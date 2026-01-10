@@ -11,9 +11,9 @@ import GustavUI
 struct OnboardingView: View {
     
     let onboardingItems: [GustavOnboardingItem] = [
-        GustavOnboardingItem(title: "OB_TIMER_TITLE".localized, description: "OB_TIMER_DESCRIPTION".localized, mediaFileName: nil, buttonLabel: nil),
-        GustavOnboardingItem(title: "OB_FAVOURITES_TITLE".localized, description: "OB_FAVOURITES_DESCRIPTION".localized, mediaFileName: nil, buttonLabel: nil),
-        GustavOnboardingItem(title: "OB_GUSTAV_TITLE".localized, description: "OB_GUSTAV_DESCRIPTION".localized, mediaFileName: "fristensky", buttonLabel: "OB_FINISH".localized)
+        GustavOnboardingItem(title: "OB_TIMER_TITLE".localized, description: "OB_TIMER_DESCRIPTION".localized, mediaFileName: "ob_timer", buttonLabel: nil),
+        GustavOnboardingItem(title: "OB_FAVOURITES_TITLE".localized, description: "OB_FAVOURITES_DESCRIPTION".localized, mediaFileName: "ob_favourites", buttonLabel: nil),
+        GustavOnboardingItem(title: "OB_GUSTAV_TITLE".localized, description: "OB_GUSTAV_DESCRIPTION".localized, mediaFileName: "ob_fristensky", buttonLabel: "OB_FINISH".localized)
     ]
     
     var body: some View {

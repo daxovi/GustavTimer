@@ -20,22 +20,22 @@ struct FavouriteRowView: View {
     var body: some View {
         GustavSelectableListRow(selected: selected) {
                 VStack(alignment: .leading, spacing: isMinimized ? 4 : 36) {
-                    GeometryReader { geometry in
-                        HStack(alignment: .top, spacing: 5) {
-                            ForEach(timer.intervals) { interval in
-                                VStack(alignment: .leading) {
-                                    Capsule()
-                                        .fill(progressBarColor)
-                                        .frame(height: isMinimized ? 4 : 5)
-                                    if !isMinimized {
+                    if !isMinimized {
+                        GeometryReader { geometry in
+                            HStack(alignment: .top, spacing: 5) {
+                                ForEach(timer.intervals) { interval in
+                                    VStack(alignment: .leading) {
+                                        Capsule()
+                                            .fill(progressBarColor)
+                                            .frame(height: isMinimized ? 4 : 5)
                                         Text(interval.name)
                                             .font(.savedRowIntervalName)
                                             .lineLimit(1)
                                             .padding(.trailing)
                                             .foregroundStyle(Color.gustavLight)
                                     }
+                                    .frame(width: getIntervalWidth(interval: interval, viewWidth: geometry.size.width))
                                 }
-                                .frame(width: getIntervalWidth(interval: interval, viewWidth: geometry.size.width))
                             }
                         }
                     }
@@ -83,8 +83,8 @@ struct FavouriteRowView: View {
     }
     
     var progressBarColor: Color {
-        guard !isMinimized else { return Color.gustavLight }
-        guard !selected else { return Color.gustavLight }
+//        guard !isMinimized else { return Color.gustavLight }
+//        guard !selected else { return Color.gustavLight }
         return isMainTimer ? Color.gustavLight : Color.gustavVolt
     }
     
