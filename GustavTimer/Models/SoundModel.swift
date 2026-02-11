@@ -4,26 +4,13 @@
 //
 //  Created by Dalibor Janeček on 12.11.2025.
 //
+//  Platform-specific rozšíření SoundModelu pro SwiftUI.
+//  Základní definice enum je ve Shared/SoundModel.swift.
+//
 
-import Foundation
 import SwiftUI
 
-enum SoundModel: String, Codable, CaseIterable, Equatable {
-    case beep
-    case squeeze
-    case whistle
-    case hey
-    case game
-    case retro
-    case bicycle
-    case gong
-    case bell
-    case bubble
-    
-    var fileName: String {
-            return self.rawValue
-    }
-    
+extension SoundModel {
     var title: LocalizedStringKey {
         switch self {
         case .beep:
@@ -47,9 +34,5 @@ enum SoundModel: String, Codable, CaseIterable, Equatable {
         case .bubble:
             return "BUBBLE"
         }
-    }
-    
-    var id: String {
-        return fileName
     }
 }
