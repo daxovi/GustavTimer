@@ -1,5 +1,5 @@
 //
-//  SoundModel.swift
+//  SoundModel+Title.swift
 //  GustavTimer
 //
 //  Created by Dalibor Janeček on 12.11.2025.
