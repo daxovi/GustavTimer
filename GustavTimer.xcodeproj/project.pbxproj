@@ -54,6 +54,7 @@
 		CFC4C1872D047C1D0086CEBB /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC4C1862D047C1D0086CEBB /* WhatsNewView.swift */; };
 		CFCD99D02CA068B00017BD0E /* ListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD99CF2CA068B00017BD0E /* ListButton.swift */; };
 		CFCE3C762C431EC900D33AE3 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE3C752C431EC900D33AE3 /* View+Extension.swift */; };
+		CFDE17AE2F48A646006BEF5D /* TelemetryDeck in Frameworks */ = {isa = PBXBuildFile; productRef = CFDE17AD2F48A646006BEF5D /* TelemetryDeck */; };
 		CFF207D62E6CA9BA00D0C369 /* FavouritesEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF207D52E6CA9B300D0C369 /* FavouritesEmptyView.swift */; };
 		CFF207D82E6CA9F900D0C369 /* FavouriteRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF207D72E6CA9F300D0C369 /* FavouriteRowView.swift */; };
 		CFF3BAEB2EFD7D7D0069C610 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF3BAEA2EFD7D720069C610 /* OnboardingView.swift */; };
@@ -133,6 +134,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF17ADD82F083A6B00A92841 /* GustavUI in Frameworks */,
+				CFDE17AE2F48A646006BEF5D /* TelemetryDeck in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +396,7 @@
 			mainGroup = CF21842729F052590060706C;
 			packageReferences = (
 				CF8C07C52E3E64100083ED1D /* XCRemoteSwiftPackageReference "rive-ios" */,
+				CFDE17AA2F48A646006BEF5D /* XCRemoteSwiftPackageReference "SwiftSDK" */,
 			);
 			productRefGroup = CF21843129F052590060706C /* Products */;
 			projectDirPath = "";
@@ -713,12 +716,25 @@
 				minimumVersion = 6.11.1;
 			};
 		};
+		CFDE17AA2F48A646006BEF5D /* XCRemoteSwiftPackageReference "SwiftSDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TelemetryDeck/SwiftSDK";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.11.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		CF17ADD72F083A6B00A92841 /* GustavUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GustavUI;
+		};
+		CFDE17AD2F48A646006BEF5D /* TelemetryDeck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFDE17AA2F48A646006BEF5D /* XCRemoteSwiftPackageReference "SwiftSDK" */;
+			productName = TelemetryDeck;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
