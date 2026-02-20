@@ -30,16 +30,13 @@
 		CF228F502E7C52B9000DEF21 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF228F4F2E7C52B5000DEF21 /* AppSettings.swift */; };
 		CF228F542E7D7ED4000DEF21 /* SearchTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF228F532E7D7ECF000DEF21 /* SearchTabView.swift */; };
 		CF279C4C2C31A8940084C43F /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF279C4B2C31A8940084C43F /* SoundManager.swift */; };
-		CF3A14912E47250800F734F4 /* TimeDisplayFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A14902E47250800F734F4 /* TimeDisplayFormat.swift */; };
 		CF4977932EED67BB00EE09B1 /* BannerImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4977922EED67B700EE09B1 /* BannerImageModel.swift */; };
 		CF4DB2832F09511B007D5692 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4DB2822F095116007D5692 /* String+Extension.swift */; };
 		CF4DB2852F098208007D5692 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4DB2842F098203007D5692 /* Int+Extension.swift */; };
 		CF52F0F62EC3B611002CA453 /* SettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF52F0F52EC3B60D002CA453 /* SettingsSection.swift */; };
-		CF52F1102EC47085002CA453 /* SoundModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF52F10F2EC47081002CA453 /* SoundModel.swift */; };
 		CF70037D2C8DE816009F1531 /* HintButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70037C2C8DE816009F1531 /* HintButton.swift */; };
 		CF70037F2C8DED37009F1531 /* BackgroundSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70037E2C8DED37009F1531 /* BackgroundSelectorView.swift */; };
 		CF7744F12E799FA100693351 /* IntervalRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7744F02E799F9A00693351 /* IntervalRowView.swift */; };
-		CF7B1B412C8F6BD3005D4664 /* IntervalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7B1B402C8F6BD3005D4664 /* IntervalData.swift */; };
 		CF7BAE252EC27A74002A4746 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BAE242EC27A6F002A4746 /* SettingsView.swift */; };
 		CF7BAE272EC2823C002A4746 /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BAE262EC28238002A4746 /* FavouritesView.swift */; };
 		CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */; };
@@ -57,11 +54,17 @@
 		CFC4C1872D047C1D0086CEBB /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC4C1862D047C1D0086CEBB /* WhatsNewView.swift */; };
 		CFCD99D02CA068B00017BD0E /* ListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD99CF2CA068B00017BD0E /* ListButton.swift */; };
 		CFCE3C762C431EC900D33AE3 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCE3C752C431EC900D33AE3 /* View+Extension.swift */; };
+		CFDE17AE2F48A646006BEF5D /* TelemetryDeck in Frameworks */ = {isa = PBXBuildFile; productRef = CFDE17AD2F48A646006BEF5D /* TelemetryDeck */; };
 		CFF207D62E6CA9BA00D0C369 /* FavouritesEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF207D52E6CA9B300D0C369 /* FavouritesEmptyView.swift */; };
 		CFF207D82E6CA9F900D0C369 /* FavouriteRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF207D72E6CA9F300D0C369 /* FavouriteRowView.swift */; };
 		CFF3BAEB2EFD7D7D0069C610 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF3BAEA2EFD7D720069C610 /* OnboardingView.swift */; };
 		CFF3BAF42EFD91D30069C610 /* ob_fristensky.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CFF3BAF32EFD91D30069C610 /* ob_fristensky.mp4 */; };
 		CFF71ACC2B8B99BC00884E82 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */; };
+		CFFAF94A2F3DEE2C00A20D76 /* IntervalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFAF9452F3DEE2C00A20D76 /* IntervalData.swift */; };
+		CFFAF94B2F3DEE2C00A20D76 /* SoundModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFAF9462F3DEE2C00A20D76 /* SoundModel.swift */; };
+		CFFAF94C2F3DEE2C00A20D76 /* TimeDisplayFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFAF9472F3DEE2C00A20D76 /* TimeDisplayFormat.swift */; };
+		CFFAF94D2F3DEE2C00A20D76 /* TimerEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFAF9482F3DEE2C00A20D76 /* TimerEngine.swift */; };
+		CFFAF94F2F3DEE3C00A20D76 /* SoundModel+Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFAF94E2F3DEE3C00A20D76 /* SoundModel+Title.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,17 +91,14 @@
 		CF228F4F2E7C52B5000DEF21 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		CF228F532E7D7ECF000DEF21 /* SearchTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTabView.swift; sourceTree = "<group>"; };
 		CF279C4B2C31A8940084C43F /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
-		CF3A14902E47250800F734F4 /* TimeDisplayFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDisplayFormat.swift; sourceTree = "<group>"; };
 		CF4977922EED67B700EE09B1 /* BannerImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerImageModel.swift; sourceTree = "<group>"; };
 		CF4DB2822F095116007D5692 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		CF4DB2842F098203007D5692 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		CF52F0F52EC3B60D002CA453 /* SettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSection.swift; sourceTree = "<group>"; };
-		CF52F10F2EC47081002CA453 /* SoundModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundModel.swift; sourceTree = "<group>"; };
 		CF5B11122AD33CE500F42131 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CF70037C2C8DE816009F1531 /* HintButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintButton.swift; sourceTree = "<group>"; };
 		CF70037E2C8DED37009F1531 /* BackgroundSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSelectorView.swift; sourceTree = "<group>"; };
 		CF7744F02E799F9A00693351 /* IntervalRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalRowView.swift; sourceTree = "<group>"; };
-		CF7B1B402C8F6BD3005D4664 /* IntervalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalData.swift; sourceTree = "<group>"; };
 		CF7BAE242EC27A6F002A4746 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CF7BAE262EC28238002A4746 /* FavouritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesView.swift; sourceTree = "<group>"; };
 		CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageModel.swift; sourceTree = "<group>"; };
@@ -121,6 +121,11 @@
 		CFF3BAEA2EFD7D720069C610 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		CFF3BAF32EFD91D30069C610 /* ob_fristensky.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ob_fristensky.mp4; sourceTree = "<group>"; };
 		CFF71ACB2B8B99BC00884E82 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		CFFAF9452F3DEE2C00A20D76 /* IntervalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalData.swift; sourceTree = "<group>"; };
+		CFFAF9462F3DEE2C00A20D76 /* SoundModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundModel.swift; sourceTree = "<group>"; };
+		CFFAF9472F3DEE2C00A20D76 /* TimeDisplayFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDisplayFormat.swift; sourceTree = "<group>"; };
+		CFFAF9482F3DEE2C00A20D76 /* TimerEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerEngine.swift; sourceTree = "<group>"; };
+		CFFAF94E2F3DEE3C00A20D76 /* SoundModel+Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SoundModel+Title.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +134,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF17ADD82F083A6B00A92841 /* GustavUI in Frameworks */,
+				CFDE17AE2F48A646006BEF5D /* TelemetryDeck in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +151,7 @@
 		CF21842729F052590060706C = {
 			isa = PBXGroup;
 			children = (
+				CFFAF9492F3DEE2C00A20D76 /* Shared */,
 				CF21843229F052590060706C /* GustavTimer */,
 				CF17ADD62F083A6100A92841 /* Frameworks */,
 				CF21843129F052590060706C /* Products */,
@@ -273,12 +280,10 @@
 		CF7B1B3F2C8F6BA9005D4664 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CFFAF94E2F3DEE3C00A20D76 /* SoundModel+Title.swift */,
 				CF4977922EED67B700EE09B1 /* BannerImageModel.swift */,
-				CF52F10F2EC47081002CA453 /* SoundModel.swift */,
-				CF3A14902E47250800F734F4 /* TimeDisplayFormat.swift */,
 				CF2222D92E355A8000A90265 /* TimerData.swift */,
 				CFB1394E2AE59ED900EE8B2C /* BackgroundImageModel.swift */,
-				CF7B1B402C8F6BD3005D4664 /* IntervalData.swift */,
 				CF7BCED62BB881C900A65EF1 /* CustomImageModel.swift */,
 			);
 			path = Models;
@@ -333,6 +338,17 @@
 			path = Media;
 			sourceTree = "<group>";
 		};
+		CFFAF9492F3DEE2C00A20D76 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				CFFAF9452F3DEE2C00A20D76 /* IntervalData.swift */,
+				CFFAF9462F3DEE2C00A20D76 /* SoundModel.swift */,
+				CFFAF9472F3DEE2C00A20D76 /* TimeDisplayFormat.swift */,
+				CFFAF9482F3DEE2C00A20D76 /* TimerEngine.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -380,6 +396,7 @@
 			mainGroup = CF21842729F052590060706C;
 			packageReferences = (
 				CF8C07C52E3E64100083ED1D /* XCRemoteSwiftPackageReference "rive-ios" */,
+				CFDE17AA2F48A646006BEF5D /* XCRemoteSwiftPackageReference "SwiftSDK" */,
 			);
 			productRefGroup = CF21843129F052590060706C /* Products */;
 			projectDirPath = "";
@@ -425,7 +442,6 @@
 				CFB1394D2AE572D300EE8B2C /* BackgroundImageView.swift in Sources */,
 				CF21843629F052590060706C /* ContentView.swift in Sources */,
 				CFB1394F2AE59ED900EE8B2C /* BackgroundImageModel.swift in Sources */,
-				CF3A14912E47250800F734F4 /* TimeDisplayFormat.swift in Sources */,
 				CF10D0562E73371F00F84454 /* RoundsSettingsView.swift in Sources */,
 				CFC3A7722AAF8B1B00BB8CC2 /* ProgressBar.swift in Sources */,
 				CFF207D82E6CA9F900D0C369 /* FavouriteRowView.swift in Sources */,
@@ -444,6 +460,10 @@
 				CF7BAE272EC2823C002A4746 /* FavouritesView.swift in Sources */,
 				CF70037D2C8DE816009F1531 /* HintButton.swift in Sources */,
 				CFCD99D02CA068B00017BD0E /* ListButton.swift in Sources */,
+				CFFAF94A2F3DEE2C00A20D76 /* IntervalData.swift in Sources */,
+				CFFAF94B2F3DEE2C00A20D76 /* SoundModel.swift in Sources */,
+				CFFAF94C2F3DEE2C00A20D76 /* TimeDisplayFormat.swift in Sources */,
+				CFFAF94D2F3DEE2C00A20D76 /* TimerEngine.swift in Sources */,
 				CFCE3C762C431EC900D33AE3 /* View+Extension.swift in Sources */,
 				CF70037F2C8DED37009F1531 /* BackgroundSelectorView.swift in Sources */,
 				CF7BAE252EC27A74002A4746 /* SettingsView.swift in Sources */,
@@ -453,10 +473,9 @@
 				CF21843429F052590060706C /* GustavTimerApp.swift in Sources */,
 				CF4DB2832F09511B007D5692 /* String+Extension.swift in Sources */,
 				CF52F0F62EC3B611002CA453 /* SettingsSection.swift in Sources */,
+				CFFAF94F2F3DEE3C00A20D76 /* SoundModel+Title.swift in Sources */,
 				CF7BCED72BB881C900A65EF1 /* CustomImageModel.swift in Sources */,
 				CF279C4C2C31A8940084C43F /* SoundManager.swift in Sources */,
-				CF7B1B412C8F6BD3005D4664 /* IntervalData.swift in Sources */,
-				CF52F1102EC47085002CA453 /* SoundModel.swift in Sources */,
 				CF2222DA2E355A8200A90265 /* TimerData.swift in Sources */,
 				CF228F542E7D7ED4000DEF21 /* SearchTabView.swift in Sources */,
 			);
@@ -614,7 +633,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.0;
+				MARKETING_VERSION = 2.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = cz.daliborjanecek.GustavTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -652,7 +671,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1.0;
+				MARKETING_VERSION = 2.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = cz.daliborjanecek.GustavTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -697,12 +716,25 @@
 				minimumVersion = 6.11.1;
 			};
 		};
+		CFDE17AA2F48A646006BEF5D /* XCRemoteSwiftPackageReference "SwiftSDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TelemetryDeck/SwiftSDK";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.11.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		CF17ADD72F083A6B00A92841 /* GustavUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GustavUI;
+		};
+		CFDE17AD2F48A646006BEF5D /* TelemetryDeck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFDE17AA2F48A646006BEF5D /* XCRemoteSwiftPackageReference "SwiftSDK" */;
+			productName = TelemetryDeck;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

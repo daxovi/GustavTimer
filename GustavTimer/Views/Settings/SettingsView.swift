@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 import GustavUI
+import TelemetryDeck
 
 struct SettingsView: View {
     @StateObject private var appSettings = AppSettings()
@@ -310,6 +311,15 @@ struct SettingsView: View {
             newTimer.intervals = mainTimer.intervals
             newTimer.selectedSound = mainTimer.selectedSound
             context.insert(newTimer)
+
+            // Track timer save event
+            let intervalPattern = mainTimer.intervals.map { String($0.value) }.joined(separator: "/")
+            TelemetryDeck.signal(
+                "timer.saved",
+                parameters: [
+                    "interval_pattern": intervalPattern
+                ]
+            )
         }
     }
     

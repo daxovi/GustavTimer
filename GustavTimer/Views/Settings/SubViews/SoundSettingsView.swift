@@ -7,6 +7,7 @@
 
 import SwiftUI
 import GustavUI
+import TelemetryDeck
 
 struct SoundSettingsView: View {
     
@@ -36,7 +37,7 @@ struct SoundSettingsView: View {
                     ForEach(AppConfig.soundThemes, id: \.id) { soundTheme in
                         GustavSelectableListRow(selected: selectedSound == soundTheme) {
                             Button {
-                                selectedSound = soundTheme
+                                setSelectedSound(soundTheme)
                                 SoundManager.instance.playSound(soundModel: soundTheme)
                             } label: {
                                 HStack {
@@ -76,6 +77,16 @@ struct SoundSettingsView: View {
         }
     }
     
+    func setSelectedSound(_ sound: SoundModel) {
+        self.selectedSound = sound
+
+        TelemetryDeck.signal(
+            "timer.sound_selected",
+            parameters: [
+                "sound": sound.rawValue
+            ]
+        )
+    }
 }
 
 #Preview {
