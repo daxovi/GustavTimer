@@ -34,9 +34,7 @@ class TimerViewModel: ObservableObject {
     @Published var loopIconAnimation = LottiePlaybackMode.paused(at: .frame(0))
 
     // MARK: - Nastavení (AppStorage)
-    @AppStorage("rounds") var rounds: Int = -1 {
-        didSet { engine.rounds = rounds }
-    }
+    @AppStorage("rounds") var rounds: Int = -1
     @AppStorage("stopCounter") var stopCounter: Int = 0
     @AppStorage("whatsNewVersion") var whatsNewVersion: Int = 0
     @AppStorage("isSoundEnabled") var isSoundEnabled: Bool = true
@@ -78,6 +76,15 @@ class TimerViewModel: ObservableObject {
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
                 self?.objectWillChange.send()
+            }
+            .store(in: &cancellables)
+
+        // Sleduj změny v rounds a synchronizuj s engine
+        // (didSet se nevolá při změně z jiné @AppStorage instance)
+        $rounds
+            .receive(on: RunLoop.main)
+            .sink { [weak self] newValue in
+                self?.engine.rounds = newValue
             }
             .store(in: &cancellables)
     }
