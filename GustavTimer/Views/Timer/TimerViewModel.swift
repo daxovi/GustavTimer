@@ -12,6 +12,7 @@ import AVKit
 import AVFoundation
 import SwiftData
 import Lottie
+import TelemetryDeck
 
 /// ViewModel pro správu časovače – iOS vrstva nad sdíleným TimerEngine
 class TimerViewModel: ObservableObject {
@@ -131,6 +132,17 @@ class TimerViewModel: ObservableObject {
     // MARK: - Ovládání timeru (deleguje na engine)
 
     func startStopTimer() {
+        // Track timer start event before starting
+        if !engine.isRunning, !timers.isEmpty {
+            let intervalPattern = timers.map { String($0.value) }.joined(separator: "/")
+            TelemetryDeck.signal(
+                "timer.started",
+                parameters: [
+                    "interval_pattern": intervalPattern
+                ]
+            )
+        }
+
         engine.startStop()
     }
 

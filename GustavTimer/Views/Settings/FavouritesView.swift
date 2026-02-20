@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 import GustavUI
+import TelemetryDeck
 
 struct FavouritesView: View {
     
@@ -69,6 +70,7 @@ struct FavouritesView: View {
                 ForEach(preloadedTimers) { timer in
                     FavouriteRowView(timer: timer, selected: isTimerSelected(timer: timer))
                         .onTapGesture {
+                            analyticsPreloadedAction(timer: timer)
                             selectTimer(timer: timer)
                         }
                 }
@@ -158,6 +160,15 @@ struct FavouritesView: View {
             newTimer.intervals = mainTimer.intervals
             newTimer.selectedSound = mainTimer.selectedSound
             context.insert(newTimer)
+
+            // Track timer save event
+            let intervalPattern = newTimer.intervals.map { String($0.value) }.joined(separator: "/")
+            TelemetryDeck.signal(
+                "timer.saved",
+                parameters: [
+                    "interval_pattern": intervalPattern
+                ]
+            )
         }
     }
     
@@ -170,6 +181,18 @@ struct FavouritesView: View {
             mainTimer.isVibrating = timer.isVibrating
             appSettings.save(from: timer)
         }
+    }
+    
+    private func analyticsPreloadedAction(timer: TimerData) {
+        let intervalPattern = timer.intervals.map { String($0.value) }.joined(separator: "/")
+
+        TelemetryDeck.signal(
+            "timer.preloadselected",
+            parameters: [
+                "timer_name": timer.name,
+                "interval_pattern": intervalPattern
+            ]
+        )
     }
     
     private func isTimerSelected(timer: TimerData) -> Bool {
