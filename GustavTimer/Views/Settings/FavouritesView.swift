@@ -179,7 +179,9 @@ struct FavouritesView: View {
             mainTimer.intervals = timer.intervals
             mainTimer.selectedSound = timer.selectedSound
             mainTimer.isVibrating = timer.isVibrating
+            mainTimer.rounds = timer.rounds
             appSettings.save(from: timer)
+            try? context.save()
         }
     }
     
