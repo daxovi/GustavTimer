@@ -79,11 +79,11 @@ struct SoundSettingsView: View {
     
     func setSelectedSound(_ sound: SoundModel) {
         self.selectedSound = sound
-        
+
         TelemetryDeck.signal(
             "timer.sound_selected",
             parameters: [
-                "sound": "\(sound.title)"
+                "sound": sound.rawValue
             ]
         )
     }
