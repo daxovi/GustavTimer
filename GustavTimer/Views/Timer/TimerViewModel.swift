@@ -81,7 +81,9 @@ class TimerViewModel: ObservableObject {
 
         // Sleduj změny v rounds a synchronizuj s engine
         // (didSet se nevolá při změně z jiné @AppStorage instance)
-        $rounds
+        NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)
+            .compactMap { [weak self] _ in self?.rounds }
+            .removeDuplicates()
             .receive(on: RunLoop.main)
             .sink { [weak self] newValue in
                 self?.engine.rounds = newValue
